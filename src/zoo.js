@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 // const { TestScheduler } = require("@jest/core");
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 // const data = require("./data");
 
 function animalsByIds(...ids) {
@@ -26,9 +26,16 @@ function animalsOlderThan(animal, age) {
   return arrayAnimal.every((value) => value.age >= age);
 }
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+function employeeByName(employeeName) {
+  if (employeeName !== undefined) {
+    return employees.find(
+      (employee) =>
+        employee.firstName === employeeName
+        || employee.lastName === employeeName,
+    );
+  }
+  return {};
+}
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -76,7 +83,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

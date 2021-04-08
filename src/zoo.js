@@ -22,9 +22,11 @@ const findAnimalById = (animalId) => animals.find((animal) => animal.id === anim
 
 const animalsByIds = (...ids) => ids.map((animalId) => findAnimalById(animalId));
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+const findAnimalByName = (animalName) => animals.find((animal) => animal.name === animalName);
+
+const animalsOlderThan = (animal, age) => findAnimalByName(animal).residents.every((isOlder) => age < isOlder.age);
+
+
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -80,7 +82,7 @@ module.exports = {
   //   employeeCoverage,
   //   addEmployee,
   //   isManager,
-  //   animalsOlderThan,
+  animalsOlderThan,
   //   oldestFromFirstSpecies,
   //   increasePrices,
   //   createEmployee,

@@ -228,11 +228,6 @@ let animals = [
     },
   ]
 
-  let allAnimals = animals.map((animal) => ({
-      animal.name: animal.residents.length,
-  }))
-  console.log(allAnimals)
-
   function animalCount(species = 'all') {
     // seu código aqui
     const allAnimals = data.animals.map((animal) => ({

@@ -61,14 +61,12 @@ function animalCount(species) {
   if (typeof species === 'undefined') {
     const object = {};
     animals.forEach((elem) => {
-      object.element.name = elem.residents.length;
+      object[elem.name] = elem.residents.length;
     });
     return object;
   }
   return animals.find((animal) => animal.name === species).residents.length;
 }
-
-console.log(animalCount('lions'));
 
 // function entryCalculator(entrants) {
 //   // seu código aqui

@@ -19,8 +19,11 @@ function animalsByIds(...ids) {
 
 console.log(animalsByIds());
 
+// Primeiro uso o find para fazer a busca da especie passado. find retorna apenas o primeiro elemento que satisfaça a contição.
+// Depois uso a const criada com o elemento achado para fazer um filter. Filter vai retornar todos aqueles que atenderam a condição, no caso mior do que a idade passada no parametro.
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const species = data.animals.find((specie) => specie.name === animal);
+  return species.residents.every((value) => value.age >= age);
 }
 
 function employeeByName(employeeName) {

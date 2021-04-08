@@ -30,9 +30,19 @@ function employeeByName(employeeName) {
   return employeesList.find((p) => p.firstName === employeeName || p.lastName === employeeName);
 }
 
-// function createEmployee(personalInfo, associatedWith) {
-
-// }
+function createEmployee(personalInfo, associatedWith) {
+  const newPersonal = employeesList.map((emp) => {
+    emp.id = personalInfo[0],
+    emp.firstName = personalInfo[1],
+    emp.lastName = personalInfo[1];
+    return newPersonal;
+  });
+  const newAssoc = employeesList.map((empl) => {
+    empl.managers = associatedWith[0],
+    empl.responsibleFor = associatedWith[1];
+    return newAssoc;
+  });
+}
 
 // function isManager(id) {
 
@@ -81,7 +91,7 @@ module.exports = {
   //   addEmployee,
   //   isManager,
   animalsOlderThan,
-//   oldestFromFirstSpecies,
-//   increasePrices,
-//   createEmployee,
+  //   oldestFromFirstSpecies,
+  //   increasePrices,
+  createEmployee,
 };

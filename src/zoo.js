@@ -37,8 +37,8 @@ function employeeByName(employeeName) {
     if ((collaborator.firstName === employeeName) || (collaborator.lastName === employeeName)) {
       return collaborator;
     }
-  });
-  return retorno;
+    return retorno;
+  });  
 }
 
 // function createEmployee(personalInfo, associatedWith) {
@@ -82,17 +82,17 @@ function employeeByName(employeeName) {
 // }
 
 module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
+  // entryCalculator,
+  // schedule,
+  // animalCount,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
+  // employeeCoverage,
+  // addEmployee,
+  // isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
+  // oldestFromFirstSpecies,
+  // increasePrices,
+  // createEmployee,
 };

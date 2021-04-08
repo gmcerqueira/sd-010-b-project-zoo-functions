@@ -13,7 +13,7 @@ const data = require('./data');
 
 const animais = data.animals;
 
-const empregados = data.employees;
+let empregados = data.employees;
 
 function animalsByIds(...ids) {
   if (!ids) return [];
@@ -42,9 +42,9 @@ function isManager(id) {
   return empregados.some((el) => el.managers.includes(id));
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  empregados.push({ id, firstName, lastName, managers, responsibleFor });
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -82,7 +82,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   //   employeeCoverage,
-  //   addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   //   oldestFromFirstSpecies,

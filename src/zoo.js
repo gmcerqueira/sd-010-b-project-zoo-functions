@@ -40,9 +40,11 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  const occupations = employees.map((employee) => employee.managers);
+  return occupations.map((occupation) =>
+    occupation.some((managerJob) => managerJob === id)).some((item) => item === true);
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -85,7 +87,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   //   oldestFromFirstSpecies,
   //   increasePrices,

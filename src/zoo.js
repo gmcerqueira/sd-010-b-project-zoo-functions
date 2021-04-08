@@ -39,7 +39,7 @@ function createEmployee(personalInfo, associatedWith) {
 //   return employees.some((isManager) => (isManager.managers.includes(id)));
 // }
 
-function addEmployee(id, firstName, lastName, managers =[], responsibleFor =[]) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   return employees.push({
     id,

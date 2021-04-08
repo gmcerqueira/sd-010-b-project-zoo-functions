@@ -14,14 +14,19 @@ const data = require('./data');
 const { animals } = data;
 
 function animalsByIds(...ids) {
-  // seu código aqui
+  // filter: passa a função em todos os elementos de animals até ela ser satisfeita;
+  // some: testa se o ID do elemento é igual ao parametro e retorna o objeto que satisfaz essa condição;
   return animals.filter((animal) =>
     ids.some((testId) => animal.id === testId));
 }
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+function animalsOlderThan(animal, age) {
+  // seu código aqui
+  // uso do parametro 'animal' para achar a especie especifica;
+  // em seguida, uso o retorno do findAnimal e vejo dentre todos(every) suas keys a que corresponde a 'age' e a comparo com o parametro;
+  const findAnimal = animals.find((element) => element.name === animal);
+  return findAnimal.residents.every((info) => info.age >= age);
+}
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -77,7 +82,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

@@ -56,11 +56,12 @@ function employeeByName(employeeName) {
   return employees.find((el) => el.firstName === employeeName || el.lastName === employeeName);
 }
 
-/*
-
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  employees.personalInfo = personalInfo;
+  return Object.assign(employees.personalInfo, associatedWith);
 }
+/*
 
 function isManager(id) {
   // seu código aqui
@@ -99,7 +100,8 @@ function employeeCoverage(idOrName) {
 }
  */
 module.exports = {
-/*   entryCalculator,
+/*
+  entryCalculator,
   schedule,
   animalCount,
   animalMap,
@@ -108,8 +110,9 @@ module.exports = {
   isManager,
   oldestFromFirstSpecies,
   increasePrices,
-  createEmployee, */
+*/
   animalsByIds,
+  createEmployee,
   animalsOlderThan,
   employeeByName,
 };

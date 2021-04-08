@@ -70,9 +70,21 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 // console.log(addEmployee('122', 'Ad', 'Jr', ['1234', '444'], ['1255', '455']));
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+// 7. IMPLEMENTE A FUNÇÃO animalCount
+// Esta função é responsável por contabilizar a quantidade de animais.
+
+function animalCount(species) {
+  if (species) {
+    return (animals.find(({ name }) =>
+      name.includes(species)).residents.length);
+  }
+  return animals.reduce((acc, currAnimal) => {
+    acc[currAnimal.name] = currAnimal.residents.length;
+    return acc;
+  }, {});
+}
+// console.log(animalCount('penguins'));
+// console.log(animalCount());
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -101,7 +113,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

@@ -40,12 +40,15 @@ function employeeByName(employeeName) {
     name.firstName === employeeName || name.lastName === employeeName);
 }
 
-/* function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-  return personalInfo, associatedWith;
+function createEmployee(personalInfo, associatedWith) {
+  // O parâmetro personalInfo recebe um objeto que contém o id, o firstName e o lastName
+  // O parâmetro associatedWith recebe um objeto que contém dois array: managers e responsibleFor
+  // Cria um novo colaborador a partir de objetos contendo informações pessoais e gerentes e animais gerenciados.
+  const newEmployee = { ...personalInfo, ...associatedWith };
+  return newEmployee;
 }
 
-function isManager(id) {
+/* function isManager(id) {
   // seu código aqui
   return id;
 }
@@ -103,5 +106,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

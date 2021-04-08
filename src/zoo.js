@@ -72,11 +72,7 @@ const listModel = (callback) => {
   };
 };
 
-const func = (animal) => {
-  return animal.map(({name}) => name)
-}
-
-const test = listModel(func)()
+const test = listModel((animal) => animal.map(({name}) => name))()
 
 console.log(test);
 

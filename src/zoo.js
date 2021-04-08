@@ -15,7 +15,6 @@ function animalsByIds(idone, idtwo) {
   const response = [];
 
   if (idone === undefined && idtwo === undefined) {
-    console.log('Nenhum parâmetro informado!');
     return response;
   }
 
@@ -29,9 +28,23 @@ function animalsByIds(idone, idtwo) {
   return response;
 }
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+function animalsOlderThan(animal, age) {
+  let animalsresidents; let response;
+
+  data.animals.forEach((animals) => {
+    if (animals.name === animal) {
+      animalsresidents = animals.residents;
+    }
+  });
+
+  animalsresidents.forEach((residents) => {
+    if (residents.age <= age) {
+      response = false;
+    } else { response = true; }
+  });
+
+  return response;
+}
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -77,9 +90,10 @@ function animalsByIds(idone, idtwo) {
 //   // seu código aqui
 // }
 
-const id = '0938aa23-f153-4937-9f88-4858b24d6bce';
+// const id = '0938aa23-f153-4937-9f88-4858b24d6bce';
+// animalsByIds(id);
 
-animalsByIds(id);
+animalsOlderThan('otters', 7);
 
 module.exports = {
   // entryCalculator,
@@ -91,7 +105,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

@@ -46,9 +46,16 @@ function isManager(id) {
     occupation.some((managerJob) => managerJob === id)).some((item) => item === true);
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newCollab = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return employees.push(newCollab);
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -86,7 +93,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   //   oldestFromFirstSpecies,

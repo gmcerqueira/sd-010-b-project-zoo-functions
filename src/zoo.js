@@ -37,6 +37,7 @@ const takeManagers = () => {
   const singleManags = [...new Set(allManags)];
   return singleManags.filter((emp) => emp);
 };
+// trocar para includes
 const fiEmpById = (id) => employees.find((employee) => employee.id === id);
 const reallyIsManager = (employee) => takeManagers().some((manager) => manager === employee.id);
 const isManager = (id) => reallyIsManager(fiEmpById(id));
@@ -54,9 +55,16 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   employees.push(buildEmployee(id, firstName, lastName, managers, responsibleFor));
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+// animalCount
+const countAll = () => {
+  const aniObj = {};
+  animals.forEach(({ name, residents }) => {
+    aniObj[name] = residents.length;
+  });
+  return aniObj;
+};
+const countOne = (theAnimal) => theAnimal.residents.length;
+const animalCount = (species) => (!species ? countAll() : countOne(fiByName(species)));
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -85,7 +93,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

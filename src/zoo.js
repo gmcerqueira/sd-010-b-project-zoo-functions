@@ -58,11 +58,17 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-/* function isManager(id) {
-  // seu código aqui
+/*
+   Essa função verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
+  */
+function isManager(id) {
+  // retorna o resultado de
+  return employees.some( // verificar se há algum
+    ({ managers }) => managers.includes(id), // funcionário que tenha aquele 'id' como gerente
+  );
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+/* function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
@@ -103,7 +109,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

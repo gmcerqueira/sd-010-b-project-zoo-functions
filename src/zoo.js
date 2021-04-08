@@ -9,18 +9,17 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require("./data");
+const data = require('./data');
 
 // Faz a desestructuringObjects para uso nas funções
-const { animals, employees, prices } = data;
+const { animals, employees } = data;
 
 function animalsByIds(...args) {
   // 1- Filter traz todos os animais e o some
   // 2- Some utilizado junto com o filter retorna somente o animal que atender a condição
   // 3- ...args pode trazer um id ou vários ids, é o spread
   return animals.filter((animal) =>
-    args.some((checkId) => animal.id === checkId)
-  );
+    args.some((checkId) => animal.id === checkId));
 }
 
 function animalsOlderThan(animal, age) {
@@ -33,11 +32,9 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // 1- É verificado se employeeName é vazio ou nulo, se for é retornado um objeto vazio.
   if (!employeeName) return {};
+  const n = employeeName;
   // 2- Find retorna o primeiro objeto que corresponda a condição passada
-  return employees.find(
-    (employ) =>
-      employeeName === employ.firstName || employeeName === employ.lastName
-  );
+  return employees.find((employ) => (n === employ.firstName || n === employ.lastName));
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -56,7 +53,7 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []
+  responsibleFor = [],
 ) {
   // 1- Alterado os parâmetros recebido managers = [], responsibleFor = [] para que se nada for informado seja inserido por padrão um array vazio a cada.
   // 2- Através dos parâmetros passados é criado um novo objeto.
@@ -74,17 +71,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // 1- Declarada uma variável que vai receber o valor total
-  let totalValue = 0;
-  // 2- É verificado se entrants é vazio ou nulo, se for é retornado 0.
-  if (!entrants) return 0;
-  // 3- Feito um for onde percorre o objeto e o Object.keys retorna as keys, ou seja Adult, Child e Senior
-  // 4- entrants[value] retorna o valor contido (qtdade de pessoas) nas posições Adult no primeiro loop, Child  no segundo loop e Senior no terceiro loop.
-  // Em cada loop ele recupera o valor da entrada em prices passando a chave do objeto como referência (Adult, Child e Senior) e multiplica esse valor com a quantidade de pessoas obtidas na chave e guarda na variável totalValue para retornar no fim do for.
-  Object.keys(entrants).forEach(
-    (value) => (totalValue += entrants[value] * prices[value])
-  );
-  return totalValue;
+  // teste
 }
 
 function animalMap(options) {

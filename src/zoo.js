@@ -18,7 +18,9 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find((item) => item.name === animal).residents.every((i) => i.age > age);
+  return animals
+    .find((item) => item.name === animal)
+    .residents.every((i) => i.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -39,7 +41,13 @@ function isManager(id) {
   return employees.some((i) => i.managers.some((j) => j === id));
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = [],
+) {
   return employees.push({
     id,
     firstName,
@@ -49,13 +57,16 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   });
 }
 
-// id, '39800c14-4b76-454a-858d-2f8d168146a7');
-// managers, []);
-// responsibleFor, []);
-
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  if (!species) {
+    return animals.reduce((result, item) => {
+      const final = result;
+      final[item.name] = item.residents.length;
+      return final;
+    }, {});
+  }
+  return animals.find((i) => i.name === species).residents.length;
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -84,7 +95,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

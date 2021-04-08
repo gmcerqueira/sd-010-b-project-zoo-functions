@@ -31,17 +31,8 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const newPersonal = employeesList.map((emp) => {
-    emp.id = personalInfo[0],
-    emp.firstName = personalInfo[1],
-    emp.lastName = personalInfo[1];
-    return newPersonal;
-  });
-  const newAssoc = employeesList.map((empl) => {
-    empl.managers = associatedWith[0],
-    empl.responsibleFor = associatedWith[1];
-    return newAssoc;
-  });
+  const allEmployee = { ...personalInfo, ...associatedWith };
+  return allEmployee;
 }
 
 // function isManager(id) {

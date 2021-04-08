@@ -14,11 +14,13 @@ const data = require('./data');
 function animalsByIds(...ids) {
   const identifications = ids;
   if (identifications.length === 0) { return identifications; }
-  const animals = [];
-  identifications.forEach((element) => {
-    const animal = data.animals.filter((element2) => element2.id === element);
-    animals.push(animal[0]);
-  });
+  // const animals = [];
+  // identifications.forEach((element) => {
+  //   const animal = data.animals.filter((element2) => element2.id === element);
+  //   animals.push(animal[0]);
+  // });
+  // seu código aqui
+  const animals = data.animals.filter((item, index) => (item.id === identifications[index]));
   return animals;
 }
 

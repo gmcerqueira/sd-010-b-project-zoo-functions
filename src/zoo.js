@@ -68,16 +68,23 @@ function entryCalculator(entrants) {
   return entries.reduce((acc, cur) => acc + (entrants[cur] * prices[cur]), 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
-  function getSpecieByName(specieName) {
-  return animals.find(specie => specie.name === specieName);
- }
-}
-
-// function schedule(dayName) {
-//   // seu código aqui
+// function animalMap(options) {
+ // // seu código aqui
 // }
+
+function schedule(dayName) {
+//   // seu código aqui
+const result = Object.entries(hours).reduce((acc, [key, val]) => {
+    const { open, close } = val;
+    acc[key] = close - open > 0 ? `Open from ${open}am until ${close - 12}pm` : 'CLOSED';
+    return acc;
+  }, {});
+  if (dayName !== undefined) return { [dayName]: result[dayName] };
+  return result;
+}
+function employeeById(id) {
+  return employees.find(employee => employee.id === id);
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui

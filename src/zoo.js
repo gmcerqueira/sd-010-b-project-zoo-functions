@@ -102,7 +102,7 @@ const schedule = (dayName) => {
     return acc;
   }, {});
 
-  // Guarda a tabela/objeto criado em days
+  // Guarda a objeto criado em days
   const days = table;
   // Se foi informado o dia retorna um objeto com o dia e horario informado
   // Se não retorna a tabela days

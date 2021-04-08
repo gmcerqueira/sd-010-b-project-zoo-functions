@@ -9,10 +9,12 @@ eslint no-unused-vars: [
 ]
 */
 
+//Começando com tudoooo! VQV
+
 const data = require('./data');
 
 function animalsByIds(ids) {
-  // seu código aqui
+  // seu código aqui 
 }
 
 function animalsOlderThan(animal, age) {

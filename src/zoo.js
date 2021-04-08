@@ -35,13 +35,14 @@ function employeeByName(employeeName) {
   return data.employees.find(checkName);
 }
 
+// Ao usar o spread operator, consigo criar um novo objeto com os parametros passado
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-/* function isManager(id) {
-  // seu código aqui
-} */
+function isManager(id) {
+  return data.employees.some((value) => value.managers.includes(id));
+}
 
 /* function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
@@ -84,7 +85,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

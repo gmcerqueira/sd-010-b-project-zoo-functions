@@ -54,7 +54,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   // Henrique Zózimo ajudou
   const count = {};
-  animais.forEach(({ name, residents}) => {
+  animais.forEach(({ name, residents }) => {
     count[name] = residents.length;
   });
   if (!species) return count;

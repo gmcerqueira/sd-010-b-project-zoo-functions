@@ -57,16 +57,37 @@ function isManager(id) {
 }
 
 /* function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-  return id, firstName, lastName, managers, responsibleFor;
-}
+  // A função irá adicionar uma nova pessoa colaboradora ao array employees, presente no arquivo data.js.
+  // Adiciona um funcionário no fim da lista
+  const lastEmployee = {
+    id:id,
+    firstName: firstName,
+      lastName: lastName,
+      managers: [managers],
+      responsibleFor: [responsibleFor]
+  }
+  return employees.push(lastEmployee);
+} */
 
 function animalCount(species) {
-  // seu código aqui
-  return species;
+  // Sem parâmetros, retorna um objeto
+  // Com o nome de uma espécie de animal, retorna um número
+  // Sem parâmetros, retorna animais e suas quantidades
+  // Com o nome de uma espécie de animal, retorna somente a quantidade
+  const obj = {};
+  animals.forEach(({
+    name,
+    residents,
+  }) => {
+    obj[name] = residents.length;
+  });
+  if (!species) {
+    return obj;
+  }
+  return obj[species];
 }
 
-function entryCalculator(entrants) {
+/* function entryCalculator(entrants) {
   // seu código aqui
   return entrants;
 }
@@ -99,7 +120,7 @@ function employeeCoverage(idOrName) {
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

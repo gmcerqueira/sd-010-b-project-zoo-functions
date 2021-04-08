@@ -45,9 +45,14 @@ function employeeByName(employeeName) {
   return empty;
 }
 console.log(employeeByName('Emery'));
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+
+// 4. IMPLEMENTE A FUNÇÃO createEmployee
+// A função, a partir de informações recebidas nos parâmetros, é capaz de criar um objeto equivalente
+// ao de uma pessoa colaboradora, retornando-o
+
+function createEmployee(personalInfo, associatedWith) {
+  return { ...personalInfo, ...associatedWith };
+}
 
 // function isManager(id) {
 //   // seu código aqui
@@ -98,5 +103,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

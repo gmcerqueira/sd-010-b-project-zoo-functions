@@ -15,25 +15,35 @@ const data = require('./data');
 // // console.log( lion)
 // // console.log(data.animals[0])
 const { animals } = data;
+const { employees } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
-  const param = ids; // coloquei o parametro dentro dessa const para ficar mais organizado
+  const param = ids; // const que recebe o parâmetro
 
-  const animalsMapped = param.map((IdCode) => // criei uma nova váriavel e apliquei dentro dela um map com os parametros para que eu possa transformar em something brand new
-    animals.find((animal) => animal.id === IdCode)); // dentro do map apliquei um find que vai procurar na variavel animals o primeiro id que possui o mesmo valor que o id do param do meu map
+  const animalsMapped = param.map((IdCode) => // map para trazer um objeto a partir do parametro
 
-  return animalsMapped; // no final da função pedi para retornar a minha const
+    animals.find((animal) => animal.id === IdCode)); // dentro do map apliquei um find que vai procurar no banco de dados de animais o primeiro id que possui o mesmo valor que o id do param do meu map
+
+  return animalsMapped; // A função retorna a minha const com a outra função
 }
 animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'ef3778eb-2844-4c7c-b66c-f432073e1c6b');
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+//   // seu código aqui
+
 }
 
-function employeeByName(employeeName) {
+function employeeByName(...employeeName) { // Usei a mesma lógica do primeiro exercício.
   // seu código aqui
+  const employee = employeeName;
+
+  const employeeMapped = employee.map((name) =>
+    employees.find((person) => person.firstName === name || person.lastName === name));
+  console.log(employeeMapped);
+  return employeeMapped;
 }
+employeeByName('Stephanie');
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui

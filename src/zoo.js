@@ -16,7 +16,7 @@ function animalsByIds(ids) {
     return [];
   }
 }
-data.animals;
+console.log(data.animals)
 function animalsOlderThan(animal, age) {
   return animal + age;
 }

@@ -15,7 +15,7 @@ const { animals } = data;
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
-  return [];
+    return [];
   }
   return ids.map((id) => animals.find((animal) => animal.id === id));
 }

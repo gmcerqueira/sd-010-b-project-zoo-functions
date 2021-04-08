@@ -148,9 +148,16 @@ function schedule(dayName) {
 
 // ----------------------------------------------------------------------------------
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const employeeResponsible = employees.find((employee) => employee.id === id);
+  const firstAnimalId = employeeResponsible.responsibleFor[0];
+  const { name, sex, age } = animals.find((animal) => animal.id === firstAnimalId)
+    .residents.reduce((result, resident) => {
+      if (resident.age > result.age) return resident;
+      return result;
+    });
+  return [name, sex, age];
+}
 
 // ----------------------------------------------------------------------------------
 
@@ -175,7 +182,7 @@ module.exports = {
   entryCalculator,
   animalMap,
   schedule,
+  oldestFromFirstSpecies,
   // employeeCoverage,
-  // oldestFromFirstSpecies,
   // increasePrices,
 };

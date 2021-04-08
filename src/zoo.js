@@ -15,11 +15,10 @@ function animalsByIds(ids) {
   if (ids === null) {
     return [];
   }
-
 }
-
+data.animals;
 function animalsOlderThan(animal, age) {
-  return animal, age;
+  return animal + age;
 }
 
 function employeeByName(employeeName) {
@@ -27,7 +26,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return personalInfo, associatedWith;
+  return personalInfo + associatedWith;
 }
 
 function isManager(id) {
@@ -35,7 +34,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  return id, firstName, lastName, managers, responsibleFor;
+  return id + firstName + lastName + managers + responsibleFor;
 }
 
 function animalCount(species) {

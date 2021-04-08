@@ -35,9 +35,11 @@ function employeeByName(employeeName) {
 //   // seu código aqui
 // }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  // seu código aqui
+  const verifyEmployee = employees.find((emp) => emp.id === id).id;
+  return employees.some((emp) => emp.managers.includes(verifyEmployee));
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -71,7 +73,7 @@ function employeeByName(employeeName) {
 //   // seu código aqui
 // }
 
-console.log(employeeByName('Elser'));
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 module.exports = {
   // entryCalculator,
@@ -82,7 +84,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

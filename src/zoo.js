@@ -48,9 +48,13 @@ const isManager = (id) => {
   const colab = colaboradores.some((trab) => trab.managers.includes(id));
   return colab;
 };
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+
+const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
+  const dados = { id, firstName, lastName };
+  const response = { managers, responsibleFor };
+  const employ = { ...dados, ...response };
+  return colaboradores.push(employ);
+};
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -88,7 +92,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

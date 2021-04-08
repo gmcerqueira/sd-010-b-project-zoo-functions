@@ -14,9 +14,7 @@ const data = require('./data');
 function animalsByIds(idone, idtwo) {
   const response = [];
 
-  if (idone === undefined && idtwo === undefined) {
-    return response;
-  }
+  if (idone === undefined && idtwo === undefined) { return response; }
 
   data.animals.forEach((animals) => {
     if (animals.id === idone || animals.id === idtwo) {
@@ -29,26 +27,34 @@ function animalsByIds(idone, idtwo) {
 }
 
 function animalsOlderThan(animal, age) {
-  let animalsresidents; let response;
+  let animalsresidents = []; let response = true;
 
   data.animals.forEach((animals) => {
-    if (animals.name === animal) {
-      animalsresidents = animals.residents;
-    }
+    if (animals.name === animal) { animalsresidents = animals.residents; }
   });
 
   animalsresidents.forEach((residents) => {
     if (residents.age <= age) {
       response = false;
-    } else { response = true; }
+    }
   });
 
   return response;
 }
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+function employeeByName(employeeName) {
+  let response = {};
+
+  if (employeeName === undefined) { return response; }
+
+  data.employees.forEach((employees) => {
+    if (employees.firstName === employeeName || employees.lastName === employeeName) {
+      response = employees;
+    }
+  });
+
+  return response;
+}
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -91,9 +97,10 @@ function animalsOlderThan(animal, age) {
 // }
 
 // const id = '0938aa23-f153-4937-9f88-4858b24d6bce';
-// animalsByIds(id);
 
-animalsOlderThan('otters', 7);
+// animalsByIds(id);
+// animalsOlderThan('otters', 7);
+employeeByName('Emery');
 
 module.exports = {
   // entryCalculator,
@@ -101,7 +108,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

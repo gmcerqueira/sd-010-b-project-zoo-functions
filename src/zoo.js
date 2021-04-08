@@ -44,13 +44,27 @@ function createEmployee(personalInfo, associatedWith) {
   };
 }
 
-// function isManager(id) {
-//   // seu código aqui
+function isManager(id) {
+  return employees.some((employee) => employee.managers.includes(id));
+}
+
+// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+
+// function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+//   const newEmployee = {
+//     id,
+//     firstName,
+//     lastName,
+//     managers,
+//     responsibleFor,
+//   };
+//   employees.push(newEmployee);
+//   return newEmployee;
 // }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+// console.log(employees.length);
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
+// console.log(employees.length);
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -85,7 +99,7 @@ module.exports = {
   animalsOlderThan,
   employeeByName,
   createEmployee,
-  // isManager,
+  isManager,
   // addEmployee,
   // animalCount,
   // entryCalculator,

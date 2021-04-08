@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -19,9 +19,19 @@ function animalsByIds(...ids) {
   return animals.filter((animal) => ids.includes(animal.id));
 }
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+function animalsOlderThan(animal, age) {
+  // seu código aqui
+  // Esta função, a partir do nome de uma espécie e uma idade mínima, verifica se todos os animais daquela espécie possuem a idade mínima especificada. Deve retornar um valor booleano
+  // capturar os animais da mesma espécie
+  const sameEspecie = animals.filter((especies) => (especies.name === animal));
+  // capturar as idades de cada um
+  const getAges = sameEspecie.map((especie) => especie.residents.map((resident) => resident.age));
+  // verificar idade dos animais da espécie
+  const [ages] = getAges;
+  return ages.every((ag) => ag > age);
+}
+
+// animalsOlderThan('penguins', 10)
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -77,7 +87,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

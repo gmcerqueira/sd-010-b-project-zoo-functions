@@ -20,10 +20,10 @@ function animalsByIds(...ids) {
   return animals.filter((animal) => ids.find((id) => animal.id === id));
 }
 
-/* function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(animal, age) {
+  return animals.find((elem) => elem.name === animal).residents.every((res) => res.age >= age);
 }
-
+/*
 function employeeByName(employeeName) {
   // seu código aqui
 }
@@ -69,17 +69,17 @@ function employeeCoverage(idOrName) {
 } */
 
 module.exports = {
-/*   entryCalculator,
-  schedule,
-  animalCount,
-  animalMap, */
+  // entryCalculator,
+  // schedule,
+  // animalCount,
+  // animalMap,
   animalsByIds,
-/*   employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
+  // employeeByName,
+  // employeeCoverage,
+  // addEmployee,
+  // isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee, */
+  // oldestFromFirstSpecies,
+  // increasePrices,
+  // createEmployee,
 };

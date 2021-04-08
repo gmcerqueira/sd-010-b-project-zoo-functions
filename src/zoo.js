@@ -14,13 +14,16 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  const animalEspecie = data.animals.filter((animal) => ids.includes(animal.id));// developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+  const animalEspecie = data.animals.filter((animal) => ids.includes(animal.id)); // developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
   return animalEspecie;
 }
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+function animalsOlderThan(animal, age) {
+  // seu código aqui
+  const filterAnimal = data.animals.find((currentAnimal) => currentAnimal.name === animal);
+  const minAge = filterAnimal.residents.every((resident) => resident.age > age);
+  return minAge;
+}
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -76,7 +79,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

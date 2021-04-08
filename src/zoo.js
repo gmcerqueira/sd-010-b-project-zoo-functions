@@ -1,14 +1,3 @@
-/*
-eslint no-unused-vars: [
-  "error",
-  {
-    "args": "none",
-    "vars": "local",
-    "varsIgnorePattern": "data"
-  }
-]
-*/
-
 const data = require('./data');
 
 const { animals, employees, prices, hours } = data;
@@ -138,8 +127,6 @@ function employeeCoverage(idOrName) {
   }
   return makeName(idOrName);
 }
-
-// console.log(employeeCoverage("Stephanie"));
 
 module.exports = {
   entryCalculator,

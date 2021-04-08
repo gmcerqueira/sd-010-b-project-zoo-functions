@@ -36,7 +36,14 @@ const filterAnimalNames = (element, animal) => {
   }
 };
 // fim das funções da questão 2
-
+// inicio funçoes 7
+const undefinedAnimals = (animals) => {
+  const newObj = {};
+  animals.forEach((element) => {
+    newObj[element.name] = element.residents.length;
+  })
+  return newObj;
+}
 function animalsByIds(...ids) {
   // seu código aqui
   if (ids[0] === undefined) return [];
@@ -79,11 +86,15 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     responsibleFor,
   });
 }
-/*
 
-function animalCount(species) {
+function animalCount(species = animals) {
   // seu código aqui
+  if (species === animals) return undefinedAnimals(animals);
+  for (let x = 0; x < animals.length; x += 1){
+    if (animals[x].name === species) return animals[x].residents.length;
+  }
 }
+/*
 
 function entryCalculator(entrants) {
   // seu código aqui
@@ -113,12 +124,12 @@ module.exports = {
 /*
   entryCalculator,
   schedule,
-  animalCount,
   animalMap,
   employeeCoverage,
   oldestFromFirstSpecies,
   increasePrices,
   */
+  animalCount,
   isManager,
   animalsByIds,
   createEmployee,

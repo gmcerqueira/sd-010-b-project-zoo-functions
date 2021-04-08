@@ -36,6 +36,13 @@ const animalsOlderThan = (animal, age) => {
 //   // seu código a
 // }
 
+const colaboradores = data.employees;
+const employeeByName = (employeeName) => {
+  if (employeeName === undefined) return {};
+  return colaboradores.find((employee) =>
+    (employee.firstName === employeeName || employee.lastName === employeeName));
+};
+
 // function employeeByName(employeeName) {
 //   // seu código aqui
 // }
@@ -86,7 +93,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

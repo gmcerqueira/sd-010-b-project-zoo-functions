@@ -16,12 +16,17 @@ const data = require('./data');
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-function isManager(id) {
-  return data.employees.some(employee => employee.managers.some(managersId => managersId === id))
-}
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  }
+  console.log(newEmployee);
+  return data.employees.push(newEmployee);
 }
 
 function animalCount(species) {
@@ -59,7 +64,6 @@ module.exports = {
   animalMap,
   employeeCoverage,
   addEmployee,
-  isManager,
   oldestFromFirstSpecies,
   increasePrices,
 };

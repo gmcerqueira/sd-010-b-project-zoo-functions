@@ -28,10 +28,10 @@ function employeeByName(employeeName) {
   }
   return {};
 }
-console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {

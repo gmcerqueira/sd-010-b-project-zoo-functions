@@ -28,9 +28,9 @@ const fiEmpByName = (name) => employees.find((employee) =>
 
 const employeeByName = (employeeName) => (!employeeName ? {} : fiEmpByName(employeeName));
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+// createEmployee
+const createEmployee = (personalInfo, associatedWith) =>
+  Object.assign(personalInfo, associatedWith);
 
 // function isManager(id) {
 //   // seu código aqui
@@ -81,5 +81,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

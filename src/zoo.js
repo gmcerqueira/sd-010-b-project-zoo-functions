@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 // const data = require('./data');
 
 // 1. IMPLEMENTE A FUNÇÃO animalsByIds
@@ -101,9 +102,25 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+// 10. IMPLEMENTE A FUNÇÃO schedule
+// A função é responsável por disponibilizar as informações de horário para uma consulta,
+// que pode querer ter acesso a todo o cronograma da semana ou apenas o cronograma de um dia específico
+
+function schedule(dayName) {
+  const objDay = {};
+  Object.keys(hours).forEach((day) => {
+    if (day !== 'Monday') {
+      objDay[day] = `Open from ${hours[day].open}am until ${(hours[day].close) - 12}pm`;
+    } else {
+      objDay[day] = 'CLOSED';
+    }
+  });
+  if (dayName) {
+    return { [dayName]: objDay[dayName] };
+  }
+  return objDay;
+}
+console.log(schedule('Saturday'));
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -119,7 +136,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

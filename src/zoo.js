@@ -15,6 +15,8 @@ const animais = data.animals;
 
 const empregados = data.employees;
 
+const precos = data.prices;
+
 function animalsByIds(...ids) {
   if (!ids) return [];
   return animais.filter((animal) => ids.includes(animal.id));
@@ -55,9 +57,14 @@ function animalCount(species) {
   return contaAnimais[species];
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants = 0) {
+  let valor = 0;
+  if (entrants.Adult) { valor += entrants.Adult * precos.Adult; }
+  if (entrants.Senior) { valor += entrants.Senior * precos.Senior; }
+  if (entrants.Child) { valor += entrants.Child * precos.Child; }
+
+  return valor;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -80,8 +87,8 @@ function animalCount(species) {
 // }
 
 module.exports = {
-//   entryCalculator,
-//   schedule,
+  entryCalculator,
+  //   schedule,
   animalCount,
   //   animalMap,
   animalsByIds,

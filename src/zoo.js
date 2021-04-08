@@ -13,13 +13,13 @@ const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  return animals.filter(animal => (ids.includes(animal.id)));
+  return animals.filter((animal) => (ids.includes(animal.id)));
 }
 
 function animalsOlderThan(type, age) {
   // seu código aqui
-  return animals.find(animal => (animal.name === type)).residents
-    .every(resident => (resident.age >= age));
+  return animals.find((animal) => (animal.name === type)).residents
+    .every((resident) => (resident.age >= age));
 }
 
 function employeeByName(employeeName) {
@@ -29,9 +29,10 @@ function employeeByName(employeeName) {
   )) || {};
 }
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+  // seu código aqui
+  return {...personalInfo, ...associatedWith}
+}
 
 // function isManager(id) {
 //   // seu código aqui
@@ -70,17 +71,17 @@ function employeeByName(employeeName) {
 // }
 
 module.exports = {
-  //entryCalculator,
-  //schedule,
-  //animalCount,
-  //animalMap,
+  // entryCalculator,
+  // schedule,
+  // animalCount,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  //employeeCoverage,
-  //addEmployee,
-  //isManager,
+  // employeeCoverage,
+  // addEmployee,
+  // isManager,
   animalsOlderThan,
   //oldestFromFirstSpecies,
   //increasePrices,
-  //createEmployee,
+  createEmployee,
 };

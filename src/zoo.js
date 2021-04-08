@@ -16,51 +16,51 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animal, age
+  return animal + age;
 }
 
 function employeeByName(employeeName) {
-  return employeeName
+  return employeeName;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return personalInfo, associatedWith
+  return personalInfo + associatedWith;
 }
 
 function isManager(id) {
-  return id
+  return id;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  return id, firstName, lastName, managers, responsibleFor
+  return id + firstName + lastName + managers + responsibleFor;
 }
 
 function animalCount(species) {
-  return species
+  return species;
 }
 
 function entryCalculator(entrants) {
-  return entrants
+  return entrants;
 }
 
 function animalMap(options) {
-  return options
+  return options;
 }
 
 function schedule(dayName) {
-  return dayName
+  return dayName;
 }
 
 function oldestFromFirstSpecies(id) {
-  return id
+  return id;
 }
 
 function increasePrices(percentage) {
-  return percentage
+  return percentage;
 }
 
 function employeeCoverage(idOrName) {
-  return idOrName
+  return idOrName;
 }
 
 module.exports = {

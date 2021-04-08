@@ -61,11 +61,15 @@ function createEmployee(personalInfo, associatedWith) {
   employees.personalInfo = personalInfo;
   return Object.assign(employees.personalInfo, associatedWith);
 }
-/*
 
 function isManager(id) {
   // seu código aqui
+  const arrayOfManagers = employees.map((el) => el.managers);
+  const managersFlattenArray = [].concat(...arrayOfManagers);
+  return managersFlattenArray.some((element) => element === id);
 }
+
+/*
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
@@ -107,10 +111,10 @@ module.exports = {
   animalMap,
   employeeCoverage,
   addEmployee,
-  isManager,
   oldestFromFirstSpecies,
   increasePrices,
-*/
+  */
+  isManager,
   animalsByIds,
   createEmployee,
   animalsOlderThan,

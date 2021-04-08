@@ -9,15 +9,17 @@ eslint no-unused-vars: [
 ]
 */
 
-//Começando com tudoooo! VQV
+// Começando com tudoooo! VQV
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui 
+function animalsByIds(...ids) {
+  // seu código aqui
+  const findAnimal = data.animals.filter((animal) => ids.find((id) => id === animal.id));
+  return ids === 'undefined' ? [] : findAnimal;
 }
 
-function animalsOlderThan(animal, age) {
+/* function animalsOlderThan(animal, age) {
   // seu código aqui
 }
 
@@ -64,19 +66,20 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
+*/
 
 module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
+  // entryCalculator,
+  // schedule,
+  // animalCount,
+  // animalMap,
   animalsByIds,
-  employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
-  animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
+  // employeeByName,
+  // employeeCoverage,
+  // addEmployee,
+  // isManager,
+  // animalsOlderThan,
+  // oldestFromFirstSpecies,
+  // increasePrices,
+  // createEmployee,
 };

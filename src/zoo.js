@@ -14,12 +14,12 @@ const data = require('./data');
 // Faz a desestructuringObjects para uso nas funções
 const { animals, employees } = data;
 
-function animalsByIds(...ids) {
+function animalsByIds(...args) {
   // 1- Filter traz todos os animais e o some
   // 2- Some utilizado junto com o filter retorna somente o animal que atender a condição
   // 3- ...args pode trazer um id ou vários ids, é o spread
   return animals.filter((animal) =>
-    ids.some((checkId) => animal.id === checkId));
+    args.some((checkId) => animal.id === checkId));
 }
 
 function animalsOlderThan(animal, age) {
@@ -63,12 +63,17 @@ function addEmployee(
 }
 
 function animalCount(species) {
-  const total = animals.reduce((acc, cur) => {
-    acc[cur.name] = cur.residents.length;
-    return acc;
-  }, {});
-  if (species) return total[species];
-  return total;
+  // Se não passar o animal para pesquisar entra na função para verificar a quantidade de todos
+  if (species === undefined) {
+    const returnObj = {};
+    animals.forEach((animal) => {
+      // Retorna quantos animais de cada espécie tem
+      returnObj[animal.name] = animal.residents.length;
+    });
+    return returnObj;
+  }
+  // se passar o animal a pesquisar ele só faz um find retornando quantos deste animal tem
+  return animals.find((animal) => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {

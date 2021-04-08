@@ -9,12 +9,19 @@ eslint no-unused-vars: [
 ]
 */
 // Abimael Rocha de Albuquerque
-// const data = require('./data');
+const data = require('./data');
 
-// function animalsByIds(ids) {
-//   // seu código aqui
-// }
+function animalsByIds(...ids) {
+  if (ids.length === 0) {
+    return [];
+  }
 
+  const { animals } = data;
+  const animalList = animals.filter((animal, index) => animal.id === ids[index]);
+
+  return animalList;
+}
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 // function animalsOlderThan(animal, age) {
 //   // seu código aqui
 // }
@@ -68,7 +75,7 @@ module.exports = {
   // schedule,
   // animalCount,
   // animalMap,
-  // animalsByIds,
+  animalsByIds,
   // employeeByName,
   // employeeCoverage,
   // addEmployee,

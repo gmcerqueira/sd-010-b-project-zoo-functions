@@ -13,6 +13,7 @@ const data = require('./data');
 
 const {
   animals,
+  employees,
 } = data;
 
 function animalsByIds(...ids) {
@@ -23,11 +24,13 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   return animals.find((elem) => elem.name === animal).residents.every((res) => res.age >= age);
 }
-/*
+
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) return {};
+  return employees.find((emp) => emp.firstName === employeeName || emp.lastName === employeeName);
 }
 
+/*
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
@@ -74,7 +77,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

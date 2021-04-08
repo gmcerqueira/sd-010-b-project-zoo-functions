@@ -11,6 +11,7 @@ eslint no-unused-vars: [
 
 const { animals } = require('./data');
 const { employees } = require('./data');
+const { prices } = require('./data');
 // const data = require('./data');
 
 // 1. IMPLEMENTE A FUNÇÃO animalsByIds
@@ -86,9 +87,15 @@ function animalCount(species) {
 // console.log(animalCount('penguins'));
 // console.log(animalCount());
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+// 8. IMPLEMENTE A FUNÇÃO entryCalculator
+// A partir da quantidade de visitantes e a faixa etária de cada um, esta função é responsável
+// por retornar o preço total a ser cobrado
+
+function entryCalculator(entrants) {
+  return (!entrants) ? 0 : Object.keys(entrants)
+    .reduce((acc, currVal) => acc + (entrants[currVal] * prices[currVal]), 0);
+}
+// console.log(entryCalculator({ Adult: 1, Senior: 2 }));
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -111,7 +118,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

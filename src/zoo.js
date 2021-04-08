@@ -39,9 +39,9 @@ function isManager(id) {
   return employeesList.some((manager, index) => id === manager.managers[index]);
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employeesList.push({ id, firstName, lastName, managers, responsibleFor });
+}
 
 // function animalCount(species) {
 
@@ -79,7 +79,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   //   employeeCoverage,
-  //   addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   //   oldestFromFirstSpecies,

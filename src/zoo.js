@@ -34,11 +34,11 @@ function employeeByName(employeeName) {
   return employeeName ? empregado : {};
 }
 
-console.log(employeeByName('Nigel'));
-
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+  // seu código aqui
+  const newEmployee = { ...personalInfo, ...associatedWith };
+  return newEmployee;
+}
 
 // function isManager(id) {
 //   // seu código aqui
@@ -89,5 +89,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

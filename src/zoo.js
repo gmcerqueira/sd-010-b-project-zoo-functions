@@ -11,61 +11,62 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(...ids) {
-  const { animals } = data;
-  const selectedAnimals = animals.filter((bicho) => ids.includes(bicho.id));
-  return selectedAnimals;
-}
+const { animals, employees } = data;
 
-function animalsOlderThan(animal, age) {
-  const { animals } = data;
+const animalsByIds = (...ids) => animals.filter((bicho) => ids.includes(bicho.id));
+
+const animalsOlderThan = (animal, age) => {
   const selectedAnimal = animals.find((bicho) => bicho.name === animal).residents;
   return selectedAnimal.every((bicho) => bicho.age >= age);
+};
+
+function employeeByName(employeeName) {
+  function findEmployee(employee) {
+    return employee.firstName === employeeName || employee.lastName === employeeName;
+  }
+  const expectedEmployee = employees.find((employee) => findEmployee(employee));
+  return employeeName ? expectedEmployee : {};
 }
 
-// function employeeByName(employeeName) {
+// const createEmployee = (personalInfo, associatedWith) => {
+//   // seu código aqui
+// };
+
+// const isManager = (id) => {
+//   // seu código aqui
+// };
+
+// const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
 //   // seu código aqui
 // }
 
-// function createEmployee(personalInfo, associatedWith) {
+// const animalCount = (species) => {
 //   // seu código aqui
-// }
+// };
 
-// function isManager(id) {
+// const entryCalculator = (entrants) => {
 //   // seu código aqui
-// }
+// };
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+// const animalMap = (options) => {
 //   // seu código aqui
-// }
+// };
 
-// function animalCount(species) {
+// const schedule = (dayName) => {
 //   // seu código aqui
-// }
+// };
 
-// function entryCalculator(entrants) {
+// const oldestFromFirstSpecies = (id) => {
 //   // seu código aqui
-// }
+// };
 
-// function animalMap(options) {
+// const increasePrices = (percentage) => {
 //   // seu código aqui
-// }
+// };
 
-// function schedule(dayName) {
+// const employeeCoverage = (idOrName) => {
 //   // seu código aqui
-// }
-
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
-
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
-
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+// };
 
 module.exports = {
   // entryCalculator,
@@ -73,7 +74,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

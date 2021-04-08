@@ -134,9 +134,18 @@ function oldestFromFirstSpecies(id) {
 }
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+// 12. IMPLEMENTE A FUNÇÃO increasePrices
+// A função é responsável por aumentar o preço das visitas, com base no valor de aumento recebido
+// no parâmetro, em porcentagem
+
+function increasePrices(percentage) {
+  Object.keys(prices).forEach((key) => {
+    const newPrice = Math.round((prices[key] * (1 + (percentage / 100))) * 100) / 100;
+    prices[key] = newPrice;
+  });
+  return prices;
+}
+// console.log(increasePrices(50));
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -154,6 +163,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

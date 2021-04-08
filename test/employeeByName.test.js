@@ -35,6 +35,6 @@ describe('Implemente a função employeeByName', () => {
         'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5']
     };
 
-    // assert.deepStrictEqual(actual, expected);
+    assert.deepStrictEqual(actual, expected);
   });
 });

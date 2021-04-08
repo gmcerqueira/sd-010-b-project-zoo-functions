@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const { animals } = require('./data');
+const { employees } = require('./data');
 // const data = require('./data');
 
 // 1. IMPLEMENTE A FUNÇÃO animalsByIds
@@ -31,10 +32,19 @@ function animalsOlderThan(animal, age) {
 }
 // console.log(animalsOlderThan('otters', 7));
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+// 3. IMPLEMENTE A FUNÇÃO employeeByName
+// Esta função é responsável pela busca das pessoas colaboradoras através do primeiro ou do último nome delas
 
+function employeeByName(employeeName) {
+  const empty = {};
+
+  if (employeeName) {
+    return employees.find(({ firstName, lastName }) =>
+      (firstName.includes(employeeName) || lastName.includes(employeeName)));
+  }
+  return empty;
+}
+console.log(employeeByName('Emery'));
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
 // }
@@ -81,7 +91,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

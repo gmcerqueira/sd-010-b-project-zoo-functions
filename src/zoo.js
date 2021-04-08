@@ -61,9 +61,19 @@ function isManager(id) {
   return employee.managers.length === 1;
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  // seu código aqui
+  // A função irá adicionar uma nova pessoa colaboradora ao array `employees`, presente no arquivo `data.js`.
+  // Adiciona um funcionário no fim da lista
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return employees.push(newEmployee);
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -101,7 +111,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

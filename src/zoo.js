@@ -2,7 +2,7 @@
 eslint no-unused-vars: [
   "error",
   {
-    "args": "none",
+    "args": 'none',
     "vars": "local",
     "varsIgnorePattern": "data"
   }

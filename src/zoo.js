@@ -86,23 +86,7 @@ function entryCalculator(entrants) {
   return total;
 }
 
-// const expected = {
-//   NE: [
-//     { lions: ["Zena", "Maxwell", "Faustino", "Dee"] },
-//     { giraffes: ["Gracia", "Antone", "Vicky", "Clay", "Arron", "Bernard"] },
-//   ],
-//   NW: [
-//     { tigers: ["Shu", "Esther"] },
-//     { bears: ["Hiram", "Edwardo", "Milan"] },
-//     { elephants: ["Ilana", "Orval", "Bea", "Jefferson"] },
-//   ],
-//   SE: [
-//     { penguins: ["Joe", "Tad", "Keri", "Nicholas"] },
-//     { otters: ["Neville", "Lloyd", "Mercedes", "Margherita"] },
-//   ],
-//   SW: [{ frogs: ["Cathey", "Annice"] }, { snakes: ["Paulette", "Bill"] }],
-// };
-function animalMap(options) {}
+// function animalMap(options) {}
 
 function schedule(dayName) {
   const keys = Object.keys(hours);
@@ -127,18 +111,44 @@ function schedule(dayName) {
 //   // seu código aqui
 // }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+const makeName = (idOrName) => {
+  const obj = {};
+  if (idOrName.length > 10) {
+    const person = employees.filter((elem) => elem.id === idOrName);
+    const nome = `${person[0].firstName} ${person[0].lastName}`;
+    obj[nome] = person[0].responsibleFor.map((i) => animals.find((j) => j.id === i).name);
+  } else {
+    const p = employees.filter((elem) => elem.firstName === idOrName || elem.lastName === idOrName);
+    const nome = `${p[0].firstName} ${p[0].lastName}`;
+    obj[nome] = p[0].responsibleFor.map((i) => animals.find((j) => j.id === i).name);
+  }
+  return obj;
+};
+
+function employeeCoverage(idOrName) {
+  if (!idOrName) {
+    return employees.reduce((result, item) => {
+      const { firstName, lastName } = item;
+      const final = result;
+      const name = `${firstName} ${lastName}`;
+      const chosen = item.responsibleFor.map((i) => animals.find((j) => j.id === i).name);
+      final[name] = chosen;
+      return final;
+    }, {});
+  }
+  return makeName(idOrName);
+}
+
+// console.log(employeeCoverage("Stephanie"));
 
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

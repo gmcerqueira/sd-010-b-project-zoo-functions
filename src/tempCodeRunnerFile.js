@@ -1,9 +1,9 @@
- // const final = result;
-    // final[item.location] = animal.reduce((acc, curr, index) => {
-    //   let types = curr.residents.map((j) => j.name);
-    //   if (sex) types = curr.residents.filter((elem) => elem.sex === sex).map((typ) => typ.name);
-    //   if (sorted) types.sort();
-    //   acc[index] = { [curr.name]: types };
-    //   return acc;
-    // }, []);
-    // return result;
+  // if (idOrName.length > 10) {
+  //   const person = employees.filter((elem) => elem.id === idOrName);
+  //   const nome = `${person[0].firstName} ${person[0].lastName}`;
+  //   obj[nome] = person[0].responsibleFor.map((i) => animals.find((j) => j.id === i).name);
+  // } else {
+  //   const p = employees.filter((elem) => elem.firstName === idOrName || elem.lastName === idOrName);
+  //   const nome = `${p[0].firstName} ${p[0].lastName}`;
+  //   obj[nome] = p[0].responsibleFor.map((i) => animals.find((j) => j.id === i).name);
+  // }

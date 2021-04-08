@@ -8,6 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
+console.log('hello world! XABLAU');
 
 const data = require('./data');
 

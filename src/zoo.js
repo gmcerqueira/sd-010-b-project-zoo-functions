@@ -59,7 +59,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   // seu código aqui
   const objeto = {};
-  data.animals.forEach(({ name, residents }) => {
+  data.animals.forEach(({
+    name,
+    residents,
+  }) => {
     objeto[name] = residents.length;
   });
   if (!species) return objeto;
@@ -89,7 +92,10 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  return percentage;
+  Object.keys(data.prices).forEach((tipo) => {
+    data.prices[tipo] += (data.prices[tipo] * percentage) / 100;
+    data.prices[tipo] = Math.round(data.prices[tipo] * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {

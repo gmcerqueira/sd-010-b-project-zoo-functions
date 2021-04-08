@@ -11,16 +11,32 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  if (ids.length) {
+    const { animals } = data;
+    const arr = animals.filter((animal, index) => animal.id === ids[index]);
+    return arr;
+  }
+  return [];
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const { animals } = data;
+  const especie = animals.filter((e) => e.name === animal);
+  const bool = especie[0].residents.every((e) => e.age >= age);
+  return bool;
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName) {
+    const { employees } = data;
+    const employee = employees.filter((e) => {
+      const bool = (e.firstName === employeeName) || (e.lastName === employeeName);
+      return bool;
+    });
+    return employee[0];
+  }
+  return {};
 }
 
 function createEmployee(personalInfo, associatedWith) {

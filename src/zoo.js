@@ -16,14 +16,15 @@ const { animals } = data;
 function animalsByIds(ids) {
   // seu código aqui
   if (ids.length === undefined) return [];
-  animals.filter((animal) => ids.includes(animal.id));
+  return animals.filter((animal) => ids.includes(animal.id));
+
   // include esta verificando se animal.id
   // existe no no array passado por ids
 }
 
 function animalsOlderThan(animal, age) {
   const anima = animals.find((tipo) => tipo.name === animal);
-  anima.every((idades) => idades.age > age);
+  return anima.every((idades) => idades.age > age);
 }
 
 function employeeByName(employeeName) {

@@ -27,8 +27,9 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const {employees} = data;
-  return employees.find((employer) => employer.firstName === employeeName || employer.lastName === employeeName);
+  const { employees } = data;
+  return employees.find((employer) => 
+  employer.firstName === employeeName || employer.lastName === employeeName);
 }
 
 // function createEmployee(personalInfo, associatedWith) {

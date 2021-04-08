@@ -10,6 +10,8 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+
+const { animals } = data;
 // daqui pra baixo as funções são da questão 1
 const validateAnimals = (element, ids) => {
   for (let index = 0; index < ids.length; index += 1) {
@@ -23,19 +25,33 @@ const validateAnimal = (element, ids) => {
     return element;
   }
 };
-const moreThanOneId = (ids) => data.animals.filter((element) => validateAnimals(element, ids));
-const onlyOneId = (ids) => data.animals.filter((element) => validateAnimal(element, ids));
+const moreThanOneId = (ids) => animals.filter((element) => validateAnimals(element, ids));
+const onlyOneId = (ids) => animals.filter((element) => validateAnimal(element, ids));
 // fim das funções da questão 1
+
+// funções da questão 2
+const filterAnimalNames = (element, animal) => {
+  if (element.name === animal) {
+    return element;
+  }
+};
+// fim das funções da questão 2
+
 function animalsByIds(...ids) {
   // seu código aqui
   if (ids[0] === undefined) return [];
   if (ids.length === 1) onlyOneId(ids);
   return moreThanOneId(ids);
 }
-/*
+
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  const animalNames = animals.filter((element) => filterAnimalNames(element, animal));
+  const minAges = animalNames[0].residents.every((element) => element.age >= age);
+  return minAges;
 }
+
+/*
 
 function employeeByName(employeeName) {
   // seu código aqui
@@ -90,9 +106,9 @@ module.exports = {
   employeeCoverage,
   addEmployee,
   isManager,
-  animalsOlderThan,
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee, */
   animalsByIds,
+  animalsOlderThan,
 };

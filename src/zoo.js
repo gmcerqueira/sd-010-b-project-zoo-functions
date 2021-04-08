@@ -31,9 +31,10 @@ function employeeByName(employeeName) {
   return employeeName ? employees.find((employee) => verifyEmployee(employee)) : {};
 }
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+  // seu código aqui
+  return { ...personalInfo, ...associatedWith };//  Retomando após ver o conteúdo do dia 5. POis acabei não vendo no dia certo visando terminar de enviar os dados do MSC
+}
 
 function isManager(id) {
   // seu código aqui
@@ -90,5 +91,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

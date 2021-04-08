@@ -63,12 +63,12 @@ function animalCount(species = 'all') {
     ...a,
     [b.name]: b.residents.length,
   }), {});
-  return species === 'all' ? allAnimals 
+  return species === 'all' ? allAnimals
     : data.animals.find((animal) => animal.name === species).residents.length;
 }
 
 // function entryCalculator(entrants) {
-  // seu código aqui
+// seu código aqui
 
 // }
 

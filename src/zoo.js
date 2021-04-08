@@ -32,20 +32,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-   return employees.some((idManager) => idManager.managers.includes(id));
+  return employees.some((idManager) => idManager.managers.includes(id));
 }
 /*
-
- Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
-
-  **Observações técnicas**
-
-  - Deve retornar um valor booleano
-
-  **O que será avaliado**
-
-  - Testa se o id passado é de um gerente
-
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
@@ -88,9 +77,9 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

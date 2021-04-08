@@ -11,13 +11,11 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(...ids) {
 // Usei o filter no array de objetos, pois o filter já retorna um array caso algum elemento atenda a condição passada.
 // Includes verifica se no array tem um determinado elemento. https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+function animalsByIds(...ids) {
   return data.animals.filter((value) => ids.includes(value.id));
 }
-
-console.log(animalsByIds());
 
 // Primeiro uso o find para fazer a busca da especie passado. find retorna apenas o primeiro elemento que satisfaça a contição.
 // Depois uso a const criada com o elemento achado para fazer um filter. Filter vai retornar todos aqueles que atenderam a condição, no caso mior do que a idade passada no parametro.
@@ -26,6 +24,9 @@ function animalsOlderThan(animal, age) {
   return species.residents.every((value) => value.age >= age);
 }
 
+// Fiz a verificação se há um parametro, caso não tenha retorna um objeto vazio.
+// Caso seja passado um parametro, é feito um find(retorna o primeiro elemento encontrado).
+// Retorna o abjeto em que o elemneto na qual atendeu a condição.
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
@@ -34,58 +35,58 @@ function employeeByName(employeeName) {
   return data.employees.find(checkName);
 }
 
-function createEmployee(personalInfo, associatedWith) {
+/* function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
+ */
+/* function isManager(id) {
+  // seu código aqui
+} */
 
-function isManager(id) {
+/* function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
-}
+} */
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+/* function animalCount(species) {
   // seu código aqui
-}
+} */
 
-function animalCount(species) {
+/* function entryCalculator(entrants) {
   // seu código aqui
-}
+} */
 
-function entryCalculator(entrants) {
+/* function animalMap(options) {
   // seu código aqui
-}
+} */
 
-function animalMap(options) {
+/* function schedule(dayName) {
   // seu código aqui
-}
+} */
 
-function schedule(dayName) {
+/* function oldestFromFirstSpecies(id) {
   // seu código aqui
-}
+} */
 
-function oldestFromFirstSpecies(id) {
+/* function increasePrices(percentage) {
   // seu código aqui
-}
+} */
 
-function increasePrices(percentage) {
+/* function employeeCoverage(idOrName) {
   // seu código aqui
-}
-
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+} */
 
 module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
+  // entryCalculator,
+  // schedule,
+  // animalCount,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
+  // employeeCoverage,
+  // addEmployee,
+  // isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
+  // oldestFromFirstSpecies,
+  // increasePrices,
+  // createEmployee,
 };

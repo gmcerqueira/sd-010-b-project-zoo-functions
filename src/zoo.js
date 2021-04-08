@@ -10,13 +10,29 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-
-function animalsByIds(ids) {
+// daqui pra baixo as funções são da questão 1
+const validateAnimals = (element, ids) => {
+  for (let index = 0; index < ids.length; index += 1) {
+    if (element.id === ids[index]) {
+      return element;
+    }
+  }
+};
+const validateAnimal = (element, ids) => {
+  if (element.id === ids[0]) {
+    return element;
+  }
+};
+const moreThanOneId = (ids) => data.animals.filter((element) => validateAnimals(element, ids));
+const onlyOneId = (ids) => data.animals.filter((element) => validateAnimal(element, ids));
+// fim das funções da questão 1
+function animalsByIds(...ids) {
   // seu código aqui
-  if (ids === undefined) return [];
-  return 
+  if (ids[0] === undefined) return [];
+  if (ids.length === 1) onlyOneId(ids);
+  return moreThanOneId(ids);
 }
-
+/*
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
@@ -64,13 +80,12 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
-
+ */
 module.exports = {
-  entryCalculator,
+/*   entryCalculator,
   schedule,
   animalCount,
   animalMap,
-  animalsByIds,
   employeeByName,
   employeeCoverage,
   addEmployee,
@@ -78,5 +93,6 @@ module.exports = {
   animalsOlderThan,
   oldestFromFirstSpecies,
   increasePrices,
-  createEmployee,
+  createEmployee, */
+  animalsByIds,
 };

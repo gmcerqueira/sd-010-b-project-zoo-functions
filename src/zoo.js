@@ -19,10 +19,15 @@ function animalsByIds(...ids) {
   return ids.map((id) => animals.find((animal) => animal.id === id));
 }
 
+// ----------------------------------------------------------------------------------
+
 function animalsOlderThan(animalName, age) {
-  return animals.find((animal) => animal.name === animalName)
+  return animals
+    .find((animal) => animal.name === animalName)
     .residents.every((resident) => resident.age >= age);
 }
+
+// ----------------------------------------------------------------------------------
 
 function employeeByName(employeeName) {
   return employeeName
@@ -32,18 +37,26 @@ function employeeByName(employeeName) {
     : {};
 }
 
+// ----------------------------------------------------------------------------------
+
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
+// ----------------------------------------------------------------------------------
+
 function isManager(id) {
   return employees.some((employee) =>
-    employee.managers.find((manager) => manager === id));
+    employee.managers.some((manager) => manager === id));
 }
+
+// ----------------------------------------------------------------------------------
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
+
+// ----------------------------------------------------------------------------------
 
 function animalCount(species) {
   return species
@@ -55,6 +68,8 @@ function animalCount(species) {
     }, {});
 }
 
+// ----------------------------------------------------------------------------------
+
 function entryCalculator(entrants) {
   if (!entrants) return 0;
   const keys = Object.keys(entrants);
@@ -65,23 +80,66 @@ function entryCalculator(entrants) {
   0);
 }
 
-console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
+// ----------------------------------------------------------------------------------
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function listOfRegions() {
+  return animals.reduce((result, animal) => {
+    const region = result;
+    if (!region[animal.location]) region[animal.location] = [];
+    return region;
+  }, {});
+}
+
+function defaultList() {
+  const list = listOfRegions();
+  animals.map((animal) => list[animal.location].push(animal.name));
+  return list;
+}
+
+function animalsNames(specie, args) {
+  let names = animals.find((animal) => animal.name === specie)
+    .residents.map((resident) => resident.name);
+  if (args.sex) {
+    names = animals.find((animal) => animal.name === specie)
+      .residents.filter((resident) => resident.sex === args.sex)
+      .map((resident) => resident.name);
+  }
+  if (args.sorted) names.sort();
+  return names;
+}
+
+function listAnimalsWithParams(args) {
+  const list = listOfRegions();
+  animals.map((animal) =>
+    list[animal.location].push({ [animal.name]: animalsNames(animal.name, args) }));
+  return list;
+}
+
+function animalMap(options = '') {
+  if (options.includeNames) return listAnimalsWithParams(options);
+
+  return defaultList();
+}
+
+// ----------------------------------------------------------------------------------
 
 // function schedule(dayName) {
 //   // seu código aqui
 // }
 
+// ----------------------------------------------------------------------------------
+
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
 
+// ----------------------------------------------------------------------------------
+
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }
+
+// ----------------------------------------------------------------------------------
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -96,8 +154,8 @@ module.exports = {
   addEmployee,
   animalCount,
   entryCalculator,
+  animalMap,
   // schedule,
-  // animalMap,
   // employeeCoverage,
   // oldestFromFirstSpecies,
   // increasePrices,

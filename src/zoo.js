@@ -31,53 +31,55 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  if (employeeName === undefined) return {};
-  return data.employees.find((collaborator) => {
+  let retorno;
+  if (employeeName === undefined) retorno = {};
+  retorno = data.employees.find((collaborator) => {
     if ((collaborator.firstName === employeeName) || (collaborator.lastName === employeeName)) {
       return collaborator;
     }
   });
+  return retorno;
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+// function createEmployee(personalInfo, associatedWith) {
+//   // seu código aqui
+// }
 
-function isManager(id) {
-  // seu código aqui
-}
+// function isManager(id) {
+//   // seu código aqui
+// }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+//   // seu código aqui
+// }
 
-function animalCount(species) {
-  // seu código aqui
-}
+// function animalCount(species) {
+//   // seu código aqui
+// }
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+// function entryCalculator(entrants) {
+//   // seu código aqui
+// }
 
-function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
+//   // seu código aqui
+// }
 
-function schedule(dayName) {
-  // seu código aqui
-}
+// function schedule(dayName) {
+//   // seu código aqui
+// }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
+// }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+// function increasePrices(percentage) {
+//   // seu código aqui
+// }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
 module.exports = {
   entryCalculator,

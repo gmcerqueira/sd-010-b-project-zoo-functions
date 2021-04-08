@@ -39,17 +39,15 @@ const employeeByName = (employeeName) => {
     (employee.firstName === employeeName || employee.lastName === employeeName));
 };
 
-const createEmployee = (personalInfo, associatedWith) => {
-  return { ...personalInfo, ...associatedWith };
-};
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
 // function isManager(id) {
 //   // seu código aqui
 // }
-
+const isManager = (id) => {
+  const colab = colaboradores.some((trab) => trab.managers.includes(id));
+  return colab;
+};
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
 // }
@@ -91,7 +89,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

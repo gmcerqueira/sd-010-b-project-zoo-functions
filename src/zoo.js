@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
 
 // animalsByIds
 const findById = (idAni) => animals.find((animal) => animal.id === idAni);
@@ -66,9 +67,18 @@ const countAll = () => {
 const countOne = (theAnimal) => theAnimal.residents.length;
 const animalCount = (species) => (!species ? countAll() : countOne(fiByName(species)));
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+// entryCalculator
+const calcPrice = (entrants) => {
+  let result = 0;
+  const entrantsKey = Object.keys(entrants);
+  entrantsKey.forEach((key) => {
+    result += (prices[key] * entrants[key]);
+  });
+  return result;
+};
+
+const entryCalculator = (entrants) =>
+  (!entrants || !Object.values(entrants).length ? 0 : calcPrice(entrants));
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -91,7 +101,7 @@ const animalCount = (species) => (!species ? countAll() : countOne(fiByName(spec
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

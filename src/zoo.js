@@ -8,12 +8,12 @@ eslint no-unused-vars: [
   }
 ]
 */
-console.log('hello world! XABLAU');
 
-const data = require('./data');
+const { animals } = require('./data');
 
-function animalsByIds(ids) {
+function animalsByIds(...ids) {
   // seu código aqui
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {

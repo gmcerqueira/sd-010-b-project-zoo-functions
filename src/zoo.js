@@ -24,9 +24,9 @@ function animalsOlderThan(animal, age) {
   return checkAge;
 }
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+//  function employeeByName(employeeName) {
+
+//  }
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui

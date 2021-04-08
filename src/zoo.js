@@ -35,9 +35,9 @@ const isManager = (id) => {
   return employees.some((thisEmployee) => thisEmployee.managers.includes(selectedEmployee));
 };
 
-// const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
+}
 
 // const animalCount = (species) => {
 //   // seu código aqui
@@ -75,7 +75,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

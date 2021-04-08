@@ -16,18 +16,27 @@ function animalsByIds(...ids) {
   // 1° buscar as especies de animais por ID, Retornar um array contendo as especies referentes aos IDS, fazer com que receba mais de 1 ID
   // const teste = (...ids) => ids.animals.filter(((animal) => (animal.id === ids)));
   // return teste;
-  const { animals } = data;
-  if(ids[1] !== undefined) {
-  const idAnimal1 = animals.filter((animal) => (animal.id === ids[0]));
-  const idAnimal2 = animals.filter((animal) => (animal.id === ids[1]))
-  return idAnimal1.concat(idAnimal2);
+  // return animals.filter((animal) => (animal.id === ids)),{}
+  const {
+    animals
+  } = data;
+  if (ids[1] !== undefined) {
+    const idAnimal1 = animals.filter((animal) => (animal.id === ids[0]));
+    const idAnimal2 = animals.filter((animal) => (animal.id === ids[1]))
+    return idAnimal1.concat(idAnimal2);
   }
   return animals.filter((animal) => (animal.id === ids[0]));
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-}
+  // 1º buscar o nome de todas as especie,2° puxar de uma especie separada, 3° criar parametro de idade minima para ser puxado, 4°
+  const procuraAnimal = data.animals.find((furry) => (furry.name === animal));
+  const procuraIdade = procuraAnimal.residents.map((idade) => ((idade.age >= age) ? true : false));
+  return procuraIdade.every((idades) => (idades === true))
+  // return teste;
+};
+console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   // seu código aqui

@@ -16,14 +16,14 @@ const data = require('./data');
 // // console.log(data.animals[0])
 const { animals } = data;
 const { employees } = data;
-const {residents} = data.employees;
-console.log(residents)
 
 function animalsByIds(...ids) {
   // seu código aqui
   const param = ids; // const que recebe o parâmetro
+  const object = [];
+  if (param === undefined) { return object; }
 
-  const animalsMapped = param.map((IdCode) => // map para trazer um objeto a partir do parametro
+  const animalsMapped = param.map((IdCode) => // map para trazer um array a partir do parametro
 
     animals.find((animal) => animal.id === IdCode)); // dentro do map apliquei um find que vai procurar no banco de dados de animais o primeiro id que possui o mesmo valor que o id do param do meu map
 
@@ -33,9 +33,9 @@ animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'ef3778eb-2844-4c7c-b66c-f4
 
 function animalsOlderThan(animal, age) {
 //   // seu código aqui
-    // animals.filter(())
-const animalOlder = animals.find ((unit) => unit.name === animal);
-return animalOlder.residents.every((resident) => resident.age >= age);
+
+  const animalOlder = animals.find((unit) => unit.name === animal);
+  return animalOlder.residents.every((resident) => resident.age >= age);
 }
 console.log(animalsOlderThan('penguins', 10));
 
@@ -54,8 +54,12 @@ function employeeByName(employeeName) { // Usei a mesma lógica do primeiro exer
 }
 employeeByName('Emery');
 
-function createEmployee(personalInfo, associatedWith) {
+function createEmployee(personalInfo, associatedWith) { 
   // seu código aqui
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  };
 }
 
 function isManager(id) {

@@ -123,9 +123,45 @@ const increasePrices = (percentage) => {
   };
 };
 
+const getAnimal = (animalId) => {
+  const output = [];
+  for (let index = 0; index < animalId.length; index += 1) {
+    animals.forEach((animal) => {
+      if (animalId[index] === animal.id) {
+        output.push(animal.name);
+      }
+    });
+  }
+  return output;
+};
+
+const getEmployees = () => {
+  const output = {};
+  employees.map((person) => {
+    const fullname = `${person.firstName} ${person.lastName}`;
+    const animalsId = person.responsibleFor;
+    const animalsName = getAnimal(animalsId);
+    const obj = { [fullname]: animalsName };
+    return Object.assign(output, obj);
+  });
+  return output;
+};
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
-  return idOrName;
+  let output = {};
+  // Verifica se o parâmetro contem conteúdo e retorna TODOS os funcionários e suas responsabilidades
+  if (idOrName === undefined) { return getEmployees(); }
+
+  // Efetua uma busca com a HOF find com o parâmetro recebido
+  const getEmployee = employees.find((person) => {
+    const { id, firstName, lastName } = person;
+    return id === idOrName || firstName === idOrName || lastName === idOrName;
+  });
+
+  const fullname = `${getEmployee.firstName} ${getEmployee.lastName}`;
+  const animalId = getEmployee.responsibleFor;
+  output = { [fullname]: getAnimal(animalId) };
+  return output;
 }
 
 module.exports = {

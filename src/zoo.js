@@ -9,6 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
+const { employees } = require('./data');
 const data = require('./data');
 
 /*
@@ -36,11 +37,20 @@ function animalsOlderThan(animal, age) {
   );
 }
 
-/* function employeeByName(employeeName) {
-  // seu código aqui
+/*
+   Essa função recebe o primeiro ou último nome das pessoas colaboradoras e retorna o objeto do funcionário. Caso não receba parâmetro, retorna um objeto vazio.
+  */
+function employeeByName(employeeName) {
+  if (employeeName !== undefined) { // se recebeu um nome como parâmetro
+    // retorna o objeto resultado de
+    return employees.find( // encontrar o funcionário
+      (employe) => (employe.firstName === employeeName || employe.lastName === employeeName), // que possui o primeiro ou último nome igual ao recebido por parâmetro
+    );
+  }
+  return {}; // retorna um objeto vazio caso não receba parâmetro
 }
 
-function createEmployee(personalInfo, associatedWith) {
+/* function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
 
@@ -86,7 +96,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

@@ -16,6 +16,8 @@ const data = require('./data');
 // // console.log(data.animals[0])
 const { animals } = data;
 const { employees } = data;
+const {residents} = data.employees;
+console.log(residents)
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -31,8 +33,11 @@ animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'ef3778eb-2844-4c7c-b66c-f4
 
 function animalsOlderThan(animal, age) {
 //   // seu código aqui
-
+    // animals.filter(())
+const animalOlder = animals.find ((unit) => unit.name === animal);
+return animalOlder.residents.every((resident) => resident.age >= age);
 }
+console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) { // Usei a mesma lógica do primeiro exercício.
   // seu código aqui
@@ -43,7 +48,7 @@ function employeeByName(employeeName) { // Usei a mesma lógica do primeiro exer
   const employeeMapped = employees.find((person) =>
     person.firstName === employeeName || person.lastName === employeeName);
 
-  console.log(employeeMapped);
+  // console.log(employeeMapped);
 
   return employeeMapped;
 }

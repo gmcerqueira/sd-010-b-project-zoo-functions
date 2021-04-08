@@ -68,9 +68,12 @@ function entryCalculator(entrants) {
   return entries.reduce((acc, cur) => acc + (entrants[cur] * prices[cur]), 0);
 }
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function animalMap(options) {
+  // seu código aqui
+  function getSpecieByName(specieName) {
+  return animals.find(specie => specie.name === specieName);
+ }
+}
 
 // function schedule(dayName) {
 //   // seu código aqui

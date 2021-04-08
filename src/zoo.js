@@ -19,13 +19,9 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const animalFind = animals.find((animalName) => (animalName.name == animal))
+  const animalFind = animals.find((animalName) => (animalName.name === animal));
   const answer = animalFind.residents.filter((item) => item.age < age);
-  if (answer.length > 0) {
-    return false;
-  } else {
-    return true;
-  }
+  return answer.length > 0;
 }
 
 // function employeeByName(employeeName) {

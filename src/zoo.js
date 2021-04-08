@@ -52,17 +52,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // if (!species) {
-  //   return animais.map((animals) => {
-      
-  //      const numbers = animals.residents.length,
-  //      return {}
-  //     }
-  //   )
-  // }
-  // return animais.find((residentes) => residentes.name === species).residents.length
+  // Henrique Zózimo ajudou
   const count = {};
-  animais.forEach(({ name, residents }) => {
+  animais.forEach(({ name, residents}) => {
     count[name] = residents.length;
   });
   if (!species) return count;

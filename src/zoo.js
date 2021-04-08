@@ -50,11 +50,15 @@ function employeeByName(employeeName) {
   return {}; // retorna um objeto vazio caso não receba parâmetro
 }
 
-/* function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+/*
+   Essa função, a partir de informações recebidas nos parâmetros, cria um objeto equivalente ao de uma pessoa colaboradora, retornando-o.
+  */
+function createEmployee(personalInfo, associatedWith) {
+  // retorna um objeto equivalente ao de uma pessoa colaboradora que contém as informações recebidas nos parâmetros
+  return { ...personalInfo, ...associatedWith };
 }
 
-function isManager(id) {
+/* function isManager(id) {
   // seu código aqui
 }
 
@@ -103,5 +107,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

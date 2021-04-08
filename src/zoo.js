@@ -129,7 +129,7 @@ function specificWeekDay(day) {
   else line[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
   return line;
 }
-function defaultSchedule(params) {
+function defaultSchedule() {
   const days = Object.entries(hours);
   const scheduleTable = days.reduce((result, day) => {
     const line = result;

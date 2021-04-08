@@ -13,6 +13,8 @@ const data = require('./data');
 
 const animais = data.animals;
 
+const empregados = data.employees;
+
 function animalsByIds(...ids) {
   if (!ids) return [];
   return animais.filter((animal) => ids.includes(animal.id));
@@ -24,10 +26,13 @@ function animalsOlderThan(animal, age) {
   return residents.every((el) => el.age > age);
 }
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
-
+function employeeByName(employeeName) {
+  if (!employeeByName) return {};
+  const encontrado = empregados.find((empregado) =>
+    ((empregado.firstName === employeeName) || (empregado.lastName === employeeName)));
+  if (!encontrado) return {};
+  return encontrado;
+}
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
 // }
@@ -74,7 +79,7 @@ module.exports = {
 //   animalCount,
 //   animalMap,
   animalsByIds,
-  //   employeeByName,
+  employeeByName,
   //   employeeCoverage,
   //   addEmployee,
   //   isManager,

@@ -34,10 +34,11 @@ function employeeByName(employeeName) {
   return data.employees.find(cond);
   // seu código aqui
 }
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
 
+function createEmployee(personalInfo, associatedWith) {
+  return { ...personalInfo, ...associatedWith };
+}
+// console.log(...data.employees)
 // function isManager(id) {
 //   // seu código aqui
 // }
@@ -87,5 +88,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

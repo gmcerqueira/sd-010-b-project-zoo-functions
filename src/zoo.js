@@ -12,7 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 // Faz a desestructuringObjects para uso nas funções
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...args) {
   // 1- Filter traz todos os animais e o some
@@ -79,7 +79,7 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (!entrants) return 0;
   // Efetua uma busca no objeto passado, nas chaves ex { Adult, Child, Senior }
-  //  É feito um reduce, onde é somado o valor com base na key prices[curr] multiplicando pelo entrants[curr]... curr é a key
+  // É feito um reduce, onde é somado o valor com base na key prices[curr] multiplicando pelo entrants[curr]... curr é a key
   return Object.keys(entrants).reduce(
     (acc, curr) =>
       acc + (prices[curr] * entrants[curr]), 0,
@@ -91,10 +91,23 @@ function animalMap(options) {
   return options;
 }
 
-function schedule(dayName) {
-  // seu código aqui
-  return dayName;
-}
+const schedule = (dayName) => {
+  const hour = Object.entries(hours);
+  // Desestruturando dentro do reduce [day, { open, close }]
+  // O Reduce vai montar uma tabela/objeto com os horários da semana
+  const table = hour.reduce((acc, [day, { open, close }]) => {
+    // close % 12, retorna o valor em formato 12h
+    // (open, close > 0) verifica se tem horário de aberto e fechamento, se não retorna fechado
+    acc[day] = (open, close > 0) ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    return acc;
+  }, {});
+
+  // Guarda a tabela/objeto criado em days
+  const days = table;
+  // Se foi informado o dia retorna um objeto com o dia e horario informado
+  // Se não retorna a tabela days
+  return (!dayName) ? days : { [dayName]: days[dayName] };
+};
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui

@@ -23,7 +23,7 @@
 // // console.log(animalsOlderThan('otters', 7));
 
 // function employeeByName(employeeName) {
-//   if (employeeName === undefined) {return {}} else 
+//   if (employeeName === undefined) {return {}} else
 //  { return data.employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName) }
 // }
 

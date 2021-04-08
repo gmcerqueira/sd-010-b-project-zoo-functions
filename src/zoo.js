@@ -27,9 +27,14 @@ function animalsOlderThan(animal, age) {
 // const specie = 'otters';
 // animalsOlderThan(specie, 7);
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+function employeeByName(employeeName) {
+  // seu código aqui
+  const employee = {};
+
+  return employee;
+}
+
+console.log(employeeByName());
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -77,7 +82,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

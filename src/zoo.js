@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 // const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -70,9 +70,20 @@ function animalCount(species) {
   return animals.find((specie) => specie.name === species).residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+// Checking Empty Obj https://flaviocopes.com/how-to-check-object-empty/
+
+function entryCalculator(entrants) {
+  if (entrants === undefined || Object.entries(entrants).length === 0) {
+    return 0;
+  }
+  const adults = (entrants.Adult * prices.Adult);
+  const children = (entrants.Child * prices.Child);
+  const seniors = (entrants.Senior * prices.Senior);
+
+  const total = [adults, children, seniors];
+
+  return total.filter((value) => value > 0).reduce((a, b) => a + b, 0);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -102,7 +113,7 @@ module.exports = {
   isManager,
   addEmployee,
   animalCount,
-  // entryCalculator,
+  entryCalculator,
   // animalMap,
   // schedule,
   // oldestFromFirstSpecies,

@@ -161,9 +161,13 @@ function oldestFromFirstSpecies(id) {
 
 // ----------------------------------------------------------------------------------
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  Object.keys(prices).forEach((key) => {
+    prices[key] = parseFloat((prices[key]
+      * (1 + percentage / 100) + 0.005)
+      .toFixed(2));
+  });
+}
 
 // ----------------------------------------------------------------------------------
 
@@ -183,6 +187,6 @@ module.exports = {
   animalMap,
   schedule,
   oldestFromFirstSpecies,
+  increasePrices,
   // employeeCoverage,
-  // increasePrices,
 };

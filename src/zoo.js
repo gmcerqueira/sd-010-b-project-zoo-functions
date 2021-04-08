@@ -35,9 +35,11 @@ function isManager(id) {
   return array.some((a) => a === id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  return id + firstName + lastName + managers + responsibleFor;
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return data.employees.push({id, firstName, lastName, managers, responsibleFor})
 }
+
+
 
 function animalCount(species) {
   return species;

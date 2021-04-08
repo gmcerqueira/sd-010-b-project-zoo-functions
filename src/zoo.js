@@ -13,11 +13,11 @@ const data = require('./data');
 
 const { animals, employees } = data;
 
-const animalsByIds = (...ids) => animals.filter((bicho) => ids.includes(bicho.id));
+const animalsByIds = (...ids) => animals.filter((animal) => ids.includes(animal.id));
 
 const animalsOlderThan = (animal, age) => {
-  const selectedAnimal = animals.find((bicho) => bicho.name === animal).residents;
-  return selectedAnimal.every((bicho) => bicho.age >= age);
+  const selectedAnimal = animals.find((thisAnimal) => thisAnimal.name === animal).residents;
+  return selectedAnimal.every((thisAnimal) => thisAnimal.age >= age);
 };
 
 function employeeByName(employeeName) {
@@ -28,15 +28,12 @@ function employeeByName(employeeName) {
   return employeeName ? expectedEmployee : {};
 }
 
-const createEmployee = (personalInfo, associatedWith) => {
-  const { id, firstName, lastName } = personalInfo;
-  const { managers, responsibleFor } = associatedWith;
-  return { id, firstName, lastName, managers, responsibleFor };
-};
+const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
-// const isManager = (id) => {
-//   // seu código aqui
-// };
+const isManager = (id) => {
+  const selectedEmployee = employees.find((employee) => employee.id === id).id;
+  return employees.some((thisEmployee) => thisEmployee.managers.includes(selectedEmployee));
+};
 
 // const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
 //   // seu código aqui
@@ -79,7 +76,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

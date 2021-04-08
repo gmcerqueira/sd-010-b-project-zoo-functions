@@ -23,9 +23,8 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   let aux = false;
   /* //find retorna false true se .residents.age > age minima */
-  aux = data.animals.find(((x) => x.name === animal).residents.every((auxB) => auxB.age > age));
-  /* //every verifica todas ages */
-  return aux;
+  aux = data.animals.find((x) => x.name === animal);
+  return aux.residents.every((auxB) => auxB.age > age);
 }
 
 /* function employeeByName(employeeName) {

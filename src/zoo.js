@@ -16,7 +16,8 @@ const {
 } = data;
 
 function animalsByIds(...ids) {
-  return ids.map((idAnimal) => animals.find((animal) => animal.id === idAnimal));
+  if (!ids) return [];
+  return animals.filter((animal) => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {

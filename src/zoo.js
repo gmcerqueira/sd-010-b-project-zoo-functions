@@ -48,23 +48,17 @@ function isManager(id) {
   return employees.some((employee) => employee.managers.includes(id));
 }
 
-// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-
-// function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-//   const newEmployee = {
-//     id,
-//     firstName,
-//     lastName,
-//     managers,
-//     responsibleFor,
-//   };
-//   employees.push(newEmployee);
-//   return newEmployee;
-// }
-
-// console.log(employees.length);
-// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
-// console.log(employees.length);
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  employees.push(newEmployee);
+  return newEmployee;
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -100,7 +94,7 @@ module.exports = {
   employeeByName,
   createEmployee,
   isManager,
-  // addEmployee,
+  addEmployee,
   // animalCount,
   // entryCalculator,
   // animalMap,

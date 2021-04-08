@@ -18,7 +18,7 @@ const {
   hours
 } = data;
 
-function animalsByIds(...ids) { 
+function animalsByIds(...ids) {
   return animals.filter((animal) => ids.includes(animal.id));
 }
 

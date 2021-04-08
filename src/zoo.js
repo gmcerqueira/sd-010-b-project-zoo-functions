@@ -56,9 +56,18 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
   employees.push(newEmployee);
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species = 'all') {
+  const obj = {};
+  animals.map(({ name, residents }) => {
+    obj[name] = residents.length;
+    return '';
+  });
+  if (species === 'all') {
+    return obj;
+  }
+  return obj[species];
+}
+console.log(animalCount());
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -87,7 +96,7 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

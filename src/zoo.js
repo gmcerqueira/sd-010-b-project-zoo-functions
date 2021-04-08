@@ -48,12 +48,15 @@ function createEmployee(personalInfo, associatedWith) {
   return newEmployee;
 }
 
-/* function isManager(id) {
-  // seu código aqui
-  return id;
+function isManager(id) {
+  // Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
+  // Deve retornar um valor booleano
+  // Testa se o id passado é de um gerente
+  const managers = employees.some((manager) => manager.managers.includes(id));
+  return managers;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+/* function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
   return id, firstName, lastName, managers, responsibleFor;
 }
@@ -102,7 +105,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

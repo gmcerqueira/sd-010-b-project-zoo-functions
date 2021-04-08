@@ -31,8 +31,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const array = data.employees.map((a) => a.managers).join(',').split(',')
-  return array.some(a => a === id)
+  const array = data.employees.map((a) => a.managers).join(',').split(',');
+  return array.some((a) => a === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {

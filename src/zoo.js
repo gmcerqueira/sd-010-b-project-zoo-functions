@@ -36,11 +36,19 @@ function animalsOlderThan(animal, age) {
   return procuraIdade.every((idades) => (idades === true))
   // return teste;
 };
-console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   // seu código aqui
+  //Agradecimentos ao Rafael Guimieri
+  const {
+    employees
+  } = data;
+  if (employeeName !== undefined) {
+    return employees.find((name) => ((name.firstName === employeeName || name.lastName === employeeName)));
+  }
+  return {};
 }
+console.log(employeeByName('Nelson'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui

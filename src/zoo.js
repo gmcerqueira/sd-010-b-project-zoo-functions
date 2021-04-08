@@ -34,16 +34,20 @@ function animalsOlderThan(animal, age) {
 
 }
 
-function employeeByName(...employeeName) { // Usei a mesma lógica do primeiro exercício.
+function employeeByName(employeeName) { // Usei a mesma lógica do primeiro exercício.
   // seu código aqui
-  const employee = employeeName;
+  // const employee = employeeName;
+  const object = {};
+  if (employeeName === undefined) { return object; }
 
-  const employeeMapped = employee.map((name) =>
-    employees.find((person) => person.firstName === name || person.lastName === name));
+  const employeeMapped = employees.find((person) =>
+    person.firstName === employeeName || person.lastName === employeeName);
+
   console.log(employeeMapped);
+
   return employeeMapped;
 }
-employeeByName('Stephanie');
+employeeByName('Emery');
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui

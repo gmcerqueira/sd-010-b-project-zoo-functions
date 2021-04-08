@@ -22,9 +22,9 @@ const findAnimalById = (animalId) => animals.find((animal) => animal.id === anim
 
 const animalsByIds = (...ids) => ids.map((animalId) => findAnimalById(animalId));
 
-const findAnimalByName = (animalName) => animals.find((animal) => animal.name === animalName);
+const findName = (animalName) => animals.find((animal) => animal.name === animalName);
 
-const animalsOlderThan = (animal, age) => findAnimalByName(animal).residents.every((old) => age < old.age);
+const animalsOlderThan = (animal, age) => findName(animal).residents.every((old) => age < old.age);
 
 // function employeeByName(employeeName) {
 //   // seu código aqui

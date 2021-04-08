@@ -11,11 +11,12 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
-}
+const animalsByIds = data.animals.filter((...ids) => {
+  return data.animals.id.name;
+});
+console.log(animalsByIds(lionId));
 
-function animalsOlderThan(animal, age) {
+/* function animalsOlderThan(animal, age) {
   // seu código aqui
 }
 
@@ -78,3 +79,4 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
+ */

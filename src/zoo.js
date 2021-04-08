@@ -9,6 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
+// Importando informações sobre o Zoológico
 const data = require('./data');
 
 function animalsByIds(ids) {

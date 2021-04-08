@@ -44,7 +44,7 @@ function employeeByName(employeeName) {
   }
   return empty;
 }
-console.log(employeeByName('Emery'));
+// console.log(employeeByName('Emery'));
 
 // 4. IMPLEMENTE A FUNÇÃO createEmployee
 // A função, a partir de informações recebidas nos parâmetros, é capaz de criar um objeto equivalente
@@ -54,9 +54,13 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+// 5. IMPLEMENTE A FUNÇÃO isManager
+// Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
+
+function isManager(id) {
+  return employees.some(({ managers }) => managers.includes(id));
+}
+// console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -99,7 +103,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

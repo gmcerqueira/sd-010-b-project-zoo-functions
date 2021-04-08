@@ -65,16 +65,26 @@ const listModel = (callback) => {
   const list = { NE: '', NW: '', SE: '', SW: '' };
   return () => {
     Object.keys(list).forEach((key) => {
-      const animal = animals.filter(({ location }) => key === location)
+      const animal = animals.filter(({ location }) => key === location);
       list[key] = callback(animal);
     });
     return list;
   };
 };
 
-const test = listModel((animal) => animal.map(({name}) => name))()
+const listDefault = listModel((animal) => animal.map(({ name }) => name))();
 
-console.log(test);
+const func = (animal) => {
+  return animal.map(({ name, residents }) => {
+    return {
+      [name]: residents.map(({name, sex}) => {
+        if(sex === 'female') return name;
+      })
+    };
+  });
+};
+
+const test = listModel(func)();
 
 function animalMap(options) {}
 

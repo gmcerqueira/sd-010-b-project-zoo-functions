@@ -25,16 +25,21 @@ const animalsOlderThan = (animal, age) => fiByName(animal).residents.every((ani)
 // employeeByName
 const fiEmpByName = (name) => employees.find((employee) =>
   employee.firstName === name || employee.lastName === name);
-
 const employeeByName = (employeeName) => (!employeeName ? {} : fiEmpByName(employeeName));
 
 // createEmployee
 const createEmployee = (personalInfo, associatedWith) =>
   Object.assign(personalInfo, associatedWith);
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+// isManager
+const takeManagers = () => {
+  const allManags = employees.map((emp) => emp.managers).reduce((a, b) => `${a},${b}`).split(',');
+  const singleManags = [...new Set(allManags)];
+  return singleManags.filter((emp) => emp);
+};
+const fiEmpById = (id) => employees.find((employee) => employee.id === id);
+const reallyIsManager = (employee) => takeManagers().some((manager) => manager === employee.id);
+const isManager = (id) => reallyIsManager(fiEmpById(id));
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -77,7 +82,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

@@ -67,10 +67,10 @@ function entryCalculator(entrants = {}) {
   return total;
 }
 
-function animalMap(options) {
+/* function animalMap(options) {
   // seu código aqui
 }
-
+*/
 function schedule(dayName) {
   // seu código aqui
   const result = Object.entries(hours).reduce((acc, [key, val]) => {
@@ -103,18 +103,18 @@ function increasePrices(percentage) {
   });
 }
 
-function employeeCoverage(idOrName) {
+/* function employeeCoverage(idOrName) {
   // seu código aqui
 }
-
+*/
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

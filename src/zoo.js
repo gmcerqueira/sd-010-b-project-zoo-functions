@@ -11,8 +11,17 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  
+/*
+   Essa função recebe um ou mais ids e retorna um array contendo as espécies referentes aos ids passados como parâmetro. Caso não receba parâmetro, retorna um array vazio.
+  */
+function animalsByIds(...ids) {
+  if (ids.length) { // se há id na lista ids
+    // retorna uma lista de objetos contendo apenas
+    return data.animals.filter( // os animais filtrados de data
+      (animal) => ids.includes(animal.id), // sendo que animal.id está listado em ids
+    );
+  }
+  return []; // retorna um array vazio caso não receba parâmetro
 }
 
 function animalsOlderThan(animal, age) {

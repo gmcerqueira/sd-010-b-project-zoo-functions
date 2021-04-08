@@ -14,6 +14,7 @@ const data = require('./data');
 const {
   animals,
   employees,
+  prices,
 } = data;
 
 function animalsByIds(...ids) {
@@ -61,11 +62,14 @@ function animalCount(species) {
   }
   return animals.find((animal) => animal.name === species).residents.length;
 }
-/*
+
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (!entrants || Object.keys(entrants).length === 0) return 0;
+
+  return Object.keys(entrants).reduce((acc, curr) => acc + prices[curr] * entrants[curr], 0);
 }
 
+/*
 function animalMap(options) {
   // seu código aqui
 }
@@ -87,7 +91,7 @@ function employeeCoverage(idOrName) {
 } */
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

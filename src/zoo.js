@@ -32,10 +32,6 @@ const animalsOlderThan = (animal, age) => {
   return residents.every((criature) => criature.age > age);
 };
 
-// function animalsOlderThan(animal, age) {
-//   // seu código a
-// }
-
 const colaboradores = data.employees;
 const employeeByName = (employeeName) => {
   if (employeeName === undefined) return {};
@@ -43,10 +39,9 @@ const employeeByName = (employeeName) => {
     (employee.firstName === employeeName || employee.lastName === employeeName));
 };
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
-
+const createEmployee = (personalInfo, associatedWith) => {
+  return { ...personalInfo, ...associatedWith };
+};
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
 // }
@@ -100,5 +95,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

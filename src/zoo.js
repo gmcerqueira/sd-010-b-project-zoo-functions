@@ -21,7 +21,7 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   const animalFind = animals.find((animalName) => (animalName.name === animal));
   const answer = animalFind.residents.filter((item) => item.age < age);
-  return answer.length > 0;
+  return answer.length < 1;
 }
 
 // function employeeByName(employeeName) {

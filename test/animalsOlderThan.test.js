@@ -9,6 +9,6 @@ describe('Implemente a função animalsOlderThan', () => {
 
     actual = zoo.animalsOlderThan('penguins', 10);
     expected = false;
-    // assert.deepStrictEqual(actual, expected);
+    assert.deepStrictEqual(actual, expected);
   });
 });

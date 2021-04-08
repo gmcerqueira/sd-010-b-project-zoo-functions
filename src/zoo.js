@@ -20,14 +20,9 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const j = animals.find((specie) => specie.name === animal).residents
+  return animals.find((specie) => specie.name === animal).residents
     .map((resident) => resident.age > age)
     .reduce((_, curr) => curr);
-  const v = animals.find((specie) => specie.name === animal);
-  const x = v.residents.map((resident) => resident.age > age);
-  const y = x.reduce((_, curr) => curr);
-  console.log(y, j);
-  return j;
 }
 // const specie = 'otters';
 // animalsOlderThan(specie, 7);

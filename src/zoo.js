@@ -73,7 +73,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (!species) { 
+  if (!species) {
     const animals = data.animals.map((entry) => entry.name);
     const residents = data.animals.map((entry) => entry.residents);
     const count = [];
@@ -91,8 +91,6 @@ function animalCount(species) {
   const residents = animals.map((entry) => entry.residents);
   return residents[0].length;
 }
-
-console.log(animalCount('lions'));
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -132,4 +130,4 @@ module.exports = {
   // oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
-}
+};

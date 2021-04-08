@@ -28,12 +28,12 @@ function employeeByName(employeeName) {
   if (!employeeName) return {};
   return empregados.find(
     (empregado) =>
-      empregado.firstName === employeeName ||
-      empregado.lastName === employeeName
+      empregado.firstName === employeeName
+      || empregado.lastName === employeeName,
   );
 }
 
-function createEmployee(personalInfo, associatedWith) {
+function createEmployee(personalInfo,associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 

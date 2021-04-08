@@ -35,7 +35,7 @@ function animalsByIds(...ids) {
 
 function isManager(id) {
   // seu código aqui
-  return employees.some((employee) => id.includes(employee.managers));
+  return employees.some((employee) => employee.managers.includes(id));
 }
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {

@@ -19,14 +19,21 @@ function animalsByIds(...ids) {
   //   const animal = data.animals.filter((element2) => element2.id === element);
   //   animals.push(animal[0]);
   // });
-  // seu código aqui
+  // Constante abaixo modificada a partir do código do Vinicius Bodra, postado no Slack na thread: https://trybecourse.slack.com/archives/C01LCSLCZ8D/p1617911347298100
   const animals = data.animals.filter((item, index) => (item.id === identifications[index]));
   return animals;
 }
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+function animalsOlderThan(animal, age) {
+  const animals = data.animals.filter((entry) => entry.name === animal);
+  const residents = animals.map((entry) => entry.residents);
+  const ages = residents[0].map((entry) => entry.age);
+  let response = true;
+  ages.forEach((element) => {
+    if (element < age) { response = false; }
+  });
+  return response;
+}
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -82,7 +89,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

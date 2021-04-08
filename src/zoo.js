@@ -67,10 +67,10 @@ function animalCount(species = 'all') {
     : data.animals.find((animal) => animal.name === species).residents.length;
 }
 
-function entryCalculator(entrants) {
+// function entryCalculator(entrants) {
   // seu código aqui
 
-}
+// }
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -93,7 +93,7 @@ function entryCalculator(entrants) {
 // }
 
 module.exports = {
-  entryCalculator,
+  // entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

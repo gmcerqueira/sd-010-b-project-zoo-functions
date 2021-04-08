@@ -16,51 +16,51 @@ function animalsByIds(...ids) {
   return animals.filter((animal) => ids.includes(animal.id));
 }
 
-function animalsOlderThan(animal, age) {
+function animalsOlderThan(_animal, _age) {
   // seu código aqui
 }
 
-function employeeByName(employeeName) {
+function employeeByName(_employeeName) {
   // seu código aqui
 }
 
-function createEmployee(personalInfo, associatedWith) {
+function createEmployee(_personalInfo, _associatedWith) {
   // seu código aqui
 }
 
-function isManager(id) {
+function isManager(_id) {
   // seu código aqui
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(_id, _firstName, _lastName, _managers, _responsibleFor) {
   // seu código aqui
 }
 
-function animalCount(species) {
+function animalCount(_species) {
   // seu código aqui
 }
 
-function entryCalculator(entrants) {
+function entryCalculator(_entrants) {
   // seu código aqui
 }
 
-function animalMap(options) {
+function animalMap(_options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
+function schedule(_dayName) {
   // seu código aqui
 }
 
-function oldestFromFirstSpecies(id) {
+function oldestFromFirstSpecies(_id) {
   // seu código aqui
 }
 
-function increasePrices(percentage) {
+function increasePrices(_percentage) {
   // seu código aqui
 }
 
-function employeeCoverage(idOrName) {
+function employeeCoverage(_idOrName) {
   // seu código aqui
 }
 

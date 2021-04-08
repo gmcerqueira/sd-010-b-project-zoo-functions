@@ -61,24 +61,19 @@ function entryCalculator(entrants) {
   return Adult * a + Child * b + Senior * c;
 }
 
-const listDefault = (list) => {
+const listModel = (callback) => {
+  const list = { NE: '', NW: '', SE: '', SW: '' };
   Object.keys(list).forEach((key) => {
-  list[key] = animals
-      .filter(({ location }) => location === key)
-      .map(({ name }) => name);
+    list[key] = callback(key);
   });
   return list;
 };
 
-function animalMap(options) {
-  const list = { NE: '', NW: '', SE: '', SW: '' };
-  if (!options) return listDefault(list);
-  const { includeNames = false, sex, sorted = false } = options;
+const test = listDefault((key) => {
+  return animals.filter(({ location }) => location === key).map(({ name }) => name);
+});
 
-
-}
-console.log(animalMap());
-// animalMap({ includeNames: true, sex: 'female' });
+function animalMap(options) {}
 
 const schedule = (hour) => {
   const list = Object.entries(hours).reduce((acc, [key, value]) => {
@@ -89,8 +84,8 @@ const schedule = (hour) => {
   }, {});
   return hour
     ? {
-      [hour]: list[hour],
-    }
+        [hour]: list[hour],
+      }
     : list;
 };
 

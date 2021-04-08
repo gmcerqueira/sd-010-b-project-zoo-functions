@@ -63,15 +63,22 @@ function entryCalculator(entrants) {
 
 const listModel = (callback) => {
   const list = { NE: '', NW: '', SE: '', SW: '' };
-  Object.keys(list).forEach((key) => {
-    list[key] = callback(key);
-  });
-  return list;
+  return () => {
+    Object.keys(list).forEach((key) => {
+      const animal = animals.filter(({ location }) => key === location)
+      list[key] = callback(animal);
+    });
+    return list;
+  };
 };
 
-const test = listDefault((key) => {
-  return animals.filter(({ location }) => location === key).map(({ name }) => name);
-});
+const func = (animal) => {
+  return animal.map(({name}) => name)
+}
+
+const test = listModel(func)()
+
+console.log(test);
 
 function animalMap(options) {}
 

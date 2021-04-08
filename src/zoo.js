@@ -62,9 +62,13 @@ function isManager(id) {
 }
 // console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+// 6. IMPLEMENTE A FUNÇÃO addEmployee
+// A função irá adicionar uma nova pessoa colaboradora ao array employees, presente no arquivo data.js
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
+}
+// console.log(addEmployee('122', 'Ad', 'Jr', ['1234', '444'], ['1255', '455']));
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -102,7 +106,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

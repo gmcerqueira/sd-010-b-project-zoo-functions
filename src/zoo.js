@@ -22,7 +22,6 @@ const findAnimalById = (animalId) => animals.find((animal) => animal.id === anim
 
 const animalsByIds = (...ids) => ids.map((animalId) => findAnimalById(animalId));
 
-
 // function animalsOlderThan(animal, age) {
 //   // seu código aqui
 // }

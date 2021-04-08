@@ -34,7 +34,6 @@ function employeeByName(employeeName) {
   return data.employees.find(cond);
   // seu código aqui
 }
-console.log(employeeByName())
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
 // }

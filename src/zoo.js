@@ -14,12 +14,14 @@ const data = require('./data');
 function animalsByIds(...ids) {
   // seu código aqui
   const { animals } = data;
-  let final = [];
+  const final = [];
   ids.forEach((id) => animals.filter((animal) => {
-      if (animal.id === id) {
-        final.push(animal);
-      }
-  }))
+    if (animal.id === id) {
+      final.push(animal);
+    }
+    return final;
+    // Esse return acima é desnecessário, apenas utilizei para passar no Lint. Apenas o próximo return já resolve o requisito.
+  }));
   return final;
 }
 

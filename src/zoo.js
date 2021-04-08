@@ -41,7 +41,8 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     messege = {};
   } else {
-    messege = data.employees.find((employee) => employee.firstName === employeeName || employee.lastName === employeeName);
+    messege = data.employees.find((employee) => (
+      employee.firstName === employeeName || employee.lastName === employeeName));
   }
   return messege;
 }

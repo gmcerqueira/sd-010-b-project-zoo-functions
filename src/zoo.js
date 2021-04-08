@@ -56,18 +56,14 @@ function isManager(id) {
   return managers;
 }
 
-/* function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // A função irá adicionar uma nova pessoa colaboradora ao array employees, presente no arquivo data.js.
   // Adiciona um funcionário no fim da lista
-  const lastEmployee = {
-    id:id,
-    firstName: firstName,
-      lastName: lastName,
-      managers: [managers],
-      responsibleFor: [responsibleFor]
-  }
+  const dadosPess = { id, firstName, lastName };
+  const func = { managers, responsibleFor };
+  const lastEmployee = { ...dadosPess, ...func };
   return employees.push(lastEmployee);
-} */
+}
 
 function animalCount(species) {
   // Sem parâmetros, retorna um objeto
@@ -125,7 +121,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

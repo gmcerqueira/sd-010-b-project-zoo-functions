@@ -12,7 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 // Faz a desestructuringObjects para uso nas funções
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...args) {
   // 1- Filter traz todos os animais e o some
@@ -77,8 +77,13 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // teste
-  return entrants;
+  if (!entrants) return 0;
+  // Efetua uma busca no objeto passado, nas chaves ex { Adult, Child, Senior }
+  //  É feito um reduce, onde é somado o valor com base na key prices[curr] multiplicando pelo entrants[curr]... curr é a key
+  return Object.keys(entrants).reduce(
+    (acc, curr) =>
+      acc + (prices[curr] * entrants[curr]), 0,
+  );
 }
 
 function animalMap(options) {

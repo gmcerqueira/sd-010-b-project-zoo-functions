@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 // daqui pra baixo as funções são da questão 1
 const validateAnimals = (element, ids) => {
   for (let index = 0; index < ids.length; index += 1) {
@@ -43,6 +43,15 @@ const undefinedAnimals = (item) => {
     newObj[element.name] = element.residents.length;
   });
   return newObj;
+};
+// fim funções 7
+// inicio funções 8
+const calculateValue = (entrants) => {
+  let value = 0;
+  if (entrants.Adult) value += (entrants.Adult * prices.Adult);
+  if (entrants.Child) value += (entrants.Child * prices.Child);
+  if (entrants.Senior) value += (entrants.Senior * prices.Senior);
+  return value;
 };
 
 function animalsByIds(...ids) {
@@ -79,7 +88,7 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  return data.employees.push({
+  return employees.push({
     id,
     firstName,
     lastName,
@@ -95,11 +104,13 @@ function animalCount(species = animals) {
     if (animals[x].name === species) return animals[x].residents.length;
   }
 }
-/*
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
+  return calculateValue(entrants);
 }
+/*
 
 function animalMap(options) {
   // seu código aqui
@@ -123,13 +134,13 @@ function employeeCoverage(idOrName) {
  */
 module.exports = {
 /*
+schedule,
+animalMap,
+employeeCoverage,
+oldestFromFirstSpecies,
+increasePrices,
+*/
   entryCalculator,
-  schedule,
-  animalMap,
-  employeeCoverage,
-  oldestFromFirstSpecies,
-  increasePrices,
-  */
   animalCount,
   isManager,
   animalsByIds,

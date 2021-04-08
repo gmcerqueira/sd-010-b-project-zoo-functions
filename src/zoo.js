@@ -26,9 +26,13 @@ function employeeByName(employeeName) {
   return employees.find((emp) => emp.firstName === employeeName || emp.lastName === employeeName);
 }
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+  const obj = {};
+  return Object.assign(obj, personalInfo, associatedWith);
+  // const obj = { ...personalInfo, ...associatedWith };
+  // return obj;
+  // o spread é mais simples, mas acho o assign mais estilo rs. :)
+}
 
 // function isManager(id) {
 //   // seu código aqui
@@ -79,5 +83,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

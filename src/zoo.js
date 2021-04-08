@@ -40,13 +40,25 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
+// Com a HOf some, estou procurando no array pelo menos um elemento que retorna true na condição passada
+// A condição verifica se o elemento iterado (managers) tem o mesmo id passado no parametro da função.
 function isManager(id) {
   return data.employees.some((value) => value.managers.includes(id));
 }
 
-/* function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-} */
+// Foi passado como parametro padrão dois arrays vazios para mangers e responsibleFor.
+// Necessario passar o parametro padrão, pois essa chaves tem como valor arrays.
+// Foi criado um novo objeto com os parametros. Por ultimo foi dado um push no array employees do novo objeto
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  data.employees.push(newEmployee);
+}
 
 /* function animalCount(species) {
   // seu código aqui
@@ -84,7 +96,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

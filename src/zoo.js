@@ -16,14 +16,20 @@ const { animals } = require('./data');
 // Esta função é responsável pela busca das espécies de animais por id. Ela retorna um array contendo as espécies
 // referentes aos ids passados como parâmetro, podendo receber um ou mais ids.
 
-function animalsByIds(...ids) {
-  return ids.map((ID) => animals.find((animal) => animal.id.includes(ID)));
-}
-console.log(animalsByIds());
-
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
+// function animalsByIds(...ids) {
+//   return ids.map((ID) => animals.find(({ id }) => id.includes(ID)));
 // }
+// console.log(animalsByIds());
+
+// 2. IMPLEMENTE A FUNÇÃO animalsOlderThan
+// Esta função, a partir do nome de uma espécie e uma idade mínima, verifica se todos os animais daquela
+// espécie possuem a idade mínima especificada
+
+function animalsOlderThan(animal, age) {
+  return animals.find(({ name }) => name.includes(animal)).residents
+    .every((resident) => resident.age >= age);
+}
+console.log(animalsOlderThan('otters', 7));
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -74,7 +80,7 @@ module.exports = {
 //   schedule,
 //   animalCount,
 //   animalMap,
-  animalsByIds,
+  // animalsByIds,
 //   employeeByName,
 //   employeeCoverage,
 //   addEmployee,

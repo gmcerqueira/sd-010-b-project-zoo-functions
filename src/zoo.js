@@ -28,9 +28,11 @@ function employeeByName(employeeName) {
   return employeeName ? expectedEmployee : {};
 }
 
-// const createEmployee = (personalInfo, associatedWith) => {
-//   // seu código aqui
-// };
+const createEmployee = (personalInfo, associatedWith) => {
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+  return { id, firstName, lastName, managers, responsibleFor };
+};
 
 // const isManager = (id) => {
 //   // seu código aqui
@@ -81,5 +83,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

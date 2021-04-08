@@ -183,20 +183,3 @@ function employeeCoverage(idOrName) {
   result[fullName] = responsible;
   return result;
 }
-
-module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
-  animalsByIds,
-  employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
-  animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
-};
-  

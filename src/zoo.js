@@ -9,11 +9,17 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
+const {
+  animals,
+} = require('./data');
 const data = require('./data');
 
 const [...animalsData] = data.animals;
 const [...employeesData] = data.employees;
+const {
+  ...prices
+} = data.prices;
+// const [...hours] = data.hours;
 
 function animalsByIds(...ids) {
   if (ids === []) {
@@ -60,7 +66,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   const allSpecies = {};
-  if (species === undefined) {
+  if (!species) {
     animals.forEach((animal) => {
       allSpecies[animal.name] = animal.residents.length;
     });
@@ -69,9 +75,18 @@ function animalCount(species) {
   return animals.find((specie) => specie.name === species).residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (!entrants || entrants === {}) {
+    return 0;
+  }
+  const adults = (entrants.Adult * prices.Adult);
+  const children = (entrants.Child * prices.Child);
+  const seniors = (entrants.Senior * prices.Senior);
+
+  const total = [adults, children, seniors];
+
+  return total.filter((value) => value > 0).reduce((acc, curr) => acc + curr, 0);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -94,7 +109,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

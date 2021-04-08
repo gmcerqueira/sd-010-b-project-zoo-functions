@@ -19,61 +19,59 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   // seu código aqui
   const findAnimal = data.animals.find(({ name }) => name === animal);
-  return findAnimal.residents.every((elemento => elemento.age >= age))
+  return findAnimal.residents.every((elemento => elemento.age >= age));
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
-  return employeeName
+  return employeeName;
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-  return personalInfo, associatedWith
-}
+// function createEmployee(personalInfo, associatedWith) {
+//   // seu código aqui
+// }
 
 function isManager(id) {
   // seu código aqui
-  return id
+  return id;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-  return id, firstName, lastName, managers, responsibleFor
-}
+// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+//   // seu código aqui  
+// }
 
 function animalCount(species) {
   // seu código aqui
-  return species
+  return species;
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
-  return entrants
+  return entrants;
 }
 
 function animalMap(options) {
   // seu código aqui
-  return options
+  return options;
 }
 
 function schedule(dayName) {
   // seu código aqui
-  return dayName
+  return dayName;
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  return id
+  return id;
 }
 
 function increasePrices(percentage) {
   // seu código aqui
-  return percentage
+  return percentage;
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  // seu código aqui;
   return idOrName
 }
 
@@ -85,10 +83,10 @@ module.exports = {
   animalsByIds,
   employeeByName,
   employeeCoverage,
-  addEmployee,
+  //addEmployee,
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
   increasePrices,
-  createEmployee,
+  //createEmployee,
 };

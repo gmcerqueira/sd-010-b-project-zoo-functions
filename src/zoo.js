@@ -15,13 +15,12 @@ const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   if (!ids) return [];
-  return animals.filter(animal => ids.includes(animal.id));
+  return animals.filter(animal => (ids.includes(animal.id)));
 }
 
 function animalsOlderThan(animal, age) {
-  return animals
-  .find(animals => animals.name === animal)
-  .residents.every(animal => animal.age >= age);
+  return animals.find(animals => ( animals.name === animal)
+  .residents.every(animal => animal.age >= age));
 }
 
 function employeeByName(employeeName) {

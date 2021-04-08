@@ -24,11 +24,19 @@ function animalsByIds(...ids) {
   return []; // retorna um array vazio caso não receba parâmetro
 }
 
-/* function animalsOlderThan(animal, age) {
-  // seu código aqui
+/*
+   Essa função recebe o nome de uma espécie e uma idade mínima e verifica se todos os animais daquela espécie possuem a idade mínima especificada.
+  */
+function animalsOlderThan(animal, age) {
+  // retorna o resultado de
+  return data.animals.find( // encontrar a espécie
+    (specie) => specie.name === animal, // que possui o nome recebido
+  ).residents.every( // e verificar se todos os animiais residentes
+    (resident) => resident.age >= age, // possuem a idade >= a mínima especificada
+  );
 }
 
-function employeeByName(employeeName) {
+/* function employeeByName(employeeName) {
   // seu código aqui
 }
 
@@ -82,7 +90,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

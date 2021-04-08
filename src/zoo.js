@@ -21,14 +21,22 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  return data.animals.some((species) => {
-    if (species.name === animal) return species.residents.every((ageAnimals) => ageAnimals.age > age);
+  const resposta = data.animals.some((species) => {
+    if (species.name === animal) {
+      return species.residents.every((ageAnimals) => ageAnimals.age > age);
+    }
+    return resposta;
   });
 }
-console.log(animalsOlderThan('otters', 7));
 
 function employeeByName(employeeName) {
   // seu código aqui
+  if (employeeName === undefined) return {};
+  return data.employees.find((collaborator) => {
+    if ((collaborator.firstName === employeeName) || (collaborator.lastName === employeeName)) {
+      return collaborator;
+    }
+  });
 }
 
 function createEmployee(personalInfo, associatedWith) {

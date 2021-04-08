@@ -24,12 +24,11 @@ const animalsByIds = (...ids) => ids.map((animalId) => findAnimalById(animalId))
 
 const findByAnimalName = (animalName) => animals.find((animal) => animal.name === animalName);
 
-const animalsOlderThan = (animal, age) => findByAnimalName(animal).residents.every(
-  (isOlder) => age < isOlder.age
-);
+const animalsOlderThan = (animal, age) =>
+  findByAnimalName(animal).residents.every((isOlder) => age < isOlder.age);
 
-const findEmpName = (empName) => employees.find((emp) => emp.firstName === empName 
-|| emp.lastName === empName);
+const findEmpName = (empName) =>
+  employees.find((emp) => emp.firstName === empName || emp.lastName === empName);
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) {

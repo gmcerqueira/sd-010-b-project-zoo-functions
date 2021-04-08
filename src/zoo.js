@@ -42,11 +42,23 @@ function createEmployee(personalInfo, associatedWith) {
 
 // function isManager(id) {
 //   // seu código aqui
+//   const filterManegers = employees.find((info) =>
+//     info.managers === id);
+//   // console.log(filterManegers);
+//   return filterManegers;
 // }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
+  // seu código aqui
+  const newEmployee = ({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
+  return employees.push(newEmployee);
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -84,7 +96,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   // isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

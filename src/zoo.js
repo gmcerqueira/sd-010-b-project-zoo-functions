@@ -26,14 +26,26 @@ function employeeByName(employeeName) {
   const name = employeeName;
   return employees.find((nameEmpl) => (name === nameEmpl.firstName || name === nameEmpl.lastName));
 }
-/*
+
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-  // seu código aqui
+   return employees.some((idManager) => idManager.managers.includes(id));
 }
+/*
+
+ Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
+
+  **Observações técnicas**
+
+  - Deve retornar um valor booleano
+
+  **O que será avaliado**
+
+  - Testa se o id passado é de um gerente
+
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui

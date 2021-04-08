@@ -28,8 +28,6 @@ function animalsOlderThan(animalName, age) {
   return !!isOlder.reduce((previous, current) => previous * current, true);
 }
 
-
-
 // function employeeByName(employeeName) {
 //   // seu código aqui
 // }

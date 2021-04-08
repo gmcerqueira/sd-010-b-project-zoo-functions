@@ -15,14 +15,17 @@ function animalsByIds(...ids) {
   // seu código aqui
   if (ids.length === 0) {
     return ids;
-  } 
-  return data.animals.filter((animal, index) => animal.id === ids[index]); 
-
+  }
+  return data.animals.filter((animal, index) => animal.id === ids[index]);
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  return data.animals.some((species) => {
+    if (species.name === animal) return species.residents.every((ageAnimals) => ageAnimals.age > age);
+  });
 }
+console.log(animalsOlderThan('otters', 7));
 
 function employeeByName(employeeName) {
   // seu código aqui

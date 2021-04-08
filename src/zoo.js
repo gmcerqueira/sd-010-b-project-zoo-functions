@@ -13,7 +13,7 @@ const data = require('./data');
 
 const { animals, employees } = data;
 function animalsByIds(...ids) {
-  return animals.filter((animal) => ids.some((verificaId) => animal.id === verificaId));  
+  return animals.filter((animal) => ids.some((verificaId) => animal.id === verificaId));
 }
 // console.log(animalsByIds())
 function animalsOlderThan(animal, age) {
@@ -22,8 +22,10 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  employeeName = employees.filter((name) => name.firstName || name.lastName);
-  return employeeName;
+  if(!employeeName)
+  return {};
+  const name = employeeName;
+  return employees.filter((nameEmployee) => name === nameEmployee.firstName || name === nameEmployee.lastName)
 }
 /*
 function createEmployee(personalInfo, associatedWith) {
@@ -67,17 +69,17 @@ function employeeCoverage(idOrName) {
 }
 */
 module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
+  //entryCalculator,
+  //schedule,
+  //animalCount,
+  //animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
+  //employeeCoverage,
+  //addEmployee,
+  //isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
+  //oldestFromFirstSpecies,
+  //increasePrices,
+  //createEmployee,
 };

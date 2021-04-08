@@ -236,6 +236,6 @@
 //       ...a,
 //       ...b,
 //     }));
-//     return species === 'all' ? allAnimals : 
+//     return species === 'all' ? allAnimals :
 //     data.animals.find((animal) => animal.name === species).residents.length
 //   }

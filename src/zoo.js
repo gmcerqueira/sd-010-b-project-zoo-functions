@@ -8,16 +8,21 @@ eslint no-unused-vars: [
   }
 ]
 */
-// comentario do primeiro commit
-const data = require('./data');
+const { TestScheduler } = require("@jest/core");
+const { animals } = require("./data");
+const data = require("./data");
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  const spreadedArray = ids;
+  const result = [];
+  spreadedArray.forEach((id) => {
+    result.push(animals.find((animal) => animal.id == id));
+  });
+  return result;
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
-}
+function animalsOlderThan(animal, age) {}
+console.log(animalsOlderThan("otters", 7));
 
 function employeeByName(employeeName) {
   // seu código aqui

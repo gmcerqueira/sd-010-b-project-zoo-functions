@@ -9,10 +9,13 @@ eslint no-unused-vars: [
 ]
 */
 
+const { animals } = require('./data');
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aquii
+function animalsByIds(...ids) {
+  // seu código aqui
+  const animalEspecie = data.animals.filter((animal) => ids.includes(animal.id));//developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+  return animalEspecie;
 }
 
 function animalsOlderThan(animal, age) {

@@ -41,9 +41,18 @@ const fiEmpById = (id) => employees.find((employee) => employee.id === id);
 const reallyIsManager = (employee) => takeManagers().some((manager) => manager === employee.id);
 const isManager = (id) => reallyIsManager(fiEmpById(id));
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+// addEmployee
+const buildEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => ({
+  id,
+  firstName,
+  lastName,
+  managers,
+  responsibleFor,
+});
+
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  employees.push(buildEmployee(id, firstName, lastName, managers, responsibleFor));
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -81,7 +90,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

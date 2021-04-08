@@ -20,7 +20,7 @@ describe('Implemente a função employeeByName', () => {
         '0938aa23-f153-4937-9f88-4858b24d6bce']
     };
 
-    // assert.deepStrictEqual(actual, expected);
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Quando provido o último nome do funcionário, retorna o objeto do funcionário', () => {

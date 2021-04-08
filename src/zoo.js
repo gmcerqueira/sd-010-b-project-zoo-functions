@@ -73,26 +73,36 @@ function entryCalculator(entrants) {
 // }
 
 function schedule(dayName) {
-//   // seu código aqui
-const result = Object.entries(hours).reduce((acc, [key, val]) => {
+  // seu código aqui
+  const result = Object.entries(hours).reduce((acc, [key, val]) => {
     const { open, close } = val;
-    acc[key] = close - open > 0 ? `Open from ${open}am until ${close - 12}pm` : 'CLOSED';
+    acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return acc;
   }, {});
   if (dayName !== undefined) return { [dayName]: result[dayName] };
   return result;
 }
-function employeeById(id) {
-  return employees.find(employee => employee.id === id);
+
+function oldestFromFirstSpecies(id) {
+  const firstAnimalId = employees.find((eachEmployee) => eachEmployee.id === id).responsibleFor[0];
+  const residentsAnimals = animals.find((eachAnimal) => eachAnimal.id === firstAnimalId).residents;
+  const oldestAge = residentsAnimals.reduce((acc, current) => {
+    if (current.age > acc) {
+      return current.age;
+    }
+    return acc;
+  }, 0);
+  const matchedAge = residentsAnimals.find((eachResident) => eachResident.age === oldestAge);
+  const arrayAnimal = Object.values(matchedAge);
+  return arrayAnimal;
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
-
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  const pricesKeys = Object.keys(data.prices);
+  pricesKeys.forEach((eachPrice) => {
+    data.prices[eachPrice] = Math.ceil(data.prices[eachPrice] * (percentage + 100)) / 100;
+  });
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui

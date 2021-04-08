@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
+const { hours } = data;
 
 function animalsByIds(...ids) {
   return ids.map((id) => animals.find((animal) => animal.id === id));
@@ -122,10 +123,28 @@ function animalMap(options = '') {
 }
 
 // ----------------------------------------------------------------------------------
+function specificWeekDay(day) {
+  const line = {};
+  if (hours[day].open === 0 || hours[day].close === 0) line[day] = 'CLOSED';
+  else line[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+  return line;
+}
+function defaultSchedule(params) {
+  const days = Object.entries(hours);
+  const scheduleTable = days.reduce((result, day) => {
+    const line = result;
+    if (day[1].open === 0 || day[1].close === 0) line[day[0]] = 'CLOSED';
+    else line[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
+    return line;
+  }, {});
+  return scheduleTable;
+}
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  if (dayName) return specificWeekDay(dayName);
+
+  return defaultSchedule();
+}
 
 // ----------------------------------------------------------------------------------
 
@@ -155,7 +174,7 @@ module.exports = {
   animalCount,
   entryCalculator,
   animalMap,
-  // schedule,
+  schedule,
   // employeeCoverage,
   // oldestFromFirstSpecies,
   // increasePrices,

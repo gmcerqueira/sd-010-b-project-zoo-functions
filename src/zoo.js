@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(...ids) { 
+function animalsByIds(...ids) {
 // Usei o filter no array de objetos, pois o filter já retorna um array caso algum elemento atenda a condição passada.
 // Includes verifica se no array tem um determinado elemento. https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
   return data.animals.filter((value) => ids.includes(value.id));

@@ -39,8 +39,10 @@ function isManager(id) {
   return data.employees.some((e) => e.managers.find((m) => m === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
+  return data.employees;
 }
 
 function animalCount(species) {

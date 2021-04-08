@@ -34,9 +34,10 @@ function createEmployee(personalInfo, associatedWith) {
   // o spread é mais simples, mas acho o assign mais estilo rs. :)
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  // seu código aqui
+  return employees.some((i) => i.managers.some((j) => j === id));
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -79,7 +80,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

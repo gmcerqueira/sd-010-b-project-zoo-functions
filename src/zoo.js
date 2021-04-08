@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 // daqui pra baixo as funções são da questão 1
 const validateAnimals = (element, ids) => {
   for (let index = 0; index < ids.length; index += 1) {
@@ -36,6 +36,7 @@ const filterAnimalNames = (element, animal) => {
   }
 };
 // fim das funções da questão 2
+
 // inicio funçoes 7
 const undefinedAnimals = (item) => {
   const newObj = {};
@@ -45,6 +46,7 @@ const undefinedAnimals = (item) => {
   return newObj;
 };
 // fim funções 7
+
 // inicio funções 8
 const calculateValue = (entrants) => {
   let value = 0;
@@ -53,7 +55,41 @@ const calculateValue = (entrants) => {
   if (entrants.Senior) value += (entrants.Senior * prices.Senior);
   return value;
 };
+// fim funções 8
 
+// inicio funções 10
+const hoursDay = (day) => {
+  let pmHour = day.close;
+  if (day.close > 12) {
+    pmHour -= 12;
+  }
+  if (day.close === 0 && day.open === 0) return 'CLOSED';
+  const daySchedule = `Open from ${day.open}am until ${pmHour}pm`;
+  return daySchedule;
+};
+const otherDays = (day) => {
+  if (day === 'Friday') return { Friday: hoursDay(hours.Friday) };
+  return { Sunday: hoursDay(hours.Sunday) };
+};
+
+const accessSchedule = (day) => {
+  if (day === 'Monday') return { Monday: hoursDay(hours.Monday) };
+  if (day === 'Tuesday') return { Tuesday: hoursDay(hours.Tuesday) };
+  if (day === 'Wednesday') return { Wednesday: hoursDay(hours.Wednesday) };
+  if (day === 'Thursday') return { Thursday: hoursDay(hours.Thursday) };
+  return otherDays(day);
+};
+
+const createSchedule = {
+  Friday: hoursDay(hours.Friday),
+  Monday: hoursDay(hours.Monday),
+  Saturday: hoursDay(hours.Saturday),
+  Sunday: hoursDay(hours.Sunday),
+  Tuesday: hoursDay(hours.Tuesday),
+  Thursday: hoursDay(hours.Thursday),
+  Wednesday: hoursDay(hours.Wednesday),
+};
+// fim funções 10
 function animalsByIds(...ids) {
   // seu código aqui
   if (ids[0] === undefined) return [];
@@ -110,13 +146,16 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
   return calculateValue(entrants);
 }
+
+function schedule(dayName) {
+  // seu código aqui
+  if (dayName === undefined) return createSchedule;
+  return accessSchedule(dayName);
+}
+
 /*
 
 function animalMap(options) {
-  // seu código aqui
-}
-
-function schedule(dayName) {
   // seu código aqui
 }
 
@@ -134,12 +173,12 @@ function employeeCoverage(idOrName) {
  */
 module.exports = {
 /*
-schedule,
-animalMap,
 employeeCoverage,
 oldestFromFirstSpecies,
 increasePrices,
+animalMap,
 */
+  schedule,
   entryCalculator,
   animalCount,
   isManager,

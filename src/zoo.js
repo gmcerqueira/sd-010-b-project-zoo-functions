@@ -9,13 +9,12 @@ eslint no-unused-vars: [
 ]
 */
 
-// const { animals } = require('./data');
+const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...id) {
-  return data.animals.filter((animal) => ((id === '') ? [] : animal.id === id));
+  return animals.filter((animal) => (([id].includes(undefined)) ? [] : animal.id === id));
 }
-
 function animalsOlderThan(animal, age) {
   // seu código aqui
   const species = data.animals.find((name) => name.name === animal);
@@ -23,9 +22,18 @@ function animalsOlderThan(animal, age) {
   return species.residents.every((item) => item.age > age);
 }
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+function employeeByName(employeeName) {
+  // seu código aqui
+  // aprendi esse 'if'no video
+  // https://www.youtube.com/watch?v=VYk0TXoXWbo
+  if ([employeeName].includes(undefined)) { return {}; }
+
+  const filterName = data.employees;
+
+  return filterName.find((name) => (
+    name.firstName === employeeName || name.lastName === employeeName
+  ));
+}
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -73,7 +81,7 @@ module.exports = {
 //   animalCount,
 //   animalMap,
   animalsByIds,
-  //   employeeByName,
+  employeeByName,
   //   employeeCoverage,
   //   addEmployee,
   //   isManager,

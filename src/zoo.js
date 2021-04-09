@@ -11,10 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals } = data;
-const { employees } = data;
-const { hours } = data;
-const { prices } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   if (ids.length) {
@@ -86,7 +83,7 @@ function entryCalculator(entrants) {
 }
 
 // Objeto com métodos auxiliares para a função animalMap.
-const foo = {
+const fooQuestNine = {
   main(options) {
     if (options.sorted && options.sex) {
       return this.getAnimalBySexOrdered(options);
@@ -95,7 +92,7 @@ const foo = {
     } if (options.sex) {
       return this.getAnimalBySex(options);
     }
-    return foo.getAnimalNames();
+    return this.getAnimalNames();
   },
   getCategory() {
     return animals.reduce((acc, cur) => {
@@ -171,10 +168,10 @@ const foo = {
 };
 function animalMap(options) {
   if (options && options.includeNames) {
-    return foo.main(options);
+    return fooQuestNine.main(options);
   }
 
-  return foo.getCategory();
+  return fooQuestNine.getCategory();
 }
 
 function schedule(dayName) {
@@ -186,7 +183,6 @@ function schedule(dayName) {
     } else {
       scheduleObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
     }
-    return scheduleObj;
   });
   if (dayName) {
     return {
@@ -196,17 +192,83 @@ function schedule(dayName) {
   return scheduleObj;
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const employee = employees.find((e) => e.id === id);
+  const animalId = employee.responsibleFor[0];
+  const thisAnimal = animals.find((e) => e.id === animalId);
+  const oldestAnimal = thisAnimal.residents
+    .reduce((previous, current) => ((current.age > previous.age) ? current : previous));
+  return [oldestAnimal.name, oldestAnimal.sex, oldestAnimal.age];
+}
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  const listPrices = Object.values(prices);
+  const keys = Object.keys(prices);
+  const increase = (percentage / 100) + 1;
+  const newPrices = listPrices
+    .map((price) => price * increase)
+    .map((price) => (Math.round(price * 100) / 100));
+  keys.forEach((key, index) => { prices[key] = newPrices[index]; });
+  return prices;
+}
+// Objeto com métodos auxiliares para a função employeeCoverage.
+const fooQuestThirteen = {
+  getEmployeesNtheirAnimals() {
+    const obj = {};
+    employees.forEach((el) => {
+      const { firstName, lastName } = el;
+      const name = `${firstName} ${lastName}`;
+      obj[name] = el.responsibleFor
+        .map((animalId) => animals.find((animal) => animal.id === animalId))
+        .map((animal) => animal.name);
+    });
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+    return obj;
+  },
+  getAnimalsListByIdOrName(idOrName) {
+    const boolId = employees.some((el) => el.id === idOrName);
+    const boolFirstName = employees.some((el) => el.firstName === idOrName);
+    if (boolId) {
+      return this.getById(idOrName);
+    } if (boolFirstName) {
+      return this.getByFirstName(idOrName);
+    }
+    return this.getByLastName(idOrName);
+  },
+  getById(id) {
+    const obj = {};
+    const employee = employees.find((e) => e.id === id);
+    const name = `${employee.firstName} ${employee.lastName}`;
+    obj[name] = employee.responsibleFor
+      .map((animalId) => animals.find((animal) => animal.id === animalId))
+      .map((animal) => animal.name);
+    return obj;
+  },
+  getByFirstName(firstName) {
+    const obj = {};
+    const employee = employees.find((e) => e.firstName === firstName);
+    const name = `${employee.firstName} ${employee.lastName}`;
+    obj[name] = employee.responsibleFor
+      .map((animalId) => animals.find((animal) => animal.id === animalId))
+      .map((animal) => animal.name);
+    return obj;
+  },
+  getByLastName(lastName) {
+    const obj = {};
+    const employee = employees.find((e) => e.lastName === lastName);
+    const name = `${employee.firstName} ${employee.lastName}`;
+    obj[name] = employee.responsibleFor
+      .map((animalId) => animals.find((animal) => animal.id === animalId))
+      .map((animal) => animal.name);
+    return obj;
+  },
+};
+function employeeCoverage(idOrName) {
+  if (idOrName) {
+    return fooQuestThirteen.getAnimalsListByIdOrName(idOrName);
+  }
+  return fooQuestThirteen.getEmployeesNtheirAnimals();
+}
 
 module.exports = {
   entryCalculator,
@@ -215,11 +277,11 @@ module.exports = {
   animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
-  // increasePrices,
+  oldestFromFirstSpecies,
+  increasePrices,
   createEmployee,
 };

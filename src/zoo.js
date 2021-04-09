@@ -170,10 +170,32 @@ function increasePrices(percentage) {
 }
 
 // ----------------------------------------------------------------------------------
+function animalsCovered(employee) {
+  const ids = employee.responsibleFor;
+  const listAnimals = ids.map((id) => animals.find((animal) => animal.id === id).name);
+  return listAnimals;
+}
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeResponsibilities(searchParam) {
+  const employeeResponsible = employees.find((employee) =>
+    employee.id === searchParam
+    || employee.firstName === searchParam
+    || employee.lastName === searchParam);
+  return {
+    [`${employeeResponsible.firstName} ${employeeResponsible.lastName}`]:
+      animalsCovered(employeeResponsible),
+  };
+}
+
+function employeeCoverage(idOrName) {
+  if (idOrName) return employeeResponsibilities(idOrName);
+
+  return employees.reduce((result, employee) => {
+    const line = result;
+    line[`${employee.firstName} ${employee.lastName}`] = animalsCovered(employee);
+    return line;
+  }, {});
+}
 
 module.exports = {
   animalsByIds,
@@ -188,5 +210,5 @@ module.exports = {
   schedule,
   oldestFromFirstSpecies,
   increasePrices,
-  // employeeCoverage,
+  employeeCoverage,
 };

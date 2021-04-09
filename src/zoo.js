@@ -60,7 +60,7 @@ function animalCount(species) {
   return species === undefined ? obj : numbers.residents.length;
 }
 
-function entryCalculator(entrants) {
+// function entryCalculator(entrants) {
   // seu código aqui
 }
 
@@ -85,7 +85,7 @@ function entryCalculator(entrants) {
 // }
 
 module.exports = {
-  entryCalculator,
+  // entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

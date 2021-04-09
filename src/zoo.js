@@ -16,6 +16,7 @@ const {
   animals,
   employees,
   prices,
+  hours,
 } = data;
 
 const {
@@ -168,8 +169,17 @@ function animalMap(options = {}) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
-  return dayName;
+  const dayObj = {};
+  Object.keys(hours).forEach((day) => {
+    const starts = hours[day].open;
+    const ends = hours[day].close;
+    dayObj[day] = `Open from ${starts}am until ${ends - 12}pm`;
+  });
+  dayObj.Monday = 'CLOSED';
+
+  if (dayName) return ({ [dayName]: dayObj[dayName] });
+
+  return dayObj;
 }
 
 function oldestFromFirstSpecies(id) {

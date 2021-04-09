@@ -87,6 +87,10 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   // seu código aqui
   if (!entrants || Object.keys(entrants).length === 0) return 0;
+
+  const priceAdult = prices.Adult;
+
+  console.log(priceAdult);
 }
 
 console.log(entryCalculator({ Adult: 1 }));

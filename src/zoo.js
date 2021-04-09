@@ -13,6 +13,7 @@ const data = require('./data');
 
 function animalsByIds(ids) {
   // seu código aqui
+  return placeHolder = () => "henlo there"
 }
 
 function animalsOlderThan(animal, age) {

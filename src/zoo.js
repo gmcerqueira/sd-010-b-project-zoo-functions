@@ -73,14 +73,17 @@ function animalCount(species) {
 
   if (!species) return objName;
 
-  animals.filter((animal) => {
+  const countAnimal = (animal) => {
     if (animal.name === species) {
       count = animal.residents.length;
     }
-  });
+  };
+
+  animals.filter(countAnimal);
 
   return count;
 }
+console.log(animalCount('snakes'));
 
 function entryCalculator(entrants) {
   // seu código aqui

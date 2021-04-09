@@ -121,9 +121,58 @@ function entryCalculator(entrants) {
   return (adultQty * adultPrice) + (childQty * childPrice) + (seniorQty * seriorPrice);
 }
 
+const filterBySex = (animal, { sex }) => {
+  const residentsBySex = animal.residents.filter((resident) => resident.sex === sex);
+  const residents = residentsBySex.map((resident) => resident.name);
+  return residents;
+};
+
+const mapResidents = (animal, options) => {
+  const { sorted, sex } = options;
+  const residents = animal.residents.map((indiv) => indiv.name);
+  if (sex) {
+    if (sorted) return filterBySex(animal, options).sort();
+    return filterBySex(animal, options);
+  }
+  if (sorted) return residents.sort();
+  return residents;
+};
+
+const setAnimal = (animal, options) => {
+  const { name } = animal;
+
+  if (!options) return name;
+  if (options) {
+    const { includeNames } = options;
+    if (includeNames) {
+      const animalResidents = ({ [animal.name]: mapResidents(animal, options) });
+
+      return animalResidents;
+    }
+
+    return name;
+  }
+};
+
+/*
+  Mapeia os animais do zoológico.
+  Parametros:
+    - Nenhum: Retorna um objeto dos animais por região
+    - Objeto:
+      - includeNames:  Retorna com seus respectivos nomes.
+      - sorted: Retorna com seus nomes ordenados.
+      - sex: Retorna apenas do sexo definido.
+*/
 function animalMap(options) {
-  // seu código aqui
-  return options;
+  // Objeto ja definido com as chaves, pois caso não houver nenhum animal de uma determinada região, sua chave será um array vazio.
+  const mappedAnimals = { NE: [], NW: [], SE: [], SW: [] };
+
+  Object.keys(mappedAnimals).forEach((region) => {
+    const animalByRegion = animals.filter((animal) => animal.location === region);
+    mappedAnimals[region] = animalByRegion.map((animal) => setAnimal(animal, options));
+  });
+
+  return mappedAnimals;
 }
 
 function schedule(dayName) {

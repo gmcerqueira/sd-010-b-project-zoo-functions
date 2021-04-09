@@ -65,9 +65,12 @@ function animalCount(species) {
   }
   return data.animals.find((animalClass) => animalClass.name === species).residents.length;
 }
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+
+function entryCalculator(entrants) {
+  if (!entrants || entrants === {}) { return 0; }
+  const entries = Object.entries(entrants);
+  return entries.reduce(((acc, entry) => acc + (data.prices[entry[0]] * entry[1])), 0);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -90,7 +93,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

@@ -82,12 +82,38 @@ function entryCalculator(entrants) {
 }
 
 // function animalMap(options) {
-//   // seu código aqui
-// }
+//   const ne = data.animals.filter((element) => element.location === 'NE');
+//   const nw = data.animals.filter((element) => element.location === 'NW');
+//   const se = data.animals.filter((element) => element.location === 'SE');
+//   const sw = data.animals.filter((element) => element.location === 'SW');
+//   if (!options) {
+//     const location = {
+//       NE: ne.map((element) => element.name),
+//       NW: nw.map((element) => element.name),
+//       SE: se.map((element) => element.name),
+//       SW: sw.map((element) => element.name),
+//     };
+//     return location;
+//   } if (Object.values(options)[0] === true) {
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+//   };
+
+//   }
+
+function schedule(dayName) {
+  const newObj = Object.entries(data.hours);
+  const all = newObj.reduce((result, [day, { open, close }]) => {
+    const ObjtResult = result;
+    ObjtResult[day] = (open !== 0) ? `Open from ${open % 12}am until ${close % 12}pm` : 'CLOSED';
+    return ObjtResult;
+  }, {});
+  if (!dayName) {
+    return all;
+  }
+  const exist = {};
+  exist[dayName] = all[dayName];
+  return exist;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -103,7 +129,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

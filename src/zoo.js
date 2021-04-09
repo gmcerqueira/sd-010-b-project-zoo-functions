@@ -64,6 +64,9 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
+  if (entrants === undefined) {
+    return 0;
+  }
   const keys = Object.keys(entrants);
   return keys.reduce((a, b) => a + entrants[b] * prices[b], 0);
 }
@@ -85,7 +88,7 @@ function schedule(dayName) {
 }
 
 // function oldestFromFirstSpecies(id) {
-//   // seu código aqui
+
 // }
 
 // function increasePrices(percentage) {

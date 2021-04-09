@@ -18,12 +18,13 @@ const animalsByIds = (...ids) => ids.map((animalId) => animals.find(({ id }) => 
 const animalsOlderThan = (animal, ageMin) =>
   animals.find(({ name }) => name === animal).residents.every(({ age }) => age > ageMin);
 
-const employeeByName = (employeeName) =>
-  (employeeName
+function employeeByName(employeeName) {
+  return employeeName
     ? employees.find(
       (person) => person.firstName === employeeName || person.lastName === employeeName,
     )
-    : {});
+    : {};
+}
 
 const createEmployee = (arg1, arg2) => ({ ...arg1, ...arg2 });
 
@@ -97,24 +98,18 @@ function increasePrices(percentage) {
   });
 }
 
-const listEmployees = () =>
-  employees.reduce((acc, { firstName, lastName, responsibleFor }) => {
-    acc[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(({ name }) => name);
-    return acc;
-  }, {});
-
-const searchNameOrId = (iN) => {
-  const emp = employees.find(
-    ({ id, firstName, lastName }) => iN === id || iN === firstName || iN === lastName,
-  );
-  return `${emp.firstName} ${emp.lastName}`;
-};
-
-function employeeCoverage(idOrName) {
-  const list = listEmployees();
-  if (!idOrName) return list;
-  return { [searchNameOrId(idOrName)]: list[searchNameOrId(idOrName)] };
+function employeeCoverage(idOr) {
+  const animalsReturnName = (...ids) =>
+    ids.map((animalId) => animals.find(({ id }) => id === animalId)).map(({ name }) => name);
+  const list = {};
+  employees.forEach(({ firstName, lastName, id, responsibleFor }) => {
+    if (firstName === idOr || id === idOr || lastName === idOr || !idOr) {
+      list[`${firstName} ${lastName}`] = animalsReturnName(...responsibleFor);
+    }
+  });
+  return list;
 }
+
 module.exports = {
   entryCalculator,
   schedule,

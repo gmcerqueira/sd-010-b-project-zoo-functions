@@ -77,41 +77,41 @@ function entryCalculator(entrants = undefined) {
 }
 
 function animalMap(options = 'empty') {
-  const locations = ['NE','NW','SE','SW']
+  const locations = ['NE', 'NW', 'SE', 'SW'];
   if (options === 'empty' || options.includeNames !== true) {
-    return locations.reduce((locationA,locationB) => ({
-        ...locationA,
-        [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) => animal.name),
-    }),{});
-  };
+    return locations.reduce((locationA, locationB) => ({
+      ...locationA,
+      [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) => animal.name),
+    }), {});
+  }
   if (options.includeNames === true && (options.sex === 'female' || options.sex === 'male') && options.sorted === true) {
-    return locations.reduce((locationA,locationB) => ({
+    return locations.reduce((locationA, locationB) => ({
       ...locationA,
       [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) => ({ [animal.name]: animal.residents.filter((resident) =>
-      resident.sex === options.sex).map((resident) => resident.name).sort() })),
-    }),{});
-  };
+        resident.sex === options.sex).map((resident) => resident.name).sort() })),
+    }), {});
+  }
   if (options.includeNames === true && options.sorted === true) {
-    return locations.reduce((locationA,locationB) => ({
+    return locations.reduce((locationA, locationB) => ({
       ...locationA,
       [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) => ({ [animal.name]: animal.residents.map((resident) =>
-      resident.name).sort() })),
-    }),{});
-  };
+        resident.name).sort() })),
+    }), {});
+  }
   if (options.includeNames === true && (options.sex === 'female' || options.sex === 'male')) {
-    return locations.reduce((locationA,locationB) => ({
+    return locations.reduce((locationA, locationB) => ({
       ...locationA,
       [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) => ({ [animal.name]: animal.residents.filter((resident) =>
-      resident.sex === options.sex).map((resident) => resident.name)})),  
-    }),{});
-  };
+        resident.sex === options.sex).map((resident) => resident.name) })),  
+    }), {});
+  }
   if (options.includeNames === true) {
-    return locations.reduce((locationA,locationB) => ({
+    return locations.reduce((locationA, locationB) => ({
       ...locationA,
       [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) =>
-      ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
-    }),{});
-  };
+        ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
+    }), {});
+  }
 }
 
 // function schedule(dayName) {

@@ -78,15 +78,29 @@ function entryCalculator(entrants) {
   return !entrants ? 0 : Object.keys(entrants).reduce(valor, 0);
 }
 
-/*
-function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
+//   // seu código aqui
+
+// }
 
 function schedule(dayName) {
   // seu código aqui
+  const h = data.hours;
+  const final = {};
+  const object = {
+    Tuesday: `Open from ${h.Tuesday.open}am until ${h.Tuesday.close - 12}pm`,
+    Wednesday: `Open from ${h.Wednesday.open}am until ${h.Wednesday.close - 12}pm`,
+    Thursday: `Open from ${h.Thursday.open}am until ${h.Thursday.close - 12}pm`,
+    Friday: `Open from ${h.Friday.open}am until ${h.Friday.close - 12}pm`,
+    Saturday: `Open from ${h.Saturday.open}am until ${h.Saturday.close - 12}pm`,
+    Sunday: `Open from ${h.Sunday.open}am until ${h.Sunday.close - 12}pm`,
+    Monday: 'CLOSED',
+  };
+  final[dayName] = object[dayName];
+  return !dayName ? object : final;
 }
 
+/*
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
@@ -102,7 +116,7 @@ function employeeCoverage(idOrName) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

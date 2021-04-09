@@ -50,11 +50,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  console.log(data.employees[0])
+// console.log(data.employees[0]);
   const filtrarId = data.employees.filter((pessoa) => pessoa.firstName === id);
   return filtrarId;
 }
-//console.log(isManager('c1f50212-35a6-4ecd-8223-f835538526c2'));
+// console.log(isManager('c1f50212-35a6-4ecd-8223-f835538526c2'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   return id + firstName + lastName + managers + responsibleFor;
@@ -71,12 +71,11 @@ function animalCount(species) {
       'frogs': 2,
       'snakes': 2,
       'elephants': 4,
-      'giraffes': 6
-    } 
-  } else {
-      const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
-      return animaisFiltrado[0].residents.length;
+      'giraffes': 6,
+    };
   }
+  const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
+  return animaisFiltrado[0].residents.length;
 }
 console.log(animalCount());
 function entryCalculator(entrants) {

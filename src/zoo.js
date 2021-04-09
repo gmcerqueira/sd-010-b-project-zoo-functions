@@ -38,9 +38,11 @@ function animalsOlderThan(animalName, age) {
   return undefined;
 }
 
+// Verifica se há um empregado pelo seu nome.
 function employeeByName(employeeName) {
   if (!employeeName) return {};
 
+  // Procura o empregado pelo primeiro ou último nome.
   return employees.find((employee) =>
     employee.firstName === employeeName || employee.lastName === employeeName);
 }

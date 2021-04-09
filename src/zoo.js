@@ -68,12 +68,32 @@ function entryCalculator(entrants) {
   return totalPrice.reduce((acc, cur) => acc + cur);
 }
 
+// function entryCalculator(entrants) {
+//   if (!entrants || Object.keys(entrants).length === 0) return 0;
+//   const entries = Object.keys(entrants);
+//   return entries.reduce((acc, cur) => acc + (data.prices[cur] * entrants[cur]), 0)
+//     // Efetua uma busca no objeto passado, nas chaves ex { Adult, Child, Senior }
+//     // É feito um reduce, onde é somado o valor com base na key prices[curr] multiplicando pelo entrants[curr]... curr é a key
+// }
+
 function animalMap(options) {
   return options;
 }
 
 function schedule(dayName) {
-  return dayName;
+  const days = Object.entries(data.hours);
+  return days.reduce((acc, cur) => {
+    let [key, value] = cur;
+    const vlHour = value.open > 0 ? value = `Open from ${value.open}am until ${value.close - 12}pm`
+      : value = 'CLOSED';
+    if (!dayName) {
+      acc[key] = vlHour;
+    } else if (dayName === key) {
+      acc[dayName] = vlHour;
+    }
+    key = '';
+    return acc;
+  }, {});
 }
 
 function oldestFromFirstSpecies(id) {

@@ -71,23 +71,34 @@ function entryCalculator(entrants = {}) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  return options;
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const weekDays = Object.keys(data.hours);
+
+  const hours = Object.entries(data.hours).map((entrie) => ({ [entrie[0]]: entrie[0]
+    === 'Monday' ? 'CLOSED' : `Open from ${entrie[1].open}am until ${entrie[1].close - 12}pm` }));
+
+  const fullHours = {};
+
+  for (let i = 0; i < weekDays.length; i += 1) {
+    fullHours[weekDays[i]] = hours[i][weekDays[i]];
+  }
+  if (dayName === undefined) return fullHours;
+  return hours.find((element) => Object.keys(element).includes(dayName));
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  return id;
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return percentage;
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  return idOrName;
 }
 
 module.exports = {

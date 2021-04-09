@@ -34,7 +34,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-    sdfdsfds
+  sdfdsfds;
 }
 
 function isManager(id) {
@@ -72,11 +72,11 @@ function entryCalculator(entrants = 0) {
 }
 
 function animalMap(options) {
-  fsdfsd
+  fsdfsd;
 }
 
 function schedule(dayName) {
-  sdfsfsf
+  sdfsfsf;
 }
 
 function oldestFromFirstSpecies(id) {
@@ -89,23 +89,22 @@ function increasePrices(percentage) {
   const arrayPrices = Object.entries(data.prices);
 
   arrayPrices.forEach((element) => {
-    data.prices[element[0]] = Math.ceil(((element[1] * (percentage / 100))
-     + element[1]) * 100) / 100;
+    data.prices[element[0]] = Math.ceil(((element[1] * (percentage / 100)) +
+      element[1]) * 100) / 100;
   });
   return data.prices;
 }
-const data = require('./data');
+
 function employeeCoverage(idOrName) {
-  //const primeiroNomeFuncionario = data.employees
-  //.find((a) => a.id === idOrName || a.firstName === idOrName || a.lastName === idOrName).firstName;
-  //const segundoNomeFuncionario = data.employees
-  //.find((a) => a.id === idOrName || a.firstName === idOrName || a.lastName === idOrName).lastName;
-  //const idAnimaisFuncionario = data.employees
-  //.find((a) => a.id === idOrName || a.firstName === idOrName || a.lastName === idOrName).responsibleFor;
+  // const primeiroNomeFuncionario = data.employees
+  // .find((a) => a.id === idOrName || a.firstName === idOrName || a.lastName === idOrName).firstName;
+  // const segundoNomeFuncionario = data.employees
+  // .find((a) => a.id === idOrName || a.firstName === idOrName || a.lastName === idOrName).lastName;
+  // const idAnimaisFuncionario = data.employees
+  // .find((a) => a.id === idOrName || a.firstName === idOrName || a.lastName === idOrName).responsibleFor;
 
   const todosOsAnimais = data.animals.name;
   return todosOsAnimais;
-
 }
 console.log(employeeCoverage());
 

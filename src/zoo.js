@@ -65,12 +65,81 @@ function entryCalculator(entrants) {
   return 0;
 }
 
-function animalMap(options) {
-  // seu código aqui
+function animalsByLoc() {
+  return data.animals.reduce((acc, b) => {
+    acc[b.location] = data.animals.filter((a) => a.location === b.location).map((a) => a.name);
+    return acc;
+  }, {});
+}
+
+function animalsNames(sorted) {
+  return data.animals.reduce((acc, b) => {
+    const animalsByLocation = data.animals.filter((a) => a.location === b.location);
+    // console.log(animalsByLocation);
+    acc[b.location] = animalsByLocation.reduce((anmAcc, curAnm) => {
+      const residents = {};
+      const residentsNames = curAnm.residents.map((resident) => resident.name);
+      if (sorted) {
+        residentsNames.sort();
+      }
+      console.log(residentsNames);
+      residents[curAnm.name] = residentsNames;
+      anmAcc.push(residents);
+      return anmAcc;
+    }, []);
+    return acc;
+  }, {});
+}
+
+function animalsNamesSex(sex, sorted) {
+  return data.animals.reduce((acc, b) => {
+    const animalsByLocation = data.animals.filter((a) => a.location === b.location);
+    // console.log(animalsByLocation);
+    acc[b.location] = animalsByLocation.reduce((anmAcc, curAnm) => {
+      const residents = {};
+      const residentsNames = curAnm.residents.filter((r) => r.sex === sex).map((res) => res.name);
+      if (sorted) {
+        residentsNames.sort();
+      }
+      // console.log(residentsNames);
+      residents[curAnm.name] = residentsNames;
+      anmAcc.push(residents);
+      return anmAcc;
+    }, []);
+    return acc;
+  }, {});
+}
+
+function animalMap(options = {}) {
+  const { includeNames, sex, sorted } = options;
+  if (includeNames) {
+    if (sex) {
+      return animalsNamesSex(sex, sorted);
+    }
+    return animalsNames(sorted);
+  }
+  return animalsByLoc();
 }
 
 function schedule(dayName) {
   // seu código aqui
+  // seu código aqui
+  const animalsByLocation = data.animals.reduce((acc, b) => {
+    acc[b.location] = data.animals.filter((a) => a.location === b.location);
+    return acc;
+  }, {});
+  const animalsNames = animalsByLocation.map((a) => a.name);
+  return animalsNames;
+  // return data.animals.reduce((acc, b) => {
+  //   const animalsByLocation = data.animals.filter((a) => a.location === b.location);
+  //   acc[b.location] = animalsByLocation.map((a) => a.name);
+  //   return acc;
+  // }, {});
+  //   const animalsNames = animalsByLocation.reduce((aa, bb) => {
+  //     const resid = aa;
+  //     resid[bb.name] = bb.residents.map((r) => r.name);
+  //     return aa;
+  //   }, {});
 }
 
 function oldestFromFirstSpecies(id) {

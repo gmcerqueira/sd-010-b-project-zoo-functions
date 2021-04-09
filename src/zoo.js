@@ -88,12 +88,14 @@ function oldestFromFirstSpecies(id) {
   const per = animals.find((an) => an.id === first).residents.sort((a, b) => b.age - a.age)[0];
   return [per.name, per.sex, per.age];
 }
-/*
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(prices).forEach((element) => {
+    prices[element] = Math.ceil(prices[element] * (100 + percentage)) / 100;
+  });
 }
 
+/*
 function employeeCoverage(idOrName) {
   // seu código aqui
 } */
@@ -110,6 +112,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

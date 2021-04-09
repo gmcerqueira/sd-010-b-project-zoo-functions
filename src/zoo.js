@@ -11,44 +11,54 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const {animals} = data;
-
-
-
+const {employees} = data;
 
 function animalsByIds(...ids) {
-  const {animals} = data; 
+  const { animals } = data;
   if (ids.length === 0) {
-    return ids
+    return ids;
   }
-  let animalsList = [];
+  const animalsList = [];
   if (ids.length > 0) {
     ids.forEach((id) => {
-      const result = animals.find((animal) => animal.id === id)
-      animalsList.push(result)
-    })
+      const result = animals.find((animal) => animal.id === id);
+      animalsList.push(result);
+    });
   }
-  return animalsList
+  return animalsList;
 }
 
 function animalsOlderThan(animal, age) {
-  const {animals} = data;
-// uso do Findo para encontrar a espécie
-  const {residents} = animals.find(especie => {
+  const { animals } = data;
+  // uso do Find para encontrar a espécie
+  const { residents } = animals.find((especie) => {
     if (animal === especie.name) {
-      return true
+      return true;
     }
-  })
-// uso do Every para verificar a idade minima passada
-  const result = residents.every(resident => resident.age >= age)
-  
-  return result
-}
+  });
+  // uso do Every para verificar a idade minima passada
+  const result = residents.every((resident) => resident.age >= age);
 
+  return result;
+}
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  const { employees } = data;
+  if (employeeName === undefined) {
+    return {};
+  }
+  // uso do Find para encontrar o primeirou ou último nome recebido por parâmetro
+  const findEmployee = employees.find((employee) =>  {
+    if (employeeName === employee.firstName) {
+      return true;
+    } if (employeeName === employee.lastName) {
+      return true;
+    }
+  })
+  return findEmployee;
 }
+
+employeeByName()
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui

@@ -38,10 +38,8 @@ const listAnimalCount = () =>
     return acc;
   }, {});
 
-function animalCount(species) {
-  if (!species) return listAnimalCount();
-  return Object.entries(listAnimalCount()).find(([key]) => key === species)[1];
-}
+const animalCount = (species) => (!species ? listAnimalCount()
+  : Object.entries(listAnimalCount()).find(([key]) => key === species)[1]);
 
 function entryCalculator(entrants) {
   if (!entrants || entrants === {}) return 0;
@@ -96,9 +94,9 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOr) {
+  const list = {};
   const animalsReturnName = (...ids) =>
     ids.map((animalId) => animals.find(({ id }) => id === animalId)).map(({ name }) => name);
-  const list = {};
   employees.forEach(({ firstName, lastName, id, responsibleFor }) => {
     if (firstName === idOr || id === idOr || lastName === idOr || !idOr) {
       list[`${firstName} ${lastName}`] = animalsReturnName(...responsibleFor);

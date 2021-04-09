@@ -92,9 +92,9 @@ function schedule(dayName) {
   });
   if (dayName) {
     return {
-      [dayName]: objeto[dayName]
+      [dayName]: objeto[dayName],
     };
-  };
+  }
   return objeto;
 }
 
@@ -104,9 +104,10 @@ function buscaFunc(param) {
     firstName,
     lastName,
   }) =>
-  id === param || firstName === param || lastName === param).responsibleFor[0];
+    id === param || firstName === param || lastName === param).responsibleFor[0];
 }
 
+// Exercício resolvido com auxílio do Henrique Clementino
 function oldestFromFirstSpecies(idfunc) {
   // seu código aqui
   const funcionario = buscaFunc(idfunc);
@@ -133,8 +134,9 @@ function increasePrices(percentage) {
   });
 }
 
+// Exercício resolvido com auxílio do Henrique Clementino
 function employeeCoverage(idOrName) {
-  // seu código aqui;  
+  // seu código aqui;
   const objeto = {};
   data.employees.forEach(({
     id,
@@ -146,8 +148,8 @@ function employeeCoverage(idOrName) {
       objeto[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(({
         name,
       }) => name);
-    };
-  })
+    }
+  });
   return objeto;
 }
 

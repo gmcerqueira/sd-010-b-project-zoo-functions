@@ -81,19 +81,22 @@ function animalCount(species) {
   return count;
 }
 
-console.log(animalCount());
-
-// function entryCalculator(Adult = 1, Child = 1, Senior = 1, ...entrants) {
-//   let saida;
-//   if (entrants === undefined || Object.keys(entrants).length === 0) {
-//     saida = 0;
-//   }
-//   const { Adult, Senior, Child } = data.prices;
-//   console.log(Adult);
-//   saida = ((Adult * entrants.Adult) + (Senior * entrants.Senior) + (Child * entrants.Child));
-//   return saida;
-// }
-// console.log(entryCalculator({'Adult': 2}));
+function entryCalculator(...entrants) {
+  if (entrants.length === 0) {
+    return 0;
+  }
+  const {
+    prices,
+  } = data;
+  const entradas = Object.keys(entrants[0]);
+  const arr = entrants[0];
+  return entradas.reduce((acc, currentValue) => acc + arr[currentValue] * prices[currentValue], 0);
+}
+console.log(entryCalculator({
+  'Adult': 2,
+  'Child': 3,
+  'Senior': 1
+}));
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -116,7 +119,7 @@ console.log(animalCount());
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

@@ -23,14 +23,14 @@ function animalsByIds(...ids) {
 // 02
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const minAge = data.animals.filter((animalAge) => animalAge.data.name === animal);
-  console.log(minAge);
-  minAge.data.residents.every((animalResident) => animalResident.data.age >= age);
+  const minAge = data.animals.find((animalAge) => animalAge.name === animal);
+  // console.log(minAge);
+  return minAge.residents.every((animalResident) => animalResident.age >= age);
 }
 // 03
 function employeeByName(employeeName) {
   // seu código aqui
-  const nameFirstOrLast = data.employees.filter((firstOrLast) =>
+  const nameFirstOrLast = data.employees.find((firstOrLast) =>
     firstOrLast.data.firstName === employeeName || firstOrLast.data.lastName === employeeName);
   console.log(nameFirstOrLast);
   return nameFirstOrLast === undefined ? {} : nameFirstOrLast;

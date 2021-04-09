@@ -72,9 +72,17 @@ function createEmployee(personalInfo, associatedWith) {
 
 // console.log(createEmployee(personalInfo, associatedWith));
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  const arrManager = [];
+  employees.forEach((employee) => {
+    const { managers } = employee;
+    const trueManager = managers.find((manager) => manager === id);
+    arrManager.push(trueManager);
+  });
+  return arrManager.some((manager) => manager !== undefined);
+}
+
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -117,7 +125,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

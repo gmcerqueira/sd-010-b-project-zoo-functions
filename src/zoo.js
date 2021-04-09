@@ -92,9 +92,23 @@ function animalCount(species) {
   return residents[0].length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (!entrants || Object.keys(entrants).length === 0) { return 0; }
+  const prices = Object.entries(data.prices).sort();
+  const people = Object.entries(entrants);
+  let grossProfit = 0;
+  people.forEach((element) => {
+    switch (element[0]) {
+    case 'Adult': grossProfit += element[1] * prices[0][1];
+      break;
+    case 'Child': grossProfit += element[1] * prices[1][1];
+      break;
+    default: grossProfit += element[1] * prices[2][1];
+      break;
+    }
+  });
+  return grossProfit;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -117,7 +131,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

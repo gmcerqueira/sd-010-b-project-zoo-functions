@@ -127,12 +127,17 @@ function schedule(dayName) {
   return days;
 }
 
-console.log(schedule('Tuesday'));
+function oldestFromFirstSpecies(idParams) {
+  const firstAnimalId = employees.find(({ id }) => id === idParams).responsibleFor[0];
+  const newFind = animals.find(({ id }) => id === firstAnimalId).residents;
+  const { name, sex, age } = newFind
+    .reduce((obj, item) => obj.concat(item), [])
+    .sort((a, b) => b.age - a.age)[0];
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  return [name, sex, age];
 }
 
+console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 function increasePrices(percentage) {
   // seu código aqui
 }

@@ -77,9 +77,21 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const employee = employees.find((emp) => emp.id === id);
+  const animal = animals.find((ani) => ani.id === Object.values(employee.responsibleFor)[0]);//  Fonte do Object: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object
+  let oldestAnimal;
+  let animalAge = 0;
+  animal.residents.map((pet) => {
+    if (animalAge < pet.age) {
+      animalAge = pet.age;
+      oldestAnimal = Object.values(pet);
+    }
+    return oldestAnimal;
+  });
+  return oldestAnimal;
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -89,7 +101,7 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// console.log(entryCalculator(entrants));
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 module.exports = {
   entryCalculator,
@@ -102,7 +114,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

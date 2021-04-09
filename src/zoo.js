@@ -115,6 +115,10 @@ function entryCalculator(entrants) {
 // console.log(animalMap({ includeNames: true, sorted: true }));
 // console.log(animalMap({ includeNames: true, sorted: false }));
 
+// ------------------------------------------------------------------
+// REQUISITO 10 - schedule
+
+// Altera as horas para AM/PM
 function amPm(hour) {
   if (hour > 12) {
     return `${hour - 12}pm`;
@@ -125,6 +129,7 @@ function amPm(hour) {
   return `${hour}am`;
 }
 
+// Retorna o horário de funcionamento do dia
 function openingHours(open, close) {
   if (open === 0 || close === 0) {
     return 'CLOSED';
@@ -149,13 +154,38 @@ function schedule(dayName) {
   };
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+// ------------------------------------------------------------------
+// REQUISITO 11 - oldestFromFirstSpecies
+
+// 1. Encontra Employee pela Id; (employee)
+// 2. Pega o objeto do primeiro animal; (firstAnimal)
+// 3. Cria array com (find?)
+
+function oldestFromFirstSpecies(id) {
+  const employee = employees.find((person) => person.id === id);
+  const firstAnimal = animals.find((animal) =>
+    animal.id === employee.responsibleFor[0]);
+  const listOfAnimals = firstAnimal.residents.reduce((list, nextAnimal) => {
+    let newList = list;
+    if (list.age < nextAnimal.age) {
+      newList = nextAnimal;
+    }
+    return newList;
+  });
+  return Object.values(listOfAnimals);
+}
+
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+
+// ------------------------------------------------------------------
+// REQUISITO 12 - increasePrices
 
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }
+
+// ------------------------------------------------------------------
+// REQUISITO 13 - employeeCoverage
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -172,7 +202,7 @@ module.exports = {
   entryCalculator,
   // animalMap,
   schedule,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   // employeeCoverage,
 };

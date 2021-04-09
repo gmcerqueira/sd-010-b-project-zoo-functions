@@ -173,28 +173,61 @@ function increasePrices(percentage) {
   prices.Senior = Math.round(toDecimal * prices.Senior * 100) / 100;
 }
 
-const getAnimalId = (idAnimal) => {
-  return animals.map(({ id, name }) => {
-    return idAnimal.forEach((element) => {
-      if (element === id) {
-        return name;
-      }
-    })
-  })
-}
+const findAnimal = (animal) => {
+  const animalIds = animal.responsibleFor;
+  const listAnimals = animalIds.map((id) => (animals.find((element) => element.id === id).name));
+  return listAnimals;
+};
 
-const undefinedIdOrName = () => {
-  let fullNames = employees.map(({ firstName, lastName }) => `${firstName} ${lastName}`);
-  let objFinal = {};
-  fullNames.forEach((elements) => {
-    objFinal[elements] = 'a'
-  })
-  return objFinal;
-}
+// essa função fiz baseado no código do Gustavo Cerqueira;
+const undefinedIdOrName = () => employees.reduce((obj, item) => {
+  const object = obj;
+  const fullName = `${item.firstName} ${item.lastName}`;
+  object[fullName] = findAnimal(item);
+  return object;
+}, {});
+
+const createEmployeeId = (idOrName) => employees.reduce((obj, item) => {
+  const objeto = obj;
+  if (item.id === idOrName) {
+    objeto[`${item.firstName} ${item.lastName}`] = findAnimal(item);
+  }
+  return objeto;
+}, {});
+
+const createEmployeeFirstName = (idOrName) => employees.reduce((obj, item) => {
+  const objeto = obj;
+  if (item.firstName === idOrName) {
+    objeto[`${item.firstName} ${item.lastName}`] = findAnimal(item);
+  }
+  return objeto;
+}, {});
+
+const createEmployeeLastName = (idOrName) => employees.reduce((obj, item) => {
+  const objeto = obj;
+  if (item.lastName === idOrName) {
+    objeto[`${item.firstName} ${item.lastName}`] = findAnimal(item);
+  }
+  return objeto;
+}, {});
+
+// feito com ajuda do estima Alan Tanaka :DD
+const definedIdOrName = (idOrName) => {
+  const validateId = employees.some((employee) => employee.id === idOrName);
+  const validateFirstName = employees.some((employee) => employee.firstName === idOrName);
+  if (validateId) {
+    return createEmployeeId(idOrName);
+  }
+  if (validateFirstName) {
+    return createEmployeeFirstName(idOrName);
+  }
+  return createEmployeeLastName(idOrName);
+};
 
 function employeeCoverage(idOrName) {
   // seu código aqui
   if (!idOrName) return undefinedIdOrName();
+  return definedIdOrName(idOrName);
 }
 
 /*

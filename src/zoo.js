@@ -72,12 +72,13 @@ function animalCount(species) {
   return species === undefined ? object : object[species];
 }
 
-/*
 function entryCalculator(entrants) {
   // seu código aqui
-
+  const valor = (acumu, atual) => acumu + (data.prices[atual] * entrants[atual]);
+  return !entrants ? 0 : Object.keys(entrants).reduce(valor, 0);
 }
 
+/*
 function animalMap(options) {
   // seu código aqui
 }
@@ -100,7 +101,7 @@ function employeeCoverage(idOrName) {
 */
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

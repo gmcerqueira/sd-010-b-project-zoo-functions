@@ -56,8 +56,11 @@ function createEmployee(personalInfo, associatedWith) {
   };
 }
 
+// Verifica se o 'id' é um gerente
 function isManager(id) {
-
+  // Verifica se tem algum empregado que tem algum gerente com o id dado.
+  return employees.some((employee) =>
+    employee.managers.some((manager) => manager === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {

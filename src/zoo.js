@@ -82,7 +82,6 @@ function schedule(dayName) {
   hoursWeek.forEach((hour) => {
     if (hour === 'Monday') {
       result[hour] = 'CLOSED';
-      return result[hour];
     } else {
       result[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close - 12}pm`;
     }

@@ -249,9 +249,29 @@ function employeeCoverage(idOrName) {
 }
 // ------------------------------------------------------------------------------------------------
 
+const makeGeoSortedAnimal = (number) => {
+  const geoLocations = ['NE', 'NW', 'SE', 'SW'];
+  return animals.reduce((acc, curr) => {
+    const array = acc;
+    if (curr.location === geoLocations[number]) {
+      array.push(curr.name);
+    }
+    return array;
+  }, []);
+};
+
+// resolução parâmetro 1
+const undefinedOptions = () => {
+  const NE = makeGeoSortedAnimal(0);
+  const NW = makeGeoSortedAnimal(1);
+  const SE = makeGeoSortedAnimal(2);
+  const SW = makeGeoSortedAnimal(3);
+  return { NE, NW, SE, SW };
+};
+
 function animalMap(options) {
   // seu código aqui
-  return options;
+  if (!options) return undefinedOptions();
 }
 
 module.exports = {

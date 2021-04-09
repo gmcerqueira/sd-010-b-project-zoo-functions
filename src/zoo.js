@@ -43,7 +43,7 @@ function isManager(id) {
   const { employees } = data;
   const searchResult = [];
 
-  const elements = employees.forEach((managers) => { searchResult.push(...managers.managers); });
+  employees.forEach((managers) => { searchResult.push(...managers.managers); });
 
   const find = searchResult.find((idOf) => idOf === id);
   if (find !== undefined) return true;
@@ -65,14 +65,14 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   if (species === undefined) {
-    let obj = {};
+    const obj = {};
     data.animals.forEach((animalName) => { obj[animalName.name] = animalName.residents.length; });
     return obj;
   }
   const animals = data.animals.find((animal) => animal.name === species);
   return animals.residents.length;
 }
-animalCount();
+
 // function entryCalculator(entrants) {
 //   // seu código aqui
 // }

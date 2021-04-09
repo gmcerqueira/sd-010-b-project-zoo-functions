@@ -17,6 +17,7 @@ function animalsByIds(...ids) {
   if (!ids) return [];
   return animals.filter((animal) => ids.includes(animal.id));
   // Filtra o (animal) e verifica se ele entra na lista.
+  // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
 }
 
 function animalsOlderThan(animal, age) {
@@ -42,12 +43,14 @@ function createEmployee(personalInfo, associatedWith) {
 }
 // com destructuring consigo as infos de personalInfo e associatedWith
 // trazendo os objetos no return usando spread criando um novo employee
+// juntando as informacoes em um novo objeto.
 
 function isManager(id) {
   return employees.some((employee) => employee.managers.includes(id));
 }
-
-// uso return employees com some onde verifico cada employee se tem manager tem id, se for true ele eh algum gerente.
+// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+// uso return employees com .some onde verifico cada employee
+// se tem manager tem id, se for true ele eh algum gerente.
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const personalInfo = { id, firstName, lastName };
@@ -68,7 +71,7 @@ function animalCount(species) {
   if (typeof species === 'string' && species.length !== 0) return result[species];
   return result;
 }
-
+// https://www.youtube.com/watch?v=D_MExaVe95w
 // em animais, cada um tem um objeto com name, id, popularity, residents
 // precisa inteirar animais e para cada objeto, retornar uma propriedade desse nome
 // com length desse array residents.
@@ -85,7 +88,7 @@ function entryCalculator(entrants) {
 }
 
 // verficia o tipo de entrants se eh adult, child, or senior
-// percorre cada chave do entrant, e cada chave conicide com seus prices
+// percorre cada chave do entrant, e cada chave coincide com seus prices
 // determina o valor inicial como 0 e a chave atual do entrants
 // apos determinar o numero de entrants, verifica o preco e mutiplica um pelo outro e add no acumulador
 // obs: prices esta destruturado
@@ -175,9 +178,10 @@ function increasePrices(percentage) {
     Child: Math.ceil(Child * (percentage + 100)) / 100,
   };
 }
-// destrutura adult, senior, chield
+// destrutura adult, senior, child
 // usa o Math.ceil para aredondar o valor
-// mutiplica pela porcentagem + 100 e divide por fora por 100
+// soma a porcentagem + 100 mutiplica pelo adult/senior/child
+// e divide por fora por 100.
 
 function employeeById(id) {
   return employees.find((employee) => employee.id === id);

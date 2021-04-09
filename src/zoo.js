@@ -61,20 +61,28 @@ function entryCalculator(entrants) {
   return Adult * a + Child * b + Senior * c;
 }
 
-const callback = (arr, { includeNames = false, sex = false, sorted = false }) => {
-  const list = {};
-  arr.map((e))
-};
-
-function animalMap(options) {
-  if (!options) return {};
+const listModel = (callback, sex, sorted) => {
   const list = { NE: '', NW: '', SE: '', SW: '' };
   Object.keys(list).forEach((key) => {
-    const animalsLocation = animals.filter(({ location }) => location === key);
-    list[key] = callback(options, animalsLocation);
+    const animal = animals.filter(({ location }) => key === location);
+    list[key] = callback(animal, sex, sorted);
   });
+  return list;
+};
+
+const listIncludes = (animal, sex, sorted) =>
+  animal.map(({ name, residents }) => {
+    const arr = residents.filter((e) => e.sex === sex || !sex).map((e) => e.name);
+    if (sorted) return { [name]: arr.sort() };
+    return { [name]: arr };
+  });
+
+function animalMap(options) {
+  if (!options) return listModel((animal) => animal.map(({ name }) => name));
+  const { includeNames, sex, sorted } = options;
+  if (!includeNames) return listModel((animal) => animal.map(() => 'lions'));
+  return listModel(listIncludes, sex, sorted);
 }
-animalMap('ss');
 
 const schedule = (hour) => {
   const list = Object.entries(hours).reduce((acc, [key, value]) => {
@@ -85,8 +93,8 @@ const schedule = (hour) => {
   }, {});
   return hour
     ? {
-        [hour]: list[hour],
-      }
+      [hour]: list[hour],
+    }
     : list;
 };
 

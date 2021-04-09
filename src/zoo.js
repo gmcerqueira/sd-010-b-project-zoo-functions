@@ -45,9 +45,11 @@ function isManager(id) {
   // seu código aqui, Some verifica se existe alguem array true
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const addFuncionario = { id, firstName, lastName, managers, responsibleFor };
+  data.employees.push(addFuncionario);
+  // seu código aqui
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -85,7 +87,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

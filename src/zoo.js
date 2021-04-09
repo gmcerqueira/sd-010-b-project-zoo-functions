@@ -29,7 +29,7 @@ function employeeByName(employeeName) {
   return data.employees.filter((pessoa) => pessoa.firstName === employeeName
   || pessoa.lastName === employeeName);
 }
-//console.log(employeeByName('Wishart'));
+// console.log(employeeByName('Wishart'));
 
 function createEmployee(personalInfo, associatedWith) {
   const juntar = {
@@ -38,13 +38,13 @@ function createEmployee(personalInfo, associatedWith) {
     lastName: personalInfo.lastName,
     managers: [
       associatedWith.managers[0],
-      associatedWith.managers[1]
+      associatedWith.managers[1],
     ],
     responsibleFor: [
       associatedWith.responsibleFor[0],
       associatedWith.responsibleFor[1],
-      associatedWith.responsibleFor[2]
-    ]
+      associatedWith.responsibleFor[2],
+    ],
   };
   return juntar;
 }

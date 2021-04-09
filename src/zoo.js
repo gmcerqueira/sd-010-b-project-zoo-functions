@@ -31,7 +31,7 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // seu código aqui
   const nameFirstOrLast = data.employees.find((firstOrLast) =>
-    firstOrLast.data.firstName === employeeName || firstOrLast.data.lastName === employeeName);
+    firstOrLast.firstName === employeeName || firstOrLast.lastName === employeeName);
   console.log(nameFirstOrLast);
   return nameFirstOrLast === undefined ? {} : nameFirstOrLast;
 }

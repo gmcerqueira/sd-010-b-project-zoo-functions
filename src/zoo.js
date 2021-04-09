@@ -9,24 +9,20 @@ eslint no-unused-vars: [
 ]
 */
 
-const {
-  animals
-} = require('./data');
-const {
-  employees
-} = require('./data');
+const { animals } = require('./data');
+const { employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  const animalSpecies = data.animals.filter(animal => ids.includes(animal.id)); // developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+  const animalSpecies = data.animals.filter((animal) => ids.includes(animal.id)); // developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
   return animalSpecies;
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const filterAnimal = animals.find(currentAnimal => currentAnimal.name === animal);
-  const minAge = filterAnimal.residents.every(resident => resident.age > age);
+  const filterAnimal = animals.find((currentAnimal) => currentAnimal.name === animal);
+  const minAge = filterAnimal.residents.every((resident) => resident.age > age);
   return minAge;
 }
 
@@ -35,7 +31,7 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return employees.find(Emp => employeeName === Emp.firstName || employeeName === Emp.lastName);
+  return employees.find((Emp) => employeeName === Emp.firstName || employeeName === Emp.lastName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -49,7 +45,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  const managerSearch = employees.some(employee => employee.managers.includes(id));
+  const managerSearch = employees.some((employee) => employee.managers.includes(id));
   return managerSearch;
 
 }

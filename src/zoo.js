@@ -15,9 +15,14 @@ const data = require('./data');
 const {
   animals,
   employees,
-  /* hours,
-  prices, */
+  prices,
 } = data;
+
+const {
+  Adult: adultPrice,
+  Child: childPrice,
+  Senior: seriorPrice,
+} = prices;
 
 // Retorna um animal pelo seu id. Pode ser passado mais de um id.
 function animalsByIds(...ids) {
@@ -91,9 +96,29 @@ function animalCount(species) {
   return animals.find((animal) => animal.name === species).residents.length;
 }
 
+const undefinedToZero = (value) => {
+  if (value === undefined) return 0;
+  return value;
+};
+
+// Verifica a quantidade de pagantes e retorna o valor total.
 function entryCalculator(entrants) {
-  // seu código aqui
-  return entrants;
+  if (!entrants || Object.keys(entrants).length === 0) return 0;
+
+  // Descontruindo o parametro.
+  let {
+    Adult: adultQty,
+    Child: childQty,
+    Senior: seniorQty,
+  } = entrants;
+
+  // Verifica se o valor da chave é undefined. Se for, converte para zero.
+  adultQty = undefinedToZero(adultQty);
+  childQty = undefinedToZero(childQty);
+  seniorQty = undefinedToZero(seniorQty);
+
+  // Retorna a soma dos preços vezes a quantidade de pagantes.
+  return (adultQty * adultPrice) + (childQty * childPrice) + (seniorQty * seriorPrice);
 }
 
 function animalMap(options) {

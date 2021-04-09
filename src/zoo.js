@@ -124,6 +124,7 @@ const isObject = (element) => toString.call(element) === '[object Object]';
   Essa função verifica se o elemento está na lista
  */
 const hasElement = (element, list) => list.includes(element);
+
 /*
    Essa função recebe um objeto que contém a quantidade de visitantes e a faixa etária de cada um e retorna o preço total a ser cobrado.
   */
@@ -133,9 +134,9 @@ function entryCalculator(entrants) {
   && Object.keys(entrants).every( // e cada faixa etária sua
     (key) => hasElement(key, Object.keys(data.prices)), // é chave em data.prices
   )) {
-    // retorna o resultado de reduce que
-    return Object.keys(entrants).reduce( // para cada faixa etaria em entrants
-      (acc, curr) => acc + data.prices[curr] * entrants[curr], 0, // acumula o preço total a ser cobrado dela
+    // retorna o resultado da
+    return Object.keys(entrants).reduce( // redução da lista de chaves (faixa etaria) em entrants
+      (acc, curr) => acc + data.prices[curr] * entrants[curr], 0, // acumulando o preço a ser cobrado por cada faixa etária
     );
   }
   return 0; // retorna 0 caso não receba um parâmetro ou seja um objeto vazio
@@ -147,13 +148,32 @@ function entryCalculator(entrants) {
 
 function schedule(dayName) {
   // seu código aqui
-}
+} */
 
+/*
+   Essa função recebe o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+
+   Material consultado sobre como usar reduce para encontrar o objeto com o maior valor de uma propriedade dentro de um array de objetos
+   https://stackoverflow.com/a/34087850
+  */
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstSpeciesId = employees.find( // buscar o funcionário
+    (employee) => employee.id === id, // que possui id igual ao recebido por parâmetro
+  ).responsibleFor[0]; // e retornar o id da primeira espécie de animal que ele gerencia
+
+  // const oldestResident = [...data.animals.find((animal) => animal.id === firstSpeciesId).residents].sort((animal1, animal2) => animal2.age - animal1.age);
+
+  const oldestResident = [...data.animals.find( // buscar o animal
+    (animal) => animal.id === firstSpeciesId, // que possui id igual ao firstSpeciesId
+  ).residents] // criar uma cópia da lista de animais residentes desta espécie
+    .reduce( // e reduzir esta lista
+      (acc, resident) => ((acc.age >= resident.age) ? acc : resident), // mantendo em acc o animal que possui maior idade
+    );
+
+  return [oldestResident.name, oldestResident.sex, oldestResident.age]; // retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 }
 
-function increasePrices(percentage) {
+/* function increasePrices(percentage) {
   // seu código aqui
 }
 
@@ -172,7 +192,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

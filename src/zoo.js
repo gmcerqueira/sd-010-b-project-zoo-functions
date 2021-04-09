@@ -92,7 +92,7 @@ const createSchedule = {
 // fim funções 10
 function animalsByIds(...ids) {
   // seu código aqui
-  if (ids[0] === undefined) return [];
+  if (!ids[0]) return [];
   if (ids.length === 1) onlyOneId(ids);
   return moreThanOneId(ids);
 }
@@ -105,7 +105,7 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  if (employeeName === undefined) return {};
+  if (!employeeName) return {};
   return employees.find((el) => el.firstName === employeeName || el.lastName === employeeName);
 }
 
@@ -143,23 +143,28 @@ function animalCount(species = animals) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
+  if (!entrants || Object.keys(entrants).length === 0) return 0;
   return calculateValue(entrants);
 }
 
 function schedule(dayName) {
   // seu código aqui
-  if (dayName === undefined) return createSchedule;
+  if (!dayName) return createSchedule;
   return accessSchedule(dayName);
 }
+/*
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const final = []
+  const findEmployee = employees.find((item) => item.id === id);
+  const animal = animals.find((element) => element.id === findEmployee.responsibleFor[0])
+  const oldestAnimal = animal.residents.reduce((prev, at) => prev.age > at.age ? )
+
+} */
 
 /*
 
 function animalMap(options) {
-  // seu código aqui
-}
-
-function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
@@ -174,9 +179,9 @@ function employeeCoverage(idOrName) {
 module.exports = {
 /*
 employeeCoverage,
-oldestFromFirstSpecies,
 increasePrices,
 animalMap,
+oldestFromFirstSpecies,
 */
   schedule,
   entryCalculator,

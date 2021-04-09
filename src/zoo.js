@@ -55,7 +55,7 @@ function animalCount(species) {
   if (!species) {
     return data.animals.reduce((accumulator, current) => {
       const { name } = current;
-      return {...accumulator, [name]: current.residents.length};
+      return { ...accumulator, [name]: current.residents.length };
     }, {});
   }
   const findSpecies = data.animals.find((ani) => ani.name === species);

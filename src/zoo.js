@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
+const { hours } = data;
 
 // animalsByIds
 const findById = (idAni) => animals.find((animal) => animal.id === idAni);
@@ -91,6 +92,20 @@ const locations = takeLocations();
 const tkNaAni = (residents) => residents.map(({ name }) => name);
 const tkNaByS = (residents, sexAni) => tkNaAni(residents.filter(({ sex }) => sex === sexAni));
 
+// const includeNames = (cond) => {
+//   const anisLoc = {};
+//   locations.forEach((loc) => {
+//     const aniByLoc = animals.filter(({ location }) => location === loc);
+//     if (!cond) anisLoc[loc] = tkNaAni(aniByLoc);
+//     if (cond === 'N') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaAni(residents) }));
+//     if (cond === 'S') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaAni(residents).sort() }));
+//     if (cond === 'female' || cond === 'male') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaByS(residents, cond) }));
+//     if (cond === 'females' || cond === 'males') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaByS(residents, cond.replace('s', '')).sort() }));
+//     if (cond === 'A') anisLoc[loc] = tkNaAni(aniByLoc);
+//   });
+//   return anisLoc;
+// };
+
 const includeNamesNoPam = () => {
   const anisLoc = {};
   locations.forEach((loc) => {
@@ -140,23 +155,28 @@ function animalMap(options) {
   return includeNames();
 }
 
-// const includeNames = (cond) => {
-//   const anisLoc = {};
-//   locations.forEach((loc) => {
-//     const aniByLoc = animals.filter(({ location }) => location === loc);
-//     if (!cond) anisLoc[loc] = tkNaAni(aniByLoc);
-//     if (cond === 'N') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaAni(residents) }));
-//     if (cond === 'S') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaAni(residents).sort() }));
-//     if (cond === 'female' || cond === 'male') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaByS(residents, cond) }));
-//     if (cond === 'females' || cond === 'males') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaByS(residents, cond.replace('s', '')).sort() }));
-//     if (cond === 'A') anisLoc[loc] = tkNaAni(aniByLoc);
-//   });
-//   return anisLoc;
-// };
+// schedule
+const mkHourPhase = (dayName) =>
+  `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+const allHours = () => {
+  const readableHours = {};
+  Object.keys(hours).forEach((hour) => {
+    readableHours[hour] = (hours[hour].open === 0) ? 'CLOSED' : mkHourPhase(hour);
+  });
+  return readableHours;
+};
+
+function specificHour(dayName) {
+  return (dayName === 'Monday') ? { [dayName]: 'CLOSED' } : { [dayName]: mkHourPhase(dayName) };
+}
+
+function schedule(dayName) {
+  if (!dayName) return allHours();
+  return specificHour(dayName);
+}
+
+console.log(schedule());
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -172,7 +192,7 @@ function animalMap(options) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   animalMap,
   animalsByIds,

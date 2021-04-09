@@ -110,11 +110,25 @@ const schedule = (dayName) => {
 };
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
-  return id;
+  // Retorna o funcionario pelo ID
+  const employee = employees.find((emp) => emp.id === id);
+  // Retorna o primeiro animal da responsabilidade do funcinário
+  const animalCared = animals.find((anim) => anim.id === Object.values(employee.responsibleFor)[0]);
+  let residentsAge = 0;
+  let output;
+
+  animalCared.residents.forEach((animal) => {
+    if (residentsAge < animal.age) {
+      residentsAge = animal.age;
+      output = Object.values(animal);
+    }
+  });
+
+  return output;
 }
 
 const increasePrices = (percentage) => {
+  // Com ajuda do Arlei da turma 10
   const { Adult, Senior, Child } = data.prices;
   data.prices = {
     Adult: Math.ceil(Adult * (percentage + 100)) / 100,

@@ -66,9 +66,22 @@ function entryCalculator(entrants) {
   return Ad * Adult + Ch * Child + Se * Senior;
 }
 
-// function animalMap(options) {
+function animalByArea() {
+  return {
+    NE: ['lions', 'giraffes'],
+    NW: ['tigers', 'bears', 'elephants'],
+    SE: ['penguins', 'otters'],
+    SW: ['frogs', 'snakes']
+  };
+}
 
-// }
+function animalMap(options) {
+  if (!options) {
+    return animalByArea();
+  }
+}
+
+console.log(animalMap());
 
 function allDaysMessage() {
   const allDays = {
@@ -152,7 +165,7 @@ module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

@@ -121,26 +121,27 @@ function animalMap(options = {}) {
   return animalsByLoc();
 }
 
+function createsSentence({ open, close }) {
+  if (open === 0) {
+    return 'CLOSED';
+  }
+  return `Open from ${open}am until ${close - 12}pm`;
+}
+
 function schedule(dayName) {
   // seu código aqui
-  // seu código aqui
-  const animalsByLocation = data.animals.reduce((acc, b) => {
-    acc[b.location] = data.animals.filter((a) => a.location === b.location);
+  if (dayName) {
+    const info = Object.entries(data.hours).find((day) => day[0] === dayName);
+    const oneDay = {};
+    oneDay[dayName] = createsSentence(info[1]);
+    return oneDay;
+  }
+  return Object.entries(data.hours).reduce((acc, curr) => {
+    acc[curr[0]] = createsSentence(curr[1]);
     return acc;
   }, {});
-  const animalsNames = animalsByLocation.map((a) => a.name);
-  return animalsNames;
-  // return data.animals.reduce((acc, b) => {
-  //   const animalsByLocation = data.animals.filter((a) => a.location === b.location);
-  //   acc[b.location] = animalsByLocation.map((a) => a.name);
-  //   return acc;
-  // }, {});
-  //   const animalsNames = animalsByLocation.reduce((aa, bb) => {
-  //     const resid = aa;
-  //     resid[bb.name] = bb.residents.map((r) => r.name);
-  //     return aa;
-  //   }, {});
 }
+console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui

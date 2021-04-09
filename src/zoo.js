@@ -125,17 +125,10 @@ function percentageCalc(valor, percentage) {
 }
 
 function increasePrices(percentage) {
-  const { Adult: ad, Child: ch, Senior: se } = prices;
-  const adultRecalc = Math.round(percentageCalc(ad, percentage) * 100) / 100;
-  const childRecalc = Math.round(percentageCalc(ch, percentage) * 100) / 100;
-  const seniorRecalc = Math.round(percentageCalc(se, percentage) * 100) / 100;
-  return { Adult: adultRecalc,
-    Senior: seniorRecalc,
-    Child: childRecalc,
-  };
+  Object.keys(prices).forEach((key) => {
+    prices[key] = Math.round(percentageCalc(prices[key], percentage) * 100) / 100;
+  });
 }
-
-console.log(increasePrices(50));
 
 // function employeeCoverage(idOrName) {
 

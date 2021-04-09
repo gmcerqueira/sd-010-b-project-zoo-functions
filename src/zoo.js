@@ -75,9 +75,20 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push(newEmployee);
 }
 
+// Retorna a quantidade de animais. Todos os animais com nenhum parâmetro e o animal específico, caso passado.
 function animalCount(species) {
-  // seu código aqui
-  return species;
+  if (!species) {
+    const countObj = {};
+    // Passa por cada animal, criando uma chave com seu nome e o tamanho do array dos residentes.
+    animals.forEach((animal) => {
+      countObj[animal.name] = animal.residents.length;
+    });
+
+    return countObj;
+  }
+
+  // Procura o animal e retorna o tamanho do array dos residentes.
+  return animals.find((animal) => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {

@@ -10,12 +10,16 @@ eslint no-unused-vars: [
 */
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   const array = [];
-  ids.forEach((parmItem) => animals.forEach((element) =>
-    (parmItem === element.id) ? array.push(element) : false));
+  ids.forEach((parmItem) => animals.filter((animal) => {
+    if (parmItem === animal.id) {
+      array.push(animal);
+    }
+    return array;
+  }));
   return array;
 }
 
@@ -61,35 +65,30 @@ function animalCount(species) {
   });
   if (species === undefined) {
     return obj;
-  } else {
-    return number;
   }
+  return number;
 } animalCount();
 
-function entryCalculator (entrants) {
+function entryCalculator(entrants) {
   let count = 0;
   if (entrants === undefined || Object.keys(entrants).length < 1) {
     return 0;
-  } else {
-    Object.keys(entrants).forEach((param) => {
-      count += entrants[param] * prices[param];
-    });
   }
+  Object.keys(entrants).forEach((param) => {
+    count += entrants[param] * prices[param];
+  });
   return count;
 }
 
-function animalMap(options) {
-  if (options === undefined) {
-    animals.map((element) => {
-      if(element.location === 'NE'){
-        return element.name;
-    }});
-  }
-}
-
-// function schedule(dayName) {
-//   // seu código aqui
+// function animalMap(options) {
+//   Digite seu codigo
 // }
+
+function schedule(dayName) {
+  const number = 0;
+  hours.forEach((element) => element.id === dayName);
+  return number;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -105,9 +104,9 @@ function animalMap(options) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

@@ -78,20 +78,22 @@ function isManager(id) {
 // Requirement 6
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
-  console.log(data.employees.length);
+  // console.log(data.employees.length);
   const newEmployee = {
     id,
     firstName,
     lastName,
   };
-  console.log(newEmployee);
+  // console.log(newEmployee);
   data.employees.push(newEmployee);
   console.log(data.employees.length);
+  const last = data.employees[8];
+  console.log(last.id);
   return newEmployee;
 }
-const id1 = '39800c14-4b76-454a-858d-2f8d168146a7';
-const n = 'John';
-const s = 'Doe';
+// const id1 = '39800c14-4b76-454a-858d-2f8d168146a7';
+// const n = 'John';
+// const s = 'Doe';
 // addEmployee(id1, n, s);
 
 // function animalCount(species) {

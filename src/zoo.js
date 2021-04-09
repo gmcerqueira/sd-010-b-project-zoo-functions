@@ -75,7 +75,57 @@ function entryCalculator(entrants) {
   return total;
 }
 
-// function animalMap(options) {}
+// NE: [
+//   { lions: ['Zena', 'Maxwell', 'Faustino', 'Dee'] },
+//   { giraffes: ['Gracia', 'Antone', 'Vicky', 'Clay', 'Arron', 'Bernard'] }
+// ],
+// NW: [
+//   { tigers: ['Shu', 'Esther'] },
+//   { bears: ['Hiram', 'Edwardo', 'Milan'] },
+//   { elephants: ['Ilana', 'Orval', 'Bea', 'Jefferson'] }
+// ],
+// SE: [
+//   { penguins: ['Joe', 'Tad', 'Keri', 'Nicholas'] },
+//   { otters: ['Neville', 'Lloyd', 'Mercedes', 'Margherita'] }
+// ],
+// SW: [
+//   { frogs: ['Cathey', 'Annice'] },
+//   { snakes: ['Paulette', 'Bill'] }
+// ]
+// };
+
+const separeteSpecies = (ops) => {
+  const { sex, sorted } = ops;
+  const obj = animals.reduce((result, item) => {
+    const animal = animals.filter((i) => i.location === item.location);
+    const final = result;
+    final[item.location] = animal.reduce((acc, curr, index) => {
+      let types = curr.residents.map((j) => j.name);
+      if (sex) types = curr.residents.filter((elem) => elem.sex === sex).map((typ) => typ.name);
+      if (sorted) types.sort();
+      acc[index] = { [curr.name]: types };
+      return acc;
+    }, []);
+    return result;
+  }, {});
+  return obj;
+};
+
+function animalMap(options) {
+  if (!options || !options.includeNames) {
+    return animals.reduce((result, item) => {
+      const final = result;
+      if (!final[item.location]) {
+        final[item.location] = [];
+      }
+      final[item.location].push(item.name);
+      return final;
+    }, {});
+  }
+  return separeteSpecies(options);
+}
+
+console.log(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   const keys = Object.keys(hours);
@@ -146,7 +196,7 @@ module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

@@ -40,7 +40,6 @@ function employeeByName(employeeName) {
   // Quando provido o último nome do funcionário, retorna o objeto do funcionário
   if (!employeeName) return {};
   return employees.find((nam) => nam.firstName === employeeName || nam.lastName === employeeName);
-  // fild - buscar pelo primeiro ou ultimo nome
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -75,9 +74,20 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(newEmployee);
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  // seu código aqui
+  // Esta função é responsável por contabilizar a quantidade de animais.
+  // Sem parâmetros, retorna um objeto - animais e suas quantidades
+  // Com o nome de uma espécie de animal, retorna um número -  a quantidade
+  if (!species) {
+    const obj = {};
+    animals.forEach((animal) => {
+      obj[animal.name] = animal.residents.length;
+    });
+    return obj;
+  }
+  return animals.find((animal) => animal.name === species).residents.length;
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -106,7 +116,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

@@ -95,14 +95,13 @@ function entryCalculator(entrant) {
   // O parâmetro `entrants` recebe um objeto que contém as chaves `Adult`, `Child` e `Senior`, com suas respectivas quantidades de pessoas
   // Retorna 0 se nenhum argumento for passado. Retorna 0 se um objeto vazio for passado. Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
   if (!entrant || (Object.keys(entrant).length === 0 && entrant.constructor === Object)) return 0;
-  const count = {};
+  let count = 0;
   const qntEntrants = Object.values(entrant); // retornando a quantidade de entrants
-  const entrantParam = Object.keys(entrant); // retornando os entrantes
   Object.keys(entrant).forEach((entrantPrice, index) => {
-    count[entrantPrice] = prices[entrantParam[index]] * qntEntrants[index];
+    count += prices[entrantPrice] * qntEntrants[index];
   });
   // somar
-  return Object.values(count).reduce((a, b) => a + b);
+  return count;
 }
 
 // function animalMap(options) {

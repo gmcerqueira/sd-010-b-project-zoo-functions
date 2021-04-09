@@ -83,7 +83,6 @@ function animalCount(species) {
 
   return count;
 }
-console.log(animalCount('snakes'));
 
 function entryCalculator(entrants) {
   // seu código aqui

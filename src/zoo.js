@@ -50,7 +50,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const obj = {};
+  const numbers = data.animals.filter((number) => number.name === species).shift();
+  data.animals.map((animalNumber) => obj[animalNumber.name] = animalNumber.residents.length);
+  return species === undefined ? obj : numbers.residents.length;
 }
 
 function entryCalculator(entrants) {

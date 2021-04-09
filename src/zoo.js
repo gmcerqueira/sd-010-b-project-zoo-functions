@@ -112,7 +112,7 @@ function animalMap(options = 'empty') {
         resident.sex === 'male').map((resident) => resident.name).sort() })),
       SW: animalsSw.map((animal) => ({ [animal.name]: animal.residents.filter((resident) =>
         resident.sex === 'male').map((resident) => resident.name).sort() })),
-      };
+    };
   }
   if (options.includeNames === true && options.sorted === true) {
     return {
@@ -124,7 +124,7 @@ function animalMap(options = 'empty') {
         resident.name).sort() })),
       SW: animalsSw.map((animal) => ({ [animal.name]: animal.residents.map((resident) =>
         resident.name).sort() })),
-      };
+    };
   }
   if (options.includeNames === true && options.sex === 'female') {
     return {
@@ -136,7 +136,7 @@ function animalMap(options = 'empty') {
         resident.sex === 'female').map((resident) => resident.name) })),
       SW: animalsSw.map((animal) => ({ [animal.name]: animal.residents.filter((resident) =>
         resident.sex === 'female').map((resident) => resident.name) })),
-      };
+    };
   }
   if (options.includeNames === true && options.sex === 'male') {
     return {
@@ -148,19 +148,19 @@ function animalMap(options = 'empty') {
         resident.sex === 'male').map((resident) => resident.name) })),
       SW: animalsSw.map((animal) => ({ [animal.name]: animal.residents.filter((resident) =>
         resident.sex === 'male').map((resident) => resident.name) })),
-      };
+    };
   }
   if (options.includeNames === true) {
     return {
       NE: animalsNe.map((animal) =>
-      ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
+        ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
       NW: animalsNw.map((animal) =>
-      ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
+        ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
       SE: animalsSe.map((animal) =>
-      ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
+        ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
       SW: animalsSw.map((animal) =>
-      ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
-      };
+        ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
+    };
   }
 }
 // console.log(animalMap({includeNames :true}))

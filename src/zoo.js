@@ -9,19 +9,33 @@ eslint no-unused-vars: [
 ]
 */
 
-// const data = require('./data');
-
-// function animalsByIds(ids) {
-//   // seu código aqui
-// }
-
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
-
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+const data = require('./data');
+// 01
+function animalsByIds(ids) {
+  // seu código aqui
+  const searchId = [];
+  ids.forEach((id) => {
+    searchId.push(data.animals.find((animalId) => animalId === id));
+  });
+  console.log(searchId);
+  return searchId;
+}
+// 02
+function animalsOlderThan(animal, age) {
+  // seu código aqui
+  const minAge = data.animals.filter((animalAge) => animalAge.data.name === animal);
+  console.log(minAge);
+  minAge.data.residents.every((animalResident) => animalResident.data.age >= age);
+}
+// 03
+function employeeByName(employeeName) {
+  // seu código aqui
+  const nameFirstOrLast = data.employees.filter((firstOrLast) =>
+    firstOrLast.data.firstName === employeeName || firstOrLast.data.lastName === employeeName);
+  console.log(nameFirstOrLast);
+  return nameFirstOrLast === undefined ? {} : nameFirstOrLast;
+}
+// 4
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   return { ...personalInfo, ...associatedWith };
@@ -68,12 +82,12 @@ module.exports = {
   // schedule,
   // animalCount,
   // animalMap,
-  // animalsByIds,
-  // employeeByName,
+  animalsByIds,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,

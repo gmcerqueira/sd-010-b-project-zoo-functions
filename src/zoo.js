@@ -151,7 +151,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  // seu código aqui (https://medium.com/swlh/how-to-round-to-a-certain-number-of-decimal-places-in-javascript-ed74c471c1b8#:~:text=For%20example%2C%20if%20you%20want,by%20100%20to%20get%200.23.)
+  console.log(Object.entries(data.prices));
+  Object.entries(data.prices).forEach((price) => {
+    data.prices[price[0]] = Math.round((price[1] + (price[1] * (percentage / 100))) * 100) / 100;
+    console.log(data.prices);
+  });
 }
 
 function employeeCoverage(idOrName) {

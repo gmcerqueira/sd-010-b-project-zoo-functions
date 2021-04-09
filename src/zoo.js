@@ -165,26 +165,30 @@ function oldestFromFirstSpecies(id) {
   }));
 }
 
-/*
-
-function animalMap(options) {
-  // seu código aqui
-}
-
 function increasePrices(percentage) {
   // seu código aqui
+  const toDecimal = (percentage * 0.1 * 0.1) + 1;
+  prices.Adult = Math.round(toDecimal * prices.Adult * 100) / 100;
+  prices.Child = Math.round(toDecimal * prices.Child * 100) / 100;
+  prices.Senior = Math.round(toDecimal * prices.Senior * 100) / 100;
 }
+
+/*
 
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
- */
+
+function animalMap(options) {
+  // seu código aqui
+}
+*/
 module.exports = {
 /*
 employeeCoverage,
-increasePrices,
 animalMap,
 */
+  increasePrices,
   oldestFromFirstSpecies,
   schedule,
   entryCalculator,

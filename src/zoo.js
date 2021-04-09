@@ -53,7 +53,7 @@ function entryCalculator(entrants) {
 }
 
 const listModel = (callback, sex, sorted) => {
-  const list = { NE: '', NW: '', SE: '', SW: '' };
+  const list = { NE: [], NW: [], SE: [], SW: [] };
   Object.keys(list).forEach((key) => {
     const animal = animals.filter(({ location }) => key === location);
     list[key] = callback(animal, sex, sorted);

@@ -81,13 +81,13 @@ function schedule(dayName) {
   const result = {};
   hoursWeek.map((hour) => {
     if (hour === 'Monday') {
-      result[hour] = 'CLOSED';
+      return result[hour] = 'CLOSED';
     } else {
-      result[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close - 12}pm`;
+      return result[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close - 12}pm`;
     }
   });
   if (dayName) {
-    return { [dayName]: result[dayName], };
+    return { [dayName]: result[dayName] };
   }
   return result;
 }

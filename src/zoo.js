@@ -15,7 +15,7 @@ const data = require('./data');
 function animalsByIds(...id) {
   if ([id].includes(undefined)) return [];
 
-  return animals.filter((animal) => animal.includes(id));
+  return animals.filter((animal) => id.includes(animal.id));
 }
 
 console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
@@ -67,9 +67,13 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   );
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  // seu código aqui
+  if (!species) {
+    return {};
+  }
+}
+// console.log(animalCount());
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -98,8 +102,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
 //   entryCalculator,
 //   schedule,
-//   animalCount,
-//   animalMap,
+  animalCount,
+  //   animalMap,
   animalsByIds,
   employeeByName,
   //   employeeCoverage,

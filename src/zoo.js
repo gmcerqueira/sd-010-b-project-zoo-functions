@@ -74,26 +74,28 @@ function isManager(id) {
   return employees.some((employee) => employee.managers
     .some((manager) => manager === id));
 }
-
+// id, firstName, lastName, managers = [], responsibleFor
 // Requirement 6
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor) {
   // seu código aqui
   // console.log(data.employees.length);
   const newEmployee = {
     id,
     firstName,
     lastName,
+    managers,
   };
-  // console.log(newEmployee);
   data.employees.push(newEmployee);
-  console.log(data.employees.length);
-  const last = data.employees[8];
-  console.log(last.id);
+  // console.log(newEmployee);
+  // console.log(data.employees.length);
+  // const last = data.employees[8];
+  // console.log(last.id);
   return newEmployee;
 }
 // const id1 = '39800c14-4b76-454a-858d-2f8d168146a7';
 // const n = 'John';
 // const s = 'Doe';
+// const vec = ['1', '2', '3'];
 // addEmployee(id1, n, s);
 
 // function animalCount(species) {

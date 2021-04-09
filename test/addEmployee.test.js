@@ -11,7 +11,7 @@ describe('Implemente a função addEmployee', () => {
     assert.strictEqual(lastEmployee.id, '39800c14-4b76-454a-858d-2f8d168146a7');
     assert.strictEqual(lastEmployee.firstName, 'John');
     assert.strictEqual(lastEmployee.lastName, 'Doe');
-    // assert.deepStrictEqual(lastEmployee.managers, []);
+    assert.deepStrictEqual(lastEmployee.managers, []);
     // assert.deepStrictEqual(lastEmployee.responsibleFor, []);
 
     // zoo.addEmployee('4141da1c-a6ed-4cf7-90c4-99c657ba4ef3', 'Jane', 'Doe',

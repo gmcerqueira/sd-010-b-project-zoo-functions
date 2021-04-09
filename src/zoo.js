@@ -71,9 +71,40 @@ function entryCalculator(entrants) {
   return Object.entries(entrants).reduce((acc, [type, amount]) => acc + amount * prices[type], 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
+function showAnymalsByLocalization() {
+  const locations = animals.reduce((acc, animal) => {
+    if (!acc[animal.location]) {
+      acc[animal.location] = [animal.name];
+    } else {
+      acc[animal.location] = [...acc[animal.location], animal.name];
+    }
+    return acc;
+  }, {});
+  return locations;
 }
+
+function showAnymalsByLocalizationAndNames() {
+  const locations = showAnymalsByLocalization();
+  console.log(locations);
+  const valuesSeparated = Object.values(locations);
+  const newData = valuesSeparated
+    .reduce((acc, group) => acc.concat(...group), [])
+    .reduce((acc, animal) => {
+      acc[animal] = animals.find((name) => name.name === animal).residents.map((data) => data.name);
+      return acc;
+    }, {});
+  valuesSeparated.forEach((group) => group.forEach((animal) =>))
+  
+}
+
+function animalMap(includeNames = false) {
+  if (!includeNames) {
+    return showAnymalsByLocalization();
+  }
+  showAnymalsByLocalizationAndNames();
+}
+
+animalMap(true);
 
 function schedule(dayName) {
   // seu código aqui

@@ -151,7 +151,26 @@ function getAnimalsBySex(options) {
         const {
           name,
         } = an;
-        obj[name] = an.residents.filter(resident => resident.sex === options.sex).map(el=>el.name)
+        obj[name] = an.residents.filter(resident => resident.sex === options.sex).map(el => el.name)
+        return obj;
+      }),
+    };
+  }, {});
+}
+
+function getAnimalsBySexOrdened(options) {
+  return animals.reduce((acc, curr) => {
+    const {
+      location,
+    } = curr;
+    return {
+      ...acc,
+      [location]: animals.filter((animal) => animal.location === location).map((an) => {
+        const obj = {};
+        const {
+          name,
+        } = an;
+        obj[name] = an.residents.filter(resident => resident.sex === options.sex).map(el => el.name).sort()
         return obj;
       }),
     };
@@ -161,6 +180,9 @@ function getAnimalsBySex(options) {
 function animalMap(options) {
   if (!options) {
     return getAnimalsLocation();
+  }
+  if (options.includeNames && options.sorted && options.sex) {
+    return getAnimalsBySexOrdened(options);
   }
   if (options.includeNames && options.sorted) {
     return getOrdenedNames();

@@ -109,7 +109,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  return percentage;
+  const { Adult, Senior, Child } = data.prices;
+  data.prices = {
+    Adult: Math.round((Adult * (1 + (percentage / 100))) * 100) / 100,
+    Senior: Math.round((Senior * ((1 + percentage / 100))) * 100) / 100,
+    Child: Math.round(Child * (((1 + percentage / 100))) * 100) / 100,
+  };
 }
 
 function employeeCoverage(idOrName) {
@@ -131,3 +136,6 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
+
+// Referencias: Projeto realizado em conjunto om Wellinton Passo
+// Referencia: Função increasePrices com ajuda do código de Jefferson Andrade

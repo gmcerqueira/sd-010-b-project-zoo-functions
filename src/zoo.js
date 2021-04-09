@@ -16,11 +16,13 @@ const { animals, employees, prices, hours } = data;
 function animalsByIds(...ids) {
   if (!ids) return [];
   return animals.filter((animal) => ids.includes(animal.id));
+  // Filtra o (animal) e verifica se ele entra na lista.
 }
 
 function animalsOlderThan(animal, age) {
   return animals.find((animais) => animais.name === animal)
     .residents.every((animais) => animais.age >= age);
+    // retorna infos dos animais e busca o array do residents com todas as infos, assumindo que todos os objetos vao retornar.
 }
 
 function employeeByName(employeeName) {
@@ -28,6 +30,8 @@ function employeeByName(employeeName) {
 
   return employees.find((employee) => (
     employee.firstName === employeeName || employee.lastName === employeeName));
+    // se o employeeName for vazio retorna {},
+    // retorna o primeiro funcionario com primeiro nome.
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -36,16 +40,25 @@ function createEmployee(personalInfo, associatedWith) {
     ...associatedWith,
   };
 }
+// com destructuring consigo as infos de personalInfo e associatedWith
+  // trazendo os objetos no return usando spread criando um novo employee
 
 function isManager(id) {
   return employees.some((employee) => employee.managers.includes(id));
 }
+
+// uso return employees com some onde verifico cada employee se tem manager tem id, se for true ele eh algum gerente.
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const personalInfo = { id, firstName, lastName };
   const associatedWith = { managers, responsibleFor };
   return employees.push(createEmployee(personalInfo, associatedWith));
 }
+
+// destrutura employess
+// cria um id, firstName, lastName, determina um padrao para nao voltar undefinided
+// teste pede para que mannager se for vazio retorne = [] e responsibleFor = [] tbm
+// aqui podemos reutilizar a funcao createEmployee e passra os paramentos personalInfo e associatedWith
 
 function animalCount(species) {
   const result = animals.reduce((acc, curr) => {
@@ -56,12 +69,26 @@ function animalCount(species) {
   return result;
 }
 
+// em animais, cada um tem um objeto com name, id, popularity, residents
+// precisa inteirar animais e para cada objeto, retornar uma propriedade desse nome
+// com length desse array residents.
+// percorre o array animais faz um reduce, comeca com objeto vazio para cada animal
+// pega o objeto acumulando e adiciona o name e length da quantidade de animais que tem nele
+// o if faz uma checagem na hora de passar a specie, confirma se vai ser
+// uma string, string no lugar de specie
+
 function entryCalculator(entrants) {
   if (typeof entrants !== 'object' || Object.keys(entrants).length === 0) return 0;
   return Object.keys(entrants).reduce((acc, key) => (
     acc + (entrants[key] * prices[key])
   ), 0);
 }
+
+// verficia o tipo de entrants se eh adult, child, or senior
+// percorre cada chave do entrant, e cada chave conicide com seus prices
+// determina o valor inicial como 0 e a chave atual do entrants
+// apos determinar o numero de entrants, verifica o preco e mutiplica um pelo outro e add no acumulador
+// obs: prices esta destruturado 
 
 function findAnimalNames(animalName, sorted, sex) {
   let result = animals.find((animal) => animal.name === animalName);
@@ -111,6 +138,16 @@ function schedule(dayName) {
   return result;
 }
 
+// retorna os dias, horario de abertura e fechamento nessa ordem
+// cria-se um novo objeto, mantendo as propriedades alterando o valor delas, horario de abertura e fechamento usando AM/PM 
+// destrutura as horas(hours)
+// usa object.entries para pegar as entradas (hours) e faz um reduce que retorna
+// a propriedade e valor com reduce no array de array
+// mantem a propriedade mas altera o valor
+// primeiro valor -> key eh a chave e o segundo val o valor.
+// usa-se % modulo -> 12 horas, divida por 12 as horas retornando o valor inteiro assim temos AM/PM
+// se a condicao for verdadeira retorna open until, senao  retorna closed.
+
 function oldestFromFirstSpecies(id) {
   const employee = employees.find((current) => current.id === id);
   const speciesId = employee.responsibleFor[0];
@@ -122,6 +159,12 @@ function oldestFromFirstSpecies(id) {
   return Object.values(oldAnimals);
 }
 
+// procura um id de funcionario para encontrar a especie de animal
+// gerenciado por esse funcionario e retorna array com nome, sexo e idade do animal mais velho.
+// pega o funcionario, passa seu ID e retorna o animal que ele eh responsavel naquele ID.
+// apos buscar os animais, faz um reduce, com acc apos o atual intera e verifica o mais velho 
+// usa condicionais se o animal atual tem idade maior que o mais velho, retorna o atual, senao retorna o mais velho
+
 function increasePrices(percentage) {
   const { Adult, Senior, Child } = data.prices;
 
@@ -131,6 +174,9 @@ function increasePrices(percentage) {
     Child: Math.ceil(Child * (percentage + 100)) / 100,
   };
 }
+// destrutura adult, senior, chield
+// usa o Math.ceil para aredondar o valor
+// mutiplica pela porcentagem + 100 e divide por fora por 100
 
 function employeeById(id) {
   return employees.find((employee) => employee.id === id);
@@ -150,6 +196,17 @@ function employeeCoverage(idOrName) {
   }
   return result;
 }
+
+// sem paramentors, retorna uma lista de funcionarios e os animais pelos quais sao responsaveis
+// faz um reduce com um objeto por for vazio, utiliza o acc e percorre o employee
+// o first e lastName e os animais responsibleFor, faz um map no responsibleFor, pega o id do animal atravez da function animalsByIds, chama com id utiliza index[0] -> elemento name.
+// retorna o nome dos animais e funcionarios responsaveis.
+// ao receber nada retorna array vazio, ao receber id, retorna array com os elementos.
+// crio a function employeeById que retorna somente os id.
+// se for true retorno o employee com o objeto que tenha o primeiro nome, caso nao encontre
+// procuro pelo id e retorno o objeto -> funcionario com os elementos(propriedades)
+// firstName, lastName
+// retorno [name] e o result.
 
 module.exports = {
   entryCalculator,

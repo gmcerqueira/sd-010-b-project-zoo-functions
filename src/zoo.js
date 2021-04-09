@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter((getId) => ids.some((animalId) => (animalId === getId.id)));
@@ -77,12 +77,27 @@ function oldestFromFirstSpecies(id) {
   const oldestAnimal = animalArray.sort((yearA, yearB) => yearB.age - yearA.age)[0];
   return [oldestAnimal.name, oldestAnimal.sex, oldestAnimal.age];
 }
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+
+function increasePrices(percentage) {
+  const values = Object.values(prices);
+  const keys = Object.keys(prices);
+  const increase = (price, index) => {
+    prices[keys[index]] = +(Math.ceil((percentage + 100) * price) * 0.01).toFixed(2);
+  };
+  values.forEach(increase);
+}
 
 // function employeeCoverage(idOrName) {
-//   // seu código aqui
+//   let result;
+//   const fname = (employee) => employee.firstName === idOrName;
+//   const lname = (employee) => employee.lastName === idOrName;
+//   const id = (employee) => employee.id === idOrName;
+//   if (idOrName) {
+//     result = employees.find((employee) => (fname(employee) || lname(employee) || id(employee)));
+//   } else {
+//     result = {};
+//   }
+//   return result;
 // }
 
 module.exports = {
@@ -97,6 +112,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

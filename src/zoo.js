@@ -173,11 +173,26 @@ function oldestFromFirstSpecies(id) {
   return [oldestResident.name, oldestResident.sex, oldestResident.age]; // retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 }
 
-/* function increasePrices(percentage) {
-  // seu código aqui
+/*
+   Essa função recebe uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
+
+   Material consultado sobre o método ceil
+   https://www.w3schools.com/jsref/jsref_ceil.asp
+  */
+function increasePrices(percentage) {
+  Object.keys(data.prices) // cria uma lista de chaves de prices
+    .forEach( // para cada chave
+      (key) => {
+        data.prices[key] = ( // o preço que possui a chave é atualizado com
+          Math.ceil( // o resultado da divisão do menor inteiro mais próximo ao
+            data.prices[key] * (100 + percentage), // incrementar o preço deslocando suas as casas decimais para esquerda
+          ) / 100 // por cem
+        );
+      },
+    );
 }
 
-function employeeCoverage(idOrName) {
+/* function employeeCoverage(idOrName) {
   // seu código aqui
 }
  */
@@ -193,6 +208,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

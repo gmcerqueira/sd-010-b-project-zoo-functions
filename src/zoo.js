@@ -21,12 +21,8 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const resposta = data.animals.some((species) => {
-    if (species.name === animal) {
-      return species.residents.every((ageAnimals) => ageAnimals.age > age);
-    }
-    return resposta;
-  });
+  const resposta = data.animals.filter((species) => species.name === animal);
+  return resposta[0].residents.every((ageAnimals) => ageAnimals.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -46,13 +42,15 @@ function isManager(id) {
   return data.employees.some((employee, index) => employee.managers[index] === id);
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  // seu código aqui
+  const object = { id, firstName, lastName, managers, responsibleFor };
+  return data.employees.push(object);
+}
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  // seu código aqui
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -81,12 +79,12 @@ function isManager(id) {
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

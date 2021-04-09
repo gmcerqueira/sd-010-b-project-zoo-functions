@@ -22,11 +22,11 @@ function animalsByIds(...ids) {
   return findAnimal;
 }
 
-function animalsOlderThan(animal, age) {
+function animalsOlderThan(animal, ageParametro) {
   let aux = false;
   /* //find retorna false true se .residents.age > age minima */
-  aux = data.animals.find((x) => x.name === animal);
-  return aux.residents.every((auxB) => auxB.age > age);
+  aux = animals.find(({ name }) => name === animal);
+  return aux.residents.every(({ age }) => age > ageParametro);
 }
 
 /* function employeeByName(employeeName) {

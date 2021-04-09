@@ -102,11 +102,21 @@ function schedule(dayName) {
   }
   return { [dayName]: `Open from ${pmToAm(whatDay.open)}am until ${pmToAm(whatDay.close)}pm` };
 }
-console.log(schedule('Tuesday'));
 
-// function oldestFromFirstSpecies(id) {
-
-// }
+function oldestFromFirstSpecies(id) {
+  const animalToLook = employees.find((employee) => employee.id === id);
+  const animalID = animalToLook.responsibleFor.find((animal) => animal[0]);
+  const getAnimal = animals.find((animal) => animal.id === animalID);
+  const olderAnimal = getAnimal.residents.forEach((an, index) => {
+    let older = an.age[0];
+    if (an.age[index] > older) {
+      older = an.ge[index];
+    }
+    return older;
+  });
+  return [`${olderAnimal.name}, ${olderAnimal.age}, ${olderAnimal.sex}`];
+}
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 // function increasePrices(percentage) {
 
@@ -127,7 +137,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  //   oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   //   increasePrices,
   createEmployee,
 };

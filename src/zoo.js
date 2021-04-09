@@ -77,7 +77,7 @@ function animalCount(species) {
   const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
   return animaisFiltrado[0].residents.length;
 }
-console.log(animalCount());
+// console.log(animalCount());
 function entryCalculator(entrants) {
   return entrants;
 }

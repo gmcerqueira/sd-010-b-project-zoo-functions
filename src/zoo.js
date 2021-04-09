@@ -83,7 +83,7 @@ function entryCalculator(entrants) {
 }
 
 // Objeto com métodos auxiliares para a função animalMap.
-const fooQuestNine = {
+const fooAnimalMap = {
   main(options) {
     if (options.sorted && options.sex) {
       return this.getAnimalBySexOrdered(options);
@@ -168,10 +168,10 @@ const fooQuestNine = {
 };
 function animalMap(options) {
   if (options && options.includeNames) {
-    return fooQuestNine.main(options);
+    return fooAnimalMap.main(options);
   }
 
-  return fooQuestNine.getCategory();
+  return fooAnimalMap.getCategory();
 }
 
 function schedule(dayName) {
@@ -212,7 +212,7 @@ function increasePrices(percentage) {
   return prices;
 }
 // Objeto com métodos auxiliares para a função employeeCoverage.
-const fooQuestThirteen = {
+const fooEmployeeCoverage = {
   getEmployeesNtheirAnimals() {
     const obj = {};
     employees.forEach((el) => {
@@ -265,9 +265,9 @@ const fooQuestThirteen = {
 };
 function employeeCoverage(idOrName) {
   if (idOrName) {
-    return fooQuestThirteen.getAnimalsListByIdOrName(idOrName);
+    return fooEmployeeCoverage.getAnimalsListByIdOrName(idOrName);
   }
-  return fooQuestThirteen.getEmployeesNtheirAnimals();
+  return fooEmployeeCoverage.getEmployeesNtheirAnimals();
 }
 
 module.exports = {

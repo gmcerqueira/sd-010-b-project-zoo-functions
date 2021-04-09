@@ -14,10 +14,11 @@ const data = require('./data');
 function animalsByIds(...ids) {
   return data.animals.filter((animal) => ids.some((id) => animal.id === id));
 }
-
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+// Tive auxilio do Diegho Moraes para realizar o animalsOlderThan
+function animalsOlderThan(animal, age) {
+  const animalInfo = data.animals.find((species) => species.name === animal);
+  return animalInfo.residents.every((species) => species.age > age);
+}
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -73,7 +74,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

@@ -76,9 +76,90 @@ function entryCalculator(entrants = undefined) {
   return Adult * 49.99 + Senior * 24.99 + Child * 20.99;
 }
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function animalMap(options = 'empty') {
+  // seu código aqui
+  let animalsNe = data.animals.filter((animal) => animal.location === 'NE');
+  let animalsNw =data.animals.filter((animal) => animal.location === 'NW');
+  let animalsSe =data.animals.filter((animal) => animal.location === 'SE');
+  let animalsSw =data.animals.filter((animal) => animal.location === 'SW');
+  if (options === 'empty' || options.includeNames !== true) {
+    return {
+    NE: animalsNe.map((animal) => animal.name),
+    NW: animalsNw.map((animal) => animal.name),
+    SE: animalsSe.map((animal) => animal.name),
+    SW: animalsSw.map((animal) => animal.name),
+    };
+  };
+  if(options.includeNames === true && options.sex === 'female' && options.sorted === true) {
+    return {
+      NE: animalsNe.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'female').map((resident) => resident.name).sort()})),
+      NW: animalsNw.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'female').map((resident) => resident.name).sort()})),
+      SE: animalsSe.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'female').map((resident) => resident.name).sort()})),
+      SW: animalsSw.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'female').map((resident) => resident.name).sort()})),
+      };
+  };
+  if(options.includeNames === true && options.sex === 'male' && options.sorted === true) {
+    return {
+      NE: animalsNe.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'male').map((resident) => resident.name).sort()})),
+      NW: animalsNw.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'male').map((resident) => resident.name).sort()})),
+      SE: animalsSe.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'male').map((resident) => resident.name).sort()})),
+      SW: animalsSw.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'male').map((resident) => resident.name).sort()})),
+      };
+  };
+  if (options.includeNames === true && options.sorted === true) {
+    return {
+      NE: animalsNe.map((animal) => ({[animal.name]: animal.residents.map((resident) => 
+        resident.name).sort()})),
+      NW: animalsNw.map((animal) => ({[animal.name]: animal.residents.map((resident) => 
+        resident.name).sort()})),
+      SE: animalsSe.map((animal) => ({[animal.name]: animal.residents.map((resident) => 
+        resident.name).sort()})),
+      SW: animalsSw.map((animal) => ({[animal.name]: animal.residents.map((resident) => 
+        resident.name).sort()})),
+      };
+  };
+  if(options.includeNames === true && options.sex === 'female') {
+    return {
+      NE: animalsNe.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'female').map((resident) => resident.name)})),
+      NW: animalsNw.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'female').map((resident) => resident.name)})),
+      SE: animalsSe.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'female').map((resident) => resident.name)})),
+      SW: animalsSw.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'female').map((resident) => resident.name)})),
+      };
+  };
+  if(options.includeNames === true && options.sex === 'male') {
+    return {
+      NE: animalsNe.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'male').map((resident) => resident.name)})),
+      NW: animalsNw.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'male').map((resident) => resident.name)})),
+      SE: animalsSe.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'male').map((resident) => resident.name)})),
+      SW: animalsSw.map((animal) => ({[animal.name]: animal.residents.filter((resident) => 
+        resident.sex === 'male').map((resident) => resident.name)})),
+      };
+  };
+  if (options.includeNames === true) {
+    return {
+      NE: animalsNe.map((animal) => ({[animal.name]: animal.residents.map((resident) => resident.name)})),
+      NW: animalsNw.map((animal) => ({[animal.name]: animal.residents.map((resident) => resident.name)})),
+      SE: animalsSe.map((animal) => ({[animal.name]: animal.residents.map((resident) => resident.name)})),
+      SW: animalsSw.map((animal) => ({[animal.name]: animal.residents.map((resident) => resident.name)})),
+      };
+  };
+}
+// console.log(animalMap({includeNames :true}))
 
 // function schedule(dayName) {
 //   // seu código aqui
@@ -100,7 +181,7 @@ module.exports = {
   entryCalculator,
   // schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

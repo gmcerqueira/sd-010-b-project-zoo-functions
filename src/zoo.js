@@ -20,11 +20,11 @@ function animalsByIds(...ids) {
   return ids.map((id) => animals.find((animal) => animal.id === id));
 }
 
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
-
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+function animalsOlderThan(animal, age) {
+  return animals.find((especie) => especie.name === animal)
+    .residents.every((resident) => resident.age >= age);
+}
+console.log(animalsOlderThan('penguins', 2));
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -80,7 +80,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

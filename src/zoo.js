@@ -88,10 +88,12 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const primeiroAnimal = employees.find((empregado) => empregado.id === id)
+  const primeiroAnimal = employees
+    .find((empregado) => empregado.id === id)
     .responsibleFor.find((animalId) => animalId);
-  const animalMaisVelho = animals.find((idAnimal) => idAnimal.id === primeiroAnimal)
-    .residents.reduce((maisVelho, idadeAnimal) => maisVelho.age > idadeAnimal.age ? maisVelho : idadeAnimal);
+  const animalMaisVelho = animals
+    .find((idAnimal) => idAnimal.id === primeiroAnimal)
+    .residents.reduce((maisVelho, idadeAnimal) => (maisVelho.age > idadeAnimal.age) ? maisVelho : idadeAnimal);
   return Object.values(animalMaisVelho);
 }
 

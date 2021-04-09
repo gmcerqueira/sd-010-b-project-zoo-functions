@@ -122,3 +122,6 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
+// source:https://medium.com/@mathiasghenoazzolini/entendendo-map-filter-some-find-e-reduce-do-javascript-com-pokemons-e4884551817b
+// source: https://medium.com/coding-at-dawn/how-to-use-the-spread-operator-in-javascript-b9e4a8b06fab
+// source: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_syntax

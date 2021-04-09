@@ -36,16 +36,10 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// function isManager(id) {
-//   const employees = data.employees;
-//    const a = employees.every((employee) => employee);
-
-//   employees.forEach((employee) => console.log(employee))
-
-//   //retorna boolean
-// }
-
-
+function isManager(id) {
+  const { employees } = data;
+  return employees.some((employee) => employee.managers.includes(id));
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -90,7 +84,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

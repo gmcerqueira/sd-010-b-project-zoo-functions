@@ -187,8 +187,12 @@ function oldestFromFirstSpecies(idEmp) {
   return checkOldest(animalsSpece);
 }
 
+// increasePrices Verificar Arredondamento
 // function increasePrices(percentage) {
-//   // seu código aqui
+//   Object.keys(prices).forEach((price) => {
+//     const number = (prices[price] * (percentage / 100)) + prices[price];
+//     prices[price] = parseFloat(number.toFixed(2));
+//   });
 // }
 
 // function employeeCoverage(idOrName) {

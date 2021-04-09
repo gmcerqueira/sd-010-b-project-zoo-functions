@@ -11,13 +11,13 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 // 01
-function animalsByIds(ids) {
+function animalsByIds(...ids) {
   // seu código aqui
   const searchId = [];
   ids.forEach((id) => {
-    searchId.push(data.animals.find((animalId) => animalId === id));
+    searchId.push(data.animals.find((animalId) => animalId.id === id));
   });
-  console.log(searchId);
+  // console.log(searchId);
   return searchId;
 }
 // 02
@@ -57,10 +57,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     responsibleFor,
   });
 }
-
-// function animalCount(species) {
-//   // seu código aqui
-// }
+// 7
+function animalCount(species) {
+  // seu código aqui
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -89,7 +89,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

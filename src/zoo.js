@@ -108,13 +108,16 @@ function oldestFromFirstSpecies(id) {
   const oldSpec = whoAnimal.residents.sort((a, b) => b.age - a.age);
   return Object.values(oldSpec[0]);
 }
-console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
-/*
 function increasePrices(percentage) {
   // seu código aqui
+  const array = Object.values(data.prices).map((price) => price + (price * (percentage)) / 100);
+  data.prices.Adult = Math.round(array[0] * 100) / 100;
+  data.prices.Child = Math.round(array[2] * 100) / 100;
+  data.prices.Senior = Math.round(array[1] * 100) / 100;
 }
 
+/*
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
@@ -132,6 +135,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

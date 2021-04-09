@@ -69,9 +69,8 @@ const listIncludes = (animal, sex, sorted) =>
   });
 
 function animalMap(options) {
-  if (!options) return listModel((animal) => animal.map(({ name }) => name));
-  const { includeNames, sex, sorted } = options;
-  if (!includeNames) return listModel((animal) => animal.map(() => 'lions'));
+  const { includeNames, sex, sorted } = options || {};
+  if (!options || !includeNames) return listModel((animal) => animal.map(({ name }) => name));
   return listModel(listIncludes, sex, sorted);
 }
 

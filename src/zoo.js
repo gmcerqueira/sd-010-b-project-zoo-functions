@@ -11,6 +11,10 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+const {animals} = data;
+
+
+
 
 function animalsByIds(...ids) {
   const {animals} = data; 
@@ -27,10 +31,20 @@ function animalsByIds(...ids) {
   return animalsList
 }
 
-
 function animalsOlderThan(animal, age) {
+  const {animals} = data;
+// uso do Findo para encontrar a espécie
+  const {residents} = animals.find(especie => {
+    if (animal === especie.name) {
+      return true
+    }
+  })
+// uso do Every para verificar a idade minima passada
+  const result = residents.every(resident => resident.age >= age)
   
+  return result
 }
+
 
 function employeeByName(employeeName) {
   // seu código aqui

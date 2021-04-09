@@ -39,9 +39,11 @@ function createEmployee(personalInfo, associatedWith) {
   // spread para juntar od dois array
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  const existeId = data.employees.some((gerente) => gerente.managers.includes(id));
+  return existeId;
+  // seu código aqui, Some verifica se existe alguem array true
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -84,7 +86,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

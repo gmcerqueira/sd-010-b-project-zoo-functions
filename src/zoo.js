@@ -36,6 +36,9 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
+  // junta as informaçoes contidas em personalInfo com
+  // as informaçoes contidas em associatedWith, dessa forma
+  // criando um novo objeto
   return { ...personalInfo, ...associatedWith };
 }
 // function isManager(id) {

@@ -11,8 +11,6 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const {employees} = data;
-
 function animalsByIds(...ids) {
   const { animals } = data;
   if (ids.length === 0) {
@@ -48,28 +46,42 @@ function employeeByName(employeeName) {
     return {};
   }
   // uso do Find para encontrar o primeirou ou último nome recebido por parâmetro
-  const findEmployee = employees.find((employee) =>  {
+  const findEmployee = employees.find((employee) => {
     if (employeeName === employee.firstName) {
       return true;
     } if (employeeName === employee.lastName) {
       return true;
     }
-  })
+  });
   return findEmployee;
 }
 
-employeeByName()
-
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-}
-
-function isManager(id) {
+  
+  return {...personalInfo, ...associatedWith}
   
 }
 
+function isManager(id) {
+  const { employees } = data;
+
+  const teste = employees.find((manager) => {
+    manager.managers === id
+  })
+
+  return console.log(teste)
+  
+}
+
+
+
+
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  const { emploeeys } = data;
+
+
+
 }
 
 function animalCount(species) {

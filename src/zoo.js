@@ -17,7 +17,7 @@ function animalsByIds(...ids) {
   return zoo.filter((animal) => ids.some((animalId) => animal.id === animalId));
 }
 
-function animalsOlderThan(animal, age) {
+/* function animalsOlderThan(animal, age) {
   // seu código aqui
 }
 
@@ -63,7 +63,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-}
+} */
 
 module.exports = {
   entryCalculator,

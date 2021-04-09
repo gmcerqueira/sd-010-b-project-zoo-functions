@@ -63,12 +63,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   });
 }
 
-function animalCount(species) {
-  // seu código aqui
-  return data.animals.reduce((acc, cuur, value) => {
-    if (species === value.name) acc = cuur.residents.length;
-  }, 0);
-}
+// function animalCount(species) {
+//   // seu código aqui
+//   // return data.animals.reduce((acc, cuur, value) => {
+//   //   if (species === value.name) acc = cuur.residents.length;
+//   // }, 0);
+// }
 
 function entryCalculator(entrants = 0) {
   // seu código aqui
@@ -83,21 +83,30 @@ function entryCalculator(entrants = 0) {
   return valores.reduce((acc, curr) => acc + curr, 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
-  
-}
+// function animalMap(options) {
+//   // seu código aqui
 
-function schedule(dayName) {
-  // seu código aqui
-}
+// }
+
+// function schedule(dayName) {
+//   // seu código aqui
+// }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const animalEspecie = data.employees.find((value) => value.id === id).responsibleFor[0];
+  const animal = data.animals.find((value) => value.id === animalEspecie).residents;
+  return Object.values(animal.sort((a, b) => b.age - a.age)[0]);
 }
 
 function increasePrices(percentage) {
   // seu código aqui
+  const precos = Object.entries(data.prices);
+  precos.forEach((value) => {
+    const valorRedondo = +(Math.ceil((percentage + 100) * value[1] * 0.01 * 100));
+    data.prices[value[0]] = valorRedondo / 100;
+  });
+  return data.prices;
 }
 
 function employeeCoverage(idOrName) {
@@ -106,9 +115,9 @@ function employeeCoverage(idOrName) {
 
 module.exports = {
   entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
+  // schedule,
+  // animalCount,
+  // animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

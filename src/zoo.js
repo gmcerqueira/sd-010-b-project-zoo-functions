@@ -9,7 +9,12 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const {
+  animals,
+  employees,
+  prices,
+  hours,
+} = require('./data');
 // const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -33,8 +38,15 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const { id, firstName, lastName } = personalInfo;
-  const { managers, responsibleFor } = associatedWith;
+  const {
+    id,
+    firstName,
+    lastName,
+  } = personalInfo;
+  const {
+    managers,
+    responsibleFor,
+  } = associatedWith;
   return {
     id,
     firstName,
@@ -86,12 +98,56 @@ function entryCalculator(entrants) {
 }
 
 // function animalMap(options) {
-//   // seu código aqui
+//   if (!options || !options.includeNames) {
+//     return 'Default';
+//   }
+//   if (options.includeNames && options.sex && options.sorted) {
+//     return 'tudão';
+//   }
+//   if (options.includeNames && options.sex) {
+
+//   }
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+// console.log(animalMap());
+// console.log(animalMap({ includeNames: false }));
+// console.log(animalMap({ includeNames: true }));
+// console.log(animalMap({ includeNames: true, sorted: true }));
+// console.log(animalMap({ includeNames: true, sorted: false }));
+
+function amPm(hour) {
+  if (hour > 12) {
+    return `${hour - 12}pm`;
+  }
+  if (hour === 12) {
+    return `${hour}pm`;
+  }
+  return `${hour}am`;
+}
+
+function openingHours(open, close) {
+  if (open === 0 || close === 0) {
+    return 'CLOSED';
+  }
+  return `Open from ${amPm(open)} until ${amPm(close)}`;
+}
+
+function schedule(dayName) {
+  if (!dayName) {
+    return {
+      Sunday: openingHours(hours.Sunday.open, hours.Sunday.close),
+      Monday: openingHours(hours.Monday.open, hours.Monday.close),
+      Tuesday: openingHours(hours.Tuesday.open, hours.Tuesday.close),
+      Wednesday: openingHours(hours.Wednesday.open, hours.Wednesday.close),
+      Thursday: openingHours(hours.Thursday.open, hours.Thursday.close),
+      Friday: openingHours(hours.Friday.open, hours.Friday.close),
+      Saturday: openingHours(hours.Saturday.open, hours.Saturday.close),
+    };
+  }
+  return {
+    [dayName]: openingHours(hours[dayName].open, hours[dayName].close),
+  };
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -115,7 +171,7 @@ module.exports = {
   animalCount,
   entryCalculator,
   // animalMap,
-  // schedule,
+  schedule,
   // oldestFromFirstSpecies,
   // increasePrices,
   // employeeCoverage,

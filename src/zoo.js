@@ -94,9 +94,22 @@ function isManager(id) {
 //   // seu código aqui
 // }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  const { animals } = data;
+  if (species === undefined) {
+    const animalCountAll = animals.reduce((animalsAcc, animal) => {
+      const { residents } = animal;
+      const animalQtd = residents.length;
+      const animalObject = {
+        [animal.name]: animalQtd,
+      };
+      return { ...animalObject, ...animalsAcc };
+    }, {});
+    return animalCountAll;
+  }
+  const animalSeach = animals.find(({ name }) => name === species);
+  return animalSeach.residents.length;
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -125,7 +138,7 @@ function isManager(id) {
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

@@ -90,7 +90,11 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  return id;
+  const employee = data.employees.find((colaborator) => colaborator.id === id);
+  const firstSpecie = data.animals.find((specie) => specie.id === employee.responsibleFor[0]);
+  const animalsSorted = firstSpecie.residents.sort((animal1, animal2) => animal2.age - animal1.age);
+  const oldestAnimal = animalsSorted[0];
+  return Object.values(oldestAnimal);
 }
 
 function increasePrices(percentage) {

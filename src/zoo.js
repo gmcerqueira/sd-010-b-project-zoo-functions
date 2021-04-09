@@ -17,12 +17,20 @@ function animalsByIds(...ids) {
 }
 
 // function animalsOlderThan(animal, age) {
-//   // seu código aqui
+//   const filterAnimal= data.animals.find((objAnimal) =>  objAnimal.name === animal);
+//   return filterAnimal
 // }
+// console.log(animalsOlderThan('penguins', 10));
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+function employeeByName(employeeName) {
+  if (employeeName === undefined) return {};
+  const { employees } = data;
+  const returnFind = employees.find((employee) => {
+    const emploReturn = employee.firstName === employeeName || employee.lastName === employeeName;
+    return emploReturn;
+  });
+  return returnFind;
+}
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -72,7 +80,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

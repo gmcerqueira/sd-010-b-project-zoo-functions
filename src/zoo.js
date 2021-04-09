@@ -76,25 +76,19 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
+// função schedule criada com a ajuda do colega Lucas Martins
 function schedule(dayName) {
-  const fullSchedule = Object.entries(data.hours);
+  const keysHours = Object.keys(data.hours);
   const objSchedule = {};
-  if (!dayName) {
-    fullSchedule.forEach((day) => {
-      if (day[1].open === 0 && day[1].close === 0) {
-        objSchedule[day[0]] = 'CLOSED';
-      } else {
-        objSchedule[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
-      }
-    });
-    return objSchedule;
-  }
-  const requestedDay = fullSchedule.find((day) => day[0] === dayName);
-  if (requestedDay[1].open === 0 && requestedDay[1].close === 0) {
-    objSchedule[requestedDay[0]] = 'CLOSED';
-    return objSchedule;
-  }
-  objSchedule[requestedDay[0]] = `Open from ${requestedDay[1].open}am until ${requestedDay[1].close - 12}pm`;
+  keysHours.forEach((day) => {
+    const { open, close } = data.hours[day];
+    if (day === 'Monday') {
+      objSchedule[day] = 'CLOSED';
+    } else {
+      objSchedule[day] = `Open from ${open}am until ${close - 12}pm`;
+    }
+  });
+  if (dayName) return { [dayName]: objSchedule[dayName] };
   return objSchedule;
 }
 

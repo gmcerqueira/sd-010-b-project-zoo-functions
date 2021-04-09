@@ -75,7 +75,6 @@ function isManager(id) {
 }
 // Concluido com a Colaboração de Daniel ROberto
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui.
   // agradecimentos ao Daniel Roberto
   const {
     employees
@@ -93,26 +92,11 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   if (responsibleFor === undefined) {
     teste1.responsibleFor = []
   }
-  // const sum = teste1.reduce((prev, elem) => prev + elem)
-  // const empurra =  employees.push(teste1);
-  // return empurra;
-  // return employees.concat((teste1)); 
-  // Object.values((teste1))
   return employees.push(teste1);
 }
 
 function animalCount(species) {
-  // seu código aqui
-  // ${nomeAnimal}: ${População}.
-  // const verificaSpecie = (species) => (
-  //   filterSpecie.filter((populary) => (species.name, populary.populary))
-  // );
-  // return verificaSpecie;
-  // if(species === undefined){
-  //   const nameAnimal = data.animals.map((animal) => `${animal.name}: ${animal.residents.length}`);
-  //   return nameAnimal;
-  // }
-  //  return `ala bobao deu  errado`;
+  // agradecimentos, dainel roberto
   const {
     animals
   } = data;
@@ -124,12 +108,21 @@ function animalCount(species) {
       call[qtd.name] = qtd.residents.length;
       return call;
     }, {})
-  }
+  };
 }
-console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if(entrants === undefined) {
+    return 0;
+  }
+  const teste3 = Object.keys(entrants);
+  let total = 0;
+  teste3.forEach((key) => {
+    const result = data.prices[key] * entrants[key];
+    total += result;
+  });
+  return total;
 }
 
 function animalMap(options) {

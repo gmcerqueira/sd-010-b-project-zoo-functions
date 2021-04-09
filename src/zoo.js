@@ -52,21 +52,40 @@ function isManager(id) {
     (someValue === id)));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  
+  return data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
   // seu código aqui
+  return data.animals.reduce((acc, cuur, value) => {
+    if (species === value.name) acc = cuur.residents.length;
+  }, 0);
 }
 
-function entryCalculator(entrants) {
+function entryCalculator(entrants = 0) {
   // seu código aqui
+  const valores = [];
+  const precos = Object.entries(data.prices);
+  precos.forEach((value) => {
+    const quantidadeEntrada = entrants[value[0]];
+    if (quantidadeEntrada) {
+      valores.push(quantidadeEntrada * value[1]);
+    }
+  });
+  return valores.reduce((acc, curr) => acc + curr, 0);
 }
 
 function animalMap(options) {
   // seu código aqui
+  
 }
 
 function schedule(dayName) {

@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   // filter: passa a função em todos os elementos de animals até ela ser satisfeita;
@@ -28,14 +28,15 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
+  // usei esse 'if' no inicio para retornar um obj vazio caso não recebesse um parametro;
+  // Utilizei o find para percorrer todos elementos de employess e comparar os valores de firstName e lastName com o parametro passado, quando os valores são os mesmos que o passado, o obj respectivo é retornado;
   if (employeeName === undefined) return {};
-  // seu código aqui
   return employees.find((employee) =>
     (employee.firstName === employeeName || employee.lastName === employeeName ? employee : 0));
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  // Utilizei o spread operator para compor o novo obj a partir dos parametros passados;
   const create = () => ({ ...personalInfo, ...associatedWith });
   return create();
 }
@@ -49,7 +50,8 @@ function createEmployee(personalInfo, associatedWith) {
 // }
 
 function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
-  // seu código aqui
+  // alterei os parametros da função para que recebessem [] caso o valor respectivo fosse 'undefined' (metodo destructuring default);
+  // criei um novo employee a partir dos parametros da função e retornei o push do novo elemento no 'employees';
   const newEmployee = ({
     id,
     firstName,
@@ -62,11 +64,18 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
 
 // function animalCount(species) {
 //   // seu código aqui
+//   const allAnimals = {};
+//   const buildAnimals = animals.reduce((acc, curr, index) =>
+//     );
+//   if (species === undefined) return allAnimals;
+//   return animals[species];
 // }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants = 0) {
+  // seu código aqui
+  return Object.entries(entrants).reduce((acc, [tipo, quantidade]) =>
+    acc + (prices[tipo]) * quantidade, 0);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -89,7 +98,7 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   // animalCount,
   // animalMap,

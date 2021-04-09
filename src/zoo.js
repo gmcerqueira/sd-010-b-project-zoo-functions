@@ -10,35 +10,36 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-// Desconstrução dos objetos do data para facilitar a criação das funções nos requisitos.
-const { animals } = data;
 
-// (...ids) busca espécies de animais por ids, independente de quantos sejam.
-// filter fará novo array de acordo com as condições true do some.
-// para concluir este requisito precisei de auxilio do colega Emerson Saturnino, pois meu código não estava //
-// funcionando como o esperado no avaliador
+const { animals, employees } = data; // Desconstrução dos objetos do data para facilitar a criação das funções nos requisitos.
 
 function animalsByIds(...ids) {
   return animals.filter((animal) =>
     ids.some((verifyId) => animal.id === verifyId));
 }
-
-// testa se todos os animais desta espécie possuem a idade mínima especificada
-// retorna boleano
-// every verifica se todos os itens atendem a condição especificada.
+// (...ids) busca espécies de animais por ids, independente de quantos sejam.
+// filter fará novo array de acordo com as condições true do some.
+// para concluir este requisito precisei de auxilio do colega Emerson Saturnino via sala de estudos.
 
 function animalsOlderThan(animalName, age) {
   const animalVerify = animals.find((animal) => animal.name === animalName);
   return animalVerify.residents.every((resident) => resident.age >= age);
 }
-console.log(animalsOlderThan('otters', 7));
+// find encontra o aninalName o array de obsjetos data.animals
+// every verifica se o nome do animal atende a idade min informada - age e retorna boleano
 
+function employeeByName(employeeName) {
+  if (!employeeName) {
+    return {};
+  }
+  const employeeVerify = employees.find((employee) => (employee.firstName === employeeName)
+  || (employee.lastName === employeeName));
+  return employeeVerify;
+}
 // busca das pessoas colaboradoras através do primeiro ou do último nome delas
-// filter fará novo array de acordo com as condições true do some.
-// function employeeByName(employeeName) {
-//   return employees.filter((name) =>
-//     employeeName.some((verifyName) => employees.firstName || employees.lastName === verifyName));
-// }
+// find retorna obj de acordo com a condição - filter não deu certo, pois retorna um array
+// o ponto de exclamação no if, valida se o parametro é válido ou não, se falso entra no if
+// neste requisito, recebi ajuda do colega Jonnes Bezerra na sala do plantão
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -86,7 +87,7 @@ module.exports = {
 //   animalCount,
 //   animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   //   employeeCoverage,
   //   addEmployee,
   //   isManager,

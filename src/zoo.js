@@ -12,8 +12,6 @@ eslint no-unused-vars: [
 const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
-
-
 function animalsByIds(...ids) {
   return animals.filter((animal, index) => animal.id === ids[index]);
 }
@@ -71,9 +69,40 @@ function entryCalculator(entrants) {
 
 // }
 
-function schedule(dayName) {
-
+function allDaysMessage() {
+  const allDays = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
+  return allDays;
 }
+
+function pmToAm(hora) {
+  let novaHora = hora;
+  if (novaHora > 12) {
+    novaHora -= 12;
+  }
+  return novaHora;
+}
+
+function schedule(dayName) {
+  const whatDay = hours[`${dayName}`];
+  if (dayName === 'Monday') {
+    return {
+      Monday: 'CLOSED',
+    };
+  }
+  if (dayName === undefined) {
+    return allDaysMessage();
+  }
+  return { [dayName]: `Open from ${pmToAm(whatDay.open)}am until ${pmToAm(whatDay.close)}pm` };
+}
+console.log(schedule('Tuesday'));
 
 // function oldestFromFirstSpecies(id) {
 

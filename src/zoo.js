@@ -249,7 +249,7 @@ function employeeCoverage(idOrName) {
 }
 // ------------------------------------------------------------------------------------------------
 
-const makeGeoSortedAnimal = (number) => {
+const createAnimalWithLocation = (number) => {
   const geoLocations = ['NE', 'NW', 'SE', 'SW'];
   return animals.reduce((acc, curr) => {
     const array = acc;
@@ -262,16 +262,44 @@ const makeGeoSortedAnimal = (number) => {
 
 // resolução parâmetro 1
 const undefinedOptions = () => {
-  const NE = makeGeoSortedAnimal(0);
-  const NW = makeGeoSortedAnimal(1);
-  const SE = makeGeoSortedAnimal(2);
-  const SW = makeGeoSortedAnimal(3);
+  const NE = createAnimalWithLocation(0);
+  const NW = createAnimalWithLocation(1);
+  const SE = createAnimalWithLocation(2);
+  const SW = createAnimalWithLocation(3);
+  return { NE, NW, SE, SW };
+};
+
+const createObjectAnimals = (number) => {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  return animals.reduce((arr, curr) => {
+    const array = arr;
+    if (curr.location === locations[number]) {
+      array.push(animals.reduce((obj) => {
+        const objeto = obj;
+        objeto[curr.name] = curr.residents.reduce((acc, item) => {
+          const arrayNames = acc;
+          arrayNames.push(item.name);
+          return arrayNames;
+        }, []);
+        return objeto;
+      }, {}));
+    }
+    return array;
+  }, []);
+};
+
+const includeNames = () => {
+  const NE = createObjectAnimals(0);
+  const NW = createObjectAnimals(1);
+  const SE = createObjectAnimals(2);
+  const SW = createObjectAnimals(3);
   return { NE, NW, SE, SW };
 };
 
 function animalMap(options) {
   // seu código aqui
   if (!options) return undefinedOptions();
+  if (options.includeNames) return includeNames();
 }
 
 module.exports = {

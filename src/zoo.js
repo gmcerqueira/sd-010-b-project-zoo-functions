@@ -15,10 +15,7 @@ const { animals } = data;
 const { employees } = data;
 const { prices } = data;
 
-function animalsByIds(...ids) {
-  if (ids === []) {
-    return [];
-  }
+function animalsByIds(...ids) {/* caso a função receba um parâmetro como spread, ele já retorna um array vazio Colaboração do Rernato G Souza*/
   return ids.map((id) => animals.find((animal) => animal.id === id));
 }
 

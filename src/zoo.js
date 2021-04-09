@@ -85,9 +85,21 @@ function entryCalculator(entrants) {
 // }
 
 function schedule(dayName) {
-  const number = 0;
-  hours.forEach((element) => element.id === dayName);
-  return number;
+  const obj = {};
+  const key = Object.keys(hours);
+  if (dayName === undefined) {
+    key.forEach((element) => {
+      obj[element] = `Open from ${hours[element].open}am until ${hours[element].close - 12}pm`;
+      obj.Monday = 'CLOSED';
+    });
+    return obj;
+  } if (dayName === 'Monday') {
+    obj.Monday = 'CLOSED';
+    return obj;
+  }
+  const { open, close } = hours[dayName];
+  obj[dayName] = `Open from ${open}am until ${close - 12}pm`;
+  return obj;
 }
 
 // function oldestFromFirstSpecies(id) {

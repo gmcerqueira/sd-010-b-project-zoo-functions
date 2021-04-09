@@ -121,37 +121,26 @@ function entryCalculator(entrants) {
   return (adultQty * adultPrice) + (childQty * childPrice) + (seniorQty * seriorPrice);
 }
 
-const filterBySex = (animal, { sex }) => {
-  const residentsBySex = animal.residents.filter((resident) => resident.sex === sex);
-  const residents = residentsBySex.map((resident) => resident.name);
-  return residents;
+// Mapeia os residentes de um animal, podendo ser pelo sexo e/ou ordenados.
+const mapResidents = (animalsResidents, sorted, sex) => {
+  let residents = animalsResidents;
+  // Filtra os animais por sexo e verifica se o tipo do parametro é uma string.
+  if (typeof sex === 'string') residents = residents.filter((resident) => resident.sex === sex);
+  // Mapeia os residentes.
+  let residentsArray = residents.map((resident) => resident.name);
+
+  if (sorted) residentsArray = residentsArray.sort();
+  return residentsArray;
 };
 
-const mapResidents = (animal, options) => {
-  const { sorted, sex } = options;
-  const residents = animal.residents.map((indiv) => indiv.name);
-  if (sex) {
-    if (sorted) return filterBySex(animal, options).sort();
-    return filterBySex(animal, options);
-  }
-  if (sorted) return residents.sort();
-  return residents;
-};
-
+// Adiciona o animal ao objeto. Caso houver 'includeNames', cria um objeto para adicionar os residentes.
 const setAnimal = (animal, options) => {
-  const { name } = animal;
+  const { name, residents } = animal;
+  const { includeNames = false, sorted = false, sex } = options;
 
-  if (!options) return name;
-  if (options) {
-    const { includeNames } = options;
-    if (includeNames) {
-      const animalResidents = ({ [animal.name]: mapResidents(animal, options) });
+  if (includeNames) return ({ [name]: mapResidents(residents, sorted, sex) });
 
-      return animalResidents;
-    }
-
-    return name;
-  }
+  return name;
 };
 
 /*
@@ -163,12 +152,15 @@ const setAnimal = (animal, options) => {
       - sorted: Retorna com seus nomes ordenados.
       - sex: Retorna apenas do sexo definido.
 */
-function animalMap(options) {
+// 'options = {}' Dica do Arlen Freitas.
+function animalMap(options = {}) {
   // Objeto ja definido com as chaves, pois caso não houver nenhum animal de uma determinada região, sua chave será um array vazio.
   const mappedAnimals = { NE: [], NW: [], SE: [], SW: [] };
 
   Object.keys(mappedAnimals).forEach((region) => {
+    // Filtra os animais por região.
     const animalByRegion = animals.filter((animal) => animal.location === region);
+    // Mapeia os animais por região e os adiciona à chave correspondente da região.
     mappedAnimals[region] = animalByRegion.map((animal) => setAnimal(animal, options));
   });
 

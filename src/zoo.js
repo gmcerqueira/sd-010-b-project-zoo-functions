@@ -57,17 +57,32 @@ function animalCount(species) {
   return contaAnimais[species];
 }
 
-function entryCalculator(entrants = 0) {
-  let valor = 0;
-  if (entrants.Adult) { valor += entrants.Adult * precos.Adult; }
-  if (entrants.Senior) { valor += entrants.Senior * precos.Senior; }
-  if (entrants.Child) { valor += entrants.Child * precos.Child; }
+// function entryCalculator(entrants = 0) {
+//   let valor = 0;
+//   if (entrants.Adult) { valor += entrants.Adult * precos.Adult; }
+//   if (entrants.Senior) { valor += entrants.Senior * precos.Senior; }
+//   if (entrants.Child) { valor += entrants.Child * precos.Child; }
 
-  return valor;
-}
+//   return valor;
+// }
 
 // function animalMap(options) {
-//   // seu código aqui
+//   const saida = {};
+//   if (options === undefined) {
+//     animais.forEach(({ location, name }) => {
+//       if (!saida[location]) saida[location] = [];
+//       saida[location].push(name);
+//     });
+//     return saida;
+//   }
+//   if (options.includeNames) {
+//     animais.forEach(({ location, name, residents }, index) => {
+//       if (!saida[location]) saida[location] = [];
+//       animais.reduce(() => {}, {});
+//     });
+//     return saida;
+//   }
+//   return saida;
 // }
 
 // function schedule(dayName) {
@@ -90,7 +105,7 @@ module.exports = {
   entryCalculator,
   //   schedule,
   animalCount,
-  //   animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
   //   employeeCoverage,

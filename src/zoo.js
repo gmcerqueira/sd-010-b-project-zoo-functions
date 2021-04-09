@@ -96,19 +96,31 @@ function entryCalculator(entrants = 0) {
 /* function animalMap(options) {
   // seu código aqui
   return options;
-}
+} */
 
-function schedule(dayName) {
+/* function schedule(dayName) {
   // seu código aqui
   return dayName;
-}
+} */
+
+const findAnimal = (idAnimal) => {
+  const { residents } = animals.find((animal) => animal.id === idAnimal);
+  const olderAnimal = residents.reduce((acc, curr) => {
+    if (curr.age < acc) {
+      return acc;
+    }
+    return curr.age;
+  }, 0);
+  return Object.values(residents.find((age) => age.age === olderAnimal));
+};
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
-  return id;
+  // Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+  const { responsibleFor } = employees.find((funcion) => funcion.id === id);
+  return findAnimal(responsibleFor[0]);
 }
 
-function increasePrices(percentage) {
+/* function increasePrices(percentage) {
   // seu código aqui
   return percentage;
 }
@@ -129,7 +141,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

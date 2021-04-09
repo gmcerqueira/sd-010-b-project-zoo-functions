@@ -152,15 +152,13 @@ function schedule(dayName) {
   if (!dayName) return createSchedule;
   return accessSchedule(dayName);
 }
-/*
+
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const final = []
   const findEmployee = employees.find((item) => item.id === id);
   const animal = animals.find((element) => element.id === findEmployee.responsibleFor[0])
-  const oldestAnimal = animal.residents.reduce((prev, at) => prev.age > at.age ? )
-
-} */
+  return Object.values(animal.residents.reduce((prev, at) => prev.age > at.age ? prev : at))
+}
 
 /*
 
@@ -181,8 +179,8 @@ module.exports = {
 employeeCoverage,
 increasePrices,
 animalMap,
-oldestFromFirstSpecies,
 */
+  oldestFromFirstSpecies,
   schedule,
   entryCalculator,
   animalCount,

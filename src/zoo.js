@@ -59,9 +59,16 @@ function animalCount(species) {
   return species === undefined ? obj : numbers.residents.length;
 }
 
-// function entryCalculator(entrants) {
-//  // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // Entendimento da função com a ajuda de colegas.
+  if (entrants === undefined) return 0;
+  const { prices } = data;
+  let result = 0;
+  Object.keys(entrants).forEach((el) => {
+    result += entrants[el] * prices[el];
+  });
+  return result;
+}
 
 // function animalMap(options) {
 //  // seu código aqui
@@ -84,7 +91,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

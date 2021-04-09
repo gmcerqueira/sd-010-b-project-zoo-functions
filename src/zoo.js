@@ -92,7 +92,7 @@ function schedule(dayName) {
   });
   if (dayName) {
     return {
-      [dayName]: objeto[dayName];
+      [dayName]: objeto[dayName]
     };
   };
   return objeto;

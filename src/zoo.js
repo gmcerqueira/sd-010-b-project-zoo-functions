@@ -120,12 +120,21 @@ function oldestFromFirstSpecies(id) {
   return findAnimal(responsibleFor[0]);
 }
 
-/* function increasePrices(percentage) {
-  // seu código aqui
-  return percentage;
+function increasePrices(percentage) {
+  // Se o parâmetro da função recebe o valor 20, o aumento é de 20%
+  // Altera o objeto prices do arquivo data.js
+  // Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
+  const increase = (percentage / 100);
+  prices.Adult *= (1 + increase);
+  prices.Senior *= (1 + increase);
+  prices.Child *= (1 + increase);
+  prices.Adult = Math.round(prices.Adult * 100) / 100;
+  prices.Senior = Math.round(prices.Senior * 100) / 100;
+  prices.Child = Math.round(prices.Child * 100) / 100;
+  // Feita com ajuda de um colega
 }
 
-function employeeCoverage(idOrName) {
+/* function employeeCoverage(idOrName) {
   // seu código aqui
   return idOrName;
 } */
@@ -142,6 +151,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

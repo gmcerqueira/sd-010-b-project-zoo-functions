@@ -62,11 +62,19 @@
 //     animal.id === getAnimalId).residents.reduce((oldest, specificAnimal) =>
 //     (specificAnimal.age > oldest.age ? specificAnimal : oldest)));
 // }
-// console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 // function increasePrices(percentage) {
-//   // seu código aqui
+//   const arrayPrices = Object.entries(data.prices);
+//   const { prices } = data;
+//   arrayPrices.map((ageRange) => {
+//     const [range, price] = ageRange;
+//     prices[range] = (Math.round((price + ((price * (percentage / 100)))) * 100) / 100).toFixed(2);
+//     return prices;
+//   });
+//   return prices;
 // }
+// console.log(increasePrices(50));
+// console.log(data.prices);
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui

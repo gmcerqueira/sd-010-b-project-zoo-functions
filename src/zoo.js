@@ -19,7 +19,9 @@ const [...employeesData] = data.employees;
 const {
   ...prices
 } = data.prices;
-// const [...hours] = data.hours;
+const {
+  ...hours
+} = data.hours;
 
 function animalsByIds(...ids) {
   if (ids === []) {
@@ -197,9 +199,34 @@ function animalMap(options) {
   return getAnimalsLocation();
 }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function fullSchedule() {
+  const zooSchedule = {};
+  for (const key in hours) {
+    if (key === 'Monday') {
+      zooSchedule[key] = 'CLOSED';
+    } else {
+      zooSchedule[key] = `Open from ${hours[key].open}am until ${hours[key].close - 12}pm`;
+    }
+  }
+  return zooSchedule;
+}
+
+function daySchedule(dayName) {
+  const obj = {};
+  if (dayName === 'Monday') {
+    obj[dayName] = 'CLOSED';
+    return obj;
+  }
+  obj[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+  return obj;
+}
+
+function schedule(dayName) {
+  if (!dayName) {
+    return fullSchedule();
+  }
+  return daySchedule(dayName);
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -215,7 +242,7 @@ function animalMap(options) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   animalMap,
   animalsByIds,

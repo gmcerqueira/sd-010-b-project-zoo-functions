@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const { animals, employees, prices, hours } = require('./data');
+
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -104,23 +105,37 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
+  let older = 0;
   const animalToLook = employees.find((employee) => employee.id === id);
   const animalID = animalToLook.responsibleFor.find((animal) => animal[0]);
-  const getAnimal = animals.find((animal) => animal.id === animalID);
-  const olderAnimal = getAnimal.residents.forEach((an, index) => {
-    let older = an.age[0];
-    if (an.age[index] > older) {
-      older = an.ge[index];
+  const getAnimal = animals.find((animal) => animal.id === animalID).residents;
+  getAnimal.forEach((an) => {
+    if (an.age > older) {
+      older = an.age;
     }
-    return older;
   });
-  return [`${olderAnimal.name}, ${olderAnimal.age}, ${olderAnimal.sex}`];
+  const olderAnimal = getAnimal.find((value) => value.age === older);
+  return [olderAnimal.name, olderAnimal.sex, olderAnimal.age];
 }
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
-// function increasePrices(percentage) {
+function percentageCalc(valor, percentage) {
+  const multiply = (valor * percentage) / 100;
+  const total = valor + multiply;
+  return total;
+}
 
-// }
+function increasePrices(percentage) {
+  const { Adult: ad, Child: ch, Senior: se } = prices;
+  const adultRecalc = Math.round(percentageCalc(ad, percentage) * 100) / 100;
+  const childRecalc = Math.round(percentageCalc(ch, percentage) * 100) / 100;
+  const seniorRecalc = Math.round(percentageCalc(se, percentage) * 100) / 100;
+  return { Adult: adultRecalc,
+    Senior: seniorRecalc,
+    Child: childRecalc,
+  };
+}
+
+console.log(increasePrices(50));
 
 // function employeeCoverage(idOrName) {
 
@@ -138,6 +153,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  //   increasePrices,
+  increasePrices,
   createEmployee,
 };

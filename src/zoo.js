@@ -97,11 +97,21 @@ function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  // seu código aqui
+  if (idOrName !== undefined) {
+    return animals.find((animal) => animal.name === species).residents.length;
+  }
+  return employees.reduce((acc, current) => {
+    acc[`${current.firstName} ${current.lastName}`] = animals.filter((ani) => {
+      const animalList = current.responsibleFor.find((animalId) => ani.id === animalId);
+      return animalList;
+    }).map((pet) => pet.name);
+    return acc;
+  }, {});
+}
 
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
@@ -110,7 +120,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

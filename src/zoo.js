@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   // Caso receba nenhum parâmetro, necessário retornar um array vazio
@@ -83,12 +83,17 @@ function animalCount(species) {
   return obj[species];
 }
 
-/* function entryCalculator(entrants) {
-  // seu código aqui
-  return entrants;
+function entryCalculator(entrants = 0) {
+  // O parâmetro entrants recebe um objeto que contém as chaves Adult, Child e Senior, com suas respectivas quantidades de pessoas
+  // Retorna 0 se nenhum argumento for passado
+  // Retorna 0 se um objeto vazio for passado
+  // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+  return Object.entries(entrants)
+    .reduce((acc, [person, quant]) => acc + (prices[person] * quant), 0);
+  // Tive bastante dificuldade nessa questão, fui ajudado por um colega.
 }
 
-function animalMap(options) {
+/* function animalMap(options) {
   // seu código aqui
   return options;
 }
@@ -114,7 +119,7 @@ function employeeCoverage(idOrName) {
 } */
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

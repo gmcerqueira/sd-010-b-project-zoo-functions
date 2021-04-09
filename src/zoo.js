@@ -74,10 +74,13 @@ function entryCalculator(entrants = 0) {
 function schedule(dayName) {
   const semana = Object.keys(hours);
   const result = {};
-  semana.map((dia) => {
+  semana.forEach((dia) => {
     const { open, close } = hours[dia];
-    if (dia === 'Monday') result[dia] = 'CLOSED'
-    result[dia] = `Open from ${open}am until ${close - 12}pm`;
+    if (dia === 'Monday') {
+      result[dia] = 'CLOSED'
+    } else {
+    result[dia] = `Open from ${open}am until ${close - 12}pm`
+    }
   });
   if (dayName) return { [dayName]: result[dayName] };
 

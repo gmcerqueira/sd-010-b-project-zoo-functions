@@ -99,7 +99,21 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+  let messege = null;
+  if (species === undefined) {
+    const animalsPopularity = {};
+    messege = data.animals.forEach(({ _id, name, popularity }) => {
+      animalsPopularity[name] = popularity;
+    });
+    messege = animalsPopularity;
+  } else {
+    const itemAnimals = data.animals.find((animal) => animal.name === species);
+    messege = itemAnimals.popularity;
+  }
+  return messege;
 }
+
+/* console.log(animalCount('snakes')); */
 
 function entryCalculator(entrants) {
   // seu código aqui

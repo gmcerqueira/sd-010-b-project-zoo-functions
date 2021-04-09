@@ -187,7 +187,7 @@ function oldestFromFirstSpecies(idEmp) {
   return checkOldest(animalsSpece);
 }
 
-// increasePrices Verificar Arredondamento ###
+// increasePrices
 const round = (num, places) => {
   if (!(`${num}`).includes('e')) {
     return +(`${Math.round(`${num}e+${places}`)}e-${places}`);
@@ -207,9 +207,38 @@ function increasePrices(percentage) {
   });
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+// employeeCoverage
+const cathNaAnis = (animalsId) => {
+  const animalsName = [];
+  animalsId.forEach((animalId) => {
+    const animal = findById(animalId).name;
+    animalsName.push(animal);
+  });
+  return animalsName;
+};
+
+const mkFullName = (person) => `${person.firstName} ${person.lastName}`;
+
+function allEmpAni() {
+  const listempAni = {};
+  Object.keys(employees).forEach((employee) => {
+    listempAni[mkFullName(employees[employee])] = cathNaAnis(employees[employee].responsibleFor);
+  });
+  return listempAni;
+}
+
+const oneEmpAni = (idOrName) => {
+  const empAni = {};
+  const employee = employees.find(({ id, firstName, lastName }) =>
+    id === idOrName || firstName === idOrName || lastName === idOrName);
+  empAni[mkFullName(employee)] = cathNaAnis(employee.responsibleFor);
+  return empAni;
+};
+
+function employeeCoverage(idOrName) {
+  if (!idOrName) return allEmpAni();
+  return oneEmpAni(idOrName);
+}
 
 module.exports = {
   entryCalculator,
@@ -218,7 +247,7 @@ module.exports = {
   animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

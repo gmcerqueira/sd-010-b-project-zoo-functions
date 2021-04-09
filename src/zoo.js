@@ -47,7 +47,9 @@ function employeeByName(employeeName) {
     employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
+// Cria empregado através de dois objetos.
 function createEmployee(personalInfo, associatedWith) {
+  // Retorna um único objeto com todas as informações.
   return {
     ...personalInfo,
     ...associatedWith,
@@ -55,8 +57,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
-  return id;
+
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {

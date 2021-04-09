@@ -48,7 +48,6 @@ function employeeByName(employeeName) {
   }
   return {};
 }
-console.log(employeeByName('Nelson'));
 
 function createEmployee(personalInfo, associatedWith) {
   return {
@@ -75,50 +74,96 @@ function isManager(id) {
   return false;
 }
 // Concluido com a Colaboração de Daniel ROberto
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  // seu código aqui.
+  // agradecimentos ao Daniel Roberto
+  const {
+    employees
+  } = data;
+  const teste1 = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  }
+  if (managers === undefined) {
+    teste1.managers = []
+  }
+  if (responsibleFor === undefined) {
+    teste1.responsibleFor = []
+  }
+  // const sum = teste1.reduce((prev, elem) => prev + elem)
+  // const empurra =  employees.push(teste1);
+  // return empurra;
+  // return employees.concat((teste1)); 
+  // Object.values((teste1))
+  return employees.push(teste1);
+}
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  // seu código aqui
+  // ${nomeAnimal}: ${População}.
+  // const verificaSpecie = (species) => (
+  //   filterSpecie.filter((populary) => (species.name, populary.populary))
+  // );
+  // return verificaSpecie;
+  // if(species === undefined){
+  //   const nameAnimal = data.animals.map((animal) => `${animal.name}: ${animal.residents.length}`);
+  //   return nameAnimal;
+  // }
+  //  return `ala bobao deu  errado`;
+  const {
+    animals
+  } = data;
+  if (species !== undefined) {
+    return animals.find((animal) => animal.name === species).residents.length;
+  }
+  if (species === undefined) {
+    return animals.reduce((call, qtd) => {
+      call[qtd.name] = qtd.residents.length;
+      return call;
+    }, {})
+  }
+}
+console.log(animalCount());
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // seu código aqui
+}
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function animalMap(options) {
+  // seu código aqui
+}
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // seu código aqui
+}
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+}
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+}
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  // seu código aqui
+}
 
 module.exports = {
-  // entryCalculator,
-  // schedule,
-  // animalCount,
-  // animalMap,
+  entryCalculator,
+  schedule,
+  animalCount,
+  animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
-  // addEmployee,
+  employeeCoverage,
+  addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
-  // increasePrices,
+  oldestFromFirstSpecies,
+  increasePrices,
   createEmployee,
 };

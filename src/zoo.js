@@ -1,30 +1,23 @@
-/*
-eslint no-unused-vars: [
-  "error",
-  {
-    "args": "none",
-    "vars": "local",
-    "varsIgnorePattern": "data"
-  }
-]
-*/
-
 const data = require('./data');
 
-const { animals } = data;
+const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
   return animals.filter((animalsId, i) => animalsId.id === ids[i]);
 }
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+function animalsOlderThan(animal, age) {
+  // seu código aqui
+  const animalEncontrado = animals.find((myAnimal) => myAnimal.name === animal);
+  return animalEncontrado.residents.every((idade) => idade.age >= age);
+}
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+function employeeByName(employeeName) {
+  // seu código aqui
+  const foundEmployee = employees.find((employee) => Object.values(employee).includes(employeeName));
+  return { ...foundEmployee };
+}
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -67,17 +60,22 @@ function animalsByIds(...ids) {
 // }
 
 module.exports = {
-/*   entryCalculator,
-  schedule,
-  animalCount,
-  animalMap, */
+  /*
+    entryCalculator,
+    schedule,
+    animalCount,
+    animalMap, */
   animalsByIds,
-/*   employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
+  employeeByName,
+
+  //  employeeCoverage,
+  //  addEmployee,
+  //  isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee, */
+
+  /*
+    oldestFromFirstSpecies,
+    increasePrices,
+    createEmployee,
+     */
 };

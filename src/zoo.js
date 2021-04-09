@@ -11,6 +11,15 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+const getHours = (acc, [day, hour]) => {
+  let msg = 'CLOSED';
+  if (hour.open > 0 && hour.close > 0) {
+    msg = `Open from ${hour.open}am until ${hour.close - 12}pm`;
+  }
+  Object.assign(acc, { [day]: msg });
+  return acc;
+};
+
 function animalsByIds(...ids) {
   return ids.map((idParameter) => data.animals
     .find(({ id }) => id === idParameter));
@@ -71,14 +80,32 @@ function entryCalculator(entrants) {
     .reduce((acc, entrant) => acc + (data.prices[entrant[0]] * entrant[1]), 0);
 }
 
+/*
 function animalMap(options) {
-  // seu código aqui
+  if (options === undefined) {
+    const locations = [...new Set(data.animals.map(({ location }) => location))];
+
+  }
 }
+*/
+
+// hours: {
+//  Tuesday: { open: 8, close: 18 },
+// }
+// 'Tuesday': 'Open from 8am until 6pm',
 
 function schedule(dayName) {
-  // seu código aqui
+  const arrayHours = Object.entries(data.hours);
+  const formattedHours = arrayHours.reduce(getHours, {});
+
+  if (dayName !== undefined) {
+    return { [dayName]: formattedHours[dayName] };
+  }
+
+  return formattedHours;
 }
 
+/*
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
@@ -90,19 +117,19 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
-
+ */
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
+  // oldestFromFirstSpecies,
+  // increasePrices,
   createEmployee,
 };

@@ -32,11 +32,8 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animalName, age) {
   // Procura se há um animal com o nome passado.
   const animalObj = animals.find((animal) => animal.name === animalName);
-  // Verifica se o animal existe.
-  if (animalObj) {
-    // Verifica se todos os animais têm idade maior que 'age'.
-    return animalObj.residents.every((animal) => animal.age >= age);
-  }
+  // Verifica se o animal existe e verifica se todos os animais têm idade maior que 'age'.
+  if (animalObj) return animalObj.residents.every((animal) => animal.age >= age);
 
   return undefined;
 }

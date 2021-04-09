@@ -38,8 +38,8 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  const checkManager = employees.filter(manager => manager.managers.includes(id));
-  return checkManager.length > 0; 
+  const checkManager = employees.filter((manager) => manager.managers.includes(id));
+  return checkManager.length > 0;
 }
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {

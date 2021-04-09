@@ -173,11 +173,31 @@ function increasePrices(percentage) {
   prices.Senior = Math.round(toDecimal * prices.Senior * 100) / 100;
 }
 
-/*
+const getAnimalId = (idAnimal) => {
+  return animals.map(({ id, name }) => {
+    return idAnimal.forEach((element) => {
+      if (element === id) {
+        return name;
+      }
+    })
+  })
+}
+
+const undefinedIdOrName = () => {
+  let fullNames = employees.map(({ firstName, lastName }) => `${firstName} ${lastName}`);
+  let objFinal = {};
+  fullNames.forEach((elements) => {
+    objFinal[elements] = 'a'
+  })
+  return objFinal;
+}
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  if (!idOrName) return undefinedIdOrName();
 }
+
+/*
 
 function animalMap(options) {
   // seu código aqui
@@ -185,9 +205,9 @@ function animalMap(options) {
 */
 module.exports = {
 /*
-employeeCoverage,
 animalMap,
 */
+  employeeCoverage,
   increasePrices,
   oldestFromFirstSpecies,
   schedule,

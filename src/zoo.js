@@ -33,12 +33,19 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 // function isManager(id) {
-//   // seu código aqui
+//   const employees = data.employees;
+//    const a = employees.every((employee) => employee);
+
+//   employees.forEach((employee) => console.log(employee))
+
+//   //retorna boolean
 // }
+
+
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui

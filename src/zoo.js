@@ -50,6 +50,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+  return species;
 }
 
 // function entryCalculator(entrants) {

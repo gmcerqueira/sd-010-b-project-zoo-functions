@@ -80,9 +80,15 @@ function animalCount(species) {
   }
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+// Fonte: https://stackoverflow.com/questions/6736476/how-to-turn-nan-from-parseint-into-0-for-an-empty-string
+function entryCalculator(entrants = {}) {
+  const { prices } = data;
+  const adult = prices.Adult * entrants.Adult;
+  const children = prices.Child * entrants.Child;
+  const senior = prices.Senior * entrants.Senior;
+
+  return (adult || 0) + (children || 0) + (senior || 0);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -105,7 +111,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

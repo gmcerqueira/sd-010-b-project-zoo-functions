@@ -69,7 +69,10 @@ function animalCount(species) {
   // seu código aqui
   if (species === undefined) {
     return animals.reduce((animalAcc, animalCurr) => {
-      return animalAcc[animalCurr.name] = animalCurr.residents.length;
+      const { name } = animalCurr;
+      return {
+        ...animalAcc, [name]: animalCurr.residents.length,
+      };
     }, {});
   }
   const findAnimal = animals.find((animal) => animal.name === species);

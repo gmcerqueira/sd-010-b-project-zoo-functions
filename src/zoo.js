@@ -100,7 +100,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || entrants === {}) {
     return 0;
   }
-  // if (entrants === false) { console.log(0) }
+
   const arr = Object.keys(entrants);
   let result = 0;
 
@@ -122,7 +122,14 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const findEmployee = employees.find((person) =>
+    person.id === id).responsibleFor[0];
+
+  const findAnimals = animals.find((Animal) => Animal.id === findEmployee);
+  const animalSorted = findAnimals.residents.sort((a, b) => b.age - a.age)[0];
+  return [animalSorted.name, animalSorted.sex, animalSorted.age];
 }
+oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992');
 
 function increasePrices(percentage) {
   // seu código aqui
@@ -130,8 +137,9 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-}
 
+}
+employeeCoverage('Azevado');
 module.exports = {
   entryCalculator,
   schedule,

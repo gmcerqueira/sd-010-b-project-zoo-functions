@@ -140,7 +140,7 @@ function schedule(dayName) {
     returnObject.Monday = 'CLOSED';
   });
   if (!dayName) { return returnObject; }
-  if (dayName) { 
+  if (dayName) {
     const object = {};
     object[dayName] = returnObject[dayName];
     return object;
@@ -148,8 +148,11 @@ function schedule(dayName) {
 }
 
 // function oldestFromFirstSpecies(id) {
-//   // seu código aqui
+//   const employee = data.employee.find(
+//   return employee;
 // }
+
+// console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 // function increasePrices(percentage) {
 //   // seu código aqui

@@ -73,12 +73,15 @@ function animalCount(species) {
   }
   return objAnimals;
 }
-console.log(animalCount());
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants = 0) {
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  const price = (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
+  return price;
+}
 
+// const entrants = { 'Adult': 2, 'Child': 3, 'Senior': 1};
+// console.log(entryCalculator(entrants));
 // function animalMap(options) {
 //   // seu código aqui
 // }
@@ -100,7 +103,7 @@ console.log(animalCount());
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

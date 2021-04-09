@@ -80,9 +80,79 @@ const calcPrice = (entrants) => {
 const entryCalculator = (entrants) =>
   (!entrants || !Object.values(entrants).length ? 0 : calcPrice(entrants));
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+// animalMap
+const takeLocations = () => {
+  const allLoc = animals.map(({ location }) => location);
+  const singleLoc = [...new Set(allLoc)];
+  return singleLoc;
+};
+const locations = takeLocations();
+
+const tkNaAni = (residents) => residents.map(({ name }) => name);
+const tkNaByS = (residents, sexAni) => tkNaAni(residents.filter(({ sex }) => sex === sexAni));
+
+const includeNamesNoPam = () => {
+  const anisLoc = {};
+  locations.forEach((loc) => {
+    const aniByLoc = animals.filter(({ location }) => location === loc);
+    anisLoc[loc] = tkNaAni(aniByLoc);
+  });
+  return anisLoc;
+};
+
+const includeNames = (order) => {
+  const anisLoc = {};
+  locations.forEach((loc) => {
+    const aniByLoc = animals.filter(({ location }) => location === loc);
+    if (order === 'S') {
+      anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaAni(residents).sort() }));
+    } else {
+      anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaAni(residents) }));
+    }
+  });
+  return anisLoc;
+};
+
+const includeNamesBySex = (sex, order) => {
+  const anisLoc = {};
+  locations.forEach((loc) => {
+    const aniByLoc = animals.filter(({ location }) => location === loc);
+    if (order === 'S') {
+      anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaByS(residents, sex)
+        .sort() }));
+    } else {
+      anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaByS(residents, sex) }));
+    }
+  });
+  return anisLoc;
+};
+
+const checkNameBySex = (options) => {
+  if (options.includeNames && options.sorted) return includeNamesBySex(options.sex, 'S');
+  if (options.includeNames) return includeNamesBySex(options.sex);
+  return includeNamesNoPam();
+};
+
+function animalMap(options) {
+  if (!options) return includeNamesNoPam();
+  if (options.sex !== undefined) return checkNameBySex(options);
+  if (options.sorted) return includeNames('S');
+  return includeNames();
+}
+
+// const includeNames = (cond) => {
+//   const anisLoc = {};
+//   locations.forEach((loc) => {
+//     const aniByLoc = animals.filter(({ location }) => location === loc);
+//     if (!cond) anisLoc[loc] = tkNaAni(aniByLoc);
+//     if (cond === 'N') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaAni(residents) }));
+//     if (cond === 'S') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaAni(residents).sort() }));
+//     if (cond === 'female' || cond === 'male') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaByS(residents, cond) }));
+//     if (cond === 'females' || cond === 'males') anisLoc[loc] = aniByLoc.map(({ name, residents }) => ({ [name]: tkNaByS(residents, cond.replace('s', '')).sort() }));
+//     if (cond === 'A') anisLoc[loc] = tkNaAni(aniByLoc);
+//   });
+//   return anisLoc;
+// };
 
 // function schedule(dayName) {
 //   // seu código aqui
@@ -104,7 +174,7 @@ module.exports = {
   entryCalculator,
   // schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

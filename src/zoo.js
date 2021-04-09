@@ -131,8 +131,6 @@ function increasePrices(percentage) {
   return prices;
 }
 
-console.log(increasePrices(1));
-
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }

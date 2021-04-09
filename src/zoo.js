@@ -88,9 +88,90 @@ function entryCalculator(entrants) {
   return total.filter((value) => value > 0).reduce((acc, curr) => acc + curr, 0);
 }
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+// funções auxiliares para resolução do requisito 9 (animalMap)
+function getAnimalsLocation() {
+  return animals.reduce((acc, curr) => {
+    const {
+      location,
+    } = curr;
+    return {
+      ...acc,
+      [location]: animals.filter((animal) => animal.location === location).map((el) => el.name),
+    };
+  }, {});
+}
+
+function getAnimalsName() {
+  return animals.reduce((acc, curr) => {
+    const {
+      location,
+    } = curr;
+    return {
+      ...acc,
+      [location]: animals.filter((animal) => animal.location === location).map((an) => {
+        const obj = {};
+        const {
+          name,
+        } = an;
+        obj[name] = an.residents.map((resident) => resident.name);
+        return obj;
+      }),
+    };
+  }, {});
+}
+
+function getOrdenedNames() {
+  return animals.reduce((acc, cur) => {
+    const {
+      location,
+    } = cur;
+    return {
+      ...acc,
+      [location]: animals.filter((el) => el.location === location).map((an) => {
+        const obj = {};
+        const {
+          name,
+        } = an;
+        obj[name] = (an.residents.map((resident) => resident.name)).sort();
+        return obj;
+      }),
+    };
+  }, {});
+}
+
+function getAnimalsBySex(options) {
+  return animals.reduce((acc, curr) => {
+    const {
+      location,
+    } = curr;
+    return {
+      ...acc,
+      [location]: animals.filter((animal) => animal.location === location).map((an) => {
+        const obj = {};
+        const {
+          name,
+        } = an;
+        obj[name] = an.residents.filter(resident => resident.sex === options.sex).map(el=>el.name)
+        return obj;
+      }),
+    };
+  }, {});
+}
+
+function animalMap(options) {
+  if (!options) {
+    return getAnimalsLocation();
+  }
+  if (options.includeNames && options.sorted) {
+    return getOrdenedNames();
+  }
+  if (options.includeNames && options.sex) {
+    return getAnimalsBySex(options);
+  }
+  if (options.includeNames) {
+    return getAnimalsName();
+  }
+}
 
 // function schedule(dayName) {
 //   // seu código aqui
@@ -112,7 +193,7 @@ module.exports = {
   entryCalculator,
   // schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

@@ -11,9 +11,10 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+const { animals, hours } = data;
+
 function animalsByIds(...ids) {
   // seu código aqui
-  const { animals } = data;
   const final = [];
   ids.forEach((id) => animals.filter((animal) => {
     if (animal.id === id) {
@@ -27,7 +28,6 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const { animals } = data;
   let result;
   animals.forEach((param) => {
     if (param.name === animal) {
@@ -75,7 +75,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  const { animals } = data;
   let final = {};
   if (species === undefined) {
     animals.forEach((animal) => {
@@ -112,11 +111,26 @@ function entryCalculator(entrants) {
 
 // function animalMap(options) {
 //   // seu código aqui
+//   const { animals } = data;
+//   if (options === undefined) {
+
+//   }
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // seu código aqui
+  const objFinal = {};
+  if (!dayName) {
+    Object.keys(hours).forEach((key) => {
+      const { open, close } = hours[key];
+      objFinal[key] = open ? `Open from ${open}am until ${close - 12}pm` : 'CLOSED';
+    });
+    return objFinal;
+  }
+  const { open, close } = hours[dayName];
+  objFinal[dayName] = open ? `Open from ${open}am until ${close - 12}pm` : 'CLOSED';
+  return objFinal;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -132,7 +146,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

@@ -9,6 +9,9 @@ eslint no-unused-vars: [
 ]
 */
 
+const {
+  hours
+} = require('./data');
 const data = require('./data');
 
 const {
@@ -18,12 +21,13 @@ const {
 } = data;
 
 function animalsByIds(...ids) {
-  if (!ids) return [];
   return animals.filter((animal) => ids.find((id) => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find((elem) => elem.name === animal).residents.every((res) => res.age >= age);
+  const animalFilter = animals.find((specie) => specie.name === animal).residents;
+  console.log(animalFilter);
+  return animalFilter.every((resident) => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -39,7 +43,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some((employee) => employee.managers.includes(id));
+  const manangers = employees.some((emp) => emp.managers.find((man) => man === id));
+  return manangers;
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -53,14 +58,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
+  const animal = {};
   if (!species) {
-    const everyAnimals = {};
-    animals.forEach((animal) => {
-      (everyAnimals[animal.name] = animal.residents.length);
+    animals.forEach((an) => {
+      animal[an.name] = an.residents.length;
     });
-    return everyAnimals;
+    return animal;
   }
-  return animals.find((animal) => animal.name === species).residents.length;
+  return animals.find((an) => an.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -69,19 +74,39 @@ function entryCalculator(entrants) {
   return Object.keys(entrants).reduce((acc, curr) => acc + prices[curr] * entrants[curr], 0);
 }
 
-/* function animalMap(options) {
+function animalMap(options) {
+  const local = {
+    NE: [],
+    NW: [],
+    SE: [],
+    SW: [],
+  };
   if (!options) {
-    animals.filter((animal)=> animal.location)
-    })
+    animals.forEach(({
+      location,
+      name,
+    }) => local[location].push(name));
+    return local;
+  }
+  if (options.includeNames === true) {
+    animals.forEach(({
+      location,
+      name,
+    }) => {});
   }
 }
 
 function schedule(dayName) {
-  if (!dayName) {
-    return Object.keys(hours).reduce(())
-  }
+  const mesage = {};
+  const days = Object.keys(hours);
+  days.forEach((day) => {
+    const {
+      open,
+      close,
+    } = hours[day];
+  });
 }
-*/
+
 
 function oldestFromFirstSpecies(id) {
   const first = employees.find((emploee) => emploee.id === id).responsibleFor[0];
@@ -95,19 +120,24 @@ function increasePrices(percentage) {
   });
 }
 
-/*
 function employeeCoverage(idOrName) {
-  // seu código aqui
-} */
+
+  if (!idOrName) {
+    const fullName = {};
+    employees.forEach((employee) => {
+      fullName[`${employee.firstName} ${employee.lastName}`];
+    });
+  }
+}
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

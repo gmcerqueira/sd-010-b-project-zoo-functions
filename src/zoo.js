@@ -14,6 +14,7 @@ const data = require('./data');
 function animalsByIds(...ids) {
   const identifications = ids;
   if (identifications.length === 0) { return identifications; }
+  // Código original:
   // const animals = [];
   // identifications.forEach((element) => {
   //   const animal = data.animals.filter((element2) => element2.id === element);
@@ -110,27 +111,54 @@ function entryCalculator(entrants) {
   return grossProfit;
 }
 
-// function noOptions(directions, animals) {
-//   const returnObject = {};
-//   directions.forEach((element) => {
-//     returnObject[element] = animals.filter((entry) =>
-//       entry[0] === element).map((entry) => entry[1]);
-//   });
-//   return returnObject;
-// }
+function animalMapNoOptions() {
+  const response = {};
+  const animals = data.animals.map((entry) => [entry.location, entry.name]);
+  const directions = ['NE', 'NW', 'SE', 'SW'];
+  directions.forEach((direction) => {
+    const directionAnimals = [];
+    animals.forEach((animal) => {
+      if (direction === animal[0]) {
+        directionAnimals.push(animal[1]);
+      }
+    });
+    response[direction] = directionAnimals;
+  });
+  return response;
+}
 
-// function animalMap(options) {
-//   const returnObject = {};
-//   const animals = data.animals.map((entry) => [entry.location, entry.name,
-//     entry.residents.map((entry2) => entry2.name)]);
-//   const directions = ['NE', 'NW', 'SE', 'SW'];
-//   if (!options) {
-//     return noOptions(directions, animals);
-//   }
-//   return returnObject;
-// }
+function animalMapIncludeNames() {
+  const response = {};
+  const animals = data.animals.map((entry) =>
+    [entry.location, entry.name, entry.residents.map((entry2) => entry2.name)]);
+  const directions = ['NE', 'NW', 'SE', 'SW'];
+  directions.forEach((direction) => {
+    const directionAnimals = [];
+    animals.forEach((animal) => {
+      [location, names, residents] = animal;
+      if (direction === animal[0]) {
+        const object = {};
+        object[names] = residents;
+        directionAnimals.push(object);
+      }
+    });
+    response[direction] = directionAnimals;
+  });
+  return response;
+}
 
-// console.log(animalMap());
+function animalMapNamesSorted() {
+
+}
+
+// -------------------------------------------------------
+function animalMap(options) {
+  if (!options) { return animalMapNoOptions(); }
+  if (options.includeNames === true && options.sorted === true) { return animalMapNamesSorted() };
+  if (options.includeNames === true) { return animalMapIncludeNames(); }
+}
+
+console.log(animalMap({ includeNames: true, sorted: true }));
 
 function schedule(dayName) {
   const hours = Object.entries(data.hours);
@@ -215,33 +243,25 @@ function lastNameCoverage(idOrName) {
 }
 
 function employeeCoverage(idOrName) {
-  // no params
   if (!idOrName) {
     return allEmployeesCoverage();
   }
-  // id
   if (data.employees.find((entry) => entry.id === idOrName)) {
     return idCoverage(idOrName);
   }
-
-  // firsName
   if (data.employees.find((entry) => entry.firstName === idOrName)) {
     return nameCoverage(idOrName);
   }
-
-  // lastName
   if (data.employees.find((entry) => entry.lastName === idOrName)) {
     return lastNameCoverage(idOrName);
   }
 }
 
-console.log(employeeCoverage('Azevado'));
-
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

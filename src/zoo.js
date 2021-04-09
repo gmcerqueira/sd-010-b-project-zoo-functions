@@ -15,16 +15,15 @@ const { animals, employees, prices, hours } = data;
 
 const animalsByIds = (...ids) => ids.map((animalId) => animals.find(({ id }) => id === animalId));
 
-function animalsOlderThan(animal, ageMin) {
-  return animals.find(({ name }) => name === animal).residents.every(({ age }) => age > ageMin);
-}
+const animalsOlderThan = (animal, ageMin) =>
+  animals.find(({ name }) => name === animal).residents.every(({ age }) => age > ageMin);
 
-function employeeByName(employeeName) {
-  if (!employeeName) return {};
-  return employees.find(
-    (person) => person.firstName === employeeName || person.lastName === employeeName,
-  );
-}
+const employeeByName = (employeeName) =>
+  (employeeName
+    ? employees.find(
+      (person) => person.firstName === employeeName || person.lastName === employeeName,
+    )
+    : {});
 
 const createEmployee = (arg1, arg2) => ({ ...arg1, ...arg2 });
 
@@ -114,9 +113,7 @@ const searchNameOrId = (iN) => {
 function employeeCoverage(idOrName) {
   const list = listEmployees();
   if (!idOrName) return list;
-  return {
-    [searchNameOrId(idOrName)]: list[searchNameOrId(idOrName)],
-  };
+  return { [searchNameOrId(idOrName)]: list[searchNameOrId(idOrName)] };
 }
 module.exports = {
   entryCalculator,

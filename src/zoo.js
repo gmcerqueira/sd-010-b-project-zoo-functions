@@ -19,7 +19,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return animals
-    .find((animals) => animals.name === animal)
+    .find((animais) => animais.name === animal)
     .residents.every((idadeAnimal) => idadeAnimal.age >= age);
 }
 
@@ -76,9 +76,11 @@ function schedule(dayName) {
   const result = {};
   semana.map((dia) => {
     const { open, close } = hours[dia];
-    (dia === 'Monday') ? result[dia] = 'CLOSED' : result[dia] = `Open from ${open}am until ${close - 12}pm`
+    return (dia === 'Monday') 
+      ? result[dia] = 'CLOSED'
+      : result[dia] = `Open from ${open}am until ${close - 12}pm`;
   });
-  if (dayName) return { [dayName]: result[dayName] }
+  if (dayName) return { [dayName]: result[dayName] };
 
   return result;
 }

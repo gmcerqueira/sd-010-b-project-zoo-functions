@@ -8,37 +8,35 @@ eslint no-unused-vars: [
   }
 ]
 */
-
-const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
+const { animals, employees, prices } = data;
+
 function animalsByIds(...ids) {
-  let array = [];
-  ids.forEach((parmItem) => animals.filter((element) => {
-    if (parmItem === element.id) {
-      array.push(element);
-    }
-  }));
+  const array = [];
+  ids.forEach((parmItem) => animals.forEach((element) =>
+    (parmItem === element.id) ? array.push(element) : false));
   return array;
 }
 
 function animalsOlderThan(animal, age) {
-  const array = animals.filter((element) => element.name == animal);
+  const array = animals.filter((element) => element.name === animal);
   let boo = '';
   array.forEach((element) => {
-    boo = element.residents.every((element) => element.age > age);
-  })
+    boo = element.residents.every((obj) => obj.age > age);
+  });
   return boo;
 }
 
 function employeeByName(employeeName) {
-  let employ = employees.find((element) => element.firstName == employeeName|| element.lastName == employeeName);
-  let obj = {...employ};
+  const employ = employees.find((element) =>
+    element.firstName === employeeName || element.lastName === employeeName);
+  const obj = { ...employ };
   return obj;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  let obj = {...personalInfo, ...associatedWith};
+  const obj = { ...personalInfo, ...associatedWith };
   return obj;
 }
 
@@ -46,75 +44,77 @@ function isManager(id) {
   return employees.some((element) => element.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  let obj = {id: id, firstName: firstName, lastName: lastName, managers: managers, responsibleFor: responsibleFor};
+function addEmployee(id, firstName, lastName,
+  managers = [], responsibleFor = []) {
+  const obj = { id, firstName, lastName, managers, responsibleFor };
   return employees.push(obj);
-} 
+}
 function animalCount(species) {
   let number = 0;
-  let obj = {};
+  const obj = {};
   animals.forEach((element) => {
-    if (element.name == species) {
-      return number = element.residents.length;
+    if (element.name === species) {
+      number = element.residents.length;
     } else if (species === undefined) {
-      return obj[element.name] = element.residents.length;
+      obj[element.name] = element.residents.length;
     }
-  })
-  if (species == undefined) {
+  });
+  if (species === undefined) {
     return obj;
   } else {
-  return number;
+    return number;
   }
 } animalCount();
 
-function entryCalculator(entrants) {
+function entryCalculator (entrants) {
   let count = 0;
-  if (entrants == undefined || Object.keys(entrants).length < 1) {
+  if (entrants === undefined || Object.keys(entrants).length < 1) {
     return 0;
   } else {
-    for (let param in entrants) {
-      for (let keys in prices) {
-        if (param == keys) {
-          count += entrants[param] * prices[keys];
-        }
-      }
-    }
+    Object.keys(entrants).forEach((param) => {
+      count += entrants[param] * prices[param];
+    });
   }
   return count;
 }
 
 function animalMap(options) {
-  // seu código aqui
+  if (options === undefined) {
+    animals.map((element) => {
+      if(element.location === 'NE'){
+        return element.name;
+    }});
+  }
 }
 
-function schedule(dayName) {
-  // seu código aqui
-}
+// function schedule(dayName) {
+//   // seu código aqui
+// }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
+// }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+// function increasePrices(percentage) {
+//   // seu código aqui
+// }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
 module.exports = {
   entryCalculator,
-  schedule,
+  // schedule,
   animalCount,
   animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
+  // oldestFromFirstSpecies,
+  // increasePrices,
   createEmployee,
 };

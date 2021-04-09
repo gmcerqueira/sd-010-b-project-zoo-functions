@@ -137,9 +137,15 @@ function oldestFromFirstSpecies(idParams) {
   return [name, sex, age];
 }
 
-console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 function increasePrices(percentage) {
-  // seu código aqui
+  const { Adult, Senior, Child } = prices;
+
+  const newPrices = {
+    Adult: (Math.round(Adult * (1 + percentage / 100) * 100) / 100),
+    Senior: (Math.round(Senior * (1 + percentage / 100) * 100) / 100),
+    Child: (Math.round(Child * (1 + percentage / 100) * 100) / 100),
+  };
+  Object.assign(prices, newPrices);
 }
 
 function employeeCoverage(idOrName) {

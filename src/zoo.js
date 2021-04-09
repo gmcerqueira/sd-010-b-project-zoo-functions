@@ -12,12 +12,9 @@ const data = require('./data');
 
 const { animals } = data;
 
-function animalsByIds(...ids) {
-  
+function animalsByIds(...ids) {  
   return animals.filter((idAnimals) => idAnimals === ids); 
 }
-
-console.log(animalsByIds());
 
 // function animalsOlderThan(animal, age) {
 //   return animal, age;
@@ -75,9 +72,9 @@ module.exports = {
   animalsByIds,
   employeeByName,
   employeeCoverage,
-  addEmployee,
+//  addEmployee,
   isManager,
-  animalsOlderThan,
+//  animalsOlderThan,
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,

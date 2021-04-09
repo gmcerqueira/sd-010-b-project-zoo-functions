@@ -40,14 +40,23 @@ function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   return { ...personalInfo, ...associatedWith };
 }
-
-// function isManager(id) {
-//   // seu código aqui
-// }
-
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+// 5
+function isManager(id) {
+  // seu código aqui
+  return data.employees.some((verifyGerency) =>
+    verifyGerency.data.managers.filter((personId) => personId === id));
+}
+// 6
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  // seu código aqui
+  data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -85,8 +94,8 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
-  // isManager,
+  addEmployee,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

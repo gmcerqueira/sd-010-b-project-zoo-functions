@@ -79,7 +79,7 @@ function schedule(dayName) {
   const { hours } = data;
   const hoursWeek = Object.keys(hours);
   const result = {};
-  hoursWeek.map((hour) => {
+  hoursWeek.forEach((hour) => {
     if (hour === 'Monday') {
       result[hour] = 'CLOSED';
       return result[hour];

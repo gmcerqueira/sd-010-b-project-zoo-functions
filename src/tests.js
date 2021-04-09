@@ -26,8 +26,21 @@ function animalMap(options) {
   // seu código aqui
 }
 
+function auxiliarScheduleFunction(importedDayName) {
+  const fullSchedule = Object.entries(data.hours);
+  const objSchedule = {};
+  const reqDay = fullSchedule.find((day) => day[0] === importedDayName);
+  if (reqDay[1].open === 0 && reqDay[1].close === 0) {
+    objSchedule[reqDay[0]] = 'CLOSED';
+    return objSchedule;
+  }
+  objSchedule[reqDay[0]] = `Open from ${reqDay[1].open}am until ${reqDay[1].close - 12}pm`;
+  return objSchedule;
+}
+
 function schedule(dayName) {
   const fullSchedule = Object.entries(data.hours);
+  const { day}
   const objSchedule = {};
   if (!dayName) {
     fullSchedule.forEach((day) => {
@@ -39,13 +52,7 @@ function schedule(dayName) {
     });
     return objSchedule;
   }
-  const requestedDay = fullSchedule.find((day) => day[0] === dayName);
-  if (requestedDay[1].open === 0 && requestedDay[1].close === 0) {
-    objSchedule[requestedDay[0]] = 'CLOSED';
-    return objSchedule;
-  }
-  objSchedule[requestedDay[0]] = `Open from ${requestedDay[1].open}am until ${requestedDay[1].close - 12}pm`;
-  return objSchedule;
+  return auxiliarScheduleFunction(dayName);
 }
 console.log(schedule('Tuesday'));
 

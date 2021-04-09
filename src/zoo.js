@@ -72,51 +72,62 @@ function entryCalculator(entrants = undefined) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const { Adult = 0, Senior = 0, Child = 0 } = entrants;
+  const {
+    Adult = 0, Senior = 0, Child = 0,
+  } = entrants;
   return Adult * 49.99 + Senior * 24.99 + Child * 20.99;
 }
 
-function animalMap(options = 'empty') {
-  const locations = ['NE', 'NW', 'SE', 'SW'];
-  if (options === 'empty' || options.includeNames !== true) {
-    return locations.reduce((locationA, locationB) => ({
-      ...locationA,
-      [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) => animal.name),
-    }), {});
-  }
-  if (options.includeNames === true && (options.sex === 'female' || options.sex === 'male') && options.sorted === true) {
-    return locations.reduce((locationA, locationB) => ({
-      ...locationA,
-      [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) => ({ [animal.name]: animal.residents.filter((resident) =>
-        resident.sex === options.sex).map((resident) => resident.name).sort() })),
-    }), {});
-  }
-  if (options.includeNames === true && options.sorted === true) {
-    return locations.reduce((locationA, locationB) => ({
-      ...locationA,
-      [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) => ({ [animal.name]: animal.residents.map((resident) =>
-        resident.name).sort() })),
-    }), {});
-  }
-  if (options.includeNames === true && (options.sex === 'female' || options.sex === 'male')) {
-    return locations.reduce((locationA, locationB) => ({
-      ...locationA,
-      [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) => ({ [animal.name]: animal.residents.filter((resident) =>
-        resident.sex === options.sex).map((resident) => resident.name) })),  
-    }), {});
-  }
-  if (options.includeNames === true) {
-    return locations.reduce((locationA, locationB) => ({
-      ...locationA,
-      [locationB]: data.animals.filter((animal) => animal.location === locationB).map((animal) =>
-        ({ [animal.name]: animal.residents.map((resident) => resident.name) })),
-    }), {});
-  }
+function filteredAnimalMap(animals, options) {
+  return animals.map((animal) => {
+    let {
+      residents,
+    } = animal;
+    if (options.sex) {
+      residents = residents.filter((resident) => resident.sex === options.sex);
+    }
+    residents = residents.map((resident) => resident.name);
+    if (options.sorted === true) {
+      residents = residents.sort();
+    }
+    return {
+      [animal.name]: residents,
+    };
+  });
 }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function animalMap(options = {}) {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  const result = locations.reduce((acc, curr) => {
+    let animals = data.animals.filter((animal) => animal.location === curr);
+    if (options.includeNames === true) {
+      animals = filteredAnimalMap(animals, options);
+    } else {
+      animals = animals.map((animal) => animal.name);
+    }
+    const location = {
+      ...acc,
+      [curr]: animals,
+    };
+    return location;
+  }, {});
+  return result;
+}
+
+function schedule(dayName = 'def') {
+  const schedules = Object.entries(data.hours);
+  const time = schedules.reduce((weekDayA, weekDayB) => ({
+    ...weekDayA,
+    [weekDayB[0]]: `Open from ${weekDayB[1].open}am until ${weekDayB[1].close - 12}pm`,
+  }), {});
+  time.Monday = 'CLOSED';
+  if (dayName === 'def') {
+    return time;
+  }
+  const target = {};
+  target[dayName] = time[dayName];
+  return target;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -132,7 +143,7 @@ function animalMap(options = 'empty') {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   animalMap,
   animalsByIds,

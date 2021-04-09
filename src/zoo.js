@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
 
 function animalsByIds(...ids) {
   if (ids === []) {
@@ -71,6 +72,19 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (typeof entrants === 'undefined') {
     return 0;
+  }
+  const { Adult, Child, Senior } = entrants;
+  let fullPrice = 0;
+  if (typeof Adult === 'number') {
+    fullPrice += Adult * prices.Adult;
+  }
+  if (typeof Child === 'number') {
+    fullPrice += Child * prices.Child;
+  }
+  if (typeof Senior === 'number') {
+    fullPrice += Senior * prices.Senior;
+  }
+  return fullPrice;/* com colaboração de Henrique Zózimo */
 }
 
 // function animalMap(options) {

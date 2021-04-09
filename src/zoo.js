@@ -111,11 +111,37 @@ function animalCount(species) {
   );
 }
 
-/* function entryCalculator(entrants) {
-  // seu código aqui
+/*
+  Essa função verifica se o argumento recebido é um objeto.
+
+  Material consultado sobre como diferenciar object dos demais tipos
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/ToString
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
+ */
+const isObject = (element) => toString.call(element) === '[object Object]';
+
+/*
+  Essa função verifica se o elemento está na lista
+ */
+const hasElement = (element, list) => list.includes(element);
+/*
+   Essa função recebe um objeto que contém a quantidade de visitantes e a faixa etária de cada um e retorna o preço total a ser cobrado.
+  */
+function entryCalculator(entrants) {
+  if (isObject(entrants) // se entrants é um objeto
+  && Object.keys(entrants).length // não está vazio
+  && Object.keys(entrants).every( // e cada faixa etária sua
+    (key) => hasElement(key, Object.keys(data.prices)), // é chave em data.prices
+  )) {
+    // retorna o resultado de reduce que
+    return Object.keys(entrants).reduce( // para cada faixa etaria em entrants
+      (acc, curr) => acc + data.prices[curr] * entrants[curr], 0, // acumula o preço total a ser cobrado dela
+    );
+  }
+  return 0; // retorna 0 caso não receba um parâmetro ou seja um objeto vazio
 }
 
-function animalMap(options) {
+/* function animalMap(options) {
   // seu código aqui
 }
 
@@ -136,7 +162,7 @@ function employeeCoverage(idOrName) {
 }
  */
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

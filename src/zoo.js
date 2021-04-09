@@ -41,14 +41,13 @@ function createEmployee(personalInfo, associatedWith) {
   return create();
 }
 
-// function isManager(id) {
-//   // seu código aqui
-//   const filterManegers = employees.find((info) =>
-//     info.managers === id);
-//   // console.log(filterManegers);
-//   return filterManegers;
-// }
-
+function isManager(id) {
+  // seu código aqui
+  const managers = [];
+  employees.forEach((info) => managers.push(...info.managers));
+  return managers.some((manager) => manager === id);
+}
+// console.log(isManager());
 function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
   // alterei os parametros da função para que recebessem [] caso o valor respectivo fosse 'undefined' (metodo destructuring default);
   // criei um novo employee a partir dos parametros da função e retornei o push do novo elemento no 'employees';
@@ -73,6 +72,11 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
 
 function entryCalculator(entrants = 0) {
   // seu código aqui
+  // tive auxilio da Alessandra Resende neste requisito;
+  // default param em caso de parametro vazio = 0;
+  // Object.entries transforma 'entrants' em um array de arrays. No reduce, o acc é padrão mas o curr é tratado para receber parametros variaveis vindos de 'entrants';
+  // logo, acc soma a si o resultado de: 'prices[tipo]'(que acessa data e traz o valor da entrada de cada tipo de visitante) X 'quantidade'(que é o parametro vindo de entrants e tratado no reduce)
+  // passando tbm o value '0' para o inico do acc;
   return Object.entries(entrants).reduce((acc, [tipo, quantidade]) =>
     acc + (prices[tipo]) * quantidade, 0);
 }
@@ -106,7 +110,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

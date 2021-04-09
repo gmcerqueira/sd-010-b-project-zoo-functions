@@ -131,8 +131,11 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-
+  if (idOrName === undefined) {
+    return employees;
+  }
 }
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,

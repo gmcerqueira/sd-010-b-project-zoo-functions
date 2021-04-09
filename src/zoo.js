@@ -201,11 +201,13 @@ function animalMap(options) {
 
 function fullSchedule() {
   const zooSchedule = {};
-  for (const key in hours) {
-    if (key === 'Monday') {
-      zooSchedule[key] = 'CLOSED';
+  const days = Object.keys(hours);
+  const operation = Object.values(hours);
+  for (let i = 0; i < days.length; i += 1) {
+    if (days[i] === 'Monday') {
+      zooSchedule[days[i]] = 'CLOSED';
     } else {
-      zooSchedule[key] = `Open from ${hours[key].open}am until ${hours[key].close - 12}pm`;
+      zooSchedule[days[i]] = `Open from ${operation[i].open}am until ${operation[i].close - 12}pm`;
     }
   }
   return zooSchedule;

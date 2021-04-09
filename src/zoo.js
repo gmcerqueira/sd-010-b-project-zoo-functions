@@ -132,10 +132,21 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
-    return employees;
+    return employees.reduce((acc, emp) => {
+      const al = emp.responsibleFor;
+      const animal = al.map((an) => animals.find((val) => an === val.id).name);
+      const key = `${emp.firstName} ${emp.lastName}`;
+      acc[key] = animal;
+      return acc;
+    }, {});
   }
+  const lookForEmployee = employees
+    .find((who) => who.id === idOrName || who.firstName === idOrName || who.lastName === idOrName);
+  const al = lookForEmployee.responsibleFor
+    .map((an) => animals.find((val) => an === val.id).name);
+  const key = `${lookForEmployee.firstName} ${lookForEmployee.lastName}`;
+  return { [key]: al };
 }
-console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,

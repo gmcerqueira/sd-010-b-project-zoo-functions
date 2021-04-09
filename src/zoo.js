@@ -82,24 +82,44 @@ function entryCalculator(entrants = 0) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  return options;
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  return dayName;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const idAnimal = data.employees
+    .find((employee) => employee.id === id).responsibleFor[0];
+
+  const objAnimal = data.animals.find((animal) => animal.id === idAnimal);
+
+  const oldestAnimal = objAnimal.residents.reduce((acumulator, currentValue) =>
+    (acumulator.age > currentValue.age ? acumulator : currentValue));
+
+  return Object.values(oldestAnimal);
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const arrayPrices = Object.entries(data.prices);
+
+  arrayPrices.forEach((element) => {
+    data.prices[element[0]] = Math.ceil(((element[1]
+      * (percentage / 100)) + element[1]) * 100) / 100;
+  });
+  return data.prices;
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const official = data.employees
+    .find((employe) => (idOrName === employe.id ? employe : false));
+
+  const obj = `${official.firstName} ${official.lastName}`;
+  return obj;
 }
+
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,

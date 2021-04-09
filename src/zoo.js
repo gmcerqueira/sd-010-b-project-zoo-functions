@@ -92,11 +92,6 @@ function entryCalculator(...entrants) {
   const arr = entrants[0];
   return entradas.reduce((acc, currentValue) => acc + arr[currentValue] * prices[currentValue], 0);
 }
-console.log(entryCalculator({
-  'Adult': 2,
-  'Child': 3,
-  'Senior': 1
-}));
 
 // function animalMap(options) {
 //   // seu código aqui

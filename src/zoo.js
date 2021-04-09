@@ -155,17 +155,29 @@ function schedule(dayName) {
 
    Material consultado sobre como usar reduce para encontrar o objeto com o maior valor de uma propriedade dentro de um array de objetos
    https://stackoverflow.com/a/34087850
+
+   Créditos pela sugestão de usar animalsByIds para buscar o animal que possui id firstSpeciesId
+   @Arlen Freitas - Turma 10 - Tribo B
+
+   Código v1.0 usando sort
+   const oldestResident = [...data.animals.find((animal) => animal.id === firstSpeciesId).residents].sort((animal1, animal2) => animal2.age - animal1.age);
+
+   Código v2.0 usando reduce
+   const oldestResident = [...data.animals.find( // buscar o animal
+      (animal) => animal.id === firstSpeciesId, // que possui id igual ao firstSpeciesId
+    ).residents] // criar uma cópia da lista de animais residentes desta espécie
+      .reduce( // e reduzir esta lista
+        (acc, resident) => ((acc.age >= resident.age) ? acc : resident), // mantendo em acc o animal que possui maior idade
+      );
   */
 function oldestFromFirstSpecies(id) {
   const firstSpeciesId = employees.find( // buscar o funcionário
     (employee) => employee.id === id, // que possui id igual ao recebido por parâmetro
   ).responsibleFor[0]; // e retornar o id da primeira espécie de animal que ele gerencia
 
-  // const oldestResident = [...data.animals.find((animal) => animal.id === firstSpeciesId).residents].sort((animal1, animal2) => animal2.age - animal1.age);
-
-  const oldestResident = [...data.animals.find( // buscar o animal
-    (animal) => animal.id === firstSpeciesId, // que possui id igual ao firstSpeciesId
-  ).residents] // criar uma cópia da lista de animais residentes desta espécie
+  // Código v2.1 usando reduce e a function animalsByIds
+  const oldestResident = animalsByIds(firstSpeciesId) // buscar o animal que possui id firstSpeciesId
+    .residents // obtém a lista de animais residentes desta espécie
     .reduce( // e reduzir esta lista
       (acc, resident) => ((acc.age >= resident.age) ? acc : resident), // mantendo em acc o animal que possui maior idade
     );

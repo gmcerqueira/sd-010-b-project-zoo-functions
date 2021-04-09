@@ -8,9 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-const steph = '9e7d4524-363c-416a-8759-8aa7e50c0992';
-const olaId = 'fdb2543b-5662-46a7-badc-93d960fdc0a8';
-const burlId = '0e7b460e-acf4-4e17-bcb3-ee472265db83';
+
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -22,15 +20,9 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const mappingResidents = data.animals.map((animals) => animals.residents);
-  // const getAge = mappingResidents.forEach((...value) => value);
-  // console.log(getAge);
-  const minimalAge = data.animals.every((specie) =>
-    specie.name === animal && mappingResidents >= age);
-  return minimalAge;
+  const mapAnimal = data.animals.find((pupet) => pupet.name === animal);
+  return mapAnimal.residents.every((value) => value.age >= age);
 }
-// console.log(animalsOlderThan('otters', 7));
-// console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   const filter = data.employees.filter((person) =>
@@ -43,10 +35,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const ftrId = data.employees.filter((obj) => obj.id === id).shift();
-  const { managers } = ftrId;
-  console.log(managers);
-  return managers.shift() === steph || managers.shift() === olaId || managers.shift() === burlId;
+  return data.employees.some((el) => el.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {

@@ -247,9 +247,23 @@ function oldestFromFirstSpecies(id) {
   return older;
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  const currPrices = Object.values(prices);
+  const objKeys = Object.keys(prices);
+  const newPrices = {};
+  objKeys.forEach((el, i) => {
+    newPrices[el] = Math.round(((currPrices[i] * (percentage / 100 + 1)+ Number.EPSILON) * 100))/100;
+  })
+  data.prices = newPrices;
+}
+
+increasePrices(50)
+console.log(data.prices)
+console.log('----------------')
+increasePrices(30)
+console.log(data.prices)
+
+// REFERÊNCIA utilizada no arredondamento: https://metring.com.br/arredondar-numero-em-javascript
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -267,6 +281,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

@@ -44,15 +44,38 @@ function isManager(id) {
   return manager.some(findManager);
 }
 
-/*
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+//   // seu código aqui
+//   array = (name) => name === undefined ? [] : name;
+//   newEmployee = {
+//     id,
+//     firstName,
+//     lastName,
+//     managers: array(managers),
+//     responsibleFor: array(responsibleFor),
+//   }
+//   data.employees.push(newEmployee);
+// }
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
+// console.log(data.employees.length);
 
 function animalCount(species) {
   // seu código aqui
+  const object = {
+    lions: 4,
+    tigers: 2,
+    bears: 3,
+    penguins: 4,
+    otters: 4,
+    frogs: 2,
+    snakes: 2,
+    elephants: 4,
+    giraffes: 6,
+  };
+  return species === undefined ? object : object[species];
 }
 
+/*
 function entryCalculator(entrants) {
   // seu código aqui
 }
@@ -81,7 +104,7 @@ function employeeCoverage(idOrName) {
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

@@ -69,18 +69,26 @@ function entryCalculator(entrants) {
   return Object.keys(entrants).reduce((acc, curr) => acc + prices[curr] * entrants[curr], 0);
 }
 
-/*
-function animalMap(options) {
-  // seu código aqui
+/* function animalMap(options) {
+  if (!options) {
+    animals.filter((animal)=> animal.location)
+    })
+  }
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  if (!dayName) {
+    return Object.keys(hours).reduce(())
+  }
 }
+*/
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const first = employees.find((emploee) => emploee.id === id).responsibleFor[0];
+  const per = animals.find((an) => an.id === first).residents.sort((a, b) => b.age - a.age)[0];
+  return [per.name, per.sex, per.age];
 }
+/*
 
 function increasePrices(percentage) {
   // seu código aqui
@@ -101,7 +109,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

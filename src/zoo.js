@@ -36,11 +36,16 @@ function employeeByName(employeeName) {
   });
 }
 
-console.log(employeeByName('Burl'));
-
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
+  const meuArray = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return meuArray;
+}
 
 // function isManager(id) {
 //   // seu código aqui
@@ -91,5 +96,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

@@ -77,9 +77,9 @@ function schedule(dayName) {
   semana.forEach((dia) => {
     const { open, close } = hours[dia];
     if (dia === 'Monday') {
-      result[dia] = 'CLOSED'
+      result[dia] = 'CLOSED';
     } else {
-    result[dia] = `Open from ${open}am until ${close - 12}pm`
+      result[dia] = `Open from ${open}am until ${close - 12}pm`;
     }
   });
   if (dayName) return { [dayName]: result[dayName] };

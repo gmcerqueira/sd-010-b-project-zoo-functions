@@ -52,46 +52,49 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const obj = {};
   const numbers = data.animals.filter((number) => number.name === species).shift();
-  data.animals.map((animalNumber) => obj[animalNumber.name] = animalNumber.residents.length);
+  data.animals.map((animalNumber) => {
+    obj[animalNumber.name] = animalNumber.residents.length;
+    return obj;
+  });
   return species === undefined ? obj : numbers.residents.length;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+// function entryCalculator(entrants) {
+//  // seu código aqui
+// }
 
-function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
+//  // seu código aqui
+// }
 
-function schedule(dayName) {
-  // seu código aqui
-}
+// function schedule(dayName) {
+//  // seu código aqui
+// }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+// function oldestFromFirstSpecies(id) {
+//  // seu código aqui
+// }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+// function increasePrices(percentage) {
+// seu código aqui
+// }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+// // seu código aqui
+// }
 
 module.exports = {
-  entryCalculator,
-  schedule,
+  // entryCalculator,
+  // schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
+  // oldestFromFirstSpecies,
+  // increasePrices,
   createEmployee,
 };

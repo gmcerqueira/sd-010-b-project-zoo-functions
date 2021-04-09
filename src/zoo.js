@@ -171,9 +171,71 @@ function increasePrices(percentage) {
   data.prices = newPrices;
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function allEmployeesCoverage() {
+  const response = {};
+  const coverage = data.employees.map((employee) =>
+    [employee.firstName, employee.lastName, employee.id, employee.responsibleFor]);
+  const idsNames = data.animals.map((animal) => [animal.id, animal.name]);
+  coverage.forEach((employee) => {
+    const names = [];
+    employee[3].forEach((id) => {
+      const animal = idsNames.find((element) => element[0] === id);
+      names.push(animal[1]);
+      response[`${employee[0]} ${employee[1]}`] = names;
+    });
+  });
+  return response;
+}
+
+function idCoverage(idOrName) {
+  const complete = allEmployeesCoverage();
+  let name = data.employees.find((entry) => entry.id === idOrName);
+  name = `${name.firstName} ${name.lastName}`;
+  const object = {};
+  object[name] = complete[name];
+  return object;
+}
+
+function nameCoverage(idOrName) {
+  const complete = allEmployeesCoverage();
+  let name = data.employees.find((entry) => entry.firstName === idOrName);
+  name = `${name.firstName} ${name.lastName}`;
+  const object = {};
+  object[name] = complete[name];
+  return object;
+}
+
+function lastNameCoverage(idOrName) {
+  const complete = allEmployeesCoverage();
+  let name = data.employees.find((entry) => entry.lastName === idOrName);
+  name = `${name.firstName} ${name.lastName}`;
+  const object = {};
+  object[name] = complete[name];
+  return object;
+}
+
+function employeeCoverage(idOrName) {
+  // no params
+  if (!idOrName) {
+    return allEmployeesCoverage();
+  }
+  // id
+  if (data.employees.find((entry) => entry.id === idOrName)) {
+    return idCoverage(idOrName);
+  }
+
+  // firsName
+  if (data.employees.find((entry) => entry.firstName === idOrName)) {
+    return nameCoverage(idOrName);
+  }
+
+  // lastName
+  if (data.employees.find((entry) => entry.lastName === idOrName)) {
+    return lastNameCoverage(idOrName);
+  }
+}
+
+console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
@@ -182,7 +244,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

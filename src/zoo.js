@@ -76,9 +76,8 @@ function schedule(dayName) {
   const result = {};
   semana.map((dia) => {
     const { open, close } = hours[dia];
-    return (dia === 'Monday'
-      ? result[dia] = 'CLOSED'
-      : result[dia] = `Open from ${open}am until ${close - 12}pm`);
+    if (dia === 'Monday') result[dia] = 'CLOSED'
+    result[dia] = `Open from ${open}am until ${close - 12}pm`;
   });
   if (dayName) return { [dayName]: result[dayName] };
 

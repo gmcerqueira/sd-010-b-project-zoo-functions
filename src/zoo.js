@@ -16,18 +16,25 @@ function animalsByIds(...ids) {
   if (ids === null) {
     return [];
   }
-  return data.animals.filter((animal) => animal.id === ids);
+  return animals.filter((animal) => ids.some((id) => animal.id === id));
 }
 function animalsOlderThan(animal, age) {
-  return animal + age;
+  const filtrado = data.animals.filter((animals) => animals.name === animal );
+  console.log(filtrado.residents)
+  //return filtrado.residents.every((ani, index) => ani[index].age < age);
+}
+//console.log(animalsOlderThan('otters', 7));
+function employeeByName(employeeName) {
+  if (employeeName === null) {
+    return [];
+  }
+  return data.employees.filter((pessoa) => pessoa.firstName === employeeName || pessoa.lastName === employeeName);
 }
 
-function employeeByName(employeeName) {
-  return employeeName;
-}
+//console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
-  return personalInfo + associatedWith;
+  return [...personalInfo, ...associatedWith];
 }
 
 function isManager(id) {

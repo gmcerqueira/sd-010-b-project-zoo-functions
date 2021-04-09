@@ -65,27 +65,33 @@ function animalCount(species, expected) {
   return species === expected ? countSpecies : data.animals.find((animal) =>
     animal.name === species).residents.length;
 }
-
+// 8
 // function entryCalculator(entrants) {
-//   // seu código aqui
+// seu código aqui
 // }
-
+// 9
 // function animalMap(options) {
 //   // seu código aqui
 // }
-
+// 10
 // function schedule(dayName) {
 //   // seu código aqui
 // }
-
+// 11
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
-
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
-
+// 12
+function increasePrices(percentage) {
+  // seu código aqui
+  const incrementPrice = Object.entries(data.prices);
+  incrementPrice.forEach((visit) => {
+    data.prices[visit[0]] = Math.ceil(((visit[1]
+      * (percentage / 100)) + visit[1]) * 100) / 100;
+  });
+  return data.prices;
+}
+// 13
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }
@@ -102,6 +108,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

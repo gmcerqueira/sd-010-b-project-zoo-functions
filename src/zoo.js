@@ -187,7 +187,7 @@ function verifyParam(param) {
   if (param.sex) {
     return getAnimalsBySex(param);
   }
-  return getAnimalsName;
+  return getAnimalsName();
 }
 
 function animalMap(options) {

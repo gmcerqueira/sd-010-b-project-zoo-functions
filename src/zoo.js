@@ -13,9 +13,9 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...id) {
-  // if ([id].includes(undefined)) return [];
+  if ([id].includes(undefined)) return [];
 
-  // return animals.filter((animal) => animal.includes(id));
+  return animals.filter((animal) => animal.includes(id));
 }
 
 console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));

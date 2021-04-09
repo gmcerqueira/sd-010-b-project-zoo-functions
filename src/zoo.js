@@ -68,11 +68,21 @@ function isManager(id) {
   );
 }
 
-/* function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+/*
+   Essa função adiciona uma nova pessoa colaboradora ao final do array employees, presente no arquivo data.js.
+  */
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  // adiciona ao final do array employees (presente no arquivo data)
+  employees.push({ // um novo objeto funcionário que possui as informações recebidas nos parâmetros
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
-function animalCount(species) {
+/* function animalCount(species) {
   // seu código aqui
 }
 
@@ -108,7 +118,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

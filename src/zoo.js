@@ -31,18 +31,20 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  const employeeSearch = employees.find((Emp) => employeeName === Emp.firstName || employeeName === Emp.lastName);
-  return employeeSearch;
+  return employees.find((Emp) => employeeName === Emp.firstName || employeeName === Emp.lastName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const newEmployee = {...personalInfo, ...associatedWith};
+  const newEmployee = {
+    ...personalInfo, ...associatedWith
+  };
   return newEmployee;
 }
 
 // function isManager(id) {
 //   // seu código aqui
+//   const managerSearh = ma
 // }
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {

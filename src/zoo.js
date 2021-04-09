@@ -17,6 +17,8 @@ const empregados = data.employees;
 
 const precos = data.prices;
 
+const agenda = data.hours;
+
 function animalsByIds(...ids) {
   if (!ids) return [];
   return animais.filter((animal) => ids.includes(animal.id));
@@ -57,14 +59,14 @@ function animalCount(species) {
   return contaAnimais[species];
 }
 
-// function entryCalculator(entrants = 0) {
-//   let valor = 0;
-//   if (entrants.Adult) { valor += entrants.Adult * precos.Adult; }
-//   if (entrants.Senior) { valor += entrants.Senior * precos.Senior; }
-//   if (entrants.Child) { valor += entrants.Child * precos.Child; }
+function entryCalculator(entrants = 0) {
+  let valor = 0;
+  if (entrants.Adult) { valor += entrants.Adult * precos.Adult; }
+  if (entrants.Senior) { valor += entrants.Senior * precos.Senior; }
+  if (entrants.Child) { valor += entrants.Child * precos.Child; }
 
-//   return valor;
-// }
+  return valor;
+}
 
 // function animalMap(options) {
 //   const saida = {};
@@ -85,9 +87,17 @@ function animalCount(species) {
 //   return saida;
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  const dias = Object.keys(agenda);
+  const mensagem = {};
+  dias.forEach((dia) => {
+    const { open, close } = agenda[dia];
+    (mensagem[dia] = `Open from ${open}am until ${close - 12}pm`);
+  });
+  mensagem.Monday = 'CLOSED';
+  if (!dayName) return mensagem;
+  return { [dayName]: mensagem[dayName] };
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -103,7 +113,7 @@ function animalCount(species) {
 
 module.exports = {
   entryCalculator,
-  //   schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

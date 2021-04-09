@@ -11,23 +11,21 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const animais = data.animals;
-const empregados = data.employees;
-const precos = data.prices;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
-  return animais.filter((id) => ids.some((checaId) => id.id === checaId));
+  return animals.filter((id) => ids.some((checaId) => id.id === checaId));
 }
 
 function animalsOlderThan(animal, age) {
-  return animais
+  return animals
     .find((animals) => animals.name === animal)
     .residents.every((idadeAnimal) => idadeAnimal.age >= age);
 }
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  return empregados.find(
+  return employees.find(
     (empregado) =>
       empregado.firstName === employeeName
       || empregado.lastName === employeeName,
@@ -39,11 +37,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return empregados.some((ids) => ids.managers.includes(id));
+  return employees.some((ids) => ids.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return empregados.push({
+  return employees.push({
     id,
     firstName,
     lastName,
@@ -55,7 +53,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   // Henrique Zózimo ajudou
   const count = {};
-  animais.forEach(({ name, residents }) => {
+  animals.forEach(({ name, residents }) => {
     count[name] = residents.length;
   });
   if (!species) return count;
@@ -63,9 +61,9 @@ function animalCount(species) {
 }
 function entryCalculator(entrants = 0) {
   let total = 0;
-  if (entrants.Adult) total += entrants.Adult * precos.Adult;
-  if (entrants.Senior) total += entrants.Senior * precos.Senior;
-  if (entrants.Child) total += entrants.Child * precos.Child;
+  if (entrants.Adult) total += entrants.Adult * prices.Adult;
+  if (entrants.Senior) total += entrants.Senior * prices.Senior;
+  if (entrants.Child) total += entrants.Child * prices.Child;
   return total;
 }
 
@@ -73,10 +71,17 @@ function entryCalculator(entrants = 0) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  const semana = Object.keys(hours);
+  const result = {};
+  semana.map((dia) => {
+    const { open, close } = hours[dia];
+    (dia === 'Monday') ? result[dia] = 'CLOSED' : result[dia] = `Open from ${open}am until ${close - 12}pm`
+  });
+  if (dayName) return { [dayName]: result[dayName] }
 
+  return result;
+}
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
@@ -91,7 +96,7 @@ function entryCalculator(entrants = 0) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

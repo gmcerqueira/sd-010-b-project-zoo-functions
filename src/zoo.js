@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const { animals, employees, prices, hours } = require('./data');
 
-const data = require('./data');
+// const data = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter((animal, index) => animal.id === ids[index]);
@@ -130,9 +130,9 @@ function increasePrices(percentage) {
   });
 }
 
-// function employeeCoverage(idOrName) {
+function employeeCoverage(idOrName) {
 
-// }
+}
 
 module.exports = {
   entryCalculator,
@@ -141,7 +141,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  //   employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

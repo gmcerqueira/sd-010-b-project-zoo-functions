@@ -26,21 +26,12 @@ function employeeByName(employeeName) {
   );
 }
 
-const createEmployee = (arg1, arg2) => ({
-  ...arg1,
-  ...arg2,
-});
+const createEmployee = (arg1, arg2) => ({ ...arg1, ...arg2 });
 
 const isManager = (id) => employees.some(({ managers }) => managers.some((e) => e === id));
 
 const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) =>
-  data.employees.push({
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  });
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 
 const listAnimalCount = () =>
   animals.reduce((acc, curr) => {
@@ -91,11 +82,7 @@ const schedule = (hour) => {
     if (key !== 'Monday') acc[key] = `Open from ${open}am until ${close - 12}pm`;
     return acc;
   }, {});
-  return hour
-    ? {
-      [hour]: list[hour],
-    }
-    : list;
+  return hour ? { [hour]: list[hour] } : list;
 };
 
 function oldestFromFirstSpecies(idEmploye) {

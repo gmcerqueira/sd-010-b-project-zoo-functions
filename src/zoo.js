@@ -14,8 +14,8 @@ const data = require('./data');
 
 const {
   animals,
-  /* employees,
-  hours,
+  employees,
+  /* hours,
   prices, */
 } = data;
 
@@ -39,8 +39,10 @@ function animalsOlderThan(animalName, age) {
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
-  return employeeName;
+  if (!employeeName) return {};
+
+  return employees.find((employee) =>
+    employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {

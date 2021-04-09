@@ -82,11 +82,36 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   });
 }
 
-/* function animalCount(species) {
-  // seu código aqui
+/*
+   Essa função recebe o nome de uma espécie e contabiliza a quantidade de animais dela. Caso não receba parâmetro, retorna um objeto que contém o nome dos animais e suas quantidades.
+
+   Material consultado sobre reduce
+   https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+
+   Créditos pela sugestão de usar reduce
+   @Denis Rossati Ramos- Turma 10 - Tribo B
+  */
+function animalCount(species) {
+  if (species !== undefined) { // se recebeu um nome de espécie como parâmetro
+    // retorna após
+    return data.animals.find( // encontrar a espécie
+      (animal) => animal.name === species, // que possui nome igual ao recebido por parâmetro
+    )
+      .residents.length; // sua a quantidade de animais residentes
+  }
+
+  // const { animals: [{ name: residents }] } = data;
+
+  // retorna um objeto resultado de reduce que
+  return data.animals.reduce(
+    (acc, obj) => {
+      acc[obj.name] = obj.residents.length; // contém o nome dos animais e suas quantidades
+      return acc; // retorna o objeto acumulado após inserir nova entrada
+    }, {}, // valor inicial é um objeto vazio
+  );
 }
 
-function entryCalculator(entrants) {
+/* function entryCalculator(entrants) {
   // seu código aqui
 }
 
@@ -113,7 +138,7 @@ function employeeCoverage(idOrName) {
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

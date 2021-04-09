@@ -13,6 +13,7 @@ const data = require('./data');
 
 const animais = data.animals;
 const empregados = data.employees;
+const precos = data.prices;
 
 function animalsByIds(...ids) {
   return animais.filter((id) => ids.some((checaId) => id.id === checaId));
@@ -60,10 +61,13 @@ function animalCount(species) {
   if (!species) return count;
   return count[species];
 }
-
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants = 0) {
+  let total = 0;
+  if (entrants.Adult) total += entrants.Adult * precos.Adult;
+  if (entrants.Senior) total += entrants.Senior * precos.Senior;
+  if (entrants.Child) total += entrants.Child * precos.Child;
+  return total;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -86,7 +90,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

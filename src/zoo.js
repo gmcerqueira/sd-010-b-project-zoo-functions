@@ -98,9 +98,57 @@ function entryCalculator(entrants) {
 }
 // console.log(entryCalculator({ Adult: 1, Senior: 2 }));
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function animalLocations() {
+  return animals.reduce((acc, animal) => {
+    const local = acc;
+    if (!local[animal.location]) local[animal.location] = [];
+    return local;
+  }, {});
+}
+// console.log(animalLocations());
+
+function animalsLocationDefault() {
+  const animalsLocation = {};
+  const local = ['NE', 'NW', 'SE', 'SW'];
+  local.forEach((location) => {
+    const foundAnimals = animals.filter((animal) =>
+      animal.location.includes(location)).map((animal) => animal.name);
+    animalsLocation[location] = foundAnimals;
+  });
+  return animalsLocation;
+}
+// console.log(animalsLocationDefault(local));
+
+function nameOfAnimals(animal, info) {
+  let names = animals.find((creature) => creature.name.includes(animal))
+    .residents.map((resident) => resident.name);
+  if (info.sex) {
+    names = animals.find((creature) => creature.name.includes(animal))
+      .residents.filter((resident) => resident.sex.includes(info.sex))
+      .map((resident) => resident.name);
+  }
+  if (info.sorted) names.sort();
+
+  return names;
+}
+
+// console.log(nameOfAnimals('lions'));
+
+function animalsWithInfos(info) {
+  const locations = animalLocations();
+  // const obj = {};
+  animals.map((animal) =>
+    locations[animal.location].push({ [animal.name]: nameOfAnimals(animal.name, info) }));
+  return locations;
+}
+// console.log(listOfRegions());
+
+function animalMap(options = '') {
+  if (options.includeNames) return animalsWithInfos(options);
+  return animalsLocationDefault();
+}
+// const options = { includeNames: true, sex: 'female', sorted: true };
+// console.log(animalMap(options));
 
 // 10. IMPLEMENTE A FUNÇÃO schedule
 // A função é responsável por disponibilizar as informações de horário para uma consulta,
@@ -196,13 +244,13 @@ function employeeCoverage(idOrName) {
 }
 // console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 // console.log(employeeCoverage('Stephanie'));
-console.log(employeeCoverage());
+// console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

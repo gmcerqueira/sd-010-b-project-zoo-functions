@@ -36,11 +36,15 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-/*
 function isManager(id) {
   // seu código aqui
+  const doisman = ['9e7d4524-363c-416a-8759-8aa7e50c0992', 'fdb2543b-5662-46a7-badc-93d960fdc0a8'];
+  const manager = [...doisman, '0e7b460e-acf4-4e17-bcb3-ee472265db83'];
+  const findManager = (id1) => id1 === id;
+  return manager.some(findManager);
 }
 
+/*
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
@@ -83,7 +87,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

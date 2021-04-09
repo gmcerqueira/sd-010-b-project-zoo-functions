@@ -37,6 +37,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   return data.employees.some((el) => el.managers.includes(id));
 }
+// Tive ajuda do Diegho Moraes para interpretar as questões 2 e 5!
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const dataPush = {
@@ -49,13 +50,19 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   data.employees.push(dataPush);
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  const obj = {};
+  const numbers = data.animals.filter((number) => number.name === species).shift();
+  data.animals.map((el) => {
+    obj[el.name] = el.residents.length;
+    return obj;
+  });
+  return species === undefined ? obj : numbers.residents.length;
+}
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // seu código aqui
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -78,9 +85,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 // const { TestScheduler } = require("@jest/core");
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 // const data = require("./data");
 
 function animalsByIds(...ids) {
@@ -63,16 +63,20 @@ function animalCount(species) {
   return species === undefined ? animalResidentAmount : animalResidentAmount[species];
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (entrants === undefined || entrants === {}) {
+    return 0;
+  }
+  const keys = Object.keys(entrants);
+  return keys.reduce((a, b) => a + entrants[b] * prices[b], 0);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
 // }
 
 // function schedule(dayName) {
-//   // seu código aqui
+
 // }
 
 // function oldestFromFirstSpecies(id) {
@@ -88,7 +92,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

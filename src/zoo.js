@@ -60,9 +60,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   data.employees.push(newEmployee);
 }
 
-/* function animalCount(species) {
-  // seu código aqui
-} */
+// Solução encontrada com a ajuda e com code review do Emerson Saturnino e Diego Moraes
+// Primeiro verifica se há parametro, se não houver é itera os elemnetos e cria um novo objeto
+// com as especificações do requisito
+// Caso tenha um parametro(nome da especie) retorna a quantidade dessa especie
+function animalCount(species) {
+  const newObject = {};
+  if (species === undefined) {
+    data.animals.forEach((value) => { newObject[value.name] = value.residents.length; });
+    return newObject;
+  }
+  return data.animals.find((value) => value.name === species).residents.length;
+}
 
 /* function entryCalculator(entrants) {
   // seu código aqui
@@ -91,7 +100,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

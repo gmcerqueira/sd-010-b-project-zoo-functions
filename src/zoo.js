@@ -16,7 +16,7 @@ const data = require('./data');
 // // console.log(data.animals[0])
 const { animals } = data;
 const { employees } = data;
-
+const { prices } = data;
 function animalsByIds(...ids) {
   // seu código aqui
   const param = ids; // const que recebe o parâmetro
@@ -86,6 +86,7 @@ function animalCount(species) {
     animals.forEach(({ name, residents }) => {
       allAnimals[name] = residents.length;
     });
+
     return allAnimals;
   }
   const animalVerify = animals.find((animal) => animal.name === species);
@@ -96,7 +97,20 @@ animalCount();
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if (entrants === undefined || entrants === {}) {
+    return 0;
+  }
+  // if (entrants === false) { console.log(0) }
+  const arr = Object.keys(entrants);
+  let result = 0;
+
+  arr.forEach((i) => {
+    result += prices[i] * entrants[i];
+  });
+
+  return result;
 }
+entryCalculator();
 
 function animalMap(options) {
   // seu código aqui

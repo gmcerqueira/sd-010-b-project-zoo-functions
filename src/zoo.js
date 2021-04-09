@@ -73,9 +73,17 @@ function animalCount(species) {
   return data.animals.find((value) => value.name === species).residents.length;
 }
 
-/* function entryCalculator(entrants) {
-  // seu código aqui
-} */
+// Primeiro verifica o parrametro, caso undefinid ou objeto vazio no parrametro, retorna zero
+// Se for passado parametro, transforma esse objeto(parametro) passado em array.
+// Com o objeto transfoemdo em um array é feito o reduce.
+// No reduce faz o calculo do preço * a quantidade de pessoas(seja ela adulto, criança e senior).
+function entryCalculator(entrants) {
+  if (entrants === undefined || entrants === {}) {
+    return 0;
+  }
+  const cathObject = Object.keys(entrants);
+  return cathObject.reduce((acc, curr) => acc + (data.prices[curr] * entrants[curr]), 0);
+}
 
 /* function animalMap(options) {
   // seu código aqui
@@ -98,7 +106,7 @@ function animalCount(species) {
 } */
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

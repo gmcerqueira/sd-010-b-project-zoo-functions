@@ -37,31 +37,21 @@ function employeeByName(employeeName) {
   });
 }
 
-const personalInfoJ = {
-  id: '7ed1c9bb-8570-44f6-b718-0666b869573a',
-  firstName: 'John',
-  lastName: 'Doe',
-};
-
-const associatedWithJ = {
-  managers: [
-    'c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
-    '9e7d4524-363c-416a-8759-8aa7e50c0992',
-  ],
-  responsibleFor: [
-    '0938aa23-f153-4937-9f88-4858b24d6bce',
-    '89be95b3-47e4-4c5b-b687-1fabf2afa274',
-    'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5',
-  ],
-};
 function createEmployee(personalInfo, associatedWith) {
-  return { ...personalInfo, ...associatedWith };
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  };
 }
-console.log(personalInfoJ, associatedWithJ);
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  const funcionarios = data.employees;
+  const encontrar = funcionarios.some((funcionario) => {
+    const ehGerente = funcionario.managers.some((manager) => manager === id);
+    return ehGerente;
+  });
+  return encontrar;
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -71,9 +61,17 @@ console.log(personalInfoJ, associatedWithJ);
 //   // seu código aqui
 // }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
+// function entryCalculator(Adult = 1, Child = 1, Senior = 1, ...entrants) {
+//   let saida;
+//   if (entrants === undefined || Object.keys(entrants).length === 0) {
+//     saida = 0;
+//   }
+//   const { Adult, Senior, Child } = data.prices;
+//   console.log(Adult);
+//   saida = ((Adult * entrants.Adult) + (Senior * entrants.Senior) + (Child * entrants.Child));
+//   return saida;
 // }
+// console.log(entryCalculator({'Adult': 2}));
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -104,7 +102,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

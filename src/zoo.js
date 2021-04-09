@@ -31,11 +31,11 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // seu código aqui
   // let obj = {};
-  const obj = employees.find((employee) => (employee.firstName === employeeName)
+  const searchEmployee = employees.find((employee) => (employee.firstName === employeeName)
     || (employee.lastName === employeeName));
   // console.log(obj);
 
-  return obj || {};
+  return searchEmployee || {};
 }
 // const emp = 'Wishart';
 // console.log(employeeByName(emp));
@@ -63,9 +63,11 @@ function createEmployee(personalInfo, associatedWith) {
 // };
 // console.log(createEmployee(info, ass));
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  // seu código aqui
+  return employees.some((employee) => employee.managers
+    .some((manager) => manager === id));
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -108,7 +110,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

@@ -90,7 +90,7 @@ function schedule(dayName) {
       objeto[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
     }
   });
-  if (dayName) return {[dayName]: objeto[dayName]};
+  if (dayName) return { [dayName]: objeto[dayName] };
   return objeto;
 }
 

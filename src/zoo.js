@@ -50,7 +50,22 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  return entrants;
+  if (!entrants || Object.keys(entrants).length === 0) return 0;
+
+  const pricesArr = Object.entries(data.prices).map(([key, value]) => ({ key, value }));
+  const entrantsArr = Object.entries(entrants).map(([key, value]) => ({ key, value }));
+
+  const totalPrice = pricesArr.map((price) => {
+    let valor = 0;
+    entrantsArr.map((entrant) => {
+      if (entrant.key === price.key) {
+        valor = entrant.value * price.value;
+      }
+      return valor;
+    });
+    return valor;
+  });
+  return totalPrice.reduce((acc, cur) => acc + cur);
 }
 
 function animalMap(options) {

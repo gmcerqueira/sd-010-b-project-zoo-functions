@@ -147,9 +147,56 @@ function increasePrices(percentage) {
 }
 // console.log(increasePrices(50));
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+// 13. IMPLEMENTE A FUNÇÃO employeeCoverage
+// A função é responsável por consultar as espécies pela qual a pessoa colaborada, recebida no
+// parâmetro através de seu id, firstName ou lastName, é responsável
+
+// Encontrar animal de responsabilidade do funcionário
+function findAnimals(employee) {
+  const responsible = employee.responsibleFor.map((id) =>
+    animals.find((creature) => creature.id.includes(id)).name);
+  return responsible;
+}
+
+// Tratamento do lado IF da condição (if/else)
+function IFelse(idOrName) {
+  let result = {};
+  const analysis = (employee) =>
+    employee.id.includes(idOrName)
+    || employee.firstName.includes(idOrName)
+    || employee.lastName.includes(idOrName);
+  employees.filter((analysis)).forEach((employee1) => {
+    const responsible = findAnimals(employee1);
+    result = { [`${employee1.firstName} ${employee1.lastName}`]: responsible };
+  });
+  return result;
+}
+
+// Tratamento do lado ELSE da condição (if/else)
+function ifELSE() {
+  const initial = {};
+  let obj = {};
+  let result = {};
+  employees.forEach((employee) => {
+    obj = { [`${employee.firstName} ${employee.lastName}`]: findAnimals(employee) };
+    result = Object.assign(initial, obj);
+  });
+  return result;
+}
+// console.log(ifELSE());
+
+function employeeCoverage(idOrName) {
+  let result = {};
+  if (idOrName) {
+    result = IFelse(idOrName);
+  } else {
+    result = ifELSE();
+  }
+  return result;
+}
+// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+// console.log(employeeCoverage('Stephanie'));
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
@@ -158,7 +205,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

@@ -37,73 +37,90 @@ function animalsOlderThan(animal, age) {
   //  array com todos da mesma especie;
   const sameSpecies = animalSeach.residents.reduce((espAcc, espAnimal) => {
     if (espAnimal.age < age) {
-      espAcc = false;
-      return espAcc;
+      return false;
     }
     // ele sempre retornará o ultimo valor.
     // ele não quer deixar eu retornar espAcc porque não permite que aconteceça
-    // reatribuição de valor
     return espAcc;
   }, true);
   return sameSpecies;
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  // Não passou nada? não entrega nada, pra esse pão duro!
+  if (employeeName === undefined) {
+    return {};
+  }
+  // onde estão os funcionários?
+  const { employees } = data;
+  // Quem é esse funcionário Object by First name
+  const firstNameSeach = employees.find(({ firstName }) => firstName === employeeName);
+  // Quem é esse funcionário Object by LastName
+  const lastNameSeach = employees.find(({ lastName }) => lastName === employeeName);
+
+  if (firstNameSeach === undefined) {
+    return lastNameSeach;
+  }
+
+  return firstNameSeach;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const employee = {
+    ...personalInfo,
+    ...associatedWith,
+  };
+  return employee;
 }
 
-function isManager(id) {
-  // seu código aqui
-}
+// function isManager(id) {
+//   // seu código aqui
+// }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+//   // seu código aqui
+// }
 
-function animalCount(species) {
-  // seu código aqui
-}
+// function animalCount(species) {
+//   // seu código aqui
+// }
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+// function entryCalculator(entrants) {
+//   // seu código aqui
+// }
 
-function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
+//   // seu código aqui
+// }
 
-function schedule(dayName) {
-  // seu código aqui
-}
+// function schedule(dayName) {
+//   // seu código aqui
+// }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
+// }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+// function increasePrices(percentage) {
+//   // seu código aqui
+// }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
 module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
+  // entryCalculator,
+  // schedule,
+  // animalCount,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
+  // employeeCoverage,
+  // addEmployee,
+  // isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
+  // oldestFromFirstSpecies,
+  // increasePrices,
   createEmployee,
 };

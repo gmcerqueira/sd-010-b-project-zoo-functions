@@ -151,7 +151,7 @@ function getAnimalsBySex(options) {
         const {
           name,
         } = an;
-        obj[name] = an.residents.filter(resident => resident.sex === options.sex).map(el => el.name)
+        obj[name] = an.residents.filter((res) => res.sex === options.sex).map((el) => el.name);
         return obj;
       }),
     };
@@ -165,12 +165,12 @@ function getAnimalsBySexOrdened(options) {
     } = curr;
     return {
       ...acc,
-      [location]: animals.filter((animal) => animal.location === location).map((an) => {
+      [location]: animals.filter((animal) => animal.location === location).map((a) => {
         const obj = {};
         const {
           name,
-        } = an;
-        obj[name] = an.residents.filter(resident => resident.sex === options.sex).map(el => el.name).sort()
+        } = a;
+        obj[name] = a.residents.filter((res) => res.sex === options.sex).map((e) => e.name).sort();
         return obj;
       }),
     };

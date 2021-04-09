@@ -52,26 +52,6 @@ function createEmployee(personalInfo, associatedWith) {
   return newEmployee;
 }
 
-// const personalInfo = {
-//   id: '7ed1c9bb-8570-44f6-b718-0666b869573a',
-//   firstName: 'John',
-//   lastName: 'Doe',
-// };
-
-// const associatedWith = {
-//   managers: [
-//     'c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
-//     '9e7d4524-363c-416a-8759-8aa7e50c0992'
-//   ],
-//   responsibleFor: [
-//     '0938aa23-f153-4937-9f88-4858b24d6bce',
-//     '89be95b3-47e4-4c5b-b687-1fabf2afa274',
-//     'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5'
-//   ]
-// };
-
-// console.log(createEmployee(personalInfo, associatedWith));
-
 function isManager(id) {
   const arrManager = [];
   employees.forEach((employee) => {
@@ -81,8 +61,6 @@ function isManager(id) {
   });
   return arrManager.some((manager) => manager !== undefined);
 }
-
-console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const lastEmployee = {
@@ -95,17 +73,24 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push(lastEmployee);
 }
 
-// addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe')
-// console.log(employees.length)
-// console.log(employees[8].managers)
-// console.log(employees[8].responsibleFor)
-// console.log(employees[8].id)
-// console.log(employees[8].firstName)
-// console.log(employees[8].lastName)
-
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  const objAnimal = {};
+  let totalAnimal = 0;
+  if (species === undefined) {
+    animals.forEach((animal) => {
+      const countAnimal = animal.residents.length;
+      objAnimal[animal.name] = countAnimal;
+    });
+    return objAnimal;
+  }
+  animals.forEach((animal) => {
+    if (animal.name === species) {
+      totalAnimal = animal.residents.length;
+    }
+  });
+  return totalAnimal;
+}
+console.log(animalCount());
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -134,7 +119,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

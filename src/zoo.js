@@ -37,24 +37,24 @@ function animalsOlderThan(animal, age) {
   const animalOlder = animals.find((unit) => unit.name === animal);
   return animalOlder.residents.every((resident) => resident.age >= age);
 }
-console.log(animalsOlderThan('penguins', 10));
+// console.log(animalsOlderThan('penguins', 10));
 
-function employeeByName(employeeName) { // Usei a mesma lógica do primeiro exercício.
+function employeeByName(employeeName) {
   // seu código aqui
   // const employee = employeeName;
-  const object = {};
+  const object = { };
   if (employeeName === undefined) { return object; }
 
-  const employeeMapped = employees.find((person) =>
+  const employeefound = employees.find((person) =>
     person.firstName === employeeName || person.lastName === employeeName);
 
   // console.log(employeeMapped);
 
-  return employeeMapped;
+  return employeefound;
 }
 employeeByName('Emery');
 
-function createEmployee(personalInfo, associatedWith) { 
+function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   return {
     ...personalInfo,
@@ -64,15 +64,35 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  const managersFinder = employees.some((person) =>
+    person.managers.some((manager) => manager === id));
+  // console.log(managersFinder);
+  return managersFinder;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83');
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
+addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe');
 
 function animalCount(species) {
-  // seu código aqui
+  // // seu código aqui
+  const allAnimals = {};
+
+  if (species === undefined) {
+    animals.forEach(({ name, residents }) => {
+      allAnimals[name] = residents.length;
+    });
+    return allAnimals;
+  }
+  const animalVerify = animals.find((animal) => animal.name === species);
+
+  return animalVerify.residents.length;
 }
+animalCount();
 
 function entryCalculator(entrants) {
   // seu código aqui

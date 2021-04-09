@@ -8,7 +8,9 @@ eslint no-unused-vars: [
   }
 ]
 */
-
+const steph = '9e7d4524-363c-416a-8759-8aa7e50c0992';
+const olaId = 'fdb2543b-5662-46a7-badc-93d960fdc0a8';
+const burlId = '0e7b460e-acf4-4e17-bcb3-ee472265db83';
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -20,24 +22,42 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // const minimalAge = data.animals.every((specie) => specie.name === animal && specie.age <= age);
+  const mappingResidents = data.animals.map((animals) => animals.residents);
+  // const getAge = mappingResidents.forEach((...value) => value);
+  // console.log(getAge);
+  const minimalAge = data.animals.every((specie) =>
+    specie.name === animal && mappingResidents >= age);
   return minimalAge;
 }
+// console.log(animalsOlderThan('otters', 7));
+// console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  const filter = data.employees.filter((person) =>
+    person.firstName === employeeName || person.lastName === employeeName);
+  return employeeName === undefined ? {} : filter.shift();
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-  // seu código aqui
+  const ftrId = data.employees.filter((obj) => obj.id === id).shift();
+  const { managers } = ftrId;
+  console.log(managers);
+  return managers.shift() === steph || managers.shift() === olaId || managers.shift() === burlId;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const dataPush = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  data.employees.push(dataPush);
 }
 
 function animalCount(species) {

@@ -177,22 +177,24 @@ function getAnimalsBySexOrdened(options) {
   }, {});
 }
 
-function animalMap(options) {
-  if (!options) {
-    return getAnimalsLocation();
+function verifyParam(param) {
+  if (param.sorted && param.sex) {
+    return getAnimalsBySexOrdened(param);
   }
-  if (options.includeNames && options.sorted && options.sex) {
-    return getAnimalsBySexOrdened(options);
-  }
-  if (options.includeNames && options.sorted) {
+  if (param.sorted) {
     return getOrdenedNames();
   }
-  if (options.includeNames && options.sex) {
-    return getAnimalsBySex(options);
+  if (param.sex) {
+    return getAnimalsBySex(param);
   }
-  if (options.includeNames) {
-    return getAnimalsName();
+  return getAnimalsName;
+}
+
+function animalMap(options) {
+  if (options && options.includeNames) {
+    return verifyParam(options);
   }
+  return getAnimalsLocation();
 }
 
 // function schedule(dayName) {

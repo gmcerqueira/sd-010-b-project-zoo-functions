@@ -11,12 +11,12 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, hours, prices } = data;
+const { animals, employees, prices } = data;
 function animalsByIds(...ids) {
   return animals.filter((animal) => ids.some((verificaId) => animal.id === verificaId));
   // Usei o spread no parametro da função para retorna os ids,
   // o filter para passar pelo array animals, e o some para retorna ao menos uma condição
-  // Pesquisei e tive ajuda durante o projeto. 
+  // Pesquisei e tive ajuda durante o projeto.
 }
 // console.log(animalsByIds())
 function animalsOlderThan(animal, age) {
@@ -28,9 +28,9 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  return employees.find((nameEmpl) => 
-  (employeeName === nameEmpl.firstName || employeeName === nameEmpl.lastName));
-  // Usei o find para retorna o objeto tanto pelo primeiro nome e último nome. 
+  return employees.find((nameEmpl) =>
+    (employeeName === nameEmpl.firstName || employeeName === nameEmpl.lastName));
+  // Usei o find para retorna o objeto tanto pelo primeiro nome e último nome.
 }
 
 function createEmployee(personalInfo, associatedWith) {

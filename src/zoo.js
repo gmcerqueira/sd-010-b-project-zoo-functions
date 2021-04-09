@@ -12,8 +12,8 @@ const data = require('./data');
 
 const { animals } = data;
 
-function animalsByIds(...ids) {  
-  return animals.filter((idAnimals) => idAnimals === ids); 
+function animalsByIds(...ids) {
+  return animals.filter((idAnimals) => idAnimals === ids);
 }
 
 // function animalsOlderThan(animal, age) {
@@ -25,7 +25,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return { ...personalInfo , ...associatedWith };
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -72,9 +72,9 @@ module.exports = {
   animalsByIds,
   employeeByName,
   employeeCoverage,
-//  addEmployee,
+//addEmployee,
   isManager,
-//  animalsOlderThan,
+//animalsOlderThan,
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,

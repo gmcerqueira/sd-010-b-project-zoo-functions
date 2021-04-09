@@ -28,9 +28,17 @@ function animalsByIds(...ids) {
     ids.some((id) => animal.id === id));
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
-  return [animal, age];
+// Verifica se todos os animais com dado nome são mais velhos que a idade passada.
+function animalsOlderThan(animalName, age) {
+  // Procura se há um animal com o nome passado.
+  const animalObj = animals.find((animal) => animal.name === animalName);
+  // Verifica se o animal existe.
+  if (animalObj) {
+    // Verifica se todos os animais têm idade maior que 'age'.
+    return animalObj.residents.every((animal) => animal.age >= age);
+  }
+
+  return undefined;
 }
 
 function employeeByName(employeeName) {

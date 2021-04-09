@@ -22,7 +22,6 @@ eslint no-unused-vars: [
 // function employeeByName(employeeName) {
 //   // seu código aqui
 // }
-git 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   return { ...personalInfo, ...associatedWith };

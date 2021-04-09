@@ -90,19 +90,36 @@ function schedule(dayName) {
       objeto[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
     }
   });
-  if (dayName) return { [dayName]: objeto[dayName] };
+  if (dayName) return {
+    [dayName]: objeto[dayName]
+  };
   return objeto;
+}
+
+function buscaFunc(param) {
+  return data.employees.find(({
+      id,
+      firstName,
+      lastName
+    }) =>
+    id === param || firstName === param || lastName === param).responsibleFor[0];
 }
 
 function oldestFromFirstSpecies(idfunc) {
   // seu código aqui
-  const funcionario = data.employees.find(({ id }) => id === idfunc).responsibleFor[0];
-  const { residents } = animalsByIds(funcionario)[0];
+  const funcionario = buscaFunc(idfunc);
+  const {
+    residents
+  } = animalsByIds(funcionario)[0];
   const animalMaisVelho = residents.reduce((acc, elemento) => {
     if (acc.age > elemento.age) return acc;
     return elemento;
   });
-  const { name, sex, age } = animalMaisVelho;
+  const {
+    name,
+    sex,
+    age
+  } = animalMaisVelho;
   return [name, sex, age];
 }
 
@@ -116,7 +133,21 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui;
-  return idOrName;
+  //const funcionario = buscaFunc(idOrName);
+  const objeto = {};
+  data.employees.forEach(({
+    id,
+    firstName,
+    lastName,
+    responsibleFor
+  }) => {
+    if (id === idOrName || firstName === idOrName || lastName === idOrName || !idOrName) {
+      objeto[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(({
+        name,
+      }) => name);
+    }
+  })
+  return objeto;
 }
 
 module.exports = {

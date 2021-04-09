@@ -43,18 +43,25 @@ function isManager(id) {
   const { employees } = data;
   const searchResult = [];
 
-  const elements = employees.forEach((managers) => {searchResult.push(...managers.managers)});
+  const elements = employees.forEach((managers) => { searchResult.push(...managers.managers); });
 
   const find = searchResult.find((idOf) => idOf === id);
   if (find !== undefined) return true;
   return false;
 }
 
-console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
-
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  const add = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  if (managers === undefined) add.managers = [];
+  if (responsibleFor === undefined) add.responsibleFor = [];
+  data.employees.push(add);
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -92,7 +99,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

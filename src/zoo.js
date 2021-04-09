@@ -16,8 +16,8 @@ const { animals } = data;
 // (...ids) busca espécies de animais por ids, independente de quantos sejam.
 // filter fará novo array de acordo com as condições true do some.
 function animalsByIds(...ids) {
-return animals.filter((animal) => 
-  ids.some((verifyId) => animal.id === verifyId));
+  return animals.filter((animal) =>
+    ids.some((verifyId) => animal.id === verifyId));
 }
 
 /* function animalsOlderThan(animal, age) {

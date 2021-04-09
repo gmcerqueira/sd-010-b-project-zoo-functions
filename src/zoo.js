@@ -38,10 +38,19 @@ function employeeByName(employeeName) {
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
-// console.log(...data.employees)
-// function isManager(id) {
-//   // seu código aqui
-// }
+
+function isManager(id) {
+  const { employees } = data;
+  const searchResult = [];
+
+  const elements = employees.forEach((managers) => {searchResult.push(...managers.managers)});
+
+  const find = searchResult.find((idOf) => idOf === id);
+  if (find !== undefined) return true;
+  return false;
+}
+
+console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -84,7 +93,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

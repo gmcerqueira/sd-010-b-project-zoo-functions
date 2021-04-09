@@ -16,11 +16,11 @@ function animalsByIds(...ids) {
   return data.animals.filter((animal) => ids.includes(animal.id));
 }
 
-// function animalsOlderThan(animal, age) {
-//   const filterAnimal= data.animals.find((objAnimal) =>  objAnimal.name === animal);
-//   return filterAnimal
-// }
-// console.log(animalsOlderThan('penguins', 10));
+function animalsOlderThan(animal, age) {
+  const filterAnimal = data.animals.find((objAnimal) => objAnimal.name === animal).residents;
+  return filterAnimal.every((resident) => resident.age > age);
+  // return  filterAge// tem que ser booleano
+}
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
@@ -84,7 +84,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

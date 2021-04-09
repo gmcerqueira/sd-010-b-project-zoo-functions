@@ -71,40 +71,45 @@ function entryCalculator(entrants) {
   return Object.entries(entrants).reduce((acc, [type, amount]) => acc + amount * prices[type], 0);
 }
 
-function showAnymalsByLocalization() {
-  const locations = animals.reduce((acc, animal) => {
-    if (!acc[animal.location]) {
-      acc[animal.location] = [animal.name];
-    } else {
-      acc[animal.location] = [...acc[animal.location], animal.name];
-    }
+function getAnimalNamesObject(uName, residents, uSex, sorted) {
+  let firstResidentsCheck = residents;
+  if (uSex) {
+    firstResidentsCheck = Object.values(residents).filter(({ sex }) => sex === uSex);
+  }
+  const arrayOfNames = Object.values(firstResidentsCheck).map(({ name }) => name);
+  if (sorted) arrayOfNames.sort();
+  const obj = {};
+  obj[uName] = arrayOfNames;
+
+  return obj;
+}
+
+function getAnimalsByLocation({ includeNames, sex, sorted }, comparableLocation) {
+  return animals.reduce((arr, { name, location, residents }) =>
+    // this reduce will get all animals from that upper location and concat or create a object even if its overwrited
+    (comparableLocation === location ? arr.concat(!includeNames
+      ? name
+      : getAnimalNamesObject(name, residents, sex, sorted)) : arr),
+
+  []);
+}
+
+function getAnimals(includeNames = false, sex = false, sorted = false) {
+  const params = { includeNames, sex, sorted };
+  return animals.reduce((acc, { location }) => {
+    // create the location key and call another function that will add all animals from those location key
+    acc[location] = getAnimalsByLocation(params, location);
     return acc;
   }, {});
-  return locations;
 }
 
-function showAnymalsByLocalizationAndNames() {
-  const locations = showAnymalsByLocalization();
-  console.log(locations);
-  const valuesSeparated = Object.values(locations);
-  const newData = valuesSeparated
-    .reduce((acc, group) => acc.concat(...group), [])
-    .reduce((acc, animal) => {
-      acc[animal] = animals.find((name) => name.name === animal).residents.map((data) => data.name);
-      return acc;
-    }, {});
-  valuesSeparated.forEach((group) => group.forEach((animal) =>))
-  
+function animalMap(options) {
+  if (!options) return getAnimals();
+  const { includeNames, sex, sorted } = options;
+  return getAnimals(includeNames, sex, sorted);
 }
 
-function animalMap(includeNames = false) {
-  if (!includeNames) {
-    return showAnymalsByLocalization();
-  }
-  showAnymalsByLocalizationAndNames();
-}
-
-animalMap(true);
+console.log(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   // seu código aqui

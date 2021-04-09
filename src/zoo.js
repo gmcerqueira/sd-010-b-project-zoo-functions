@@ -134,6 +134,7 @@ function oldestFromFirstSpecies(id) {
   const target = data.employees.find((employee) => employee.id === id);
   let targetAnimal = data.animals.find((animal) => animal.id === target.responsibleFor[0]);
   const { residents } = targetAnimal;
+  // eslint-disable-next-line prefer-destructuring
   targetAnimal = residents.sort((a, b) => b.age - a.age)[0];
   return [targetAnimal.name, targetAnimal.sex, targetAnimal.age];
 }

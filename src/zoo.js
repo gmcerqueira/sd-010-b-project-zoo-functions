@@ -19,11 +19,9 @@ const animalsOlderThan = (animal, ageMin) =>
   animals.find(({ name }) => name === animal).residents.every(({ age }) => age > ageMin);
 
 function employeeByName(employeeName) {
-  return employeeName
-    ? employees.find(
-      (person) => person.firstName === employeeName || person.lastName === employeeName,
-    )
-    : {};
+  return !employeeName ? {} : employees.find(
+    (person) => person.firstName === employeeName || person.lastName === employeeName,
+  );
 }
 
 const createEmployee = (arg1, arg2) => ({ ...arg1, ...arg2 });

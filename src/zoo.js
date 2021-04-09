@@ -62,8 +62,7 @@ const listModel = (callback, sex, sorted) => {
 const listIncludes = (animal, sex, sorted) =>
   animal.map(({ name, residents }) => {
     const arr = residents.filter((e) => e.sex === sex || !sex).map((e) => e.name);
-    if (sorted) return { [name]: arr.sort() };
-    return { [name]: arr };
+    return sorted ? { [name]: arr.sort() } : { [name]: arr };
   });
 
 function animalMap(options) {

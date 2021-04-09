@@ -14,11 +14,13 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 
+// Requirement 1
 function animalsByIds(...ids) {
   // seu código aqui
   return ids.map((id) => animals.find((animal) => animal.id === id));
 }
 
+// Requirement 2
 function animalsOlderThan(animal, age) {
   // seu código aqui
   return animals.find((specie) => specie.name === animal).residents
@@ -28,10 +30,12 @@ function animalsOlderThan(animal, age) {
 // const specie = 'otters';
 // animalsOlderThan(specie, 7);
 
+// Requirement 3
 function employeeByName(employeeName) {
   // seu código aqui
   // let obj = {};
-  const searchEmployee = employees.find((employee) => (employee.firstName === employeeName)
+  const searchEmployee = employees.find((employee) =>
+    (employee.firstName === employeeName)
     || (employee.lastName === employeeName));
   // console.log(obj);
 
@@ -40,6 +44,7 @@ function employeeByName(employeeName) {
 // const emp = 'Wishart';
 // console.log(employeeByName(emp));
 
+// Requirement 4
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   return Object.assign(personalInfo, associatedWith);
@@ -63,15 +68,31 @@ function createEmployee(personalInfo, associatedWith) {
 // };
 // console.log(createEmployee(info, ass));
 
+// Requirement 5
 function isManager(id) {
   // seu código aqui
   return employees.some((employee) => employee.managers
     .some((manager) => manager === id));
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+// Requirement 6
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  // seu código aqui
+  console.log(data.employees.length);
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+  };
+  console.log(newEmployee);
+  data.employees.push(newEmployee);
+  console.log(data.employees.length);
+  return newEmployee;
+}
+const id1 = '39800c14-4b76-454a-858d-2f8d168146a7';
+const n = 'John';
+const s = 'Doe';
+// addEmployee(id1, n, s);
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -109,7 +130,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

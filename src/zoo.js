@@ -11,8 +11,8 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-// hours, prices
-const { animals, employees } = data;
+// hours
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -89,17 +89,46 @@ function animalCount(species) {
   return animals.find((animal) => animal.name === species).residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrant) {
+  // seu código aqui
+  // A partir da quantidade de visitantes e a faixa etária de cada um, esta função é responsável por retornar o preço total a ser cobrado
+  // O parâmetro `entrants` recebe um objeto que contém as chaves `Adult`, `Child` e `Senior`, com suas respectivas quantidades de pessoas
+  // Retorna 0 se nenhum argumento for passado. Retorna 0 se um objeto vazio for passado. Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+  if (!entrant || (Object.keys(entrant).length === 0 && entrant.constructor === Object)) return 0;
+  const count = {};
+  const qntEntrants = Object.values(entrant); // retornando a quantidade de entrants
+  const entrantParam = Object.keys(entrant); // retornando os entrantes
+  Object.keys(entrant).forEach((entrantPrice, index) => {
+    count[entrantPrice] = prices[entrantParam[index]] * qntEntrants[index];
+  });
+  // somar
+  return Object.values(count).reduce((a, b) => a + b);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
+//   // A função é responsável pelo mapeamento geográfico das espécies e seus animais, podendo ainda filtrá-los por ordem alfabética e gênero, por exemplo
 // }
 
 // function schedule(dayName) {
 //   // seu código aqui
+//   // A função é responsável por disponibilizar as informações de horário para uma consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas o cronograma de um dia específico
+//   // Sem parâmetros, retorna um cronograma legível para humanos.
+//   // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+//   // tratar as horas 12 - 24 -> 0 - 12
+//   const openingHours = {};
+//   Object.keys(hours).forEach((hour) => {
+//     openingHours[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close}pm`;
+
+//     if (hours[hour].open === 0 && hours[hour].close === 0) {
+//       openingHours[hour] = 'CLOSED';
+//     }
+//   });
+//   if (!dayName) return openingHours;
+//   return openingHours.
 // }
+
+// console.log(schedule('Monday'));
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -114,7 +143,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

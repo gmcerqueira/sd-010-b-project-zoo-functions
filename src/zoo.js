@@ -40,7 +40,6 @@ function animalsOlderThan(animal, age) {
       return false;
     }
     // ele sempre retornará o ultimo valor.
-    // ele não quer deixar eu retornar espAcc porque não permite que aconteceça
     return espAcc;
   }, true);
   return sameSpecies;
@@ -73,9 +72,23 @@ function createEmployee(personalInfo, associatedWith) {
   return employee;
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  const { employees } = data;
+  const haveManager = employees.reduce((employeeAcc, employeeActual) => {
+    const { managers } = employeeActual;
+    const searchManager = managers.reduce((verifyAcc, currentManager) => {
+      if (currentManager === id) {
+        return true;
+      }
+      return verifyAcc;
+    }, false);
+    if (searchManager === true) {
+      return true;
+    }
+    return employeeAcc;
+  }, false);
+  return haveManager;
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -118,7 +131,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

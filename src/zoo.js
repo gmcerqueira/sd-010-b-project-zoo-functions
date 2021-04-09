@@ -15,13 +15,11 @@ const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   return animals.filter((animal) => ids.includes(animal.id));
-  // seu código aqui
 }
 
 function animalsOlderThan(animal, age) {
   const name = animals.find((animalName) => animalName.name === animal);
   return name.residents.every((animalAges) => animalAges.age > age);
-  // seu código aqui
 }
 
 function employeeByName(employeeName) {
@@ -30,21 +28,26 @@ function employeeByName(employeeName) {
   }
   return employees.find((employee) =>
     (employee.firstName === employeeName || employee.lastName === employeeName));
-  // seu código aqui
 }
 
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
-  // seu código aqui
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  return employees.some((employee) => employee.managers.some((manager) => manager === id));
+}
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor =[]) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return employees.push(newEmployee);
+ }
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -82,8 +85,8 @@ module.exports = {
   animalsByIds,
   employeeByName,
   //   employeeCoverage,
-  //   addEmployee,
-  //   isManager,
+  addEmployee,
+  isManager,
   animalsOlderThan,
   //   oldestFromFirstSpecies,
   //   increasePrices,

@@ -22,7 +22,7 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   return animals.find((animais) => animais.name === animal)
     .residents.every((animais) => animais.age >= age);
-    // retorna infos dos animais e busca o array do residents com todas as infos, assumindo que todos os objetos vao retornar.
+  // retorna infos dos animais e busca o array do residents com todas as infos, assumindo que todos os objetos vao retornar.
 }
 
 function employeeByName(employeeName) {
@@ -30,8 +30,8 @@ function employeeByName(employeeName) {
 
   return employees.find((employee) => (
     employee.firstName === employeeName || employee.lastName === employeeName));
-    // se o employeeName for vazio retorna {},
-    // retorna o primeiro funcionario com primeiro nome.
+  // se o employeeName for vazio retorna {},
+  // retorna o primeiro funcionario com primeiro nome.
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -41,7 +41,7 @@ function createEmployee(personalInfo, associatedWith) {
   };
 }
 // com destructuring consigo as infos de personalInfo e associatedWith
-  // trazendo os objetos no return usando spread criando um novo employee
+// trazendo os objetos no return usando spread criando um novo employee
 
 function isManager(id) {
   return employees.some((employee) => employee.managers.includes(id));
@@ -88,7 +88,7 @@ function entryCalculator(entrants) {
 // percorre cada chave do entrant, e cada chave conicide com seus prices
 // determina o valor inicial como 0 e a chave atual do entrants
 // apos determinar o numero de entrants, verifica o preco e mutiplica um pelo outro e add no acumulador
-// obs: prices esta destruturado 
+// obs: prices esta destruturado
 
 function findAnimalNames(animalName, sorted, sex) {
   let result = animals.find((animal) => animal.name === animalName);
@@ -139,7 +139,8 @@ function schedule(dayName) {
 }
 
 // retorna os dias, horario de abertura e fechamento nessa ordem
-// cria-se um novo objeto, mantendo as propriedades alterando o valor delas, horario de abertura e fechamento usando AM/PM 
+// cria-se um novo objeto, mantendo as propriedades alterando o valor delas,
+// horario de abertura e fechamento usando AM/PM
 // destrutura as horas(hours)
 // usa object.entries para pegar as entradas (hours) e faz um reduce que retorna
 // a propriedade e valor com reduce no array de array
@@ -162,7 +163,7 @@ function oldestFromFirstSpecies(id) {
 // procura um id de funcionario para encontrar a especie de animal
 // gerenciado por esse funcionario e retorna array com nome, sexo e idade do animal mais velho.
 // pega o funcionario, passa seu ID e retorna o animal que ele eh responsavel naquele ID.
-// apos buscar os animais, faz um reduce, com acc apos o atual intera e verifica o mais velho 
+// apos buscar os animais, faz um reduce, com acc apos o atual intera e verifica o mais velho
 // usa condicionais se o animal atual tem idade maior que o mais velho, retorna o atual, senao retorna o mais velho
 
 function increasePrices(percentage) {

@@ -12,37 +12,37 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
-
   if (ids.length === 0) {
     return [];
   }
   const animalReduce = [...ids];
   const animalSeach = animalReduce.reduce((animalIdAcc, id) => {
-    // onde estão os animais?
-    const animals = data.animals;
-    // pegue o id e vá de encontro ao animal.
+  //  onde estão os animais?
+    const { animals } = data;
+    //  pegue o id e vá de encontro ao animal.
     const locator = animals.find((animal) => animal.id === id);
-    // armazene o animal
+    //  armazene o animal
     return animalIdAcc.concat(locator);
   }, []);
-  // retorne todos animais.
+  //  retorne todos animais.
   return animalSeach;
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
-  //onde está o animal?
-  const {animals} = data;
-  // qual é este animal?
-  const animalSeach = animals.find(({
-    name
-  }) => name === animal);
-  // array com todos da mesma especie;
+  //  seu código aqui
+  //  onde está o animal?
+  const { animals } = data;
+  //  qual é este animal?
+  const animalSeach = animals.find(({ name }) => name === animal);
+  //  array com todos da mesma especie;
   const sameSpecies = animalSeach.residents.reduce((espAcc, espAnimal) => {
     if (espAnimal.age < age) {
-      return espAcc = false;
+      espAcc = false;
+      return espAcc;
     }
     // ele sempre retornará o ultimo valor.
+    // ele não quer deixar eu retornar espAcc porque não permite que aconteceça
+    // reatribuição de valor
     return espAcc;
   }, true);
   return sameSpecies;

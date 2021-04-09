@@ -17,15 +17,27 @@ const {
 } = require('./data');
 // const data = require('./data');
 
+// ------------------------------------------------------------------
+// REQUISITO 01 - animalsByIds
+// ------------------------------------------------------------------
+
 function animalsByIds(...ids) {
   return animals.filter((animal) => ids.includes(animal.id));
 }
+
+// ------------------------------------------------------------------
+// REQUISITO 02 - animalsOlderThan
+// ------------------------------------------------------------------
 
 function animalsOlderThan(animal, age) {
   const animalObj = animals.find((element) => element.name === animal); // Pega apenas o objeto do parametro animal dentro de animals
   const animalAges = animalObj.residents.map((element) => element.age); // Cria uma array com as idades de todos os animais dentro do objeto
   return animalAges.every((value) => value > age); // Verifica se todos os valores da array de idades contempla o parametro age
 }
+
+// ------------------------------------------------------------------
+// REQUISITO 03 - employeeByName
+// ------------------------------------------------------------------
 
 function employeeByName(employeeName) {
   let result = {};
@@ -36,6 +48,10 @@ function employeeByName(employeeName) {
   }
   return result;
 }
+
+// ------------------------------------------------------------------
+// REQUISITO 04 - createEmployee
+// ------------------------------------------------------------------
 
 function createEmployee(personalInfo, associatedWith) {
   const {
@@ -56,9 +72,17 @@ function createEmployee(personalInfo, associatedWith) {
   };
 }
 
+// ------------------------------------------------------------------
+// REQUISITO 05 - isManager
+// ------------------------------------------------------------------
+
 function isManager(id) {
   return employees.some((employee) => employee.managers.includes(id));
 }
+
+// ------------------------------------------------------------------
+// REQUISITO 06 - addEmployee
+// ------------------------------------------------------------------
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmployee = {
@@ -72,6 +96,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return newEmployee;
 }
 
+// ------------------------------------------------------------------
+// REQUISITO 07 - animalCount
+// ------------------------------------------------------------------
+
 function animalCount(species) {
   if (!species) {
     return animals.reduce((acc, nextAnimal) => {
@@ -81,6 +109,10 @@ function animalCount(species) {
   }
   return animals.find((specie) => specie.name === species).residents.length;
 }
+
+// ------------------------------------------------------------------
+// REQUISITO 08 - entryCalculator
+// ------------------------------------------------------------------
 
 // Checking Empty Obj https://flaviocopes.com/how-to-check-object-empty/
 
@@ -96,6 +128,16 @@ function entryCalculator(entrants) {
 
   return total.filter((value) => value > 0).reduce((a, b) => a + b, 0);
 }
+
+// ------------------------------------------------------------------
+// REQUISITO 09 - animalMap
+// ------------------------------------------------------------------
+
+// https://stackoverflow.com/questions/13973158/how-do-i-convert-a-javascript-object-array-to-a-string-array-of-the-object-attri
+
+// 1. cria objeto - locations: []
+// 2. filtra animais por location - cada filter no valor de cada chave location
+// 3.
 
 // function animalMap(options) {
 //   if (!options || !options.includeNames) {
@@ -117,6 +159,7 @@ function entryCalculator(entrants) {
 
 // ------------------------------------------------------------------
 // REQUISITO 10 - schedule
+// ------------------------------------------------------------------
 
 // Altera as horas para AM/PM
 function amPm(hour) {
@@ -156,36 +199,45 @@ function schedule(dayName) {
 
 // ------------------------------------------------------------------
 // REQUISITO 11 - oldestFromFirstSpecies
-
-// 1. Encontra Employee pela Id; (employee)
-// 2. Pega o objeto do primeiro animal; (firstAnimal)
-// 3. Cria array com (find?)
+// ------------------------------------------------------------------
 
 function oldestFromFirstSpecies(id) {
+  // 1. Encontra Employee pela Id; (employee)
+  // 2. Pega o objeto do primeiro animal; (firstAnimalSpecies)
+  // 3. Pega o animal mais velho a partir da array .residents (oldestAnimal)
+  // 4. Retorna os valores do objeto oldestAnimal
   const employee = employees.find((person) => person.id === id);
-  const firstAnimal = animals.find((animal) =>
+  const firstAnimalSpecies = animals.find((animal) =>
     animal.id === employee.responsibleFor[0]);
-  const listOfAnimals = firstAnimal.residents.reduce((list, nextAnimal) => {
+  const oldestAnimal = firstAnimalSpecies.residents.reduce((list, nextAnimal) => {
     let newList = list;
     if (list.age < nextAnimal.age) {
       newList = nextAnimal;
     }
     return newList;
   });
-  return Object.values(listOfAnimals);
+  return Object.values(oldestAnimal);
 }
-
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 // ------------------------------------------------------------------
 // REQUISITO 12 - increasePrices
+// ------------------------------------------------------------------
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  prices.Adult = Math.round(
+    (prices.Adult += (prices.Adult * percentage) / 100 + Number.EPSILON) * 100,
+  ) / 100;
+  prices.Senior = Math.round(
+    (prices.Senior += (prices.Senior * percentage) / 100 + Number.EPSILON) * 100,
+  ) / 100;
+  prices.Child = Math.round(
+    (prices.Child += (prices.Child * percentage) / 100 + Number.EPSILON) * 100,
+  ) / 100;
+}
 
 // ------------------------------------------------------------------
 // REQUISITO 13 - employeeCoverage
+// ------------------------------------------------------------------
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -203,6 +255,6 @@ module.exports = {
   // animalMap,
   schedule,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   // employeeCoverage,
 };

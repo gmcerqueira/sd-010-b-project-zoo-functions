@@ -42,12 +42,13 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  // armamazenei todos os valores de managers de 'employee', a partir do forEach numa variavel 'managers';
+  // comparei cada valor dessa nova lista com o id passado, caso fossem iguais: return true;
   const managers = [];
   employees.forEach((info) => managers.push(...info.managers));
   return managers.some((manager) => manager === id);
 }
-// console.log(isManager());
+
 function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
   // alterei os parametros da função para que recebessem [] caso o valor respectivo fosse 'undefined' (metodo destructuring default);
   // criei um novo employee a partir dos parametros da função e retornei o push do novo elemento no 'employees';
@@ -61,17 +62,19 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
   return employees.push(newEmployee);
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-//   const allAnimals = {};
-//   const buildAnimals = animals.reduce((acc, curr, index) =>
-//     );
-//   if (species === undefined) return allAnimals;
-//   return animals[species];
-// }
+function animalCount(species) {
+  // seu código aqui
+  const allAnimals = {};
+  animals.forEach(({ name, residents }) => {
+    allAnimals[name] = residents.length;
+  });
+
+  if (!species) return allAnimals;
+  return animals.find((animal) => animal.name === species).residents.length;
+}
+console.log(animalCount('lions'));
 
 function entryCalculator(entrants = 0) {
-  // seu código aqui
   // tive auxilio da Alessandra Resende neste requisito;
   // default param em caso de parametro vazio = 0;
   // Object.entries transforma 'entrants' em um array de arrays. No reduce, o acc é padrão mas o curr é tratado para receber parametros variaveis vindos de 'entrants';
@@ -104,7 +107,7 @@ function entryCalculator(entrants = 0) {
 module.exports = {
   entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

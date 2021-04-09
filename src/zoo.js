@@ -74,24 +74,16 @@ function isManager(id) {
   return employees.some((employee) => employee.managers
     .some((manager) => manager === id));
 }
-// id, firstName, lastName, managers = [], responsibleFor
+
 // Requirement 6
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  // console.log(data.employees.length);
-  const newEmployee = {
+  return data.employees.push({
     id,
     firstName,
     lastName,
     managers,
-    responsibleFor,
-  };
-  data.employees.push(newEmployee);
-  console.log(newEmployee);
-  // console.log(data.employees.length);
-  // const last = data.employees[8];
-  // console.log(last.id);
-  return newEmployee;
+    responsibleFor });
 }
 
 // addEmployee('4141da1c-a6ed-4cf7-90c4-99c657ba4ef3', 'Jane', 'Doe',

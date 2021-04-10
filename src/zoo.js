@@ -22,6 +22,7 @@ function animalsByIds(...ids) {
   const findIdAnimals = animals.filter((animal) =>
     ids.find((element) => element === animal.id),
   );
+
   return findIdAnimals;
 }
 

@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -73,9 +73,16 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // seu código aqui
+  const program = {};
+  Object.keys(hours).forEach((day) => {
+    program[day] = `Open from ${hours[day].open}am until ${(hours[day].close) - 12}pm`;
+  });
+  program.Monday = 'CLOSED';
+  if (dayName !== undefined) return ({ [dayName]: program[dayName] });
+  return program;
+}
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -97,30 +104,30 @@ function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-  if (idOrName !== undefined) {
-    return animals.find((animal) => animal.name === species).residents.length;
-  }
-  return employees.reduce((acc, current) => {
-    acc[`${current.firstName} ${current.lastName}`] = animals.filter((ani) => {
-      const animalList = current.responsibleFor.find((animalId) => ani.id === animalId);
-      return animalList;
-    }).map((pet) => pet.name);
-    return acc;
-  }, {});
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+//   if (idOrName !== undefined) {
+//     return animals.find((animal) => animal.name === species).residents.length;
+//   }
+//   return employees.reduce((acc, current) => {
+//     acc[`${current.firstName} ${current.lastName}`] = animals.filter((ani) => {
+//       const animalList = current.responsibleFor.find((animalId) => ani.id === animalId);
+//       return animalList;
+//     }).map((pet) => pet.name);
+//     return acc;
+//   }, {});
+// }
 
-console.log(employeeCoverage());
+// console.log(schedule('Monday'));
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

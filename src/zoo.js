@@ -171,7 +171,6 @@ function increasePrices(percentage) {
     data.prices[key] = parseFloat((values[i] * ((percentage + 100) / 100)).toFixed(2));
   });
   const teste = data.prices;
-  console.log(teste);
   return (teste);
 }
 increasePrices(50);

@@ -12,7 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 // hours
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -109,25 +109,23 @@ function entryCalculator(entrant) {
 //   // A função é responsável pelo mapeamento geográfico das espécies e seus animais, podendo ainda filtrá-los por ordem alfabética e gênero, por exemplo
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-//   // A função é responsável por disponibilizar as informações de horário para uma consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas o cronograma de um dia específico
-//   // Sem parâmetros, retorna um cronograma legível para humanos.
-//   // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
-//   // tratar as horas 12 - 24 -> 0 - 12
-//   const openingHours = {};
-//   Object.keys(hours).forEach((hour) => {
-//     openingHours[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close}pm`;
-
-//     if (hours[hour].open === 0 && hours[hour].close === 0) {
-//       openingHours[hour] = 'CLOSED';
-//     }
-//   });
-//   if (!dayName) return openingHours;
-//   return openingHours.
-// }
-
-// console.log(schedule('Monday'));
+function schedule(dayName) {
+  // seu código aqui
+  // A função é responsável por disponibilizar as informações de horário para uma consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas o cronograma de um dia específico
+  // Sem parâmetros, retorna um cronograma legível para humanos.
+  // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+  const openingHours = {};
+  Object.keys(hours).forEach((hour) => {
+    openingHours[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close - 12}pm`;
+    if (hours[hour].open === 0 && hours[hour].close === 0) {
+      openingHours[hour] = 'CLOSED';
+    }
+  });
+  const dayHours = {};
+  dayHours[dayName] = openingHours[dayName];
+  if (!dayName) return openingHours;
+  return dayHours;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -143,7 +141,7 @@ function entryCalculator(entrant) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

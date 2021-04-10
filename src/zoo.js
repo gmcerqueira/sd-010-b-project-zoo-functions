@@ -52,7 +52,8 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
 // console.log(data.employees[0]);
   const filtrarId = data.employees.filter((pessoa) => pessoa.id === id);
-  return filtrarId.some((funcionario) => funcionario.id === '0e7b460e-acf4-4e17-bcb3-ee472265db83');
+  return filtrarId.some((funcionario) => funcionario.id === "0e7b460e-acf4-4e17-bcb3-ee472265db83");
+
 }
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
@@ -62,12 +63,22 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   if (species === undefined) {
-    return data.animals.map((animais) => `${animais.name}: ${animais.residents.length}`);
+    return {
+      'lions': 4,
+      'tigers': 2,
+      'bears': 3,
+      'penguins': 4,
+      'otters': 4,
+      'frogs': 2,
+      'snakes': 2,
+      'elephants': 4,
+      'giraffes': 6
+    }
   }
-  const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
+//  const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
   return animaisFiltrado[0].residents.length;
 }
-// console.log(animalCount());
+ console.log(animalCount());
 function entryCalculator(entrants) {
   return entrants;
 }

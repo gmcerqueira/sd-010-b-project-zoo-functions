@@ -76,7 +76,7 @@ function isManager(id) {
   // primeiro foi realizado some no objecto employee
   // verificando se existe um employee
   // apos foi verifica se existe algum employee
-  // que é manager
+  // que é manager pelo id
   const employeeIsManager = employees.some((employee) =>
     employee.managers.some((managerIs) => managerIs === id));
 
@@ -86,9 +86,18 @@ function isManager(id) {
 console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return employees.push(newEmployee);
+}
+
+console.log(addEmployee());
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -126,7 +135,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   // isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

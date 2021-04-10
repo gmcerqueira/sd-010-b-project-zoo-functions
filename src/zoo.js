@@ -113,7 +113,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  if(entrants === undefined) {
+  if (entrants === undefined) {
     return 0;
   }
   const teste3 = Object.keys(entrants);
@@ -124,10 +124,41 @@ function entryCalculator(entrants) {
   });
   return total;
 }
+// 1° Sem parametros, retorna animais categorizados por lozalização.
+function semParametro() {
 
+  return data.animals.reduce((acc, state) => {
+    if (!acc[state.location]) {
+      acc[state.location] = [];
+    }
+    acc[state.location].push(state.name);
+    return acc;
+  }, {});
+}
+// 2° Com a opção 'includes: true' especificada, retorna nomes de animais.
+function includesParametro() {
+
+  return data.animals.reduce((acc, state) => {
+    if (!acc[state.location]) {
+      acc[state.location] = [];
+    }
+    return acc;
+  })
+}
+console.log(includesParametro());
 function animalMap(options) {
   // seu código aqui
+
+  if (!options) {
+    return semParametro();
+  }
+  if (Object.values(options)[0] === true) {}
+  // if(Object.values(options)[1] === true){
+  //   return `o cara é sortudo sim`;
+  // }
+  // return final;
 }
+// console.log(animalMap());
 
 function schedule(dayName) {
   // seu código aqui

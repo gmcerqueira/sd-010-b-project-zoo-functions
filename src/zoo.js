@@ -14,22 +14,21 @@ const data = require('./data');
 
 function animalsByIds(...ids) { // ...ids
   // seu código aqui
-  if (ids.length === 0) {
-    return [];
-  }
-  return animals.filter((idAnimal) => (ids.includes(idAnimal.id)));
+  if (ids.length === 0) return [];
+  return animals.filter((idAnimal) => ids.includes(idAnimal.id));
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
   const specieAnimal = animals.find((animalName) => animalName.name === animal);
-
   return specieAnimal.residents.every((animalAge) => animalAge.age >= age);
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
-  return employeeByName;
+  if (employeeName === undefined) return {};
+  return employees.find((collaboratingPeople) => collaboratingPeople.firstName === employeeName
+  || collaboratingPeople.lastName === employeeName);
 }
 
 // function createEmployee(personalInfo, associatedWith) {

@@ -84,16 +84,6 @@ function entryCalculator(entrants) {
 
 // Objeto com métodos auxiliares para a função animalMap.
 const fooAnimalMap = {
-  main(options) {
-    if (options.sorted && options.sex) {
-      return this.getAnimalBySexOrdered(options);
-    } if (options.sorted) {
-      return this.getOrderedNames();
-    } if (options.sex) {
-      return this.getAnimalBySex(options);
-    }
-    return this.getAnimalNames();
-  },
   getCategory() {
     return animals.reduce((acc, cur) => {
       const { location } = cur;
@@ -103,72 +93,40 @@ const fooAnimalMap = {
       };
     }, {});
   },
-  getAnimalNames() {
-    return animals.reduce((acc, cur) => {
+  getAnimalNames(options) {
+    const animalObj = animals.reduce((acc, cur) => {
       const { location } = cur;
-      return {
-        ...acc,
+      return { ...acc,
         [location]: animals.filter((el) => el.location === location).map((el) => {
           const obj = {};
           const { name } = el;
-          obj[name] = el.residents.map((e) => e.name);
+          obj[name] = this.convertOptions(options, el);
           return obj;
         }),
       };
     }, {});
+    return animalObj;
   },
-  getOrderedNames() {
-    return animals.reduce((acc, cur) => {
-      const { location } = cur;
-      return {
-        ...acc,
-        [location]: animals.filter((el) => el.location === location).map((el) => {
-          const obj = {};
-          const { name } = el;
-          obj[name] = el.residents.map((e) => e.name).sort();
-          return obj;
-        }),
-      };
-    }, {});
-  },
-  getAnimalBySex(options) {
-    return animals.reduce((acc, cur) => {
-      const { location } = cur;
-      return {
-        ...acc,
-        [location]: animals.filter((el) => el.location === location).map((el) => {
-          const obj = {};
-          const { name } = el;
-          obj[name] = el.residents.filter((e) => {
-            const { sex } = e;
-            return sex === options.sex;
-          }).map((e) => e.name);
-          return obj;
-        }),
-      };
-    }, {});
-  },
-  getAnimalBySexOrdered(options) {
-    return animals.reduce((acc, cur) => {
-      const { location } = cur;
-      return {
-        ...acc,
-        [location]: animals.filter((el) => el.location === location).map((el) => {
-          const obj = {};
-          const { name } = el;
-          obj[name] = el.residents.filter((e) => {
-            const { sex } = e;
-            return sex === options.sex;
-          }).map((e) => e.name).sort();
-          return obj;
-        }),
-      };
-    }, {});
+  convertOptions(options, el) {
+    if (options.sorted && options.sex) {
+      return el.residents.filter((e) => {
+        const { sex } = e;
+        return sex === options.sex;
+      }).map((e) => e.name).sort();
+    } if (options.sorted) {
+      return el.residents.map((e) => e.name).sort();
+    } if (options.sex) {
+      return el.residents.filter((e) => {
+        const { sex } = e;
+        return sex === options.sex;
+      }).map((e) => e.name);
+    }
+    return el.residents.map((e) => e.name);
   },
 };
 function animalMap(options) {
   if (options && options.includeNames) {
-    return fooAnimalMap.main(options);
+    return fooAnimalMap.getAnimalNames(options);
   }
 
   return fooAnimalMap.getCategory();
@@ -226,36 +184,20 @@ const fooEmployeeCoverage = {
     return obj;
   },
   getAnimalsListByIdOrName(idOrName) {
-    const boolId = employees.some((el) => el.id === idOrName);
     const boolFirstName = employees.some((el) => el.firstName === idOrName);
-    if (boolId) {
-      return this.getById(idOrName);
+    const boolLastName = employees.some((el) => el.lastName === idOrName);
+    let employee = employees.find((e) => e.id === idOrName);
+    if (boolLastName) {
+      employee = employees.find((e) => e.lastName === idOrName);
+      return this.getEmployee(employee);
     } if (boolFirstName) {
-      return this.getByFirstName(idOrName);
+      employee = employees.find((e) => e.firstName === idOrName);
+      return this.getEmployee(employee);
     }
-    return this.getByLastName(idOrName);
+    return this.getEmployee(employee);
   },
-  getById(id) {
+  getEmployee(employee) {
     const obj = {};
-    const employee = employees.find((e) => e.id === id);
-    const name = `${employee.firstName} ${employee.lastName}`;
-    obj[name] = employee.responsibleFor
-      .map((animalId) => animals.find((animal) => animal.id === animalId))
-      .map((animal) => animal.name);
-    return obj;
-  },
-  getByFirstName(firstName) {
-    const obj = {};
-    const employee = employees.find((e) => e.firstName === firstName);
-    const name = `${employee.firstName} ${employee.lastName}`;
-    obj[name] = employee.responsibleFor
-      .map((animalId) => animals.find((animal) => animal.id === animalId))
-      .map((animal) => animal.name);
-    return obj;
-  },
-  getByLastName(lastName) {
-    const obj = {};
-    const employee = employees.find((e) => e.lastName === lastName);
     const name = `${employee.firstName} ${employee.lastName}`;
     obj[name] = employee.responsibleFor
       .map((animalId) => animals.find((animal) => animal.id === animalId))

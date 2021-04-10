@@ -175,12 +175,16 @@ function oldestFromFirstSpecies(id) {
     (employee) => employee.id === id, // que possui id igual ao recebido por parâmetro
   ).responsibleFor[0]; // e retornar o id da primeira espécie de animal que ele gerencia
 
-  // Código v2.1 usando reduce e a function animalsByIds
-  const oldestResident = animalsByIds(firstSpeciesId) // buscar o animal que possui id firstSpeciesId
-    .residents // obtém a lista de animais residentes desta espécie
-    .reduce( // e reduzir esta lista
-      (acc, resident) => ((acc.age >= resident.age) ? acc : resident), // mantendo em acc o animal que possui maior idade
-    );
+  /*
+    Código v2.1 usando reduce e a function animalsByIds
+
+    Busca o animal que possui id firstSpeciesId, obtém a lista de animais residentes desta espécie e desestrutura esse array de objeto mantendo a chave residents
+  */
+  const [{ residents }] = animalsByIds(firstSpeciesId);
+
+  const oldestResident = residents.reduce( // Reduz esta lista
+    (acc, resident) => ((acc.age >= resident.age) ? acc : resident), // mantendo em acc o animal que possui maior idade
+  );
 
   return [oldestResident.name, oldestResident.sex, oldestResident.age]; // retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 }

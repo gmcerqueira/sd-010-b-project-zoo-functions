@@ -71,34 +71,19 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// Função para encontrar o dia da semana
-const weekDay = (day) => {
-  const line = {}; const closed = hours[day].close;
-  const opened = hours[day].open;
-  if (opened === 0 || closed === 0) {
-    line.day = 'CLOSED';
-  } else {
-    line.day = `Open from ${opened}am until ${closed - 12}pm`;
-  }
-  return line;
-};
-// DefaultShedule
-const defaultShedule = () => {
-  const result = Object.entries(hours)
-    .reduce((acc, day) => {
-      if (day[1].open === 0 || day[1].close === 0) {
-        acc[day[0]] = 'CLOSED';
-      } else acc[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
-      return acc;
-    }, {});
-  return result;
-};
 function schedule(dayName) {
   // seu código aqui
-
-  if (dayName) return weekDay(dayName);
-
-  return defaultShedule();
+  const result = {};
+  Object.keys(hours).forEach((key) => {
+    const { open, close } = hours[key];
+    if (key === 'Monday') {
+      result[key] = 'CLOSED';
+    } else {
+      result[key] = `Open from ${open}am until ${close - 12}pm`;
+    }
+  });
+  if (dayName) return { [dayName]: result[dayName] };
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
@@ -123,9 +108,21 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  // seu código aqui
+  const employeeFilterd = employees
+    .filter((employee) => (idOrName ? idOrName === employee.id
+  || idOrName === employee.firstName
+  || idOrName === employee.lastName : true));
+  return employeeFilterd
+    .reduce((acc, { firstName, lastName, responsibleFor }) => {
+      const fullName = `${firstName} ${lastName}`;
+      acc[fullName] = responsibleFor
+        .map((animalId) => animals
+          .find((animal) => animal.id === animalId).name);
+      return acc;
+    }, {});
+}
 
 module.exports = {
   entryCalculator,
@@ -134,7 +131,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

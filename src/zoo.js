@@ -59,7 +59,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  return dayName;
+  const days = Object.entries(data.hours);
+  return days.reduce((acc, cur) => {
+    let [key, value] = cur;
+    const vlHour = value.open > 0 ? value = `Open from ${value.open}am until ${value.close - 12}pm`
+      : value = 'CLOSED';
+    if (!dayName) {
+      acc[key] = vlHour;
+    } else if (dayName === key) {
+      acc[dayName] = vlHour;
+    }
+    key = '';
+    return acc;
+  }, {});
 }
 
 function oldestFromFirstSpecies(id) {
@@ -91,4 +103,4 @@ module.exports = {
   createEmployee,
 };
 
-// Referências: Projeto realizado em conjunto com Wellington Passo
+// Referências: Projeto realizado em conjunto com Paulo Xavier

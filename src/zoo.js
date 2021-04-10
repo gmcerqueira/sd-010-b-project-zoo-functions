@@ -73,8 +73,8 @@ function entryCalculator(entrants) {
 
 // Função para encontrar o dia da semana
 const weekDay = (day) => {
-  const line = {}; const closed = hours.day.close;
-  const opened = hours.day.open;
+  const line = {}; const closed = hours[day].close;
+  const opened = hours[day].open;
   if (opened === 0 || closed === 0) {
     line.day = 'CLOSED';
   } else {

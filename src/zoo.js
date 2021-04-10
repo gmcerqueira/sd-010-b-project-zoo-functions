@@ -63,14 +63,28 @@ console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  // usado o spread, porque ele automaticamente
+  // adiciona todas chaves e valor para criar
+  // um novo funcionario
   return { ...personalInfo, ...associatedWith };
 }
 
 console.log(createEmployee());
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  // seu código aqui
+  // primeiro foi realizado some no objecto employee
+  // verificando se existe um employee
+  // apos foi verifica se existe algum employee
+  // que é manager
+  const employeeIsManager = employees.some((employee) =>
+    employee.managers.some((managerIs) => managerIs === id));
+
+  return employeeIsManager;
+}
+
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui

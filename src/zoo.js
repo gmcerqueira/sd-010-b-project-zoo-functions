@@ -58,9 +58,7 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  
-  return {...personalInfo, ...associatedWith}
-  
+  return {...personalInfo, ...associatedWith};
 }
 
 function isManager(id) {
@@ -74,19 +72,28 @@ function isManager(id) {
   
 }
 
-
-
-
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   const { emploeeys } = data;
-
-
 
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const { animals } = data;  
+  let especieAndPopulation = {};
+
+  if (!species) {
+   animals.forEach(({name, residents}) => {
+     especieAndPopulation[name] = residents.length;
+   })
+   return especieAndPopulation
+  }
+  
+  const teste = animals.find(({name}) => name === species);
+  
+  return teste.residents.length;
 }
+
+console.log(animalCount('snakes'));
 
 function entryCalculator(entrants) {
   // seu código aqui

@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, hours, prices } = require('./data');
 // const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -85,6 +85,7 @@ const entryCalculator = (entrants) => {
 //   // seu código aqui
 // }
 
+// eslint-disable-next-line max-lines-per-function
 // function schedule(dayName) {
 //   // seu código aqui
 // }
@@ -93,9 +94,16 @@ const entryCalculator = (entrants) => {
 //   // seu código aqui
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+  prices.Adult += prices.Adult * (percentage / 100);
+  prices.Adult = Math.round(prices.Adult * 100) / 100;
+  prices.Child += prices.Child * (percentage / 100);
+  prices.Child = Math.round(prices.Child * 100) / 100;
+  prices.Senior += prices.Senior * (percentage / 100);
+  prices.Senior = Math.round(prices.Senior * 100) / 100;
+  return prices;
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -113,6 +121,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

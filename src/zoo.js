@@ -58,10 +58,24 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push(newEmployee);
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  // seu código aqui
+  // this: https://dev.to/_bigblind/quick-tip-transform-an-array-into-an-object-using-reduce-2gh6 helped me A LOT!
+  const allSpecies = animals.reduce((acc, { name, residents }) => {
+    return { ...acc, [name]: residents.length };
+  }, {});
 
+  const oneSpecie = animals.find((item) => {
+    if (item.name === species) {
+      return item;
+    }
+  });
+
+  if (!species) {
+    return allSpecies;
+  } return oneSpecie.residents.length;
+}
+console.log(animalCount());
 // function entryCalculator(entrants) {
 //   // seu código aqui
 // }
@@ -89,7 +103,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

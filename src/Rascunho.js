@@ -67,3 +67,12 @@
 // }
 // console.log(rascunho())
 // -----------
+
+const a = {
+  id: 'c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
+  firstName: 'Nigel',
+  lastName: 'Nelson',
+  managers: ['burlId', 'olaId'],
+  responsibleFor: ['lionId', 'tigersId'],
+};
+console.log({ [`${Object.values(a)[1]}  ${Object.values(a)[2]}`]: Object.values(a)[4] });

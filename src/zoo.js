@@ -11,6 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+// -------------------------------- second functions --------------------------------
 const getHours = (acc, [day, hour]) => {
   let msg = 'CLOSED';
   if (hour.open > 0 && hour.close > 0) {
@@ -20,6 +21,21 @@ const getHours = (acc, [day, hour]) => {
   return acc;
 };
 
+const getAnimalsLocarions = (acc, current) => ({
+  ...acc,
+  [current.location]: [...acc[current.location],
+    { [current.name]: current.residents }],
+});
+const objDefault = { NE: [], NW: [], SE: [], SW: [] };
+
+const getOldAnimal = (acc, { name, sex, age }) => {
+  if (age > acc[2]) {
+    return [name, sex, age];
+  }
+  return acc;
+};
+
+// -------------------------------- Main Functions --------------------------------
 function animalsByIds(...ids) {
   return ids.map((idParameter) => data.animals
     .find(({ id }) => id === idParameter));
@@ -80,19 +96,11 @@ function entryCalculator(entrants) {
     .reduce((acc, entrant) => acc + (data.prices[entrant[0]] * entrant[1]), 0);
 }
 
-/*
 function animalMap(options) {
-  if (options === undefined) {
-    const locations = [...new Set(data.animals.map(({ location }) => location))];
+  const objAnimalsLocations = data.animals.reduce(getAnimalsLocarions, objDefault);
 
-  }
+  console.log(objAnimalsLocations);
 }
-*/
-
-// hours: {
-//  Tuesday: { open: 8, close: 18 },
-// }
-// 'Tuesday': 'Open from 8am until 6pm',
 
 function schedule(dayName) {
   const arrayHours = Object.entries(data.hours);
@@ -105,11 +113,15 @@ function schedule(dayName) {
   return formattedHours;
 }
 
-/*
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+function oldestFromFirstSpecies(idp) {
+  const firstAnimal = data.employees.find(({ id }) => id === idp).responsibleFor[0];
+  const animals = data.animals.find(({ id }) => id === firstAnimal).residents;
+  const oldAnimal = animals.reduce(getOldAnimal, ['', '', 0]);
+
+  return oldAnimal;
 }
 
+/*
 function increasePrices(percentage) {
   // seu código aqui
 }
@@ -118,18 +130,19 @@ function employeeCoverage(idOrName) {
   // seu código aqui
 }
  */
+
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

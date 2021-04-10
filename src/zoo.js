@@ -196,10 +196,6 @@ function chooseIncludeNames(options) {
 function animalMap(options) {
   if (!options) { return animalMapNoOptions(); }
   if (options.includeNames) { return chooseIncludeNames(options); }
-  // if (options.includeNames && options.sorted && options.sex) { return animalMapNamesOrderedSex(options.sex); }
-  // if (options.includeNames && options.sorted) { return animalMapNamesSorted(); }
-  // if (options.includeNames && options.sex) { return animalMapNamesSex(options.sex); }
-  // if (options.includeNames) { return animalMapNames(); }
 }
 
 console.table(animalMap({ includeNames: true, sex: 'female', sorted: true }));

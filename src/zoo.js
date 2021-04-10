@@ -66,17 +66,13 @@ function animalCount(species) {
     return resultado;
   }, {});
 
-  const oneSpecie = animals.find((item) => {
-    if (item.name === species) {
-      return item;
-    } return 'a';
-  });
+  const oneSpecie = animals.find((item) => item.name === species);
 
   if (!species) {
     return allSpecies;
   } return oneSpecie.residents.length;
 }
-
+console.log(animalCount('snakes'));
 // function entryCalculator(entrants) {
 //   // seu código aqui
 // }

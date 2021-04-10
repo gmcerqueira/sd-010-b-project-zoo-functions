@@ -39,9 +39,22 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-// const animalCount = (species) => {
-//   // seu código aqui
-// };
+/*
+  Consultei o repositório de Henrique Zózimo para resolver a próxima função.
+  Link: https://github.com/tryber/sd-010-b-project-zoo-functions/blob/henrique-zozimo-zoo-functions-project/src/zoo.js
+*/
+
+const animalCount = (species) => {
+  const animalsAndNumbers = {};
+  animals.forEach((animal) => {
+    const { name, residents } = animal;
+    animalsAndNumbers[name] = residents.length;
+  });
+  if (species) {
+    return animalsAndNumbers[species];
+  }
+  return animalsAndNumbers;
+};
 
 // const entryCalculator = (entrants) => {
 //   // seu código aqui
@@ -70,7 +83,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

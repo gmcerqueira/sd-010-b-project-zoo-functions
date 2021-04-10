@@ -1,6 +1,6 @@
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -21,7 +21,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-// seu código aqui
+  // seu código aqui
   return { ...personalInfo, ...associatedWith };
 }
 
@@ -35,16 +35,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-/* function animalCount(species) {
+function animalCount(species) {
   // seu código aqui
-  let countReport = animals.reduce((accObject, current) => { accObject[current.name] = current.residents.length;
+  let countReport = animals.reduce((accObject, current) => {
+    accObject[current.name] = current.residents.length;
     return accObject;
   }, {});
   if (Object.keys(countReport).includes(species)) {
     countReport = countReport[species];
   }
   return countReport;
-} */
+}
 
 function entryCalculator(entrants = {}) {
   return Object.entries(entrants).reduce(
@@ -60,13 +61,41 @@ function entryCalculator(entrants = {}) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+// schedule
+function createSchedule(openClose) {
+  const { open } = openClose;
+  const close = (openClose.close) - 12;
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+  if (open === 0 && close === -12) return 'CLOSED';
+
+  return `Open from ${open}am until ${close}pm`;
+}
+
+function schedule(dayName) {
+  const keys = Object.keys(hours);
+  const values = Object.values(hours);
+  const result = {};
+
+  if (dayName === undefined) {
+    keys.forEach((day, index) => {
+      result[day] = createSchedule(values[index]);
+    });
+  } else {
+    result[dayName] = createSchedule(values[keys.indexOf(dayName)]);
+  }
+
+  return result;
+}
+
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const arrayMaxNumber = employees.find(employee => employee.id === id).responsibleFor
+    .map((animalID) => {
+      const resident = animals.find(animal => animal.id === animalID).residents;
+      const maxAge = Math.max(...resident.map(animal => animal.age));
+
+      return resident.filter(animal => animal.age === maxAge);
+    });
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -84,11 +113,7 @@ module.exports = {
   createEmployee,
   entryCalculator,
   addEmployee,
+  schedule,
+  animalCount,
+  oldestFromFirstSpecies,
 };
-
-// animalCount,
-//  increasePrices,
-//  oldestFromFirstSpecies,
-//  schedule,
-//  animalMap,
-//  employeeCoverage,

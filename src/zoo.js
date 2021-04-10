@@ -40,12 +40,11 @@ function animalCount(species) {
   const empty = {};
   const getAnimal = animals.find((specie) => specie.name === species);
   animals.forEach((value) => {
-    empty[value.name] = value.residents.length
+    empty[value.name] = value.residents.length;
   });
   if (species === undefined || species === null) return empty;
   return getAnimal.residents.length;
 }
-console.log(animalCount())
 
 // function entryCalculator(entrants) {
 //   // seu código aqui

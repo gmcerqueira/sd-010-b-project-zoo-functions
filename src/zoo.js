@@ -49,9 +49,23 @@ function isManager(id) {
 //   // seu código aqui
 // }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  // seu código aqui
+  if (!species) {
+    const animalsAndAmount = {};
+    animals.forEach((ani) => {
+      animalsAndAmount[ani.name] = ani.residents.length;
+    });
+    return animalsAndAmount;
+  }
+  let teste;
+  animals.forEach((element) => {
+    if (species === element.name) {
+      teste = element.residents.length;
+    }
+  });
+  return teste;
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -80,7 +94,7 @@ function isManager(id) {
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

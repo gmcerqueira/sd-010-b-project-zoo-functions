@@ -90,13 +90,13 @@ function schedule(dayName = 0) {
   const scheduleObj = {};
 
   Object.keys(hours)
-    .forEach((day) => ({
+    .forEach((day) => {
       if (day === 'Monday') {
         scheduleObj[day] = 'CLOSED';
       } else {
         scheduleObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
       }
-    }));
+    });
 
   if (dayName) {
     return {
@@ -106,7 +106,6 @@ function schedule(dayName = 0) {
 
   return scheduleObj;
 }
-console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   const idAnimal = data.employees

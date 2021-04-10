@@ -11,9 +11,9 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, hours, prices } = data;
+const { animals, employees, prices } = data;
 
-function animalsByIds(...ids) { //zozimo
+function animalsByIds(...ids) { // zozimo
   if (ids === undefined) {
     return [];
   }
@@ -36,7 +36,7 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-function isManager(id) { //Lucas martins
+function isManager(id) { // Lucas martins
   return employees.some((empregado) => empregado.managers.includes(id));
 }
 
@@ -56,7 +56,7 @@ function animalCount(species) {
   if (species !== undefined) {
     return animals.find((criatura) => criatura.name === species).residents.length;
   }
-  const contagemDeAnimais = {}; //Dangelo
+  const contagemDeAnimais = {}; // Dangelo
   animals.forEach((criatura) => { contagemDeAnimais[criatura.name] = criatura.residents.length; });
   return contagemDeAnimais;
 }
@@ -65,7 +65,7 @@ function entryCalculator(entrants = 0) {
   if (Object.keys(entrants).length !== 0) {
     const { Adult = 0, Child = 0, Senior = 0 } = entrants;
     return (Adult * prices.Adult) + (Child * prices.Child
-      ) + (Senior * prices.Senior);
+    ) + (Senior * prices.Senior);
   }
   return 0;
 }

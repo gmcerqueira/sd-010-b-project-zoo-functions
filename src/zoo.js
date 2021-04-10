@@ -147,9 +147,9 @@ function oldestFromFirstSpecies(id) {
 // --------------------------------------------------------------------------------------------------------------
 function increasePrices(percentage) {
   // Leandro Reis postou na thread do Daniel Roberto https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
-  prices.Adult = Math.round((prices.Adult + (prices.Adult * (percentage / 100)) * 100) / 100);
-  prices.Senior = Math.round((prices.Senior + (prices.Senior * (percentage / 100)) * 100) / 100);
-  prices.Child = Math.round((prices.Child + (prices.Child * (percentage / 100)) * 100) / 100);
+  prices.Adult = Math.round((prices.Adult + prices.Adult * (percentage / 100)) * 100) / 100;
+  prices.Senior = Math.round((prices.Senior + prices.Senior * (percentage / 100)) * 100) / 100;
+  prices.Child = Math.round((prices.Child + prices.Child * (percentage / 100)) * 100) / 100;
   return prices;
 }
 

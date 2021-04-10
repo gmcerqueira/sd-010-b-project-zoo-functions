@@ -36,10 +36,10 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   // seu código aqui
   // primeiro procurei o animal pelo nome
-  // para verificar se o animal esta sendo procurado pelo 
-  // o nome guardado na variável foi buscado todos so animais 
+  // para verificar se o animal esta sendo procurado pelo
+  // o nome guardado na variável foi buscado todos so animais
   // que tem uma idade maior que a determinada
-  // ex pinguim 7 anos 
+  // ex pinguim 7 anos
   const teste = animals.find((specie) => specie.name === animal);
   return teste.residents.every((specie) => specie.age > age);
 }
@@ -50,9 +50,9 @@ function employeeByName(employeeName) {
   if (employeeName === undefined || employeeName === null) {
     return {};
   }
-  // objeto (infos) do empregado pode ser encontrada tanto pelo 
+  // objeto (infos) do empregado pode ser encontrada tanto pelo
   // primeiro nome ou sobrenome
-  const findEmployeeByName = employees.find((name) => 
+  const findEmployeeByName = employees.find((name) =>
     name.firstName === employeeName || name.lastName === employeeName);
 
   return findEmployeeByName;

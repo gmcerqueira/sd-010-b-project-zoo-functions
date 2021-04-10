@@ -20,7 +20,7 @@ const precos = data.prices;
 const agenda = data.hours;
 
 function animalsByIds(...ids) {
-  return ids.map((id) => animais.find((animal) => id === animal.id));
+  return ids.map((id) => animais.find((animal) => id === animal.id)); // código feito com ajuda de Alessandra Rezende
 }
 
 function animalsOlderThan(animal, age) {

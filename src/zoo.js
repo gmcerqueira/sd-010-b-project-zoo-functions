@@ -248,18 +248,13 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const curr = Object.values(prices);
-  const priceKeys = Object.keys(prices);
+  const currPrice = Object.values(data.prices);
+  const priceKeys = Object.keys(data.prices);
   priceKeys.forEach((el, i) => {
-    data.prices[el] = Math.round(((curr[i] * (percentage / 100 + 1) + Number.EPSILON) * 100)) / 100;
+    data.prices[el] = Math.round(((currPrice[i] * (percentage / 100 + 1)) * 100)) / 100;
   });
+  return data.prices;
 }
-
-increasePrices(50);
-console.log(data.prices);
-console.log('----------------');
-increasePrices(30);
-console.log(data.prices);
 
 // REFERÊNCIA utilizada no arredondamento: https://metring.com.br/arredondar-numero-em-javascript
 

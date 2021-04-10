@@ -163,13 +163,13 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   Object.keys(prices).forEach((key) => {
-    prices[key] = parseFloat((prices[key]
-      * (1 + percentage / 100) + 0.005)
-      .toFixed(2));
+    prices[key] = parseFloat(Math.round((prices[key]
+      * (1 + percentage / 100)) * 100) / 100);
   });
 }
 
 // ----------------------------------------------------------------------------------
+
 function animalsCovered(employee) {
   const ids = employee.responsibleFor;
   const listAnimals = ids.map((id) => animals.find((animal) => animal.id === id).name);

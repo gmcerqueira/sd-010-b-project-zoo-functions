@@ -165,16 +165,11 @@ function increasePrices(percentage) {
   const keys = Object.keys(data.prices);
   const values = Object.values(data.prices);
   keys.forEach((key, i) => {
-    // if (typeof(values[i] !== 'number')){
-    //   values[i] = parseFloat(values[i]);
-    // };
     data.prices[key] = parseFloat((values[i] * ((percentage + 100) / 100)).toFixed(2));
   });
-  const teste = data.prices;
-  return (teste);
 }
-increasePrices(50);
-increasePrices(30);
+// increasePrices(50);
+// increasePrices(30);
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }

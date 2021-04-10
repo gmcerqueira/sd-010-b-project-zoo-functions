@@ -24,19 +24,29 @@ function animalsByIds(...ids) {
   return idsAnimals;
 }
 
-// request 1 feitocom ajuda do meu amigo André de Bem da turma 10-B com a autorização de consulta do seu código para melhor entendimaneto da questão.
+// request 1 feito com ajuda do meu amigo André de Bem da turma 10-B com a autorização de consulta do seu código para melhor entendimaneto da questão.
 
-// function animalsOlderThan(animal, age) {
-  
-// }
+function animalsOlderThan(animal, age) {
+  const animalIndex = animals.find((thisAnimal) => thisAnimal.name === animal);
+  const isOlder = animalIndex.residents.every((thisAnimal) => thisAnimal.age >= age);
+  return isOlder;
+}
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+function employeeByName(employeeName) {
+  if (employeeName === undefined) {
+    return {};
+  } else {
+    const employeeIndex = employees.find((thisEmployee) => {
+      const compare = (thisEmployee.firstName === employeeName || thisEmployee.lastName === employeeName);
+      return compare;
+    })
+    return employeeIndex;
+  }
+}
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+  return { ...personalInfo, ...associatedWith };
+}
 
 // function isManager(id) {
 //   // seu código aqui
@@ -80,12 +90,12 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

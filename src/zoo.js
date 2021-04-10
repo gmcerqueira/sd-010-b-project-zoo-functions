@@ -165,14 +165,14 @@ function increasePrices(percentage) {
   const keys = Object.keys(data.prices);
   const values = Object.values(data.prices);
   keys.forEach((key, i) => {
-    data.prices[key] = parseFloat((values[i] * ((percentage + 100) / 100)).toFixed(2));
+    data.prices[key] = parseFloat((values[i] * ((percentage / 100) + 1) + 0.001).toFixed(2));
   });
 }
-// increasePrices(50);
-// increasePrices(30);
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+
+
+function employeeCoverage(idOrName) {
+
+}
 
 module.exports = {
   entryCalculator,
@@ -181,7 +181,7 @@ module.exports = {
   animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

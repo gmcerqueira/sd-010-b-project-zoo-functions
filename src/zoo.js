@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -67,13 +67,39 @@ function entryCalculator(entrants) {
   return keysEntrant.reduce((acc, cur) => acc + ((prices[cur] || 0) * entrants[cur]), 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
-}
-
-// function schedule(dayName) {
+// function animalMap(options) {
 //   // seu código aqui
 // }
+
+// Função para encontrar o dia da semana
+const weekDay = (day) => {
+  const line = {};
+  const closed = hours.day.close;
+  const opened = hours.day.open;
+  if (opened === 0 || closed === 0) {
+    line.day = 'CLOSED';
+  } else {
+    line.day = `Open from ${opened}am until ${closed - 12}pm`;
+  }
+  return line;
+};
+// DefaultShedule
+const defaultShedule = () => {
+  return Object.entries(hours)
+    .reduce((acc, day) => {
+      if (day[1].open === 0 || day[1].close === 0) {
+        acc[day[0]] = 'CLOSED';
+      } else acc[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
+      return acc;
+    }, {});
+};
+function schedule(dayName) {
+  // seu código aqui
+
+  if (dayName) return weekDay(dayName);
+
+  return defaultShedule();
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -89,9 +115,9 @@ function animalMap(options) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

@@ -36,6 +36,7 @@ function employeeByName(employeeName) {
   }
   return employees.find((par) => par.firstName === employeeName || par.lastName === employeeName);
 }
+
 function createEmployee(personalInfo, associatedWith) {
   return {
     ...personalInfo,
@@ -44,12 +45,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
   return data.employees.some((worker) => worker.managers.find((managerId) => managerId === id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // seu código aqui
   const newEmployee = {
     id,
     firstName,

@@ -73,8 +73,7 @@ function entryCalculator(entrants) {
 
 // Função para encontrar o dia da semana
 const weekDay = (day) => {
-  const line = {};
-  const closed = hours.day.close;
+  const line = {}; const closed = hours.day.close;
   const opened = hours.day.open;
   if (opened === 0 || closed === 0) {
     line.day = 'CLOSED';
@@ -85,13 +84,14 @@ const weekDay = (day) => {
 };
 // DefaultShedule
 const defaultShedule = () => {
-  return Object.entries(hours)
+  const result = Object.entries(hours)
     .reduce((acc, day) => {
       if (day[1].open === 0 || day[1].close === 0) {
         acc[day[0]] = 'CLOSED';
       } else acc[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
       return acc;
     }, {});
+  return result;
 };
 function schedule(dayName) {
   // seu código aqui

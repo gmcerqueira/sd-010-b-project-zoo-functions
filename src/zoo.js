@@ -120,10 +120,45 @@ function increasePrices(percentage) {
   data.prices = { Adult, Senior, Child };
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+const mappingEmployees = () => {
+  const result = {};
+  const map = data.employees.map((el) => {
+    const getAnimalData = animalsByIds(...el.responsibleFor);
+    const names = [];
+    getAnimalData.filter((get, index) => {
+      names[index] = get.name;
+      return names;
+    });
+    result[`${el.firstName} ${el.lastName}`] = names;
+    return result;
+  });
+  return map.shift();
+};
 
+const filterFunction = (idOrName, result) => {
+  const getMap = mappingEmployees();
+  let output = result;
+  const getDataFromId = data.employees.find((person) => person.id === idOrName);
+  Object.entries(getMap).filter((el) => {
+    if (el[0].includes(idOrName)) output = { [el[0]]: el[1] };
+    if (getDataFromId && el[0].includes(getDataFromId.firstName || getDataFromId.lastName)) {
+      output = { [el[0]]: el[1] };
+    }
+    return output;
+  });
+  return output;
+};
+
+function employeeCoverage(idOrName) {
+  if (idOrName === undefined) return mappingEmployees();
+  let result = {};
+  result = filterFunction(idOrName, result);
+  return result;
+}
+
+// Ajuda do Gustavo Cerqueira e Henrique Zózimo para array desestructuring e refatoração;
+
+employeeCoverage('Emery');
 module.exports = {
   entryCalculator,
   schedule,
@@ -131,7 +166,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

@@ -100,9 +100,28 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 // console.log(addEmployee());
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  // seu código aqui
+  if (species === null || species === undefined) {
+    // se não for informado o nome do animal
+    // irá retornar um objecto com o nome dos animais
+    // e a quantidade no formato chave: valor.
+    return animals.reduce((accumulator, animal) => {
+      accumulator[animal.name] = animal.residents.length;
+      console.log(accumulator);
+      return accumulator;
+    }, {});
+  }
+  // se for informado o nome do animal, apenas
+  // será retornado a quantidade e a primeira condicao
+  // será ignorada.
+  const numberOfAnimals = animals.find((animal) =>
+    animal.name === species).residents.length;
+  return numberOfAnimals;
+}
+
+console.log(animalCount());
+console.log(animalCount('lions'));
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -131,7 +150,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

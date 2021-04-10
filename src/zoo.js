@@ -143,7 +143,7 @@ function entryCalculator(entrants) {
   return fullPrice;
 }
 
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
+// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 // function animalMap(options) {
 //   // seu código aqui

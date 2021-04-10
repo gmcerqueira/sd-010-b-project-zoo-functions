@@ -168,10 +168,35 @@ function increasePrices(percentage) {
     data.prices[key] = parseFloat((values[i] * ((percentage / 100) + 1) + 0.001).toFixed(2));
   });
 }
+const IfDefined = () => {
+  const objFuncionarios = data.employees;
+  const obj1 = {};
+  objFuncionarios.forEach((objeto) => {
+    const values = objeto.responsibleFor.map((animalId1) => {
+      const objAnimal1 = data.animals.find((animais1) => animalId1 === animais1.id);
+      return objAnimal1.name;
+    });
+    obj1[`${objeto.firstName} ${objeto.lastName}`] = values;
+  });
+  return obj1;
+};
 
-// function employeeCoverage(idOrName) {
+function employeeCoverage(idOrName) {
+  if (idOrName !== undefined) {
+    const objFuncionario = data.employees.find((employ) => employ.id === idOrName
+    || employ.firstName === idOrName || employ.lastName === idOrName);
+    const obj = {};
+    const responsible = objFuncionario.responsibleFor.map((animalId) => {
+      const objAnimal = data.animals.find((animais) => animalId === animais.id);
+      return objAnimal.name;
+    });
+    obj[`${objFuncionario.firstName} ${objFuncionario.lastName}`] = responsible;
+    return obj;
+  }
+  return IfDefined();
+}
 
-// }
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
@@ -180,7 +205,7 @@ module.exports = {
   animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

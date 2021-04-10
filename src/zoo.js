@@ -19,7 +19,7 @@ function animalsByIds(ids) {
   return ids.map((id) => animals.find((animal) => animal.id === id));
 }
 
-function animalsOlderThan(animal, age) {
+/* function animalsOlderThan(animal, age) {
   // seu código aqui
 }
 
@@ -65,20 +65,20 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-}
+} */
 
 module.exports = {
-  entryCalculator,
+/*   entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  animalMap, */
   animalsByIds,
-  employeeByName,
+/*   employeeByName,
   employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
   increasePrices,
-  createEmployee,
+  createEmployee, */
 };

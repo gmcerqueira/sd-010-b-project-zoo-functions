@@ -90,9 +90,17 @@ function isManager(id) {
   return haveManager;
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id: [id],
+    firstName: [firstName],
+    lastName: [lastName],
+    managers: [managers],
+    responsibleFor: [responsibleFor],
+  };
+
+  data.employees.push(newEmployee);
+}
 
 function animalCount(species) {
   const { animals } = data;
@@ -111,9 +119,21 @@ function animalCount(species) {
   return animalSeach.residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  const { prices } = data;
+  if (entrants === undefined) {
+    return 0;
+  }
+  if (Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  // lista de visitantes
+  const listWithEntrants = Object.keys(entrants);
+  return listWithEntrants.reduce((acc, current) => {
+    const total = ((prices[current]) * (entrants[current]));
+    return acc + total;
+  }, 0);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -136,14 +156,14 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

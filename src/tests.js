@@ -21,11 +21,24 @@ function entryCalculator(entrants) {
   const entries = Object.entries(entrants);
   return entries.reduce(((acc, entry) => acc + (data.prices[entry[0]] * entry[1])), 0);
 }
+// // ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP
+// ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function animalMap(options) {
+  const animalsRegionsObj = {};
+  if (!options) {
+    data.animals.forEach((animal) => {
+      if (!Object.keys(animalsRegionsObj).find((region) => region === animal.location)) {
+        animalsRegionsObj[animal.location] = [];
+      }
+    });
+  }
+  console.log(animalsRegionsObj);
+}
+animalMap();
 
+// ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP
+// // ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP
 function auxiliarScheduleFunction(importedDayName) {
   const fullSchedule = Object.entries(data.hours);
   const objSchedule = {};
@@ -106,7 +119,7 @@ function employeeCoverage(idOrName) {
 module.exports = {
   entryCalculator,
   schedule,
-  // animalMap,
+  animalMap,
   employeeCoverage,
   oldestFromFirstSpecies,
   increasePrices,

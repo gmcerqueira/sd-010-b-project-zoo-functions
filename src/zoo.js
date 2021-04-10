@@ -130,7 +130,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-
+  return idOrName;
 }
 
 console.log(employeeCoverage());

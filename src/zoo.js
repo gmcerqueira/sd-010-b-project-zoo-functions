@@ -72,12 +72,12 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     lastName,
     managers,
     responsibleFor,
-  }
+  };
   if (managers === undefined) {
-    empregado.managers = []
+    empregado.managers = [];
   }
   if (responsibleFor === undefined) {
-    empregado.responsibleFor = []
+    empregado.responsibleFor = [];
   }
   return inserir.push(empregado);
 }
@@ -88,8 +88,9 @@ function animalCount(species) {
   }
   if (species === undefined) {
     return data.animals.reduce((bixoAcc, quanti) => {
-      bixoAcc[quanti.name] = quanti.residents.length;
-      return bixoAcc;
+      const inferno = bixoAcc;
+      inferno[quanti.name] = quanti.residents.length;
+      return inferno;
     }, {});
   }
 }
@@ -145,16 +146,19 @@ function entryCalculator(entrants) {
 // // console.log(animalMap({ includeNames: true }))
 // ------------------------------------------------------------------------------------------------------
 function schedule(dayName) {
-    let seila = Object.keys(hours);
-    let seila2 = Object.values(hours);
-    let total = {};
-    seila.forEach((dat, index) =>
-    total[dat] = `Open from ${seila2[index].open}am until ${seila2[index].close - 12}pm`);
-    total.Monday = 'CLOSED';
-    if (!dayName) {
-      return total;
-    }
-    return {[dayName]: total[dayName]}; // notação de ponto não funciona para váriaveis
+  const seila = Object.keys(hours);
+  const seila2 = Object.values(hours);
+  const total = {};
+  seila.forEach((dat, index) => {
+    total[dat] = `Open from ${seila2[index].open}am until ${seila2[index].close - 12}pm`;
+  });
+  total.Monday = 'CLOSED';
+  if (!dayName) {
+    return total;
+  }
+  return {
+    [dayName]: total[dayName],
+  }; // notação de ponto não funciona para váriaveis
 }
 
 // function oldestFromFirstSpecies(id) {
@@ -162,12 +166,12 @@ function schedule(dayName) {
 // }
 
 function increasePrices(percentage) {
-  let {
+  const {
     Adult,
     Senior,
-    Child
+    Child,
   } = prices;
-  let porce = percentage / 100;
+  const porce = percentage / 100;
   prices.Adult = Math.round(((Adult * porce) + Adult) * 100) / 100;
   prices.Senior = Math.round(((Senior * porce) + Senior) * 100) / 100;
   prices.Child = Math.round(((Child * porce) + Child) * 100) / 100;

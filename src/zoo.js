@@ -42,9 +42,6 @@ const employeeByName = (employeeName) => {
 
 const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
-// function isManager(id) {
-//   // seu código aqui
-// }
 const isManager = (id) => {
   const colab = colaboradores.some((trab) => trab.managers.includes(id));
   return colab;
@@ -65,6 +62,18 @@ const animalCount = (species) => {
     accumulator[current.name] = current.residents.length;
     return accumulator;
   }, {});
+};
+
+const price = data.prices;
+const entryCalculator = (entrants) => {
+  let resultado;
+  if (!entrants) {
+    resultado = 0;
+  } else {
+    const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+    resultado = Adult * price.Adult + Child * price.Child + Senior * price.Senior;
+  }
+  return resultado;
 };
 
 // function entryCalculator(entrants) {
@@ -92,7 +101,7 @@ const animalCount = (species) => {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

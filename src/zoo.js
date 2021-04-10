@@ -64,7 +64,6 @@ function animalCount(species) {
   const objAnimals = data.animals.reduce((acc1, animal) => {
     const obj = acc1;
     obj[animal.name] = animal.residents.length;
-    // acc1 = obj;
     return obj;
   }, {});
   const animal = data.animals.find((animal2) => animal2.name === species);
@@ -80,16 +79,51 @@ function entryCalculator(entrants = 0) {
   return price;
 }
 
-// const entrants = { 'Adult': 2, 'Child': 3, 'Senior': 1};
-// console.log(entryCalculator(entrants));
-// function animalMap(options) {
-//   // seu código aqui
+// function animalMap(options = {}) {
+//   const { includeNames, sorted, sex } = options;
+//   let NE = data.animals.filter((species) => species.location === 'NE');
+//   NE = NE.map((animal) => animal.name);
+//   let NW = data.animals.filter((species) => species.location === 'NW');
+//   NW = NW.map((animal) => animal.name);
+//   let SE = data.animals.filter((species) => species.location === 'SE');
+//   SE = SE.map((animal) => animal.name);
+//   let SW = data.animals.filter((species) => species.location === 'SW');
+//   SW = SW.map((animal) => animal.name);
+//   console.log(includeNames);
+//   if(includeNames === true){
+//     NE = NE.map((animal) => {
+//       let obj = {};
+//       animals.residents.reduce((acc, nome) => {
+//         if
+//       })
+//       return obj;
+//     })
+//   }
+//   let locations = {
+//     NE,
+//     NW,
+//     SE,
+//     SW,
+//   };
+//   return locations;
 // }
+// console.log(animalMap({includeNames: true}));
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
-
+function schedule(dayName) {
+  // console.log(Object(data.hours));
+  const diasSemana = {};
+  Object.keys(data.hours).forEach((dia) => {
+    diasSemana[dia] = `Open from ${data.hours[dia].open}am until ${data.hours[dia].close - 12}pm`;
+  });
+  diasSemana.Monday = 'CLOSED';
+  if (dayName === undefined) {
+    return diasSemana;
+  }
+  const obj = {};
+  obj[dayName] = diasSemana[dayName];
+  return obj;
+}
+console.log(schedule('Monday'));
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
@@ -104,7 +138,7 @@ function entryCalculator(entrants = 0) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

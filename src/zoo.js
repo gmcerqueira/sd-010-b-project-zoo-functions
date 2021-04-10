@@ -66,7 +66,7 @@ function animalCount(species, expected) {
     animal.name === species).residents.length;
 }
 // 8
-function entryCalculator(entrants, expected) {
+function entryCalculator(entrants) {
   // seu código aqui
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;

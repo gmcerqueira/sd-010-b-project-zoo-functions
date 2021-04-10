@@ -32,8 +32,8 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const novoFuncionario = {...personalInfo, ...associatedWith };
-  return novoFuncionario
+  const novoFuncionario = { ...personalInfo, ...associatedWith };
+  return novoFuncionario;
 }
 
 /* function isManager(id) {

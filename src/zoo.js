@@ -47,9 +47,22 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  // seu código aqui
+  if (species === undefined) {
+    var animalInfo = {};
+    animals.forEach((animal) => {
+     animalInfo[animal.name] = animal.residents.length
+      // animal.name, animal.residents.length
+      console.log(animalInfo);
+    });
+    return animalInfo
+  } 
+    return animals.find((animal) => animal.name === species).residents.length;
+    // console.log(found.residents.length);
+}
+// animalCount('frogs')
+animalCount()
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -78,7 +91,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

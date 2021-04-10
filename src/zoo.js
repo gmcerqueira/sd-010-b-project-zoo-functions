@@ -111,56 +111,59 @@ function entryCalculator(entrants) {
 // filtrá-los por ordem alfabética e gênero, por exemplo
 
 function animalLocations() {
-  return animals.reduce((acc, animal) => {
-    const local = acc;
-    if (!local[animal.location]) local[animal.location] = [];
-    return local;
-  }, {});
+  return ['NE', 'NW', 'SE', 'SW'];
 }
-// console.log(animalLocations());
 
-function animalsLocationDefault() {
-  const animalsLocation = {};
-  const local = ['NE', 'NW', 'SE', 'SW'];
-  local.forEach((location) => {
-    const foundAnimals = animals.filter((animal) =>
-      animal.location.includes(location)).map((animal) => animal.name);
-    animalsLocation[location] = foundAnimals;
+function recoverAnimalsByLocation(locations) {
+  const animalsByLocation = {};
+  locations.forEach((location) => {
+    const filteredAnimals = animals
+      .filter((animal) => animal.location.includes(location))
+      .map((animal) => animal.name);
+
+    animalsByLocation[location] = filteredAnimals;
   });
-  return animalsLocation;
+  return animalsByLocation;
 }
-// console.log(animalsLocationDefault(local));
+// const locationss = animalLocations();
+// console.log(recoverAnimalsByLocation(locationss));
 
-function nameOfAnimals(animal, info) {
-  let names = animals.find((creature) => creature.name.includes(animal))
-    .residents.map((resident) => resident.name);
-  if (info.sex) {
-    names = animals.find((creature) => creature.name.includes(animal))
-      .residents.filter((resident) => resident.sex.includes(info.sex))
-      .map((resident) => resident.name);
-  }
-  if (info.sorted) names.sort();
-
-  return names;
+function recoverAnimalsByLocationWithName(locations, sorted, sex) {
+  const animalsByLocation = {};
+  locations.forEach((location) => {
+    const filteredAnimals = animals
+      .filter((animal) => animal.location.includes(location))
+      .map((animal) => {
+        const nameKey = animal.name;
+        const nameValue = animal.residents
+          .filter((resident) => {
+            const filtered = sex !== undefined;
+            return filtered ? resident.sex.includes(sex) : true;
+          })
+          .map((resident) => resident.name);
+        if (sorted) nameValue.sort();
+        return { [nameKey]: nameValue };
+      });
+    animalsByLocation[location] = filteredAnimals;
+  });
+  return animalsByLocation;
 }
-
-// console.log(nameOfAnimals('lions'));
-
-function animalsWithInfos(info) {
+function animalMap(options) {
   const locations = animalLocations();
-  // const obj = {};
-  animals.map((animal) =>
-    locations[animal.location].push({ [animal.name]: nameOfAnimals(animal.name, info) }));
-  return locations;
+  if (!options) {
+    return recoverAnimalsByLocation(locations);
+  }
+  const { includeNames, sex, sorted = false } = options;
+  if (!includeNames) {
+    return recoverAnimalsByLocation(locations);
+  }
+  return recoverAnimalsByLocationWithName(locations, sorted, sex);
 }
-// console.log(listOfRegions());
 
-function animalMap(options = '') {
-  if (options.includeNames) return animalsWithInfos(options);
-  return animalsLocationDefault();
-}
-// const options = { includeNames: true, sex: 'female', sorted: true };
-// console.log(animalMap(options));
+const options = { includeNames: true, sex: 'female', sorted: true };
+// const options = { includeNames: true };
+console.log(animalMap(options));
+// console.log(animalMap());
 
 // ----------------------------------------------------------------------------------------------------------------------
 // 10. IMPLEMENTE A FUNÇÃO schedule

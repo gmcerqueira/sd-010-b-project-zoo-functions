@@ -48,11 +48,19 @@ function isManager(id) {
   return data.employees.some((worker) => worker.managers.find((managerId) => managerId === id));
 }
 
-/* function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  data.employees.push(newEmployee);
 }
 
-function animalCount(species) {
+/* function animalCount(species) {
   // seu código aqui
 }
 
@@ -87,8 +95,8 @@ module.exports = {
   animalMap, */
   animalsByIds,
   employeeByName,
-  /* employeeCoverage,
-  addEmployee, */
+  // employeeCoverage,
+  addEmployee,
   isManager,
   animalsOlderThan,
   /* oldestFromFirstSpecies,

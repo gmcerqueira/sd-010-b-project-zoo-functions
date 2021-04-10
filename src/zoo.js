@@ -214,8 +214,6 @@ function animalMap(options) {
   if (options.includeNames === true) { return chooseIncludeNames(options); }
 }
 
-console.log(animalMap({ sex: 'female' })['NE'][0]);
-
 function schedule(dayName) {
   const hours = Object.entries(data.hours);
   const returnObject = {};

@@ -11,14 +11,14 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { employees } = data;
+const { animals, employees } = data;
 
 function animalsByIds(...ids) {
-  return data.animals.filter((animal) => ids.some((elementId) => animal.id === elementId));
+  return animals.filter((animal) => ids.some((elementId) => animal.id === elementId));
 }
 // Tive auxilio do Diegho Moraes para realizar o animalsOlderThan
 function animalsOlderThan(animal, age) {
-  const animalInfo = data.animals.find((species) => species.name === animal);
+  const animalInfo = animals.find((species) => species.name === animal);
   return animalInfo.residents.every((species) => species.age > age);
 }
 
@@ -53,9 +53,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(newEmployee);
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) { // recebi o auxilio de Diegho Moraes e Jonathan Souza na resolução do AnimalCount
+  const animalList = {};
+  if (!species) {
+    animals.forEach((animal) => { animalList[animal.name] = animal.residents.length; });
+    return animalList;
+  }
+  return animals.find((animal) => animal.name === species).residents.length;
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -84,7 +89,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

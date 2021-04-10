@@ -39,12 +39,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-/*
+const animalCount = (species) => {
+  /*
   Consultei o repositório de Henrique Zózimo para resolver a próxima função.
   Link: https://github.com/tryber/sd-010-b-project-zoo-functions/blob/henrique-zozimo-zoo-functions-project/src/zoo.js
 */
 
-const animalCount = (species) => {
   const quantityOfEachAnimal = {};
   animals.forEach((animal) => {
     const { name, residents } = animal;
@@ -92,9 +92,20 @@ const oldestFromFirstSpecies = (id) => {
   return [name, sex, age];
 };
 
-// const increasePrices = (percentage) => {
-//   // seu código aqui
-// };
+const increasePrices = (percentage) => {
+  /*
+  Consultei o repositório de Henrique Zózimo para resolver a próxima função.
+  Link: https://github.com/tryber/sd-010-b-project-zoo-functions/blob/henrique-zozimo-zoo-functions-project/src/zoo.js
+*/
+
+  const { Adult, Senior, Child } = data.prices;
+  data.prices.Adult += (Adult * (percentage / 100));
+  data.prices.Senior += (Senior * (percentage / 100));
+  data.prices.Child += (Child * (percentage / 100));
+  data.prices.Adult = Math.round(data.prices.Adult * 100) / 100;
+  data.prices.Senior = Math.round(data.prices.Senior * 100) / 100;
+  data.prices.Child = Math.round(data.prices.Child * 100) / 100;
+};
 
 // const employeeCoverage = (idOrName) => {
 //   // seu código aqui
@@ -112,6 +123,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

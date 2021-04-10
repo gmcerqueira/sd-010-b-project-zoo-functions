@@ -13,7 +13,7 @@ describe('Implemente a função animalCount', () => {
       'frogs': 2,
       'snakes': 2,
       'elephants': 4,
-      'giraffes': 6
+      'giraffes': 6,
     };
     const actual = zoo.animalCount();
 

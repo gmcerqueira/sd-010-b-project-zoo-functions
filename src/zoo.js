@@ -33,12 +33,13 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const managerId = employees.map((employ => employ.managers));
-  let indetification = [];
-  const list = managerId.forEach((manager) => manager.filter((mngID) => {
-   if(mngID === id){
-    return indetification.push(mngID)}}));
-    return indetification.length > 0 ? true : false;
+  const managerId = employees.map(((employ) => employ.managers));
+  const indetification = [];
+   managerId.forEach((manager) => manager.filter((mngID) => {
+    if (mngID === id) indetification.push(mngID);
+  }
+  ));
+      return indetification.length > 0 ? true : false;
 }
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {

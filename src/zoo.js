@@ -95,7 +95,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  animalsOlderThan
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

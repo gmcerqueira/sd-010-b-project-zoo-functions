@@ -9,15 +9,13 @@ eslint no-unused-vars: [
 ]
 */
 
-const {
-  hours
-} = require('./data');
 const data = require('./data');
 
 const {
   animals,
   employees,
   prices,
+  hours,
 } = data;
 
 function animalsByIds(...ids) {
@@ -71,42 +69,38 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) return 0;
 
-  return Object.keys(entrants).reduce((acc, curr) => acc + prices[curr] * entrants[curr], 0);
+  const total = Object.keys(entrants).reduce((acc, curr) => acc + prices[curr] * entrants[curr], 0);
+  return total;
 }
 
-function animalMap(options) {
-  const local = {
-    NE: [],
-    NW: [],
-    SE: [],
-    SW: [],
-  };
-  if (!options) {
-    animals.forEach(({
-      location,
-      name,
-    }) => local[location].push(name));
-    return local;
-  }
-  if (options.includeNames === true) {
-    animals.forEach(({
-      location,
-      name,
-    }) => {});
-  }
+/* function animalMap(options) {
+
+} */
+function noParameterSchedule(value, days) {
+  const retorno = {};
+  days.forEach((day) => {
+    if (day !== 'Monday') {
+      retorno[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    } else {
+      retorno[day] = 'CLOSED';
+    }
+  });
+  return retorno;
 }
 
 function schedule(dayName) {
-  const mesage = {};
   const days = Object.keys(hours);
-  days.forEach((day) => {
-    const {
-      open,
-      close,
-    } = hours[day];
-  });
+  const retorno = {};
+  if (!dayName) {
+    return noParameterSchedule(dayName, days);
+  }
+  if (dayName !== 'Monday') {
+    retorno[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+  } else {
+    retorno[dayName] = 'CLOSED';
+  }
+  return retorno;
 }
-
 
 function oldestFromFirstSpecies(id) {
   const first = employees.find((emploee) => emploee.id === id).responsibleFor[0];
@@ -120,24 +114,18 @@ function increasePrices(percentage) {
   });
 }
 
-function employeeCoverage(idOrName) {
+/* function employeeCoverage(idOrName) {
 
-  if (!idOrName) {
-    const fullName = {};
-    employees.forEach((employee) => {
-      fullName[`${employee.firstName} ${employee.lastName}`];
-    });
-  }
-}
+} */
 
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  //animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  //employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

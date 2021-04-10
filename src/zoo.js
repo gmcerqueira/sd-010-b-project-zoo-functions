@@ -111,9 +111,14 @@ function oldestFromFirstSpecies(id) {
 
 // Eu tive ajuda do colega Dângelo para resolução do requisito 11
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  const { prices } = data;
+  let { Adult, Senior, Child } = prices;
+  Adult = Math.ceil(prices.Adult * (100 + percentage)) / 100;
+  Senior = Math.ceil(prices.Senior * (100 + percentage)) / 100;
+  Child = Math.ceil(prices.Child * (100 + percentage)) / 100;
+  data.prices = { Adult, Senior, Child };
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -131,6 +136,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

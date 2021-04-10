@@ -85,14 +85,18 @@ const entryCalculator = (entrants) => {
 //   // seu código aqui
 // }
 
-// eslint-disable-next-line max-lines-per-function
 // function schedule(dayName) {
 //   // seu código aqui
 // }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const funcionario = employees.find((item) => item.id === id);
+  const primeiroAnimal = funcionario.responsibleFor[0];
+  const selectedAnimal = animals.find((item) => item.id === primeiroAnimal);
+  const oldestAnimal = selectedAnimal.residents.sort((a, b) => b.age - a.age);
+  return Object.values(oldestAnimal[0]);
+}
 
 function increasePrices(percentage) {
   // seu código aqui
@@ -120,7 +124,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

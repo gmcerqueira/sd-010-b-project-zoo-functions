@@ -86,7 +86,6 @@ const scheduleAll = () => {
   });
   return result;
 };
-scheduleAll();
 
 function schedule(dayName) {
   const result = scheduleAll();
@@ -98,9 +97,19 @@ function schedule(dayName) {
   return dayName === undefined ? result : resultFilter;
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const findEmployee = data.employees.find((info) => info.id === id);
+  const getAnimalId = findEmployee.responsibleFor[0];
+  const getAnimalsData = animalsByIds(getAnimalId).shift();
+  let maxAge = 0;
+  getAnimalsData.residents.forEach((el) => {
+    if (el.age >= maxAge) maxAge = el.age;
+  });
+  const result = getAnimalsData.residents.find((pupet) => pupet.age === maxAge);
+  return [result.name, result.sex, result.age];
+}
+
+// Eu tive ajuda do colega Dângelo para resolução do requisito 11
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -121,7 +130,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

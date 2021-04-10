@@ -77,7 +77,7 @@ function isManager(id) {
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // agradecimentos ao Daniel Roberto
   const {
-    employees
+    employees,
   } = data;
   const teste1 = {
     id,
@@ -85,30 +85,31 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     lastName,
     managers,
     responsibleFor,
-  }
+  };
   if (managers === undefined) {
-    teste1.managers = []
+    teste1.managers = [];
   }
   if (responsibleFor === undefined) {
-    teste1.responsibleFor = []
+    teste1.responsibleFor = [];
   }
   return employees.push(teste1);
 }
 
 function animalCount(species) {
   // agradecimentos, dainel roberto
+  // agradecimentos ao site https://stackoverflow.com/questions/41625399/how-to-handle-eslint-no-param-reassign-rule-in-array-prototype-reduce-function#
   const {
-    animals
+    animals,
   } = data;
   if (species !== undefined) {
     return animals.find((animal) => animal.name === species).residents.length;
   }
   if (species === undefined) {
-    return animals.reduce((call, qtd) => {
-      call[qtd.name] = qtd.residents.length;
-      return call;
-    }, {})
-  };
+    return animals.reduce((call, qtd) => ({
+      ...call,
+      [qtd.name]: qtd.residents.length,
+    }), {});
+  }
 }
 
 function entryCalculator(entrants) {
@@ -125,69 +126,76 @@ function entryCalculator(entrants) {
   return total;
 }
 // 1° Sem parametros, retorna animais categorizados por lozalização.
-function semParametro() {
+// function semParametro() {
 
-  return data.animals.reduce((acc, state) => {
-    if (!acc[state.location]) {
-      acc[state.location] = [];
-    }
-    acc[state.location].push(state.name);
-    return acc;
-  }, {});
-}
+//   return data.animals.reduce((acc, state) => {
+//     if (!acc[state.location]) {
+//       acc[state.location] = [];
+//     }
+//     acc[state.location].push(state.name);
+//     return acc;
+//   }, {});
+// }
 // 2° Com a opção 'includes: true' especificada, retorna nomes de animais.
-function includesParametro() {
+// function includesParametro() {
 
-  return data.animals.reduce((acc, state) => {
-    if (!acc[state.location]) {
-      acc[state.location] = [];
-    }
-    return acc;
-  })
-}
-console.log(includesParametro());
-function animalMap(options) {
-  // seu código aqui
+//   return data.animals.reduce((acc, state) => {
+//     if (!acc[state.location]) {
+//       acc[state.location] = [];
+//     }
+//     return acc;
+//   })
+// }
+// console.log(includesParametro());
+// function animalMap(options) {
+//   // seu código aqui
 
-  if (!options) {
-    return semParametro();
-  }
-  if (Object.values(options)[0] === true) {}
-  // if(Object.values(options)[1] === true){
-  //   return `o cara é sortudo sim`;
-  // }
-  // return final;
-}
+//   if (!options) {
+//     return semParametro();
+//   }
+//   if (Object.values(options)[0] === true) {}
+//   // if(Object.values(options)[1] === true){
+//   //   return `o cara é sortudo sim`;
+//   // }
+//   // return final;
+// }
 // console.log(animalMap());
 
-function schedule(dayName) {
-  // seu código aqui
-}
+// function schedule(dayName) {
+//   // seu código aqui
+//   const reduceDays = (acc, day, index, array) => {
+//     return `${acc} seraq vai ? ${day}`
+//   }
+//   if(!dayName) {
+//     console.log('talvez de certo');
+//     return data.hours.reduce(reduceDays, 'Dia:');
+//   }
+// }
+// console.log(schedule());
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
+// }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+// function increasePrices(percentage) {
+//   // seu código aqui
+// }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
-
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
 module.exports = {
   entryCalculator,
-  schedule,
+  // schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
+  // oldestFromFirstSpecies,
+  // increasePrices,
   createEmployee,
 };

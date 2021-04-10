@@ -79,35 +79,59 @@ function entryCalculator(entrants = 0) {
   return price;
 }
 
-// function animalMap(options = {}) {
-//   const { includeNames, sorted, sex } = options;
-//   let NE = data.animals.filter((species) => species.location === 'NE');
-//   NE = NE.map((animal) => animal.name);
-//   let NW = data.animals.filter((species) => species.location === 'NW');
-//   NW = NW.map((animal) => animal.name);
-//   let SE = data.animals.filter((species) => species.location === 'SE');
-//   SE = SE.map((animal) => animal.name);
-//   let SW = data.animals.filter((species) => species.location === 'SW');
-//   SW = SW.map((animal) => animal.name);
-//   console.log(includeNames);
-//   if(includeNames === true){
-//     NE = NE.map((animal) => {
-//       let obj = {};
-//       animals.residents.reduce((acc, nome) => {
-//         if
-//       })
-//       return obj;
-//     })
-//   }
-//   let locations = {
-//     NE,
-//     NW,
-//     SE,
-//     SW,
-//   };
-//   return locations;
-// }
-// console.log(animalMap({includeNames: true}));
+function animalsMaleFemale(s, C, i, n) {
+  if (s === 'male' && C.residents[i].sex === 'male') {
+    n.push(C.residents[i].name);
+  }
+  if (s === 'female' && C.residents[i].sex === 'female') {
+    n.push(C.residents[i].name);
+  }
+}
+
+function animalsIf(C, n, s, i) {
+  if (s === undefined) {
+    n.push(C.residents[i].name);
+  }
+  animalsMaleFemale(s, C, i, n);
+}
+
+function animalsFor(COO1, nomes, sex) {
+  for (let i = 0; i < COO1.residents.length; i += 1) {
+    animalsIf(COO1, nomes, sex, i);
+  }
+}
+
+function putNames(COO, includeNames, sorted, sex) {
+  if (includeNames === true) {
+    return COO.map((COO1) => {
+      const nomes = [];
+      animalsFor(COO1, nomes, sex);
+      if (sorted === true) {
+        nomes.sort();
+      }
+      const objeto = {};
+      objeto[COO1.name] = nomes;
+      return objeto;
+    }, {});
+  }
+  return COO.map((obj) => obj.name);
+}
+
+function animalMap(options = {}) {
+  const { includeNames, sorted, sex } = options;
+  let NE = data.animals.filter((species) => species.location === 'NE');
+  let NW = data.animals.filter((species) => species.location === 'NW');
+  let SE = data.animals.filter((species) => species.location === 'SE');
+  let SW = data.animals.filter((species) => species.location === 'SW');
+  NE = putNames(NE, includeNames, sorted, sex);
+  NW = putNames(NW, includeNames, sorted, sex);
+  SE = putNames(SE, includeNames, sorted, sex);
+  SW = putNames(SW, includeNames, sorted, sex);
+  const locations = {
+    NE, NW, SE, SW,
+  };
+  return locations;
+}
 
 function schedule(dayName) {
   // console.log(Object(data.hours));
@@ -123,7 +147,6 @@ function schedule(dayName) {
   obj[dayName] = diasSemana[dayName];
   return obj;
 }
-console.log(schedule('Monday'));
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
@@ -140,7 +163,7 @@ module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

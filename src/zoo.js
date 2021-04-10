@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, hours } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -39,7 +39,6 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  const { employees } = data;
   let res;
   res = employees.find((emp) => (employeeName === emp.firstName || employeeName === emp.lastName));
   if (res === undefined) {
@@ -56,13 +55,11 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  const { employees } = data;
   return employees.some((employee) => employee.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  const { employees } = data;
   const newEmploy = {
     id,
     firstName,
@@ -94,7 +91,6 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  const { prices } = data;
   let finalPrice = 0;
   if (entrants === undefined || Object.keys(entrants).length < 1) {
     return finalPrice;
@@ -132,9 +128,14 @@ function schedule(dayName) {
   return objFinal;
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const emp = employees.find((employee) => id === employee.id);
+  const spec = emp.responsibleFor[0];
+  const resid = animals.find((animal) => animal.id === spec).residents;
+  const final = resid.sort((a, b) => ((a.age < b.age) ? 1 : -1));
+  return Object.values(final[0]);
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -155,7 +156,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

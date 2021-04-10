@@ -15,7 +15,7 @@ function animalsByIds(ids) {
   const { animals } = data;
   if (ids.length === 0) {
     return [];
-  };
+  }
   return ids.map((id) => animals.find((animal) => animal.id === id));
 }
 

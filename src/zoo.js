@@ -78,7 +78,7 @@ function isManager(id) {
   // apos foi verifica se existe algum employee
   // que é manager pelo id
   const managers = employees.some((employee) =>
-    employee.managers.some((manager) => manager === id));
+    employee.managers.find((manager) => manager === id));
 
   return managers;
 }

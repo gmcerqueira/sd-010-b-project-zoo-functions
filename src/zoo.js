@@ -77,27 +77,28 @@ function isManager(id) {
   // verificando se existe um employee
   // apos foi verifica se existe algum employee
   // que é manager pelo id
-  const employeeIsManager = employees.some((employee) =>
-    employee.managers.some((managerIs) => managerIs === id));
+  const managers = employees.some((employee) =>
+    employee.managers.some((manager) => manager === id));
 
-  return employeeIsManager;
+  return managers;
 }
 
 console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const newEmployee = {
+  const createEmployees = {
     id,
     firstName,
     lastName,
     managers,
     responsibleFor,
   };
-  return employees.push(newEmployee);
+
+  employees.push(createEmployees);
 }
 
-console.log(addEmployee());
+// console.log(addEmployee());
 
 // function animalCount(species) {
 //   // seu código aqui

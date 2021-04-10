@@ -20,8 +20,7 @@ function animalsByIds(...ids) {
   // foi realizado o find dentro do filter para especificar
   // que a busca pela info do animal será pelo id.
   const findIdAnimals = animals.filter((animal) =>
-    ids.find((element) => element === animal.id),
-  );
+    ids.find((element) => element === animal.id));
 
   return findIdAnimals;
 }
@@ -30,8 +29,8 @@ console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 console.log(
   animalsByIds(
     '0938aa23-f153-4937-9f88-4858b24d6bce',
-    'e8481c1d-42ea-4610-8e11-1752cfc05a46',
-  ),
+    'e8481c1d-42ea-4610-8e11-1752cfc05a46'
+  )
 );
 
 function animalsOlderThan(animal, age) {

@@ -20,8 +20,7 @@ const precos = data.prices;
 const agenda = data.hours;
 
 function animalsByIds(...ids) {
-  if (!ids) return [];
-  return animais.filter((animal) => ids.includes(animal.id));
+  return ids.map((id) => animais.find((animal) => id === animal.id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -119,9 +118,20 @@ function increasePrices(percentage) {
   data.prices.Senior = Math.round(data.prices.Senior * 100) / 100;
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  const lista = {};
+  empregados.forEach(({ firstName, lastName, responsibleFor }) => {
+    const chave = `${firstName} ${lastName}`;
+    const listaAnimal = animalsByIds(...responsibleFor);
+    lista[chave] = listaAnimal.map((ani) => ani.name);
+  });
+  if (!idOrName) return lista;
+  const empregado = empregados.find((emp) =>
+    (emp.id === idOrName) || emp.firstName === idOrName || emp.lastName === idOrName);
+  const chaveEmp = `${empregado.firstName} ${empregado.lastName}`;
+  const saida = { [chaveEmp]: lista[chaveEmp] };
+  return saida;
+}
 
 module.exports = {
   entryCalculator,
@@ -130,7 +140,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  //   employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

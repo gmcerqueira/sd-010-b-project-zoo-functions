@@ -34,16 +34,16 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const managerId = employees.map(((employ) => employ.managers));
-  const indetification = [];
-   managerId.forEach((manager) => manager.filter((mngID) => {
-    if (mngID === id) indetification.push(mngID);
-  }
-  ));
-      return indetification.length > 0 ? true : false;
+  const identification = [];
+  managerId.forEach((manager) => manager.filter((mngID) => {
+    if (mngID === id) identification.push(mngID);
+    return identification;
+  }));
+  return identification.length > 0;
 }
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
+// seu código aqui
 // }
 
 // function animalCount(species) {

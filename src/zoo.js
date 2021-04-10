@@ -15,7 +15,8 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  const foundEmployee = employees.find((employee) => Object.values(employee).includes(employeeName));
+  const foundEmployee = employees
+    .find((employee) => Object.values(employee).includes(employeeName));
   return { ...foundEmployee };
 }
 

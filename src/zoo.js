@@ -145,27 +145,44 @@ function entryCalculator(entrants) {
 
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
-// function animalMap(options) {
+// function animalMap(options = {}) {
 //   // seu código aqui
-//   if (options === null || options === undefined) {
-//     animals.filter((location) => location.location);
-//     for(index = 0; index < animalLocation.length; index += 1) {
+//   let locationAnimal = animals.filter((species) => species.location);
 
-//     }
-//    }
+//     console.log(locationAnimal)
+
+//     return locationAnimal;
 //   }
 
-//   if (options.includeNames === true) {
-//     const animalName = animals.filter((animal) => animal.name);
-//     return animalName;
-//   }
+//   console.log(animalMap());
 
-// animalMap();
+function schedule(dayName) {
+  // seu código aqui
+  const object = {};
+  // agrupa as keys que sao os dias da semana
+  const objectKeysFromHours = Object.keys(data.hours);
+  console.log(objectKeysFromHours);
+  // fazendo uma busca no monday, porque esse dia o zoo esta fechado.
+  // no caso as chaves value
+  objectKeysFromHours.forEach((day) => {
+    (day === 'Monday' ? object[day] = 'CLOSED' : object[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`)
+    // if (day === 'Monday') {
+    //   object[day] = 'CLOSED';
+    // } else {
+      // nos outros dias será mostrado o horario de funcionamento
+      // esta sendo usado -12 para deixar no formato EUA ou Europeu
+      // do funcionamento
+    //   object[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
+    // }
+  });
+  // se não for inserido nada será retornado todos os horarios de
+  // funcionamneto do zoo
+  if (dayName) return { [dayName]: object[dayName] };
+  console.log(object);
+  return object;
+}
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
-
+console.log(schedule());
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
@@ -180,7 +197,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

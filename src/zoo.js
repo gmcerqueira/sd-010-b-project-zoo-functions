@@ -103,9 +103,9 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const first = employees.find((emploee) => emploee.id === id).responsibleFor[0];
-  const per = animals.find((an) => an.id === first).residents.sort((a, b) => b.age - a.age)[0];
-  return [per.name, per.sex, per.age];
+  const first = employees.find((emp) => emp.id === id).responsibleFor[0];
+  const old = animals.find((anim) => anim.id === first).residents.sort((a, b) => b.age - a.age)[0];
+  return Object.values(old);
 }
 
 function increasePrices(percentage) {

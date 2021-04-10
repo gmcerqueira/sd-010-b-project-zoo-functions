@@ -36,7 +36,7 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
-  // spread para juntar od dois array
+  // spread para juntar os array
 }
 
 function isManager(id) {
@@ -51,9 +51,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   // seu código aqui
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  const coutAnimals = {};
+  animals.forEach(({ name, residents }) => { (coutAnimals[name] = residents.length); });
+  if (species === undefined) return coutAnimals;
+  return coutAnimals[species];
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -82,7 +85,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

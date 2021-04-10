@@ -11,6 +11,7 @@ eslint no-unused-vars: [
 
 // const data = require('./data');
 
+const data = require('./data');
 const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
@@ -123,13 +124,43 @@ function animalCount(species) {
 console.log(animalCount());
 console.log(animalCount('lions'));
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // seu código aqui
+  let fullPrice = 0;
+  // se o entrants for null ou undefined retornara 0
+  if (entrants === undefined || entrants === null) {
+    return 0;
+  }
+  // como é objeto com chave/valor
+  // foi usado Object keys para pegar as keys
+  // adult, child senior
+  const objectKeys = Object.keys(entrants);
+  console.log(objectKeys);
+  // pega o valor da entrada multiplicado pelo numero de pessoa
+  // tipo 3 adultos, 4 criancas
+  objectKeys.forEach((key) => { fullPrice += data.prices[key] * entrants[key]; });
+  console.log(fullPrice);
+  return fullPrice;
+}
+
+console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 // function animalMap(options) {
 //   // seu código aqui
-// }
+//   if (options === null || options === undefined) {
+//     animals.filter((location) => location.location);
+//     for(index = 0; index < animalLocation.length; index += 1) {
+
+//     }
+//    }
+//   }
+
+//   if (options.includeNames === true) {
+//     const animalName = animals.filter((animal) => animal.name);
+//     return animalName;
+//   }
+
+// animalMap();
 
 // function schedule(dayName) {
 //   // seu código aqui
@@ -148,7 +179,7 @@ console.log(animalCount('lions'));
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

@@ -31,13 +31,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return id;
-  // const employeesId = data.employees.map(value => value.managers);
-  // if (employeesId.includes(id) === id) {
-  //   return true
-  // } else
-  // return false;
-  // return data.employees.some(value => value.managers[0] === id);
+  return data.employees.some((value) => value.managers.find((manager) => manager === id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -46,12 +40,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   return species;
-  // seu código aqui
 }
 
 function entryCalculator(entrants) {
   return entrants;
-  // seu código aqui
 }
 
 function animalMap(options) {
@@ -61,17 +53,14 @@ function animalMap(options) {
 
 function schedule(dayName) {
   return dayName;
-  // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
   return id;
-  // seu código aqui
 }
 
 function increasePrices(percentage) {
   return percentage;
-  // seu código aqui
 }
 
 function employeeCoverage(idOrName) {
@@ -94,3 +83,5 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
+
+// Referências: Projeto realizado em conjunto com Wellington Passo

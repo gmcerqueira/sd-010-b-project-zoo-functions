@@ -43,7 +43,7 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  return data.employees.push({ id, firstName, lastName, managers, responsibleFor });
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
@@ -63,8 +63,8 @@ function entryCalculator(entrants) {
   if (!entrants) {
     return 0;
   }
-  const keysEntrant = Object.keys(entrants);
-  return keysEntrant.reduce((acc, cur) => acc + ((prices[cur] || 0) * entrants[cur]), 0);
+  return Object.keys(entrants)
+    .reduce((acc, cur) => acc + ((prices[cur] || 0) * entrants[cur]), 0);
 }
 
 // function animalMap(options) {
@@ -74,23 +74,21 @@ function entryCalculator(entrants) {
 function schedule(dayName) {
   // seu código aqui
   const result = {};
-  Object.keys(hours).forEach((key) => {
-    const { open, close } = hours[key];
-    if (key === 'Monday') {
-      result[key] = 'CLOSED';
-    } else {
-      result[key] = `Open from ${open}am until ${close - 12}pm`;
-    }
-  });
+  Object.keys(hours)
+    .forEach((key) => {
+      const { open, close } = hours[key];
+      if (key === 'Monday') result[key] = 'CLOSED';
+      else result[key] = `Open from ${open}am until ${close - 12}pm`;
+    });
   if (dayName) return { [dayName]: result[dayName] };
   return result;
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const employee = data.employees
+  const employee = employees
     .find((collaboratingPeople) => collaboratingPeople.id === id);
-  const firstSpecie = data.animals
+  const firstSpecie = animals
     .find((specieAnimal) => specieAnimal.id === employee.responsibleFor[0]);
   const sortedAnimals = firstSpecie.residents
     .sort((animalOne, animalTwo) => animalTwo.age - animalOne.age);

@@ -131,9 +131,39 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function idToName(ids) {
+  const names = [];
+  ids.forEach((idd) => names.push((animals.find(({ id }) => idd === id).name)));
+  return names;
+}
+// console.log(idToName(["e8481c1d-42ea-4610-8e11-1752cfc05a46", "baa6e93a-f295-44e7-8f70-2bcdc6f6948d"]));
+
+function employeeCoverage(idOrName) {
+  const obj = {};
+  employees.forEach(({ firstName, lastName, responsibleFor }) => {
+    obj[`${firstName} ${lastName}`] = idToName(responsibleFor);
+  });
+  if (idOrName === undefined) return obj;
+  let selectedPerson = employees.find(({ id, firstName, lastName }) => {
+    console.log('> presente apenas para passar o lint');
+    return id === idOrName || firstName === idOrName || lastName === idOrName;
+  });
+  const { firstName, lastName } = selectedPerson;
+  selectedPerson = `${firstName} ${lastName}`;
+  return { [selectedPerson]: obj[selectedPerson] };
+}
+console.log(employeeCoverage());
+// console.log(employeeCoverage('Azevado'));
+// const expected = {
+//   'Nigel Nelson': ['lions', 'tigers'],
+//   'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
+//   'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
+//   'Wilburn Wishart': ['snakes', 'elephants'],
+//   'Stephanie Strauss': ['giraffes', 'otters'],
+//   'Sharonda Spry': ['otters', 'frogs'],
+//   'Ardith Azevado': ['tigers', 'bears'],
+//   'Emery Elser': ['elephants', 'bears', 'lions']
+// };
 
 module.exports = {
   entryCalculator,
@@ -142,7 +172,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

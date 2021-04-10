@@ -169,10 +169,9 @@ function increasePrices(percentage) {
   });
 }
 
+// function employeeCoverage(idOrName) {
 
-function employeeCoverage(idOrName) {
-
-}
+// }
 
 module.exports = {
   entryCalculator,
@@ -181,7 +180,7 @@ module.exports = {
   animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

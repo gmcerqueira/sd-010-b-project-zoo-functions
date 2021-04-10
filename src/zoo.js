@@ -165,8 +165,11 @@ function schedule(dayName) {
   // fazendo uma busca no monday, porque esse dia o zoo esta fechado.
   // no caso as chaves value
   objectKeysFromHours.forEach((day) => {
-    (day === 'Monday' ? object[day] = 'CLOSED'
-      : object[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`);
+    if (day === 'Monday') {
+      object[day] = 'CLOSED';
+    } else {
+      (object[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`);
+    }
   });
   if (dayName) return { [dayName]: object[dayName] };
   console.log(object);

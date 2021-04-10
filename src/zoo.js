@@ -14,7 +14,7 @@ const data = require('./data');
 const { employees } = data;
 
 function animalsByIds(...ids) {
-  return data.animals.filter((animal) => ids.some((id) => animal.id === id));
+  return data.animals.filter((animal) => ids.some((elementId) => animal.id === elementId));
 }
 // Tive auxilio do Diegho Moraes para realizar o animalsOlderThan
 function animalsOlderThan(animal, age) {
@@ -29,7 +29,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
- return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 // function isManager(id) {

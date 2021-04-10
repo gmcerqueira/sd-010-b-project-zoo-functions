@@ -44,10 +44,13 @@ function employeeByName(employeeName) {
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
 // }
-
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(...idManager) {
+  return employees.filter((manager) => idManager.some((verifyManager) =>
+    manager.managers === idManager));
+}
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+// every para verificar em todos os elementos o id informado.
+// Testa se o id passado é de um gerente e returna boleano
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -90,7 +93,7 @@ module.exports = {
   employeeByName,
   //   employeeCoverage,
   //   addEmployee,
-  //   isManager,
+  isManager,
   animalsOlderThan,
 //   oldestFromFirstSpecies,
 //   increasePrices,

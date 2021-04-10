@@ -127,11 +127,8 @@ function animalMapNoOptions() {
   return response;
 }
 
-function animalMapNames() {
+function directionsUnsorted(directions, animals) {
   const response = {};
-  const animals = data.animals.map((entry) =>
-    [entry.location, entry.name, entry.residents.map((entry2) => entry2.name)]);
-  const directions = ['NE', 'NW', 'SE', 'SW'];
   directions.forEach((direction) => {
     const animalsDirection = animals.filter((element) => element[0] === direction);
     const animalsArray = [];
@@ -141,67 +138,68 @@ function animalMapNames() {
     response[direction] = animalsArray;
   });
   return response;
+}
+
+function directionsSorted(directions, animals) {
+  const response = {};
+  directions.forEach((direction) => {
+    const animalsDirection = animals.filter((element) => element[0] === direction);
+    const animalsArray = [];
+    animalsDirection.forEach((animal) => {
+      animalsArray.push({ [animal[1]]: animal[2].sort() });
+    });
+    response[direction] = animalsArray;
+  });
+  return response;
+}
+
+function animalMapNames() {
+  const animals = data.animals.map((entry) =>
+    [entry.location, entry.name, entry.residents.map((entry2) => entry2.name)]);
+  const directions = ['NE', 'NW', 'SE', 'SW'];
+  return directionsUnsorted(directions, animals);
 }
 
 function animalMapNamesSorted() {
-  const response = {};
   const animals = data.animals.map((entry) =>
     [entry.location, entry.name, entry.residents.map((entry2) => entry2.name)]);
   const directions = ['NE', 'NW', 'SE', 'SW'];
-  directions.forEach((direction) => {
-    const animalsDirection = animals.filter((element) => element[0] === direction);
-    const animalsArray = [];
-    animalsDirection.forEach((animal) => {
-      animalsArray.push({ [animal[1]]: animal[2].sort() });
-    });
-    response[direction] = animalsArray;
-  });
-  return response;
+  return directionsSorted(directions, animals);
 }
 
 function animalMapNamesSex(sex) {
-  const response = {};
   console.log('entrei');
   const animals = data.animals.map((entry) =>
     [entry.location, entry.name, entry.residents.filter((resident) =>
       resident.sex === sex).map((entry2) => entry2.name)]);
   const directions = ['NE', 'NW', 'SE', 'SW'];
-  directions.forEach((direction) => {
-    const animalsDirection = animals.filter((element) => element[0] === direction);
-    const animalsArray = [];
-    animalsDirection.forEach((animal) => {
-      animalsArray.push({ [animal[1]]: animal[2] });
-    });
-    response[direction] = animalsArray;
-  });
-  return response;
+  return directionsUnsorted(directions, animals);
 }
 
 function animalMapNamesOrderedSex(sex) {
-  const response = {};
   console.log('entrei');
   const animals = data.animals.map((entry) =>
     [entry.location, entry.name, entry.residents.filter((resident) =>
       resident.sex === sex).map((entry2) => entry2.name)]);
   const directions = ['NE', 'NW', 'SE', 'SW'];
-  directions.forEach((direction) => {
-    const animalsDirection = animals.filter((element) => element[0] === direction);
-    const animalsArray = [];
-    animalsDirection.forEach((animal) => {
-      animalsArray.push({ [animal[1]]: animal[2].sort() });
-    });
-    response[direction] = animalsArray;
-  });
-  return response;
+  return directionsSorted(directions, animals);
+}
+
+function chooseIncludeNames(options) {
+  if (options.sorted && options.sex) { return animalMapNamesOrderedSex(options.sex); }
+  if (options.sorted) { return animalMapNamesSorted(); }
+  if (options.sex) { return animalMapNamesSex(options.sex); }
+  return animalMapNames();
 }
 
 // -------------------------------------------------------
 function animalMap(options) {
   if (!options) { return animalMapNoOptions(); }
-  if (options.includeNames && options.sorted && options.sex) { return animalMapNamesOrderedSex(options.sex); }
-  if (options.includeNames && options.sorted) { return animalMapNamesSorted(); }
-  if (options.includeNames && options.sex) { return animalMapNamesSex(options.sex); }
-  if (options.includeNames) { return animalMapNames(); }
+  if (options.includeNames) { return chooseIncludeNames(options); }
+  // if (options.includeNames && options.sorted && options.sex) { return animalMapNamesOrderedSex(options.sex); }
+  // if (options.includeNames && options.sorted) { return animalMapNamesSorted(); }
+  // if (options.includeNames && options.sex) { return animalMapNamesSex(options.sex); }
+  // if (options.includeNames) { return animalMapNames(); }
 }
 
 console.table(animalMap({ includeNames: true, sex: 'female', sorted: true }));

@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   const animalsId = [];
@@ -96,7 +96,6 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
-
   const arr = Object.keys(entrants);
   arr.forEach((value) => {
     array2.push(entrants[value] * prices[value]);
@@ -105,15 +104,50 @@ function entryCalculator(entrants) {
   const totalPrice = array2.reduce((acc, curr) => acc + curr);
   return totalPrice;
 }
-console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
 
 // function animalMap(options) {
-//   // seu código aqui
+//   const objAnimal = {}
+//   if (options === undefined) {
+//     const locationsArr = ['NE', 'NW', 'SE', 'SW']
+//     locationsArr.forEach((location) => {
+//       const arrLoc = animals.filter((animal) => animal.location === location)
+//       const arrayTotal = arrLoc.reduce((acc, curr) => {
+//         acc.push(curr.name);
+//         return acc;
+//       },[])
+//       objAnimal[location] = arrayTotal;
+//     })
+//     return objAnimal;
+//   }
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function daySchedule(arr) {
+  const res = arr.reduce((acc, curr) => {
+    if (curr !== 'Monday') {
+      acc[curr] = `Open from ${hours[curr].open}am until ${hours[curr].close - 12}pm`;
+    } else {
+      acc[curr] = 'CLOSED';
+    }
+    return acc;
+  }, {});
+  return res;
+}
+
+function schedule(dayName) {
+  const arrKeys = Object.keys(hours);
+  const objHours = {};
+  if (dayName === undefined) {
+    const arrHours = daySchedule(arrKeys);
+    return arrHours;
+  }
+  if (dayName === 'Monday') {
+    objHours[dayName] = 'CLOSED';
+  } else {
+    objHours[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+  }
+  return objHours;
+}
+console.log(schedule());
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -129,7 +163,7 @@ console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

@@ -149,7 +149,19 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const filteredEmployee = employees.filter((employee) => (idOrName ? idOrName === employee.id
+  || idOrName === employee.firstName
+  || idOrName === employee.lastName
+    : true));
+  const namesAndAnimals = filteredEmployee
+    .reduce((acc, { firstName, lastName, responsibleFor }) => {
+      const name = `${firstName} ${lastName}`;
+      acc[name] = responsibleFor
+        .map((animalid) => animals
+          .find((animal) => animal.id === animalid).name);
+      return acc;
+    }, {});
+  return namesAndAnimals;
 }
 
 module.exports = {

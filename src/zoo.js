@@ -91,9 +91,10 @@ scheduleAll();
 function schedule(dayName) {
   const result = scheduleAll();
   const resultFilter = {};
-  if (Object.keys(result).includes(dayName)) {
-    resultFilter[dayName] = result[dayName];
-  }
+  Object.keys(result).filter((day) => {
+    if (day === dayName) resultFilter[dayName] = result[dayName];
+    return resultFilter;
+  });
   return dayName === undefined ? result : resultFilter;
 }
 

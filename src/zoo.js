@@ -45,20 +45,24 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 */
 
 const animalCount = (species) => {
-  const animalsAndNumbers = {};
+  const quantityOfEachAnimal = {};
   animals.forEach((animal) => {
     const { name, residents } = animal;
-    animalsAndNumbers[name] = residents.length;
+    quantityOfEachAnimal[name] = residents.length;
   });
   if (species) {
-    return animalsAndNumbers[species];
+    return quantityOfEachAnimal[species];
   }
-  return animalsAndNumbers;
+  return quantityOfEachAnimal;
 };
 
-// const entryCalculator = (entrants) => {
-//   // seu código aqui
-// };
+const entryCalculator = (entrants) => {
+  if (entrants && entrants !== {}) {
+    const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+    return ((Adult * 49.99) + (Child * 20.99) + (Senior * 24.99));
+  }
+  return 0;
+};
 
 // const animalMap = (options) => {
 //   // seu código aqui
@@ -81,7 +85,7 @@ const animalCount = (species) => {
 // };
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

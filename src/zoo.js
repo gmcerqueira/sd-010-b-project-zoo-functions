@@ -23,10 +23,10 @@ function animalsOlderThan(animal, age) {
   return filtrado[0].residents.every((ani) => ani.age > age);
 }
 function employeeByName(employeeName) {
-  if (employeeName === null) {
-    return [];
+  if (employeeName === undefined) {
+    return {};
   }
-  return data.employees.filter((pessoa) => pessoa.firstName === employeeName
+  return data.employees.find((pessoa) => pessoa.firstName === employeeName
   || pessoa.lastName === employeeName);
 }
 // console.log(employeeByName('Wishart'));
@@ -51,10 +51,11 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
 // console.log(data.employees[0]);
-  const filtrarId = data.employees.filter((pessoa) => pessoa.firstName === id);
-  return filtrarId;
+  const filtrarId = data.employees.filter((pessoa) => pessoa.id === id);
+  return filtrarId.some((funcionario) => funcionario.id === "0e7b460e-acf4-4e17-bcb3-ee472265db83");
+
 }
-// console.log(isManager('c1f50212-35a6-4ecd-8223-f835538526c2'));
+// console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   return id + firstName + lastName + managers + responsibleFor;
@@ -62,22 +63,12 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   if (species === undefined) {
-    return {
-      'lions': 4,
-      'tigers': 2,
-      'bears': 3,
-      'penguins': 4,
-      'otters': 4,
-      'frogs': 2,
-      'snakes': 2,
-      'elephants': 4,
-      'giraffes': 6,
-    };
+    return data.animals.map((animais) => `${animais.name}: ` + animais.residents.length);
   }
   const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
   return animaisFiltrado[0].residents.length;
 }
-// console.log(animalCount());
+ console.log(animalCount());
 function entryCalculator(entrants) {
   return entrants;
 }

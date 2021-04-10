@@ -11,7 +11,9 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, hours, prices } = data;
+const { animals, employees } = data;
+
+// add hours, prices in data DONT FORGET
 
 function animalsByIds(...ids) {
   const idsAnimals = [];
@@ -35,26 +37,37 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
-  } else {
-    const employeeIndex = employees.find((thisEmployee) => {
-      const compare = (thisEmployee.firstName === employeeName || thisEmployee.lastName === employeeName);
-      return compare;
-    })
-    return employeeIndex;
   }
+  const employeeIndex = employees.find((thisEmployee) => {
+    const cpr = (thisEmployee.firstName === employeeName || thisEmployee.lastName === employeeName);
+    return cpr;
+  });
+  return employeeIndex;
 }
 
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  const employeeManagers = employees.some((employee) =>
+    employee.managers.some((managerEmployee) => managerEmployee === id));
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+  return employeeManagers;
+}
+
+// Exercício resolvido com a ajuda da visualização do código do meu colega Igor Machado, da turma 10-B para o entendimento do .some
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const addEmployees = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  employees.push(addEmployees);
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -92,8 +105,8 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
-  // isManager,
+  addEmployee,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

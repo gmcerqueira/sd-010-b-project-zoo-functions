@@ -168,7 +168,6 @@ function animalMapNamesSorted() {
 }
 
 function animalMapNamesSex(sex) {
-  console.log('entrei');
   const animals = data.animals.map((entry) =>
     [entry.location, entry.name, entry.residents.filter((resident) =>
       resident.sex === sex).map((entry2) => entry2.name)]);
@@ -177,12 +176,28 @@ function animalMapNamesSex(sex) {
 }
 
 function animalMapNamesOrderedSex(sex) {
-  console.log('entrei');
   const animals = data.animals.map((entry) =>
     [entry.location, entry.name, entry.residents.filter((resident) =>
       resident.sex === sex).map((entry2) => entry2.name)]);
   const directions = ['NE', 'NW', 'SE', 'SW'];
   return directionsSorted(directions, animals);
+}
+
+function animalMapNamesOnlySex(sex) {
+  const animals = data.animals.map((entry) =>
+    [entry.location, entry.name, entry.residents.filter((resident) =>
+      resident.sex === sex).map((entry2) => entry2.name)]);
+  const directions = ['NE', 'NW', 'SE', 'SW'];
+  const response = {};
+  directions.forEach((direction) => {
+    const animalsDirection = animals.filter((element) => element[0] === direction);
+    const animalsArray = [];
+    animalsDirection.forEach((animal) => {
+      animalsArray.push(animal[1]);
+    });
+    response[direction] = animalsArray;
+  });
+  return response;
 }
 
 function chooseIncludeNames(options) {
@@ -195,10 +210,11 @@ function chooseIncludeNames(options) {
 // -------------------------------------------------------
 function animalMap(options) {
   if (!options) { return animalMapNoOptions(); }
-  if (options.includeNames) { return chooseIncludeNames(options); }
+  if (options.sex && !options.includeNames) { return animalMapNamesOnlySex(options.sex); }
+  if (options.includeNames === true) { return chooseIncludeNames(options); }
 }
 
-console.table(animalMap({ includeNames: true, sex: 'female', sorted: true }));
+console.log(animalMap({ sex: 'female' })['NE'][0]);
 
 function schedule(dayName) {
   const hours = Object.entries(data.hours);

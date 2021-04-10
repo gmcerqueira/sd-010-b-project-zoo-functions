@@ -72,10 +72,14 @@ function animalCount(species) {
     return allSpecies;
   } return oneSpecie.residents.length;
 }
-console.log(animalCount('snakes'));
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+
+const entryCalculator = (entrants) => {
+  if (entrants && entrants !== {}) {
+    const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+    return ((Adult * 49.99) + (Child * 20.99) + (Senior * 24.99));
+  }
+  return 0;
+};
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -98,7 +102,7 @@ console.log(animalCount('snakes'));
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

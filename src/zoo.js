@@ -64,11 +64,23 @@ function animalCount(species) {
   return allAnimals[species];
 }
 
-console.log(animalCount('bears'));
+// Descobri no site:https://medium.com/cleytonbrasil/javascript-como-saber-se-um-objeto-est%C3%A1-vazio-a6a153f4f81f, que Object.entries() converte um object em um array, possibilitando assim usarmos a propriedade '.length' para sabermos o tamanho do objeto.
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+const { prices } = data;
+
+const verificaValor = (ent) => {
+  let total = 0;
+  const { Adult, Child, Senior } = ent;
+  if (Adult > 0) total += Adult * prices.Adult;
+  if (Child > 0) total += Child * prices.Child;
+  if (Senior > 0) total += Senior * prices.Senior;
+  return total;
+};
+
+function entryCalculator(entrants) {
+  if (typeof entrants === 'undefined' || Object.entries(entrants).length === 0) return 0;
+  return verificaValor(entrants);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -91,7 +103,7 @@ console.log(animalCount('bears'));
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

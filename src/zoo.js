@@ -28,7 +28,7 @@ function employeeByName(employeeName) {
     return {};
   }
   const nome = (emp) => emp.firstName === employeeName || emp.lastName === employeeName;
-  return funcionarios.filter(nome);
+  return funcionarios.find(nome);
 }
 
 /* function createEmployee(personalInfo, associatedWith) {

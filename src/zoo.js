@@ -78,7 +78,7 @@ function isManager(id) {
   // apos foi verifica se existe algum employee
   // que é manager pelo id
   const managers = employees.some((employee) =>
-    employee.managers.find((manager) => manager === id));
+    employee.managers.some((managerIs) => managerIs === id));
 
   return managers;
 }
@@ -137,7 +137,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

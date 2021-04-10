@@ -39,7 +39,6 @@ function animalsOlderThan(animal, age) {
   return teste.residents.every((specie) => specie.age > age);
 }
 
-
 // function employeeByName(employeeName) {
 //   // seu código aqui
 // }

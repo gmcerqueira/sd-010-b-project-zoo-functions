@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -66,15 +66,73 @@ function entryCalculator(entrants = 0) {
   });
   return array.reduce((acc, curr) => acc + curr, 0);
 }
+//-------------------------------------------------------------------------------------------
+// const getAnimalsLocation = () => {
+//   const animais = {};
+//   animals.forEach(({ location }) => {
+//     animais[location] = [];
+//   });
+//   return animais;
+// };
+
+// const getAnimalsNames = () => {
+//   const object = getAnimalsLocation();
+//   animals.map((animal) => object[animal.location].push(animal.name));
+//   return object;
+// };
+
+// const getAnimalsOptions = () => {
+//   const object = getAnimalsLocation();
+//   animals.forEach(({ name, location, residents }) => { // desestruturando meu parâtro de entrada
+//     // passo as chaves por parametro e pego com o spread o objeto que já foi adicionado (...object[location]) e adiciono um novo.(Murillo Wolf)
+//     object[location] = [...object[location], { [name]: residents.map((names) =>
+//       names.name) }];
+//   });
+//   return object;
+// };
+
+// const getAnimalsOptionsSorted = () => {
+//   const object = getAnimalsLocation();
+//   animals.forEach(({ name, location, residents }) => {
+//     object[location] = [...object[location], { [name]: residents.map((names) =>
+//       names.name).sort() }];
+//   });
+//   return object;
+// };
 
 // function animalMap(options) {
 //   // seu código aqui
+//   if (options === undefined) return getAnimalsNames();
+//   const { includeNames, sorted } = options;
+//   if (includeNames && sorted) {
+//     return getAnimalsOptionsSorted();
+//   }
+//   if (includeNames) {
+//     return getAnimalsOptions();
+//   }
 // }
-
-// function schedule(dayName) {
-//   // seu código aqui
-// }
-
+// const options = { includeNames: true };
+// console.log(animalMap());
+// //------------------------------------------------------------------------------------------------------------
+function schedule(dayName) {
+  // seu código aqui
+  const object = {};
+  const keys = Object.keys(hours);
+  keys.forEach((day) => {
+    if (day === 'Monday') {
+      object[day] = 'CLOSED';
+    } else {
+      object[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`; // Dica do grupo no Discord
+    }
+  });
+  if (dayName) { // Feito com ajuda do pessoal no grupo de estudos;
+    return { // Com parâmetro retorno um objeto com a chave parametro e o valor pego do meu objeto que possui a mesma chave.
+      [dayName]: object[dayName],
+    };
+  }
+  return object;
+}
+console.log(schedule('Tuesday'));
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
@@ -89,7 +147,7 @@ function entryCalculator(entrants = 0) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

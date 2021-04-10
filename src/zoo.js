@@ -31,9 +31,10 @@ function employeeByName(employeeName) {
   return funcionarios.find(nome);
 }
 
-/* function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-} */
+function createEmployee(personalInfo, associatedWith) {
+  const novoFuncionario = {...personalInfo, ...associatedWith };
+  return novoFuncionario
+}
 
 /* function isManager(id) {
   // seu código aqui
@@ -84,5 +85,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

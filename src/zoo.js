@@ -67,24 +67,38 @@ function entryCalculator(entrants = 0) {
   return valor;
 }
 
-// function animalMap(options) {
-//   const saida = {};
-//   if (options === undefined) {
-//     animais.forEach(({ location, name }) => {
-//       if (!saida[location]) saida[location] = [];
-//       saida[location].push(name);
-//     });
-//     return saida;
-//   }
-//   if (options.includeNames) {
-//     animais.forEach(({ location, name, residents }, index) => {
-//       if (!saida[location]) saida[location] = [];
-//       animais.reduce(() => {}, {});
-//     });
-//     return saida;
-//   }
-//   return saida;
-// }
+const encontraNomeAnimal = (nomeAnimal, sorted, sex) => {
+  let saida = animais.find((animal) => animal.name === nomeAnimal);
+  saida = saida.residents;
+
+  if (typeof sex === 'string') {
+    saida = saida.filter((animal) => animal.sex === sex);
+  }
+  saida = saida.map((resident) => resident.name);
+  if (sorted) saida.sort();
+  return { [nomeAnimal]: saida };
+};
+
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex } = options;
+
+  let saida = animais.reduce((acc, animal) => {
+    const { name, location } = animal;
+    if (!acc[location]) {
+      acc[location] = [];
+    }
+    acc[location].push(name);
+    return acc;
+  }, {});
+
+  if (includeNames) {
+    saida = Object.entries(saida).reduce((acc, [chave, nomeAnimal]) => {
+      acc[chave] = nomeAnimal.map((name) => encontraNomeAnimal(name, sorted, sex));
+      return acc;
+    }, {});
+  }
+  return saida;
+}
 
 function schedule(dayName) {
   const dias = Object.keys(agenda);
@@ -123,7 +137,7 @@ function employeeCoverage(idOrName) {
   empregados.forEach(({ firstName, lastName, responsibleFor }) => {
     const chave = `${firstName} ${lastName}`;
     const listaAnimal = animalsByIds(...responsibleFor);
-    lista[chave] = listaAnimal.map((ani) => ani.name);
+    lista[chave] = listaAnimal.map((ani) => ani.name); // feito com ajuda de Matheus Bodra
   });
   if (!idOrName) return lista;
   const empregado = empregados.find((emp) =>
@@ -137,7 +151,7 @@ module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

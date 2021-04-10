@@ -137,9 +137,15 @@ function oldestFromFirstSpecies(id) {
   return Object.values(final[0]);
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+  const intPerc = (percentage / 100) + 1;
+  const arr = Object.values(prices).map((price) => Math.round(((price * intPerc) * 100)) / 100);
+  // Consegui arredondar da maneira correta depois de ler o seguinte artigo: https://stackoverflow.com/questions/21091727/javascript-tofixed-function
+  Object.keys(prices).forEach((price, index) => {
+    prices[price] = arr[index];
+  });
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -157,6 +163,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

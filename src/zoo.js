@@ -28,7 +28,7 @@ function employeeByName(employeeName) {
   return employees.find(
     (empregado) =>
       empregado.firstName === employeeName
-      || empregado.lastName === employeeName
+      || empregado.lastName === employeeName,
   );
 }
 
@@ -40,13 +40,7 @@ function isManager(id) {
   return employees.some((ids) => ids.managers.includes(id));
 }
 
-function addEmployee(
-  id,
-  firstName,
-  lastName,
-  managers = [],
-  responsibleFor = []
-) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return employees.push({
     id,
     firstName,
@@ -82,8 +76,8 @@ function schedule(dayName) {
   const result = {};
   semana.forEach((dia) => {
     const { open, close } = hours[dia];
-    if (dia === "Monday") {
-      result[dia] = "CLOSED";
+    if (dia === 'Monday') {
+      result[dia] = 'CLOSED';
     } else {
       result[dia] = `Open from ${open}am until ${close - 12}pm`;
     }
@@ -98,21 +92,19 @@ function oldestFromFirstSpecies(id) {
     .find((empregado) => empregado.id === id)
     .responsibleFor.find((animalId) => animalId);
   const animalMaisVelho = animals
-    .find((idAnimal) => idAnimal.id === primeiroAnimal)
-    .residents.reduce(
-      (maisVelho, idadeAnimal) =>
-        maisVelho.age > idadeAnimal.age ? maisVelho : idadeAnimal,
-      0
-    );
+    .find((idAnimal) => idAnimal.id === primeiroAnimal).residents
+    .reduce((maisVelho, idadeAnimal) =>
+      ((maisVelho.age > idadeAnimal.age) ? maisVelho : idadeAnimal), 0);
   return Object.values(animalMaisVelho);
 }
 
 function increasePrices(percentage) {
-  const aumento = 100 + percentage;
+  const aumento = (100 + percentage);
   const pessoas = Object.keys(prices);
-  pessoas.forEach(
-    (key) => (prices[key] = Math.ceil(prices[key] * aumento * 1) / 100)
-  );
+  pessoas.forEach((key) => {
+    prices[key] = Math.ceil(((prices[key] * aumento)) * 1) / 100;
+    return prices[key];
+  });
   return prices;
 }
 

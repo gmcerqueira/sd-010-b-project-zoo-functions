@@ -165,24 +165,26 @@ function schedule(dayName) {
   // fazendo uma busca no monday, porque esse dia o zoo esta fechado.
   // no caso as chaves value
   objectKeysFromHours.forEach((day) => {
-    (day === 'Monday' ? object[day] = 'CLOSED' : object[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`)
-    // if (day === 'Monday') {
-    //   object[day] = 'CLOSED';
-    // } else {
-      // nos outros dias será mostrado o horario de funcionamento
-      // esta sendo usado -12 para deixar no formato EUA ou Europeu
-      // do funcionamento
-    //   object[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
-    // }
+    (day === 'Monday' ? object[day] = 'CLOSED'
+      : object[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`);
   });
-  // se não for inserido nada será retornado todos os horarios de
-  // funcionamneto do zoo
   if (dayName) return { [dayName]: object[dayName] };
   console.log(object);
   return object;
 }
-
 console.log(schedule());
+
+// if (day === 'Monday') {
+//   object[day] = 'CLOSED';
+// } else {
+// nos outros dias será mostrado o horario de funcionamento
+// esta sendo usado -12 para deixar no formato EUA ou Europeu
+// do funcionamento
+//   object[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
+// }
+// se não for inserido nada será retornado todos os horarios de
+// funcionamneto do zoo
+
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }

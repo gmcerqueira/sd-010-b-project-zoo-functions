@@ -11,6 +11,7 @@ eslint no-unused-vars: [
 
 const {
   animals,
+  employees,
 } = require('./data');
 const data = require('./data');
 
@@ -255,12 +256,22 @@ function increasePrices(percentage) {
   });
   return data.prices;
 }
-
 // REFERÊNCIA utilizada no arredondamento: https://metring.com.br/arredondar-numero-em-javascript
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  if (!idOrName) {
+    return employees.reduce((acc, curr) => {
+      const { firstName } = curr;
+      const { lastName } = curr;
+      const species = [];
+      curr.responsibleFor.forEach((id) => {
+        species.push(animals.find((el) => el.id === id).name);
+      });
+      acc[`${firstName} ${lastName}`] = species;
+      return acc;
+    }, {});
+  }
+}
 
 module.exports = {
   entryCalculator,
@@ -269,7 +280,7 @@ module.exports = {
   animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

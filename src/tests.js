@@ -22,9 +22,9 @@ function entryCalculator(entrants) {
   return entries.reduce(((acc, entry) => acc + (data.prices[entry[0]] * entry[1])), 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
+//   // seu código aqui
+// }
 
 function auxiliarScheduleFunction(importedDayName) {
   const fullSchedule = Object.entries(data.hours);
@@ -82,12 +82,23 @@ function findAnimalsId(arrayOfAnimals) {
 
 function employeeCoverage(idOrName) {
   const objEmployees = {};
-  data.employees.forEach((employee) => {
-    objEmployees[`${employee.firstName} ${employee.lastName}`] = (findAnimalsId(employee.responsibleFor));
-  });
-  console.log(objEmployees);
+  if (!idOrName) {
+    data.employees.forEach((employee) => {
+      objEmployees[`${employee.firstName} ${employee.lastName}`] = (findAnimalsId(
+        employee.responsibleFor,
+      ));
+    });
+    return objEmployees;
+  }
+  const getEmployee = data.employees.find((employee) => (employee.firstName === idOrName)
+  || (employee.lastName === idOrName)
+  || (employee.id === idOrName));
+  console.log(getEmployee);
+  objEmployees[`${getEmployee.firstName} ${getEmployee.lastName}`] = (findAnimalsId(
+    getEmployee.responsibleFor,
+  ));
+  return objEmployees;
 }
-console.log(employeeCoverage());
 
 // employee Coverage employee Coverage employee Coverage
 // employee Coverage employee Coverage employee Coverage
@@ -95,7 +106,7 @@ console.log(employeeCoverage());
 module.exports = {
   entryCalculator,
   schedule,
-  animalMap,
+  // animalMap,
   employeeCoverage,
   oldestFromFirstSpecies,
   increasePrices,

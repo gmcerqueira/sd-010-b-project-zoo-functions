@@ -158,12 +158,17 @@ function schedule(dayName) {
   }
   return {
     [dayName]: total[dayName],
-  }; // notação de ponto não funciona para váriaveis
+  };
+  // notação de ponto não funciona para váriaveis
+  // Agradecimentos ao Henrique zozimo
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const person = data.employees.find((employe) => employe.id === id).responsibleFor[0];
+  const bixo = data.animals.find((animais) => animais.id === person).residents;
+  const bixoMaisVelho = bixo.reduce((bixo1, bixo2) => (bixo1.age > bixo2.age ? bixo1 : bixo2));
+  return Object.values(bixoMaisVelho);
+}
 
 function increasePrices(percentage) {
   const {
@@ -177,6 +182,7 @@ function increasePrices(percentage) {
   prices.Child = Math.round(((Child * porce) + Child) * 100) / 100;
 }
 // aradecimento ao Lucas Martins
+
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }
@@ -192,7 +198,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

@@ -100,9 +100,15 @@ function oldestFromFirstSpecies(id) {
   return oldestAnimal;
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+  const remakeParc = (percentage / 100) + 1;
+  const newP = Object.values(prices).map((price) => Math.round(((price * remakeParc) * 100)) / 100);// Fonte de modo de arrendondar: (comentário do André de Bem no Slack: https://trybecourse.slack.com/archives/C01LCSLCZ8D/p1618076773439900?thread_ts=1618073079.438400&cid=C01LCSLCZ8D)
+  Object.keys(prices).forEach((price, index) => {
+    prices[price] = newP[index];
+  });
+  return prices;
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -118,7 +124,8 @@ function oldestFromFirstSpecies(id) {
 //   }, {});
 // }
 
-// console.log(schedule('Monday'));
+// console.log(increasePrices(50));
+// console.log(increasePrices(30));
 
 module.exports = {
   entryCalculator,
@@ -132,6 +139,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

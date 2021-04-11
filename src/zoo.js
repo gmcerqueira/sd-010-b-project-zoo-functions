@@ -69,9 +69,19 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push(addEmployees);
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  const number = {};
+  animals.forEach((animal) => {
+    const { name, residents } = animal;
+    number[name] = residents.length;
+  });
+  if (species === undefined) {
+    return number;
+  }
+  return number[species];
+}
+
+// Para resolver o requisito 7 consultei o repositório do meu colega Henrique Zózimo, da turma 10-B, para entender melhor a lógica por trás desse requisito.
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -100,7 +110,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

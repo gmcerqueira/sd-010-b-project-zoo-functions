@@ -61,7 +61,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 // Solução encontrada com a ajuda e com code review do Emerson Saturnino e Diego Moraes
-// Primeiro verifica se há parametro, se não houver é itera os elemnetos e cria um novo objeto
+// Primeiro verifica se há parametro, se não houver é itera os elementos e cria um novo objeto
 // com as especificações do requisito
 // Caso tenha um parametro(nome da especie) retorna a quantidade dessa especie
 function animalCount(species) {
@@ -86,12 +86,34 @@ function entryCalculator(entrants) {
 }
 
 /* function animalMap(options) {
-  // seu código aqui
+  const {}
+  if (options === undefined){
+
+  }
 } */
 
-/* function schedule(dayName) {
-  // seu código aqui
-} */
+// if (dayName === undefined) {
+//   for (const key in data.hours) {
+//     newObj[key] = `Open from ${data.hours[key].open}am until ${data.hours[key].close}pm`;
+//   }
+//   return newObj;
+
+function schedule(dayName) {
+  const newObj = {};
+  const listDay = Object.keys(data.hours);
+  listDay.forEach((valueKey) => {
+    newObj[valueKey] = `Open from ${data.hours[valueKey].open}am until ${data.hours[valueKey].close - 12}pm`;
+  });
+  newObj.Monday = 'CLOSED';
+  if (dayName === undefined) {
+    return newObj;
+  }
+  return {
+    [dayName]: newObj[dayName],
+  };
+}
+
+console.log(schedule('Tuesday'));
 
 /* function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -107,7 +129,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

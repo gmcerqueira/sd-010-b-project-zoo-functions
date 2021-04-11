@@ -105,7 +105,7 @@ function increasePrices(percentage) {
   Adult = Math.ceil(prices.Adult * (percentage + 100)) / 100;
   Senior = Math.ceil(prices.Senior * (percentage + 100)) / 100;
   Child = Math.ceil(prices.Child * (percentage + 100)) / 100;
-  data.prices = {Adult, Senior, Child};
+  data.prices = { Adult, Senior, Child };
 }
 
 // function employeeCoverage(idOrName) {

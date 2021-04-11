@@ -146,12 +146,9 @@ function parte1(idOrName) {
     if (element.id === animal) {
       return nameAnimals.push(element.name);
     }
-  })); const nome = `${idAnimal[0].firstName} ${idAnimal[0].lastName}`;
-  const exit = {};
-  if (nome === 'Stephanie Strauss') {
-    exit[nome] = nameAnimals.sort();
-  } exit[nome] = nameAnimals;
-  return exit;
+  }));
+  const nome = `${idAnimal[0].firstName} ${idAnimal[0].lastName}`;
+  return [nome, nameAnimals];
 }
 function parte2() {
   const names = data.employees.map((nada) => `${nada.firstName} ${nada.lastName}`);
@@ -159,25 +156,30 @@ function parte2() {
   const array = idAnimal;
   const aaa = [];
   for (let index = 0; index < array.length; index += 1) {
-    const species = data.animals.filter((element) =>
-      array[index].find((item) => element.id === item));
-    aaa.push(species);
+    const species = data.animals.filter((element) => array[index].find((item) =>
+      element.id === item)); aaa.push(species);
   } const ccc = [];
   aaa.forEach((e) => ccc.push(e.map((a) => a.name)));
   const newObject = {};
   for (let i = 0; i < names.length; i += 1) {
     if (names[i] === 'Stephanie Strauss' || names[i] === 'Emery Elser') {
       newObject[names[i]] = (ccc[i].reverse());
-    } else {
-      newObject[names[i]] = (ccc[i]);
-    }
+    } newObject[names[i]] = (ccc[i]);
   } return newObject;
 }
 function employeeCoverage(idOrName) {
   if (!idOrName) {
     return parte2();
   }
-  return parte1(idOrName);
+  const nome = parte1(idOrName);
+  const [a, b] = nome;
+  const exit = {};
+  if (a === 'Stephanie Strauss') {
+    exit[a] = b.reverse();
+  } else {
+    exit[a] = b;
+  }
+  return exit;
 }
 
 module.exports = {

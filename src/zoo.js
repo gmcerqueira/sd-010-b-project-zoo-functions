@@ -100,13 +100,24 @@ function oldestFromFirstSpecies(id) {
 
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  const count = (percentage / 100) + 1;
+  Object.keys(prices).forEach((value) => {
+    const NewPrices = Math.round((prices[value] * count) * 100) / 100;
+    prices[value] = NewPrices;
+  });
+  return prices;
+}
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
+//  function employeeCoverage(idOrName) {
+//    const objEmploy = {};
+//    const {id, firstName, lastName} = employees;
+//    Object.keys(employees).forEach((idName) => {
+// if ( idName.id === id || idName === firstName || idName === lastName) {
+
 // }
+//    }
+//  }
 
 module.exports = {
   entryCalculator,
@@ -120,6 +131,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  //   increasePrices,
+  increasePrices,
   createEmployee,
 };

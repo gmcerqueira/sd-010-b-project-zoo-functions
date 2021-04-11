@@ -52,10 +52,11 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   if (species === undefined) {
-    return zoo.map((animal) => animal.residents.length);
+    const numAnimal = {};
+    zoo.forEach((animal) => { numAnimal[animal.name] = animal.residents.length; });
+    return numAnimal;
   }
-  const procurando = zoo.filter((animal) => animal.name === species);
-  return procurando.map((especies) => especies.residents.length);
+  return zoo.find((animal) => animal.name === species).residents.length;
 }
 
 /* function entryCalculator(entrants) {

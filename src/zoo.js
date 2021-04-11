@@ -158,7 +158,7 @@ function employeeCoverage(idOrName) {
   // a função criada buscaFunc também seria usada aqui, mas não precisou.
   // para cada funcionário, usando o destructuring, busca o id, firstName, lastName e o responsibleFor.
   data.employees.forEach(({ id, firstName, lastName, responsibleFor }) => {
-    // se o parâmetro passado na função for igual ao id ou ao firstName, ou ao lastName, ou se não for passado nenhum parâmetro (!idOrName), cria string literal com o primeiro e último nome do funcionário, e chama a função animalsById passando como parâmetro o responsibleFor, buscado acima. Após, percorre o objeto trazendo o nome das espécies, tb através de destructuring { name }. 
+    // se o parâmetro passado na função for igual ao id ou ao firstName, ou ao lastName, ou se não for passado nenhum parâmetro (!idOrName), cria string literal com o primeiro e último nome do funcionário, e chama a função animalsById passando como parâmetro o responsibleFor, buscado acima. Após, percorre o objeto trazendo o nome das espécies, tb através de destructuring { name }.
     if (id === idOrName || firstName === idOrName || lastName === idOrName || !idOrName) {
       objeto[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(({
         name,

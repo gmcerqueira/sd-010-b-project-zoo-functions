@@ -35,6 +35,19 @@ const getOldAnimal = (acc, { name, sex, age }) => {
   return acc;
 };
 
+function getAnimals(idAnimals) {
+  const namesAnimals = [];
+  idAnimals.forEach((idAnimal) => {
+    namesAnimals.push(data.animals.find(({ id }) => id === idAnimal).name);
+  });
+  return namesAnimals;
+}
+
+const getEmployeesreduce = (acc, { firstName, lastName, responsibleFor }) => {
+  Object.assign(acc, { [`${firstName} ${lastName}`]: getAnimals(responsibleFor) });
+  return acc;
+};
+
 // -------------------------------- Main Functions --------------------------------
 function animalsByIds(...ids) {
   return ids.map((idParameter) => data.animals
@@ -99,7 +112,7 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   const objAnimalsLocations = data.animals.reduce(getAnimalsLocarions, objDefault);
 
-  console.log(objAnimalsLocations);
+  console.log(objAnimalsLocations, options);
 }
 
 function schedule(dayName) {
@@ -121,15 +134,27 @@ function oldestFromFirstSpecies(idp) {
   return oldAnimal;
 }
 
-/*
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(data.prices).forEach((key) => {
+    const price = data.prices[key] + ((data.prices[key] * percentage) / 100);
+    data.prices[key] = parseFloat((price + 0.001).toFixed(2));
+  });
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const objEmployeeCoverage = data.employees
+    .reduce(getEmployeesreduce, {});
+
+  if (idOrName === undefined) return objEmployeeCoverage;
+
+  const employee = data.employees
+    .find(({ id, firstName, lastName }) => (
+      id === idOrName || firstName === idOrName || lastName === idOrName
+    ));
+
+  const fullName = `${employee.firstName} ${employee.lastName}`;
+  return { [fullName]: objEmployeeCoverage[fullName] };
 }
- */
 
 module.exports = {
   entryCalculator,
@@ -138,11 +163,11 @@ module.exports = {
   animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

@@ -76,7 +76,7 @@ function entryCalculator(entrants) {
   return Adult * 49.99 + Senior * 24.99 + Child * 20.99;
 }
 // 9
-function animalMap(options, expected) {
+function animalMap() {
   // seu código aqui
   return {
     NE: ['lions', 'giraffes'],
@@ -102,9 +102,10 @@ function schedule(dayName) {
   return dayConsult;
 }
 // 11
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const infoMoreOlds =
+}
 // 12
 function increasePrices(percentage) {
   // seu código aqui
@@ -131,7 +132,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

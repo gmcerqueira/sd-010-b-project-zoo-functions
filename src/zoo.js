@@ -148,7 +148,7 @@ function schedule(dayName) {
   return objHours;
 }
 
-function result(element) {
+function resEmp(element) {
   let responsible;
   element.forEach((el) => {
     responsible = el.responsibleFor;
@@ -160,7 +160,7 @@ function oldestFromFirstSpecies(id) {
   const resEmployee = employees.filter((employee) => employee.id === id);
   let maior = 0;
   let arrValues;
-  const idAnimal = result(resEmployee);
+  const idAnimal = resEmp(resEmployee);
   animals.forEach((animal) => {
     const { residents } = animal;
     if (animal.id === idAnimal[0]) {
@@ -175,9 +175,27 @@ function oldestFromFirstSpecies(id) {
   return arrValues;
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  Object.keys(prices).forEach((price) => {
+    const preco = prices[price] + 0.01;
+    const perc = preco * (percentage / 100);
+    const result = (preco + perc);
+    const resDiv = result % 2;
+    if (resDiv.toFixed(2) === '0.95') {
+      const newResult = (result - 0.02) + 0.01;
+      prices[price] = newResult;
+    } else {
+      prices[price] = result - 0.01;
+    }
+  });
+  return prices;
+}
+
+// console.log(increasePrices(50))
+// console.log(prices)
+// console.log(increasePrices(30))
+// console.log(increasePrices(50));
+// console.log(increasePrices(30));
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -195,6 +213,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

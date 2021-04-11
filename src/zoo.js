@@ -82,9 +82,54 @@ function entryCalculator(entrants) {
   return total;
 }
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function findAnimals(local) {
+  const objs = animals.filter(({ location }) => location === local);
+  return objs.map(({ name }) => name);
+}
+
+function captureNames(specie, sexx) {
+  const objs = animals.find(({ name }) => name === specie);
+  if (sexx !== undefined) {
+    return objs.residents.filter(({ sex }) => sex === sexx).map(({ name }) => name);
+  }
+  return objs.residents.map(({ name }) => name);
+}
+
+function addNames(local, sort, sexx) {
+  const names = findAnimals(local).map((specie) => ({ [specie]: captureNames(specie, sexx) }));
+  const namesSorted = findAnimals(local).map((specie) => ({
+    [specie]: captureNames(specie, sexx).sort(),
+  }));
+  if (sort === true) return namesSorted;
+  return names;
+}
+
+// console.log(addNames('NE'))
+
+function animalMap(options) {
+  const simpleList = {
+    NE: findAnimals('NE'),
+    NW: findAnimals('NW'),
+    SE: findAnimals('SE'),
+    SW: findAnimals('SW'),
+  };
+  if (options === undefined) return simpleList;
+  if (options.includeNames === true) {
+    const { sorted, sex } = options;
+    const nameList = {
+      NE: addNames('NE', sorted, sex),
+      NW: addNames('NW', sorted, sex),
+      SE: addNames('SE', sorted, sex),
+      SW: addNames('SW', sorted, sex),
+    };
+    return nameList;
+  }
+  return simpleList;
+}
+
+console.log(animalMap({ sex: 'female' }));
+
+// console.log(animalMap({ includeNames: true }));
 
 function toPm(hour) {
   return hour - 12;
@@ -152,24 +197,13 @@ function employeeCoverage(idOrName) {
   selectedPerson = `${firstName} ${lastName}`;
   return { [selectedPerson]: obj[selectedPerson] };
 }
-console.log(employeeCoverage());
-// console.log(employeeCoverage('Azevado'));
-// const expected = {
-//   'Nigel Nelson': ['lions', 'tigers'],
-//   'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
-//   'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
-//   'Wilburn Wishart': ['snakes', 'elephants'],
-//   'Stephanie Strauss': ['giraffes', 'otters'],
-//   'Sharonda Spry': ['otters', 'frogs'],
-//   'Ardith Azevado': ['tigers', 'bears'],
-//   'Emery Elser': ['elephants', 'bears', 'lions']
-// };
+// console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

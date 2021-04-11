@@ -27,36 +27,48 @@ const createEmployee = (arg1, arg2) => ({ ...arg1, ...arg2 });
 
 const isManager = (id) => employees.some(({ managers }) => managers.some((e) => e === id));
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) =>
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
 
 const animalCount = (species) => {
-  return !species
-    ? animals.reduce((acc, { name, residents }) => (acc[name] = residents.length) && acc, {})
-    : search(animals, species, 'name').residents.length;
+  const list = {};
+  animals.forEach(({ name, residents }) => {
+    list[name] = residents.length;
+  });
+  return species ? list[species] : list;
 };
 
-// console.log(animalCount('lions'))
-
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (!entrants || entrants === {}) return 0;
+  const { Adult, Child, Senior } = prices;
+  const { Adult: a = 0, Child: b = 0, Senior: c = 0 } = entrants;
+  return Adult * a + Child * b + Senior * c;
 }
 
 function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+const schedule = (dayName) => {
+  const list = {};
+  Object.entries(hours).forEach(([key, { open, close }]) => {
+    list[key] = open === close ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`;
+  });
+  return dayName ? { [dayName]: list[dayName] } : list;
+};
+
+const oldestFromFirstSpecies = (idEmploye) => {
+  const { responsibleFor } = search(employees, idEmploye, 'id');
+  const { residents } = search(animals, responsibleFor[0], 'id');
+  const { name, sex, age } = residents.reduce((acc, curr) => (acc.age > curr.age ? acc : curr));
+  return [name, sex, age];
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
-
-function increasePrices(percentage) {
-  // seu código aqui
+const increasePrices = (percentage) => {
+  Object.keys(prices).forEach((key) => {
+    prices[key] += (prices[key] * percentage) / 100;
+    prices[key] = Math.round(prices[key] * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {}

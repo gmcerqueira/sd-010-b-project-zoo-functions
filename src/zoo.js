@@ -83,7 +83,7 @@ function schedule(dayName) {
     }
   });
   if (!dayName) return obj;
-  return { [dayName]: obj[dayName] }
+  return { [dayName]: obj[dayName] };
 }
 /*
 function oldestFromFirstSpecies(id) {

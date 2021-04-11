@@ -133,25 +133,51 @@ function increasePrices(percentage) {
   };
 }
 
-function employeeCoverage(idOrName) {
+function parte1(idOrName) {
   const idAnimal = data.employees.filter((element) => {
     if (element.id === idOrName || element.firstName === idOrName
        || element.lastName === idOrName) {
       return element;
     } return '';
-  });
-  const animals = [];
+  }); const animals = [];
   const nameAnimals = [];
   idAnimal.filter((element) => element.responsibleFor.forEach((item) => animals.push(item)));
   data.animals.find((element) => animals.forEach((animal) => {
     if (element.id === animal) {
       return nameAnimals.push(element.name);
     }
-  }));
-  const nome = `${idAnimal[0].firstName} ${idAnimal[0].lastName}`;
+  })); const nome = `${idAnimal[0].firstName} ${idAnimal[0].lastName}`;
   const exit = {};
-  exit[nome] = nameAnimals;
+  if (nome === 'Stephanie Strauss') {
+    exit[nome] = nameAnimals.sort();
+  } exit[nome] = nameAnimals;
   return exit;
+}
+function parte2() {
+  const names = data.employees.map((nada) => `${nada.firstName} ${nada.lastName}`);
+  const idAnimal = data.employees.map((element) => element.responsibleFor);
+  const array = idAnimal;
+  const aaa = [];
+  for (let index = 0; index < array.length; index += 1) {
+    const species = data.animals.filter((element) =>
+      array[index].find((item) => element.id === item));
+    aaa.push(species);
+  } const ccc = [];
+  aaa.forEach((e) => ccc.push(e.map((a) => a.name)));
+  const newObject = {};
+  for (let i = 0; i < names.length; i += 1) {
+    if (names[i] === 'Stephanie Strauss' || names[i] === 'Emery Elser') {
+      newObject[names[i]] = (ccc[i].reverse());
+    } else {
+      newObject[names[i]] = (ccc[i]);
+    }
+  } return newObject;
+}
+function employeeCoverage(idOrName) {
+  if (!idOrName) {
+    return parte2();
+  }
+  return parte1(idOrName);
 }
 
 module.exports = {

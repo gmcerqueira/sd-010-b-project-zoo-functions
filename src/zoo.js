@@ -11,16 +11,19 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { hours } = data;
+const { hours, animals, employees, prices } = data;
+
 function animalsByIds(...ids) {
-  return data.animals
+  return animals
     .filter((animal, index) => (ids[index] === animal.id ? animal : false));
 }
 
 function animalsOlderThan(animal, age) {
-  const animals = data.animals.find((animal2) => (animal === animal2.name ? animal : false));
+  const animalName = animals
+    .find((element) => (animal === element.name ? animal : false));
 
-  return animals.residents.every((animal3) => animal3.age > age);
+  return animalName.residents
+    .every((element) => element.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -28,9 +31,10 @@ function employeeByName(employeeName) {
     return {};
   }
 
-  const result = data.employees
-    .find((employe) =>
-      (employeeName === employe.firstName || employeeName === employe.lastName ? employe : false));
+  const result = employees
+    .find((employee) =>
+      (employeeName === employee.firstName
+        || employeeName === employee.lastName ? employee : false));
 
   return result;
 }
@@ -42,8 +46,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees
-    .some((employe) => employe.managers.some((manager) => id === manager));
+  return employees
+    .some((employee) => employee.managers
+      .find((manager) => id === manager));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -55,31 +60,36 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     responsibleFor,
   };
 
-  return data.employees.push(employeObj);
+  return employees.push(employeObj);
 }
 
 function animalCount(species) {
   if (!species) {
-    return data.animals
+    return animals
       .reduce((acumulator, { name, residents }) =>
         Object.assign(acumulator, { [name]: residents.length }), {});
   }
-  const specie = data.animals.find((specie1) => (specie1.name === species));
+
+  const specie = animals
+    .find((specie1) => (specie1.name === species));
 
   return specie.residents.length;
 }
 
 function entryCalculator(entrants = 0) {
-  const prices = [];
-  const arrayPrices = Object.entries(data.prices);
-  arrayPrices.forEach((element) => {
+  const arrPrices = [];
+  const pricesToArray = Object.entries(prices);
+
+  pricesToArray.forEach((element) => {
     const entryValue = entrants[element[0]];
+
     if (entryValue) {
-      prices.push(entryValue * element[1]);
+      arrPrices.push(entryValue * element[1]);
     }
   });
 
-  return prices.reduce((acumulator, currentValue) => acumulator + currentValue, 0);
+  return arrPrices
+    .reduce((acumulator, currentValue) => acumulator + currentValue, 0);
 }
 
 function animalMap(options) {
@@ -108,10 +118,10 @@ function schedule(dayName = 0) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const idAnimal = data.employees
+  const idAnimal = employees
     .find((employee) => employee.id === id).responsibleFor[0];
 
-  const objAnimal = data.animals.find((animal) => animal.id === idAnimal);
+  const objAnimal = animals.find((animal) => animal.id === idAnimal);
 
   const oldestAnimal = objAnimal.residents.reduce((acumulator, currentValue) =>
     (acumulator.age > currentValue.age ? acumulator : currentValue));
@@ -120,13 +130,14 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const arrayPrices = Object.entries(data.prices);
+  const arrayPrices = Object.entries(prices);
 
   arrayPrices.forEach((element) => {
-    data.prices[element[0]] = Math.ceil(((element[1]
+    prices[element[0]] = Math.ceil(((element[1]
       * (percentage / 100)) + element[1]) * 100) / 100;
   });
-  return data.prices;
+
+  return prices;
 }
 
 function employeeCoverage(idOrName) {

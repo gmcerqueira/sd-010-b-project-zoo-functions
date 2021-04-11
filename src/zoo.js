@@ -8,12 +8,12 @@ eslint no-unused-vars: [
   }
 ]
 */
-// requisitos 1,2 e 3 eu fiz com a ajuda do meu colega Alexandre Damasceno que me ajudou muito.  Link do PR:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/66/commits
+// requisitos 1,2 ,3 e 5 eu fiz com a ajuda do meu colega Alexandre Damasceno que me ajudou muito.  Link do PR:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/66/commits
 
 // OBS: no requisito 1 eu mantive os mesmos nomes de variáveis que o Alexandre porque achei que ele escolheu nomes perfeitos e concisos. Qualquer mudança de nome que eu fizesse só iria atrapalhar.
 const data = require('./data');
 
-// const { employees } = data;
+const { employees } = data;
 const { animals } = data;// é pra trazer as informações de animals que estão no data.js
 
 function animalsByIds(...ids) { // esse ids será um conjunto de vários ID(ou pode não ser também).
@@ -41,12 +41,15 @@ function animalsOlderThan(animal, age) {
 // }
 
 // function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
+// seu código aqui
 // }
-
-// function isManager(id) {
-// //   // seu código aqui
-// }
+// o requisito 5 pede pra que coloque um id como parâmetro, e a função precisa buscar algum outro funcionário que tenha como chefe a pessoa que tenha o ID que foi colocado no parâmetro.
+// Como pede um valor booleano, é bom usar o some ou o every. Mas como basta que eu encontre APENAS UM funcionário que tenha como manager a pessoa com o id do parâmetro, então eu uso o SOME, e não o every.
+function isManager(id) {
+  return employees.some((funcionario) => funcionario.managers.find((idnumber) => idnumber === id));
+  // tentei não usar o find aqui, mas não dava certo no teste. Então tive que usar.
+  // Após definir que cada objeto de employees será um "funcionário", eu  alcanço o managers do objeto funcionário e uso o find: Assim eu devo buscar um funcionario.managers que tenha um valor igual ao ID do parâmetro. Essa é uma forma de fazer que deu certo. Aí depois que descobrir algum objeto que tenha um managers com o valor desse ID, aí a função some já vai dar true.
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -89,7 +92,7 @@ module.exports = {
   // employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

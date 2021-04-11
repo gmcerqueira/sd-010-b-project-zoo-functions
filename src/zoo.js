@@ -52,7 +52,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
 // console.log(data.employees[0]);
   const filtrarId = data.employees.filter((pessoa) => pessoa.id === id);
-  return filtrarId.some((funcionario) => funcionario.id === "0e7b460e-acf4-4e17-bcb3-ee472265db83");
+  return filtrarId.some((funcionario) => funcionario.id === '0e7b460e-acf4-4e17-bcb3-ee472265db83');
 
 }
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
@@ -78,22 +78,24 @@ function animalCount(species) {
 // console.log(animalCount());
 
 function entryCalculator(entrants) {
-  if (entrants === undefined){
+  let pessoas = [0, 0, 0,];
+  if (entrants === undefined) {
     return 0;
   }
-  if (entrants.Adult === undefined){
-    entrants.Adult = 0;
+  if (entrants.Adult !== undefined){
+    pessoas[0] = entrants.Adult ;
   }
-  if (entrants.Child === undefined){
-    entrants.Child = 0;
+  if (entrants.Child !== undefined){
+    pessoas[1] = entrants.Child
   }
-  if (entrants.Senior === undefined){
-    entrants.Senior = 0;
+  if(entrants.Senior !== undefined){
+    pessoas[2] = entrants.Senior
   }
-  return entrants.Adult * 49.99 + entrants.Child * 20.99 + entrants.Senior * 24.99;
+
+  return pessoas[0] * 49.99 + pessoas[1] * 20.99 + pessoas[2] * 24.99;
 }
-l//et entrants = { 'Child': 2};
-//console.log(entryCalculator(entrants));
+let entrants = { 'Adult': 2, 'Child': 3, 'Senior': 1 };
+console.log(entryCalculator(entrants));
 function animalMap(options) {
   return options;
 }

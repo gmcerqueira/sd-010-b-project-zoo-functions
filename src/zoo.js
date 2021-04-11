@@ -48,10 +48,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-/* function animalCount(species) {
-
-} */
-
 function entryCalculator(entrants = {}) {
   return Object.entries(entrants).reduce(
     (priceAccumulator, currentGroup) => {

@@ -16,8 +16,8 @@ const { animals, employees } = data;
 // const [name, sex, age] = residents;
 
 // function animalsByIds(...ids) {
-//   if (ids.length === 0) {
-//     return ids;
+//   if (!ids.length) {
+//     return [];
 //   }
 //   const identification = [];
 //   if (ids.length > 0) {
@@ -25,9 +25,12 @@ const { animals, employees } = data;
 //       const search = (animals.find((animal) => animal.id === id));
 //       identification.push(search);
 //     });
+//     return identification;
 //   }
 // }
-// este exercício foi resolvido até aqui a partir dos plantões onde colegas tiraram dúvidas.
+// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
+// console.log(animalsByIds());
+// este exercício foi resolvido com a ajuda de colegas Diego, Carlos e Alan, além de plantões onde colegas tiraram as dúvidas.
 
 // function animalsOlderThan(animal, age1) {
 //   const chosenName = data.animals.filter((name1) => name1.name === animal);
@@ -60,28 +63,29 @@ const { animals, employees } = data;
 // }
 
 // function isManager(managerId) {
-//   const checker = employees.some((employee) => employee.managers === [managerId]);
-//   return checker;
+//   const checker = employees.fi((employee) => employee.managers === [managerId]);
+//   const checked = employees.find((employee) => employee.managers === managerId);
+//   console.log(checked);
+//   return checked;
 // }
+// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
 // }
 
-// function animalCount(species) {
-//   if (species.length === 0) {
-//     animals.reduce((accumulator, currentValue) => {
-//       accumulator[currentValue.animals.name] = currentValue.animals.popularity;
-//       return accumulator;
-//     }, {});
-//   }
-//   if (species > 0) {
-//     species.forEach((specie) => {
-//       const quantity = animals.find((animal) => animal.specie === specie);
-//       return quantity.popularity;
-//     });
-//   }
-// }
+function animalCount(species) {
+  if (!species) {
+    const quantities = animals.reduce((accumulator, currentValue) => {
+      accumulator[currentValue.name] = currentValue.residents.length;
+      return accumulator;
+    }, {});
+    return quantities;
+  }
+  const quantity = animals.find((animal) => animal.name === species);
+  return quantity.residents.length;
+}
+// este exercício foi resolvido com a ajuda de colegas Diegho, Carlos e Alan.
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -95,22 +99,22 @@ const { animals, employees } = data;
 
 // }
 
-function oldestFromFirstSpecies(id) {
-  const checkId = employees.find((employee) => employee.id === id);
-  console.log(checkId);
-  const checkAnimal = checkId.responsibleFor[0];
-  const findAnimal = animals.find((animal) => animal.id === checkAnimal).residents;
-  console.log(findAnimal);
-  let age = 0;
-  findAnimal.forEach((animal) => {
-    if (animal.age > age) {
-      age = animal.age;
-      console.log(age);
-    }
-  });
-  const result = findAnimal.find((maxAge) => maxAge.age === age);
-  return Object.values(result);
-}
+// function oldestFromFirstSpecies(id) {
+//   const checkId = employees.find((employee) => employee.id === id);
+//   console.log(checkId);
+//   const checkAnimal = checkId.responsibleFor[0];
+//   const findAnimal = animals.find((animal) => animal.id === checkAnimal).residents;
+//   console.log(findAnimal);
+//   let age = 0;
+//   findAnimal.forEach((animal) => {
+//     if (animal.age > age) {
+//       age = animal.age;
+//       console.log(age);
+//     }
+//   });
+//   const result = findAnimal.find((maxAge) => maxAge.age === age);
+//   return Object.values(result);
+// }
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }
@@ -122,7 +126,7 @@ function oldestFromFirstSpecies(id) {
 module.exports = {
 //   // entryCalculator,
 //  schedule,
-//  animalCount,
+  animalCount,
 //   animalMap,
 //  animalsByIds,
 //   employeeByName,
@@ -130,7 +134,7 @@ module.exports = {
 //   addEmployee,
 //  isManager,
 //  animalsOlderThan,
-  oldestFromFirstSpecies,
+//  oldestFromFirstSpecies,
 //   increasePrices,
 //   createEmployee,
 };

@@ -35,7 +35,6 @@ function animalsOlderThan(animal, age1) {
   const ages = chosenName.residents.every((chosen) => chosen.age > age1);
   return ages;
 }
-// console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   if (!employeeName) {
@@ -48,16 +47,19 @@ function employeeByName(employeeName) {
 // Diegho me auxiliou com parte da resposta deste exerício.
 
 // function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
 // }
 
-// function isManager(managerId) {
-//   const checker = employees.fi((employee) => employee.managers === [managerId]);
-//   const checked = employees.find((employee) => employee.managers === managerId);
-//   console.log(checked);
-//   return checked;
-// }
-// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+function isManager(manager) {
+  const checker = employees.find((employee) => employee.managers.includes(manager));
+  if (checker === undefined) {
+    return false;
+  }
+  const secondCheck = Object.values(checker.managers);
+  const thirdCheck = secondCheck.includes(manager);
+  return thirdCheck;
+}
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+// colega Diegho me sugeriu utilizar a usar a função includes neste exerício.
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -118,9 +120,9 @@ module.exports = {
   employeeByName,
   //   employeeCoverage,
   //   addEmployee,
-  //  isManager,
+  isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
 //   increasePrices,
-//   createEmployee,
+  // createEmployee,
 };

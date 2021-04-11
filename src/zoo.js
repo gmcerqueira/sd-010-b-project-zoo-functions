@@ -91,15 +91,15 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const {employees} = data;
   const newEmployee = {
-    id: [id],
-    firstName: [firstName],
-    lastName: [lastName],
-    managers: [managers],
-    responsibleFor: [responsibleFor],
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor,
   };
-
-  data.employees.push(newEmployee);
+  employees.push(newEmployee);
 }
 
 function animalCount(species) {

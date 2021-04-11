@@ -91,13 +91,13 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const {employees} = data;
+  const { employees } = data;
   const newEmployee = {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
   };
   employees.push(newEmployee);
 }

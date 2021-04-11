@@ -46,8 +46,22 @@ function employeeByName(employeeName) {
 }
 // Diegho me auxiliou com parte da resposta deste exerício.
 
-// function createEmployee(personalInfo, associatedWith) {
-// }
+function createEmployee(personalInfo, associatedWith) {
+  return {
+    id: personalInfo.id,
+    firstName: personalInfo.firstName,
+    lastName: personalInfo.lastName,
+    managers: [
+      associatedWith.managers[0],
+      associatedWith.managers[1],
+    ],
+    responsibleFor: [
+      associatedWith.responsibleFor[0],
+      associatedWith.responsibleFor[1],
+      associatedWith.responsibleFor[2],
+    ],
+  };
+}
 
 function isManager(manager) {
   const checker = employees.find((employee) => employee.managers.includes(manager));
@@ -58,7 +72,7 @@ function isManager(manager) {
   const thirdCheck = secondCheck.includes(manager);
   return thirdCheck;
 }
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+
 // colega Diegho me sugeriu utilizar a usar a função includes neste exerício.
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -124,5 +138,5 @@ module.exports = {
   animalsOlderThan,
   oldestFromFirstSpecies,
 //   increasePrices,
-  // createEmployee,
+  createEmployee,
 };

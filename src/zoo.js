@@ -57,32 +57,43 @@ function isManager(id) {
 }
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  return id + firstName + lastName + managers + responsibleFor;
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const novoFuncionario = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return data.employees.push(novoFuncionario);
 }
 
 function animalCount(species) {
   if (species === undefined) {
-    return {
-      'lions': 4,
-      'tigers': 2,
-      'bears': 3,
-      'penguins': 4,
-      'otters': 4,
-      'frogs': 2,
-      'snakes': 2,
-      'elephants': 4,
-      'giraffes': 6
-    }
+    return animals.map((animal) => `${animal.name}: ` + animal.residents.length);
   }
-//  const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
+  const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
   return animaisFiltrado[0].residents.length;
 }
- console.log(animalCount());
-function entryCalculator(entrants) {
-  return entrants;
-}
+// console.log(animalCount());
 
+function entryCalculator(entrants) {
+  if (entrants === undefined){
+    return 0;
+  }
+  if (entrants.Adult === undefined){
+    entrants.Adult = 0;
+  }
+  if (entrants.Child === undefined){
+    entrants.Child = 0;
+  }
+  if (entrants.Senior === undefined){
+    entrants.Senior = 0;
+  }
+  return entrants.Adult * 49.99 + entrants.Child * 20.99 + entrants.Senior * 24.99;
+}
+l//et entrants = { 'Child': 2};
+//console.log(entryCalculator(entrants));
 function animalMap(options) {
   return options;
 }

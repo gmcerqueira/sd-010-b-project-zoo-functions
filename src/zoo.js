@@ -67,7 +67,8 @@ function entryCalculator(entrants) {
   // seu código aqui
   if (!entrants || Object.entries(entrants).length === 0) return 0;
   const price = Object.keys(entrants);
-  return price.reduce((accumulator, number) => accumulator + (prices[number] * entrants[number]), 0,);
+  return price.reduce((accumulator, number) =>
+   accumulator + (prices[number] * entrants[number]), 0);
 }
 
 // function animalMap(options) {

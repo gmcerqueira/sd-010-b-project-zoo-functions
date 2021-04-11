@@ -11,32 +11,33 @@ eslint no-unused-vars: [
 
 const { animals, employees, prices, hours } = require('./data');
 
-const searchObject = (arr, arg, key) => arr.find((e) => e[key] === arg);
+const search = (arr, arg, key) => arr.find((e) => e[key] === arg);
 
-const animalsByIds = (...ids) => ids.map((e) => searchObject(animals, e, 'id'))
+const animalsByIds = (...ids) => ids.map((e) => search(animals, e, 'id'));
 
 const animalsOlderThan = (animal, ageAnimal) =>
-searchObject(animals, animal, 'name').residents.every(({ age }) => age > ageAnimal);
+  search(animals, animal, 'name').residents.every(({ age }) => age > ageAnimal);
 
-function employeeByName(employeeName) {
-  // seu código aqui
-}
+const employeeByName = (employeeName) =>
+  employeeName
+    ? employees.find((e) => e.firstName === employeeName || e.lastName === employeeName)
+    : {};
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+const createEmployee = (arg1, arg2) => ({ ...arg1, ...arg2 });
 
-function isManager(id) {
-  // seu código aqui
-}
+const isManager = (id) => employees.some(({ managers }) => managers.some((e) => e === id));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
-function animalCount(species) {
-  // seu código aqui
-}
+const animalCount = (species) => {
+  return !species
+    ? animals.reduce((acc, { name, residents }) => (acc[name] = residents.length) && acc, {})
+    : search(animals, species, 'name').residents.length;
+};
+
+// console.log(animalCount('lions'))
 
 function entryCalculator(entrants) {
   // seu código aqui

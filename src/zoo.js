@@ -108,9 +108,15 @@ function schedule(dayName) {
   return { [dayName]: days[dayName] };
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const employeeOFFS = employees.find((employeeOF) => id === employeeOF.id);
+  const firstSpecie = employeeOFFS.responsibleFor[0];
+  const resident = animals.find((firstAnimal) => firstAnimal.id === firstSpecie).residents;
+  const oldest = resident.sort((a, b) => ((a.age < b.age) ? 1 : -1));
+  return Object.values(oldest[0]);
+}
+
+// Para a requisição 11 obtive ajuda do meu amigo André de Bem, da turma 10-B e finalmente consegui entender essa!
 
 function increasePrices(percentage) {
   prices.Adult *= (1 + (percentage / 100));
@@ -138,7 +144,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

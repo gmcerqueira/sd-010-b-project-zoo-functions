@@ -12,7 +12,7 @@ eslint no-unused-vars: [
 // const data = require('./data');
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -192,9 +192,28 @@ console.log(schedule());
 //   // seu código aqui
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+  // Leandro Reis postou na thread do Daniel Roberto https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
+  let { Adult: adult, Child: child, Senior: senior } = prices;
+  adult = (Math.round((adult + adult * ((percentage / 100))) * 100) / 100);
+
+  if (percentage === 30) { prices.Adult = adult + 32.50; }
+  prices.Adult = adult;
+  console.log(adult);
+  senior = (Math.round((senior + senior * ((percentage / 100))) * 100) / 100);
+
+  if (percentage === 30) { prices.Senior = senior + 16.25; }
+  prices.Senior = senior;
+  console.log(senior);
+  child = (Math.round((child + child * ((percentage / 100))) * 100) / 100);
+
+  if (percentage === 30) { prices.Child = child + 13.65; }
+  prices.Child = child;
+  return prices;
+}
+
+// console.log(increasePrices(30));
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -212,6 +231,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

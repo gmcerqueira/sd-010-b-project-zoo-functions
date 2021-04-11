@@ -51,9 +51,10 @@ function isManager(id) {
   // Após definir que cada objeto de employees será um "funcionário", eu  alcanço o managers do objeto funcionário e uso o find: Assim eu devo buscar um funcionario.managers que tenha um valor igual ao ID do parâmetro. Essa é uma forma de fazer que deu certo. Aí depois que descobrir algum objeto que tenha um managers com o valor desse ID, aí a função some já vai dar true.
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
+} // coloquei no parâmetro managers e responsibleFor = [] pra o caso de colocarem esses dois como algo sem valor, aí tem que fazer isso pra passar nos testes.
+// Dentro do push tem que colocar {}.Como employees é um array de objetos, então um novo elemento nesse array também é pra ser dentro de chaves.
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -91,7 +92,7 @@ module.exports = {
   animalsByIds,
   // employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

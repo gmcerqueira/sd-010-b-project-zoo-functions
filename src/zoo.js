@@ -224,6 +224,7 @@ function oldestFromFirstSpecies(id) {
 // ------------------------------------------------------------------
 
 function increasePrices(percentage) {
+  // Ref: https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
   prices.Adult = Math.round(
     (prices.Adult += (prices.Adult * percentage) / 100 + Number.EPSILON) * 100,
   ) / 100;
@@ -239,9 +240,26 @@ function increasePrices(percentage) {
 // REQUISITO 13 - employeeCoverage
 // ------------------------------------------------------------------
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  if (!idOrName) {
+    return employees.reduce((acc, employee) => {
+      const coverage = employee.responsibleFor.reduce((coveredAnimals, animalId) => {
+        coveredAnimals.push((animals.find((animal) => animal.id === animalId)).name);
+        return coveredAnimals;
+      }, []);
+      acc[`${employee.firstName} ${employee.lastName}`] = coverage;
+      return acc;
+    }, {});
+  }
+  const employee = employees.find((person) =>
+    person.id === idOrName || person.firstName === idOrName || person.lastName === idOrName);
+  const coverage = employee.responsibleFor.reduce((coveredAnimals, animalId) => {
+    coveredAnimals.push((animals.find((animal) => animal.id === animalId)).name);
+    return coveredAnimals;
+  }, []);
+  const employeeCov = { [`${employee.firstName} ${employee.lastName}`]: coverage };
+  return employeeCov;
+}
 
 module.exports = {
   animalsByIds,
@@ -256,5 +274,5 @@ module.exports = {
   schedule,
   oldestFromFirstSpecies,
   increasePrices,
-  // employeeCoverage,
+  employeeCoverage,
 };

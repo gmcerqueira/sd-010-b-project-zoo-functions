@@ -147,13 +147,25 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  const { prices } = data;
+  const { Adult, Child, Senior } = prices;
+  const increase = (percentage / 100);
+  prices.Adult = parseFloat(((Adult + (Adult * increase)) + (0.005)).toFixed(2));
+  prices.Child = parseFloat(((Child + (Child * increase)) + (0.005)).toFixed(2));
+  prices.Senior = parseFloat(((Senior + (Senior * increase)) + (0.005)).toFixed(2));
+}
 
 // function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+//   const { employees } = data;
+//   const {animals} = data;
+//   if (idOrName === undefined) {
+//     const listOfAll = employees.reduce((employeesAcc, currEmployee) => {
+//       const nameOfemployee = `${currEmployee.firstName} ${currEmployee.lastName}`;
+//     }, {});
+//     return listOfAll;
+//   }
+//   }
 
 module.exports = {
   entryCalculator,
@@ -167,6 +179,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

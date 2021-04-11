@@ -46,11 +46,20 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  
+  const createEmployee = { 
+    ...personalInfo, 
+    ...associatedWith 
+  };
+
+  return createEmployee;
 }
 
 function isManager(id) {
-  // seu código aqui
+  const isManager = employees.some((manager) => {
+    return manager.managers.includes(id);
+  });
+
+  return isManager;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {

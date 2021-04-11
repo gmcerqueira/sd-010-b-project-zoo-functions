@@ -90,15 +90,17 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const responsibleFor = employees.find((employee) => employee.id === id).responsibleFor[0]; // captura as informações animais que estão no cuidado do id passado;
   const { residents } = animals.find((animal) => animal.id === responsibleFor); // isola o primeiro animal que está em cuidado do id pasasdo;
-  const maxAge = residents.reduce((acc, curr) => Math.max(acc, curr.age), 0);
-  const oldestAnimalInfo = residents.find((animal) => animal.age === maxAge); // busca as informações com base na idade do animal, passado na const age
+  const maxAge = residents.reduce((acc, curr) => Math.max(acc, curr.age), 0); // reduz para o maior valor com base na idade;
+  const oldestAnimalInfo = residents.find((animal) => animal.age === maxAge); // busca as informações com base na idade do animal, passado na const age;
   return [oldestAnimalInfo.name, oldestAnimalInfo.sex, oldestAnimalInfo.age];
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
-
+function increasePrices(percentage) {
+  const percent = percentage / 100;
+  const pricesKeys = Object.keys(prices);
+  pricesKeys.forEach((item) => { prices[item] *= (1 + percent); });
+  pricesKeys.forEach((value) => { prices[value] = Math.round(prices[value] * 100) / 100; });
+}
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }
@@ -115,6 +117,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

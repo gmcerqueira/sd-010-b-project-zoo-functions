@@ -58,45 +58,34 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-  const { employees } = data;
 
-  const teste = employees.find((manager) => {
-    manager.managers === id
-  })
-
-  return console.log(teste)
-  
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const { emploeeys } = data;
 
 }
 
 function animalCount(species) {
-  const { animals } = data;  
-  let especieAndPopulation = {};
+  const { animals } = data;
+  const especieAndPopulation = {};
 
   if (!species) {
    animals.forEach(({name, residents}) => {
      especieAndPopulation[name] = residents.length;
    })
-   return especieAndPopulation
+   return especieAndPopulation;
   }
-  
-  const teste = animals.find(({name}) => name === species);
-  
+  const teste = animals.find(({ name }) => name === species);
+
   return teste.residents.length;
 }
 
-console.log(animalCount('snakes'));
+function entryCalculator(entrants = {Adult, Child, Senior}) {
 
-function entryCalculator(entrants) {
-  // seu código aqui
 }
 
 function animalMap(options) {
@@ -104,11 +93,22 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const { employees } = data;
+  const findEmployee = employees.find((employee) => employee.id === id).responsibleFor[0];
+
+  const { animals } = data;
+  const findAnimal = animals.find((animal) => animal.id === findEmployee).residents;
+
+  // https://www.javascripttutorial.net/array/javascript-sort-an-array-of-objects/ -> sort()
+  const oldestAnimal = findAnimal.sort((a, b) => b.age - a.age);
+
+  const { name, sex, age } = oldestAnimal[0];
+
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {

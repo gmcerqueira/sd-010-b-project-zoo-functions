@@ -9,101 +9,56 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
-const { animals, employees, prices, hours } = data;
+const searchObject = (arr, arg, key) => arr.find((e) => e[key] === arg);
 
-const animalsByIds = (...ids) => ids.map((animalId) => animals.find(({ id }) => id === animalId));
+const animalsByIds = (...ids) => ids.map((e) => searchObject(animals, e, 'id'))
 
-const animalsOlderThan = (animal, ageMin) =>
-  animals.find(({ name }) => name === animal).residents.every(({ age }) => age > ageMin);
+const animalsOlderThan = (animal, ageAnimal) =>
+searchObject(animals, animal, 'name').residents.every(({ age }) => age > ageAnimal);
 
 function employeeByName(employeeName) {
-  return !employeeName ? {} : employees.find(
-    (person) => person.firstName === employeeName || person.lastName === employeeName,
-  );
+  // seu código aqui
 }
 
-const createEmployee = (arg1, arg2) => ({ ...arg1, ...arg2 });
+function createEmployee(personalInfo, associatedWith) {
+  // seu código aqui
+}
 
-const isManager = (id) => employees.some(({ managers }) => managers.some((e) => e === id));
+function isManager(id) {
+  // seu código aqui
+}
 
-const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) =>
-  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  // seu código aqui
+}
 
-const listAnimalCount = () =>
-  animals.reduce((acc, curr) => {
-    const { name, residents } = curr;
-    acc[name] = residents.length;
-    return acc;
-  }, {});
-
-const animalCount = (species) => (!species ? listAnimalCount()
-  : Object.entries(listAnimalCount()).find(([key]) => key === species)[1]);
+function animalCount(species) {
+  // seu código aqui
+}
 
 function entryCalculator(entrants) {
-  if (!entrants || entrants === {}) return 0;
-  const { Adult, Child, Senior } = prices;
-  const { Adult: a = 0, Child: b = 0, Senior: c = 0 } = entrants;
-  return Adult * a + Child * b + Senior * c;
+  // seu código aqui
 }
-
-const listModel = (callback, sex, sorted) => {
-  const list = { NE: [], NW: [], SE: [], SW: [] };
-  Object.keys(list).forEach((key) => {
-    const animal = animals.filter(({ location }) => key === location);
-    list[key] = callback(animal, sex, sorted);
-  });
-  return list;
-};
-
-const listIncludes = (animal, sex, sorted) =>
-  animal.map(({ name, residents }) => {
-    const arr = residents.filter((e) => e.sex === sex || !sex).map((e) => e.name);
-    return sorted ? { [name]: arr.sort() } : { [name]: arr };
-  });
 
 function animalMap(options) {
-  const { includeNames, sex, sorted } = options || {};
-  if (!options || !includeNames) return listModel((animal) => animal.map(({ name }) => name));
-  return listModel(listIncludes, sex, sorted);
+  // seu código aqui
 }
 
-const schedule = (hour) => {
-  const list = Object.entries(hours).reduce((acc, [key, value]) => {
-    const { open, close } = value;
-    if (key === 'Monday') acc[key] = 'CLOSED';
-    if (key !== 'Monday') acc[key] = `Open from ${open}am until ${close - 12}pm`;
-    return acc;
-  }, {});
-  return hour ? { [hour]: list[hour] } : list;
-};
+function schedule(dayName) {
+  // seu código aqui
+}
 
-function oldestFromFirstSpecies(idEmploye) {
-  const { responsibleFor } = employees.find(({ id }) => id === idEmploye);
-  const { residents } = animals.find(({ id }) => id === responsibleFor[0]);
-  const { name, sex, age } = residents.reduce((acc, curr) => (acc.age > curr.age ? acc : curr));
-  return [name, sex, age];
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
 }
 
 function increasePrices(percentage) {
-  Object.keys(prices).forEach((key) => {
-    prices[key] += (prices[key] * percentage) / 100;
-    prices[key] = Math.round(prices[key] * 100) / 100;
-  });
+  // seu código aqui
 }
 
-function employeeCoverage(idOr) {
-  const list = {};
-  const animalsReturnName = (...ids) =>
-    ids.map((animalId) => animals.find(({ id }) => id === animalId)).map(({ name }) => name);
-  employees.forEach(({ firstName, lastName, id, responsibleFor }) => {
-    if (firstName === idOr || id === idOr || lastName === idOr || !idOr) {
-      list[`${firstName} ${lastName}`] = animalsReturnName(...responsibleFor);
-    }
-  });
-  return list;
-}
+function employeeCoverage(idOrName) {}
 
 module.exports = {
   entryCalculator,

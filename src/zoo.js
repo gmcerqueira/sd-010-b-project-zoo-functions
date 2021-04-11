@@ -45,7 +45,7 @@ function employeeByName(employeeName) {
     .lastName === employeeName);
   return nameFound;
 }
-console.log(employeeByName('Wishart'));
+// Diegho me auxiliou com parte da resposta deste exerício.
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -112,15 +112,15 @@ function oldestFromFirstSpecies(id) {
 module.exports = {
 //   entryCalculator,
 //  schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
-  // animalsByIds,
+  animalsByIds,
   employeeByName,
   //   employeeCoverage,
   //   addEmployee,
   //  isManager,
-  // animalsOlderThan,
-  // oldestFromFirstSpecies,
+  animalsOlderThan,
+  oldestFromFirstSpecies,
 //   increasePrices,
 //   createEmployee,
 };

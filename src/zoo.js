@@ -159,9 +159,20 @@ function schedule(dayName) {
   };
   return dayName === 'Monday' ? monday : msg;
 }
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const { employees, animals } = data;
+  // tenho o funcionário
+  const employee = employees.find((employeeId) => employeeId.id === id);
+  const animalId = employee.responsibleFor[0];
+  // tenho o Id do animal quero busca-lo e receber seus residents
+  const specie = animals.find((idAnimal) => idAnimal.id === animalId);
+  // em specie eu tenho specie do animal que que quero analisar as idades.
+  const { residents } = specie;
+  // nesse momento possuo um array com todos residentes da specie a ser analisada.
+  const animal = residents.reduce((animalOld, animalCurrent) =>
+    (animalOld.age > animalCurrent.age ? animalOld : animalCurrent), {});
+  return [animal.name, animal.sex, animal.age];
+}
 
 function increasePrices(percentage) {
   const { prices } = data;
@@ -194,7 +205,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

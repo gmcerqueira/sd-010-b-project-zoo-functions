@@ -49,12 +49,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(newEmployee);
 }
 
-// function animalCount(species) {
-//   const specie = animals.find((animalSpeccie) => animalSpeccie.name === species);
-//   if(!species) {
-//   return animals.residents.length };
-//   return animals.reduce((acc, curr) => {acc[curr.name] = curr.residents.length}, {} );
-// }
+// R7 realizado com ajuda dos colegas
+function animalCount(species) {
+  if (species) {
+    const specie = animals.find((animalSpeccie) => animalSpeccie.name === species);
+    return specie.residents.length;
+  }
+  return animals.reduce((acc, curr) => {
+    acc[curr.name] = curr.residents.length;
+    return acc;
+  }, {});
+}
 
 function entryCalculator(entrants) {
   if (entrants === undefined || entrants === {}) {
@@ -69,6 +74,7 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
+// 10 realizado com ajuda dos colegas
 function schedule(dayName) {
   const objDay = {};
   Object.keys(hours).forEach((day) => {
@@ -99,7 +105,7 @@ function schedule(dayName) {
 module.exports = {
   entryCalculator,
   schedule,
-  // animalCount,
+  animalCount,
   //   animalMap,
   animalsByIds,
   employeeByName,

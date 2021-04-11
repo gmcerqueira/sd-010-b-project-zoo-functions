@@ -76,7 +76,7 @@ function entryCalculator(entrants) {
   return Adult * 49.99 + Senior * 24.99 + Child * 20.99;
 }
 // 9
-function animalMap(options, expected) {
+function animalMap() {
   // seu código aqui
   return {
     NE: ['lions', 'giraffes'],
@@ -105,8 +105,7 @@ function schedule(dayName) {
 // 11
 function oldestFromFirstSpecies(expected) {
   // seu código aqui
-  const infoMooreOlds = employees.find(({ id }) =>
-    id === expected).responsibleFor[0];
+  const infoMooreOlds = employees.find(({ id }) => id === expected).responsibleFor[0];
   const findAnimals = data.animals.find(({ id }) => id === infoMooreOlds).residents;
   const { name, sex, age } = findAnimals.reduce((a, b) =>
     a.concat(b), []).sort((a, b) => b.age - a.age)[0];

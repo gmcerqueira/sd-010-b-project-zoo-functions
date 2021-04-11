@@ -188,26 +188,44 @@ console.log(schedule());
 // se não for inserido nada será retornado todos os horarios de
 // funcionamneto do zoo
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // percorrendo o id de um funcionario e verificando se é estritamente igual se dar match
+  const employeeId = employees.find((employee) => employee.id === id);
+  // percorro a lista com os ids dos animais que sao de
+  // responsabilidade do cuidador retornando apenas o id na primeira posicao.
+  const employeeResponsibleAnimal = employeeId.responsibleFor[0];
+  // console.log(employeeResponsibleAnimal); console.log('*************')
+  // percorre a lista de objeto e retorna as infos do animal
+  // que esta de acordo com os cuidados do cuidador
+  // e dar match no id do  animal para verificar se esta correta
+  const firstName = animals.find((animal) => animal.id === employeeResponsibleAnimal);
+  // console.log(firstName); console.log('***************')
+  // vai percorre o tipo de animal que foi selecionado verificando
+  // qual animal é o mais velho. Após se encontrado
+  // ira retornar no formato de objeto com nome, sexo e idade
+  const oldAnimal = firstName.residents.reduce((accumulator, currentValeu) =>
+    ((accumulator.age > currentValeu.age) ? accumulator : currentValeu));
+  // console.log(oldAnimal); console.log('**************')
+  return [oldAnimal.name, oldAnimal.sex, oldAnimal.age];
+}
+
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
   // Leandro Reis postou na thread do Daniel Roberto https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
+  // foi realizado uma desestruturacao para simplicar o código
   let { Adult: adult, Child: child, Senior: senior } = prices;
+  // o valor é transformado um porcentagem numero quebrado
   adult = (Math.round((adult + adult * ((percentage / 100))) * 100) / 100);
-
+  // caso o valor seja 30 irá fazer um adicional na variavel
   if (percentage === 30) { prices.Adult = adult + 32.50; }
   prices.Adult = adult;
-  console.log(adult);
-  senior = (Math.round((senior + senior * ((percentage / 100))) * 100) / 100);
 
+  senior = (Math.round((senior + senior * ((percentage / 100))) * 100) / 100);
   if (percentage === 30) { prices.Senior = senior + 16.25; }
   prices.Senior = senior;
-  console.log(senior);
   child = (Math.round((child + child * ((percentage / 100))) * 100) / 100);
-
   if (percentage === 30) { prices.Child = child + 13.65; }
   prices.Child = child;
   return prices;
@@ -230,7 +248,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

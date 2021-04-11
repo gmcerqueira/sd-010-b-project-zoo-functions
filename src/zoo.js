@@ -53,11 +53,11 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   const total = {};
-  animals.forEach(({ name, residents}) => {
+  animals.forEach(({ name, residents }) => {
     total[name] = residents.length;
-  })
+  });
   if (!species) return total;
-  return total[species]
+  return total[species];
   // Usei o for Each para iterar o array animals.
 }
 
@@ -75,7 +75,6 @@ function animalMap(options) {
 */
 function schedule(dayName) {
   const obj = {};
-  const { hours } = data;
   Object.keys(hours).forEach((day) => {
     if (day === 'Monday') obj[day] = 'CLOSED';
     if (day !== 'Monday') {
@@ -83,8 +82,8 @@ function schedule(dayName) {
       return obj;
     }
   });
-    if (!dayName) return obj;  
-    return { [dayName]: obj[dayName] }
+  if (!dayName) return obj;
+  return { [dayName]: obj[dayName] }
 }
 /*
 function oldestFromFirstSpecies(id) {

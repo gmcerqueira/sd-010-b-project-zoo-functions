@@ -104,7 +104,7 @@ function schedule(dayName) {
 // 11
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
-//   const infoMoreOlds = employees.find(())
+//   const infoMoreOlds = employees.find((employeeId))
 // }
 // 12
 function increasePrices(percentage) {
@@ -132,7 +132,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
+  // oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

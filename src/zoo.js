@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   return (!ids) ? [] : animals.filter(({ id }) =>
@@ -68,17 +68,20 @@ function entryCalculator(entrants) {
 }
 
 // function animalMap(options) {
-//   // seu código aqui
+
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
-
+function schedule(dayName) {
+  const segunda = Object.entries(hours);
+  const result = segunda.reduce((acc, [cur, { open, close }]) => {
+    acc[cur] = cur === 'Monday' ? `CLOSED` : `Open from ${open}am until ${close - 12}pm`;
+    return acc;
+  }, {})
+  return dayName ? { [dayName]: result[dayName] } : result;
+}
 // function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
 
+// }
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }
@@ -89,7 +92,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

@@ -115,14 +115,13 @@ function schedule(dayName) {
   };
 }
 
-// console.log(schedule());
-
+// Codigo ajustado com ajuda dos colegas do plantão eterno
 function oldestFromFirstSpecies(id) {
-  // const newArray = [];
   const checkId = data.employees.find((value) => value.id === id);
   const animalId = data.animals.find((valueIdAnimal) =>
     valueIdAnimal.id === checkId.responsibleFor[0]);
   const animalOrdest = animalId.residents.sort((a, b) => b.age - a.age);
+  console.log(animalOrdest);
   return Object.values(animalOrdest[0]);
 }
 

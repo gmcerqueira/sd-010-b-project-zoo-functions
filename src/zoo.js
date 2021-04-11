@@ -15,7 +15,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
-// const { hours } = data;
+const { hours } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -80,18 +80,15 @@ function animalMap(options) {
 }
 
 // schedule
-/*
 function createSchedule(openClose) {
-  // eslint-disable-next-line prefer-destructuring
-/*   const open = openClose.open;
+  const { open } = openClose;
   const close = (openClose.close) - 12;
 
   if (open === 0 && close === -12) return 'CLOSED';
 
   return `Open from ${open}am until ${close}pm`;
-} */
+}
 
-/*
 function schedule(dayName) {
   const keys = Object.keys(hours);
   const values = Object.values(hours);
@@ -107,7 +104,6 @@ function schedule(dayName) {
 
   return result;
 }
-*/
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -152,10 +148,10 @@ function employeeCoverage(idOrName) {
   });
   return objEmployee;
 }
-/* schedule,
-animalCount, */
+// animalCount
 
 module.exports = {
+  schedule,
   entryCalculator,
   animalMap,
   animalsByIds,

@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 function animalsByIds(...ids) {
   return animals.filter((animal) => ids.some((verificaId) => animal.id === verificaId));
   // Usei o spread no parametro da função para retorna os ids,
@@ -50,11 +50,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   // Troquei os parametros managers e responsibleFor adicionando Values de arrays.
   // e utilizei o push para adicionar um novo objeto no array employees.
 }
-/*
+
 function animalCount(species) {
-  // seu código aqui
+  const total = {};
+  animals.forEach(({ name, residents}) => {
+    total[name] = residents.length;
+  })
+  if (!species) return total;
+  return total[species]
+  // Usei o for Each para iterar o array animals.
 }
-*/
+
 function entryCalculator(entrants = 0) {
   let total = 0;
   if (entrants.Adult) total += entrants.Adult * prices.Adult;
@@ -66,11 +72,21 @@ function entryCalculator(entrants = 0) {
 function animalMap(options) {
   // seu código aqui
 }
-
+*/
 function schedule(dayName) {
-  // seu código aqui
+  const obj = {};
+  const { hours } = data;
+  Object.keys(hours).forEach((day) => {
+    if (day === 'Monday') obj[day] = 'CLOSED';
+    if (day !== 'Monday') {
+      obj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+      return obj;
+    }
+  });
+    if (!dayName) return obj;  
+    return { [dayName]: obj[dayName] }
 }
-
+/*
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
@@ -85,8 +101,8 @@ function employeeCoverage(idOrName) {
 */
 module.exports = {
   entryCalculator,
-  // schedule,
-  // animalCount,
+  schedule,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

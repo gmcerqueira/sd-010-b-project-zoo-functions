@@ -14,6 +14,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 const { animals } = data;// é pra trazer as informações de animals que estão no data.js
+const { employees } = data;
 function animalsByIds(...ids) { // esse ids será um conjunto de vários ID(ou pode não ser também).
   if (typeof (ids) === 'undefined') {
     return [];
@@ -22,53 +23,60 @@ function animalsByIds(...ids) { // esse ids será um conjunto de vários ID(ou p
   return ids.map((id) => animals.find((animal) => animal.id === id)); // o find  vai encontrar o PRIMEIRO animal que tenha um id idêntico ao ID que tá escrito no parâmetro de animalByIds. Aí descobrindo isso, o MAP vai me retornar um array com o objeto do animal especifico.
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
-}
+// function animalsOlderThan(animal, age) {
+//   // seu código aqui
+// }
 
-function employeeByName(employeeName) {
-  // seu código aqui
-}
+// function employeeByName(employeeName) {
+//   if (typeof employeeName === 'undefined') {
+//     return {};
+//   }
+//   return employees.find((empregado) => { 
+//     if (empregado.firstName === employeeName || empregado.lastName === employeeName) {
+//       return empregado;
+//     }
+//   });
+// }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+// function createEmployee(personalInfo, associatedWith) {
+//   // seu código aqui
+// }
 
-function isManager(id) {
-  // seu código aqui
-}
+// function isManager(id) {
+//   // seu código aqui
+// }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+//   // seu código aqui
+// }
 
-function animalCount(species) {
-  // seu código aqui
-}
+// function animalCount(species) {
+//   // seu código aqui
+// }
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+// function entryCalculator(entrants) {
+//   // seu código aqui
+// }
 
-function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
+//   // seu código aqui
+// }
 
-function schedule(dayName) {
-  // seu código aqui
-}
+// function schedule(dayName) {
+//   // seu código aqui
+// }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
+// }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+// function increasePrices(percentage) {
+//   // seu código aqui
+// }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
 module.exports = {
   entryCalculator,

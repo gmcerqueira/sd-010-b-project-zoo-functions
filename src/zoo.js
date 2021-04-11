@@ -74,9 +74,9 @@ function entryCalculator(entrants) {
 function schedule(dayName) {
   const segunda = Object.entries(hours);
   const result = segunda.reduce((acc, [cur, { open, close }]) => {
-    acc[cur] = cur === 'Monday' ? `CLOSED` : `Open from ${open}am until ${close - 12}pm`;
+    acc[cur] = cur === 'Monday' ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`;
     return acc;
-  }, {})
+  }, {});
   return dayName ? { [dayName]: result[dayName] } : result;
 }
 // function oldestFromFirstSpecies(id) {

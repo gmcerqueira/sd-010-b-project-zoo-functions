@@ -83,9 +83,13 @@ function animalCount(species) {
 
 // Para resolver o requisito 7 consultei o repositório do meu colega Henrique Zózimo, da turma 10-B, para entender melhor a lógica por trás desse requisito.
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (entrants === undefined) {
+    return 0;
+  }
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  return((Adult * 49.99) + (Child * 20.99) + (Senior * 24.99));
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -108,7 +112,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

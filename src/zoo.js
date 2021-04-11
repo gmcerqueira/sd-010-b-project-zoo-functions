@@ -11,9 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, hours } = data;
-
-// add hours, prices in data DONT FORGET
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   const idsAnimals = [];
@@ -114,9 +112,16 @@ function schedule(dayName) {
 //   // seu código aqui
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  prices.Adult *= (1 + (percentage / 100));
+  prices.Child *= (1 + (percentage / 100));
+  prices.Senior *= (1 + (percentage / 100));
+  prices.Adult = Math.round(prices.Adult * 100) / 100;
+  prices.Child = Math.round(prices.Child * 100) / 100;
+  prices.Senior = Math.round(prices.Senior * 100) / 100;
+}
+
+// Essa requisição foi entendida dando uma olhada no repositório do meu colega Henrique Zózimo, da turma 10-B, porém com algumas modificações que pensei para encurtar o código.
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -134,6 +139,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

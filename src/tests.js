@@ -17,9 +17,11 @@ const data = require('./data');
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 function entryCalculator(entrants) {
-  if (!entrants || entrants === {}) { return 0; }
+  if (!entrants || entrants === {}) {
+    return 0;
+  }
   const entries = Object.entries(entrants);
-  return entries.reduce(((acc, entry) => acc + (data.prices[entry[0]] * entry[1])), 0);
+  return entries.reduce((acc, entry) => acc + data.prices[entry[0]] * entry[1], 0);
 }
 // // ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP
 // ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP ANIMAL MAP
@@ -70,9 +72,12 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   const getAnimalId = data.employees.find((employee) => employee.id === id).responsibleFor[0];
-  return Object.values(data.animals.find((animal) =>
-    animal.id === getAnimalId).residents.reduce((oldest, specificAnimal) =>
-    (specificAnimal.age > oldest.age ? specificAnimal : oldest)));
+  return Object.values(
+    data.animals
+      .find((animal) => animal.id === getAnimalId)
+      .residents.reduce((oldest, specificAnimal) =>
+        (specificAnimal.age > oldest.age ? specificAnimal : oldest)),
+  );
 }
 
 function increasePrices(percentage) {
@@ -80,7 +85,7 @@ function increasePrices(percentage) {
   const { prices } = data;
   arrayPrices.map((ageRange) => {
     const [range, price] = ageRange;
-    prices[range] = (Math.round((price + ((price * (percentage / 100)))) * 100) / 100).toFixed(2);
+    prices[range] = Math.round((price + price * (percentage / 100)) * 100) / 100;
     return prices;
   });
   return prices;
@@ -97,19 +102,20 @@ function employeeCoverage(idOrName) {
   const objEmployees = {};
   if (!idOrName) {
     data.employees.forEach((employee) => {
-      objEmployees[`${employee.firstName} ${employee.lastName}`] = (findAnimalsId(
+      objEmployees[`${employee.firstName} ${employee.lastName}`] = findAnimalsId(
         employee.responsibleFor,
-      ));
+      );
     });
     return objEmployees;
   }
-  const getEmployee = data.employees.find((employee) => (employee.firstName === idOrName)
-  || (employee.lastName === idOrName)
-  || (employee.id === idOrName));
+  const getEmployee = data.employees.find(
+    (employee) =>
+      employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName,
+  );
   console.log(getEmployee);
-  objEmployees[`${getEmployee.firstName} ${getEmployee.lastName}`] = (findAnimalsId(
+  objEmployees[`${getEmployee.firstName} ${getEmployee.lastName}`] = findAnimalsId(
     getEmployee.responsibleFor,
-  ));
+  );
   return objEmployees;
 }
 

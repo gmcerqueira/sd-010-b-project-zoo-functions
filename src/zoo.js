@@ -104,7 +104,7 @@ function increasePrices(percentage) {
   const { prices } = data;
   arrayPrices.forEach((ageRange) => {
     const [range, price] = ageRange;
-    prices[range] = Math.round((price + ((price * (percentage / 100)))) * 100) / 100;
+    prices[range] = Math.round((price + (price * (percentage / 100))) * 100) / 100;
   });
   return prices;
 }

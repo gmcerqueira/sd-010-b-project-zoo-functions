@@ -33,20 +33,16 @@ function schedule(dayName) {
 // solução do Henrique Clementino
 function employeeCoverage(param) {
   const objEmployees = {};
-  data.employees.forEach(({ firstName, lastName, responsibleFor }) => {
-    objEmployees[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(
-      ({ name }) => name,
-    );
+  data.employees.forEach(({ firstName, lastName, responsibleFor, id }) => {
+    if (firstName === param || lastName === param || id === param || !param) {
+      objEmployees[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(
+        ({ name }) => name,
+      );
+    }
   });
-  if (!param) return objEmployees;
-  const getEmployee = data.employees.find(
-    ({ id, firstName, lastName }) => id === param || firstName || param || lastName === param,
-  );
-  const { firstName, lastName } = getEmployee;
-  const fullName = `${firstName} ${lastName}`;
-  return { [fullName]: objEmployees[fullName] };
+  return objEmployees;
 }
-console.log(employeeCoverage('Nigel'));
+console.log(employeeCoverage());
 
 module.exports = {
   animalsByIds,

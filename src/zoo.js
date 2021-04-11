@@ -117,11 +117,7 @@ function schedule(dayName) {
 
 // função criada para auxiliar na resolução da oldestFromFirstSpecies, retornando o primeiro animal [0] de responsabilidade do funcionário cujo id ou primeiro nome ou último nome correspondam ao parâmetro passado. Foi utilizado o destructuring {id, firstName, lastName}
 function buscaFunc(param) {
-  return data.employees.find(({
-    id,
-    firstName,
-    lastName,
-  }) =>
+  return data.employees.find(({ id, firstName, lastName }) =>
     id === param || firstName === param || lastName === param).responsibleFor[0];
 }
 
@@ -140,11 +136,7 @@ function oldestFromFirstSpecies(idfunc) {
     return elemento;
   });
   // destructuring na constante animalMaisVelho para trazer apenas o nome, o sexo e a idade do animal mais velho
-  const {
-    name,
-    sex,
-    age,
-  } = animalMaisVelho;
+  const { name, sex, age } = animalMaisVelho;
   // retorna array com as informações solicitadas.
   return [name, sex, age];
 }

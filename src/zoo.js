@@ -49,16 +49,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
-  let countReport = animals.reduce((accObject, current) => {
-    // eslint-disable-next-line no-param-reassign
-    accObject[current.name] = current.residents.length;
-    return accObject;
-  }, {});
-  if (Object.keys(countReport).includes(species)) {
-    countReport = countReport[species];
-  }
-  return countReport;
+
 }
 
 function entryCalculator(entrants = {}) {
@@ -147,8 +138,9 @@ function employeeCoverage(idOrName) {
   return objEmployee;
 }
 
+// animalCount
+
 module.exports = {
-  animalCount,
   schedule,
   entryCalculator,
   animalMap,

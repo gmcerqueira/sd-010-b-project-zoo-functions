@@ -76,31 +76,10 @@ function entryCalculator(entrants) {
 }
 
 // function animalMap(options) {
-//   const animalsByRegion = () => {
-//     const reducingRegion = data.animals.reduce((acc, curr) => {
-//       const arrayOfNames = [];
-//       data.animals.filter((el) => {
-//         if (el.location === curr.location) arrayOfNames.push(el.name);
-//         return arrayOfNames;
-//       });
-//       acc[curr.location] = arrayOfNames;
-//       return acc;
-//     }, {});
-//     return reducingRegion;
-//   };
-
-//   const residentsBySpecies = () => {
-//     const getObject = animalsByRegion ();
-//   }
-
-//   let array = []
-// const resid = animals.map((i) => i.residents)
-// resid.map((item) = item.name) 
-// console.log (resid)
-// // console.log (array.push (resid.map((item) => { item.name })))
+//   // seu código aqui
 // }
 
-function schedule(dayName) { //Tive o auxilio dos colegas Fernanda Porto e Lucas Martins para a resolução da questão
+function schedule(dayName) { //  Tive o auxilio dos colegas Fernanda Porto e Lucas Martins para a resolução da questão
   const workDay = Object.entries(hours).reduce((week, day) => {
     const result = week;
     if (day[0] === 'Monday') {
@@ -115,15 +94,14 @@ function schedule(dayName) { //Tive o auxilio dos colegas Fernanda Porto e Lucas
 }
 
 function oldestFromFirstSpecies(id) {
-const employResponse =  employees.find((employ) => employ.id === id).responsibleFor[0];
-const animalId = animals.find((animal) => animal.id === employResponse).residents;
-const oldOne = animalId.reduce((sum, item, i) => (item.age >= sum.age ? item : sum));
-return Object.values(oldOne);
+  const employResponse = employees.find((employ) => employ.id === id).responsibleFor[0];
+  const animalId = animals.find((animal) => animal.id === employResponse).residents;
+  const oldOne = animalId.reduce((sum, item) => (item.age >= sum.age ? item : sum));
+  return Object.values(oldOne);
 }
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  console.log(percentage);
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -141,6 +119,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

@@ -13,6 +13,7 @@ const data = require('./data');
 
 const zoo = data.animals;
 const funcionarios = data.employees;
+const precos = data.prices;
 
 function animalsByIds(...ids) {
   return zoo.filter((animal) => ids.some((animalId) => animal.id === animalId));
@@ -58,14 +59,16 @@ function animalCount(species) {
   }
   return zoo.find((animal) => animal.name === species).residents.length;
 }
-
-/* function entryCalculator(entrants) {
-  // seu código aqui
-} */
+function entryCalculator(entrants) {
+  if (entrants === undefined || entrants === {}) {
+    return 0;
+  }
+  return Object.keys(entrants).reduce((acc, tipo) => acc + entrants[tipo] * precos[tipo], 0);
+}
 
 /* function animalMap(options) {
   // seu código aqui
-} */
+}
 
 /* function schedule(dayName) {
   // seu código aqui
@@ -84,7 +87,7 @@ function animalCount(species) {
 } */
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

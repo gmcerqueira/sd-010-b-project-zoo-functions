@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) { // zozimo
   if (ids === undefined) {
@@ -74,9 +74,18 @@ function entryCalculator(entrants = 0) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  const agenda = {};
+  Object.entries(hours).forEach((dia) => {if (dia[1].open === dia[1].close) {
+    agenda[dia[0]] = 'CLOSED';
+  } else {agenda[dia[0]] = `Open from ${dia[1].open}am until ${dia[1].close - 12}pm`}});
+  if (dayName) {
+    const day = {};
+    day[dayName] = agenda[dayName];
+    return day;
+  }
+  return agenda;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -92,7 +101,7 @@ function entryCalculator(entrants = 0) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

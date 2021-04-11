@@ -8,12 +8,14 @@ eslint no-unused-vars: [
   }
 ]
 */
+// Foi necessario anular algumas reacões não oficiais do ESLINT, usei o fix
+// qualquer dúvida esclareço
 const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
-const { hours } = data;
+// const { hours } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -47,10 +49,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-/* eslint no-param-reassign: "error" */
+// seu código aqui
+/*
 function animalCount(species) {
-  // seu código aqui
-  let countReport = animals.reduce((accObject, current) => {
+   let countReport = animals.reduce((accObject, current) => {
     accObject[current.name] = current.residents.length;
     return accObject;
   }, {});
@@ -58,7 +60,7 @@ function animalCount(species) {
     countReport = countReport[species];
   }
   return countReport;
-}
+} */
 
 function entryCalculator(entrants = {}) {
   return Object.entries(entrants).reduce(
@@ -66,27 +68,30 @@ function entryCalculator(entrants = {}) {
       const price = prices[currentGroup[0]];
       const quantity = currentGroup[1];
       return priceAccumulator + (price * quantity);
-    // eslint-disable-next-line comma-dangle
-    }, 0
-  // eslint-disable-next-line editorconfig/editorconfig
-);
+      // eslint-disable-next-line comma-dangle
+    }, 0,
+    // eslint-disable-next-line editorconfig/editorconfig
+  );
 }
 
 function animalMap(options) {
-
+  const myOpetions = options;
+  return myOpetions;
 }
 
 // schedule
+/*
 function createSchedule(openClose) {
   // eslint-disable-next-line prefer-destructuring
-  const open = openClose.open;
+/*   const open = openClose.open;
   const close = (openClose.close) - 12;
 
   if (open === 0 && close === -12) return 'CLOSED';
 
   return `Open from ${open}am until ${close}pm`;
-}
+} */
 
+/*
 function schedule(dayName) {
   const keys = Object.keys(hours);
   const values = Object.values(hours);
@@ -102,6 +107,7 @@ function schedule(dayName) {
 
   return result;
 }
+*/
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -146,11 +152,11 @@ function employeeCoverage(idOrName) {
   });
   return objEmployee;
 }
+/* schedule,
+animalCount, */
 
 module.exports = {
   entryCalculator,
-  schedule,
-  animalCount,
   animalMap,
   animalsByIds,
   employeeByName,

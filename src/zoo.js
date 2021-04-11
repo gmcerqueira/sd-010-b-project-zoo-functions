@@ -80,8 +80,7 @@ function schedule(dayName) {
     if (dia[1].open === dia[1].close) {
       agenda[dia[0]] = 'CLOSED';
     } else {
-      agenda[dia[0]] = `Open from ${dia[1].open}am until ${dia[1].close - 12}pm`; }
-    });
+      agenda[dia[0]] = `Open from ${dia[1].open}am until ${dia[1].close - 12}pm`; }});
   if (dayName) {
     const day = {};
     day[dayName] = agenda[dayName];

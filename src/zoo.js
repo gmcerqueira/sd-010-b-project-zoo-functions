@@ -35,24 +35,17 @@ function animalsOlderThan(animal, age1) {
   const ages = chosenName.residents.every((chosen) => chosen.age > age1);
   return ages;
 }
-console.log(animalsOlderThan('penguins', 10));
+// console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const first = employees.filter((nameOf) => nameOf.firstName === employeeName);
-  const first1 = first.firstName;
-  if (employeeName === first1) {
-    return employees.find((foundFirstName) => foundFirstName.firstName === first1);
-  }
-  const last = employees.filter((lastNameFound) => lastNameFound.lastName === employeeName);
-  const last1 = last.lastName;
-  if (employeeName === last1) {
-    return employees.find((lastNameOf) => lastNameOf.lastName === last1);
-  }
+  const nameFound = employees.find((nameOf) => nameOf.firstName === employeeName || nameOf
+    .lastName === employeeName);
+  return nameFound;
 }
-// console.log(employeeByName('Emery'));
+console.log(employeeByName('Wishart'));
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -119,15 +112,15 @@ function oldestFromFirstSpecies(id) {
 module.exports = {
 //   entryCalculator,
 //  schedule,
-  animalCount,
+  // animalCount,
   // animalMap,
-  animalsByIds,
+  // animalsByIds,
   employeeByName,
   //   employeeCoverage,
   //   addEmployee,
   //  isManager,
-  animalsOlderThan,
-  oldestFromFirstSpecies,
+  // animalsOlderThan,
+  // oldestFromFirstSpecies,
 //   increasePrices,
 //   createEmployee,
 };

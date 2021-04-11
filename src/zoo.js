@@ -8,8 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-// Foi necessario anular algumas reacões não oficiais do ESLINT, usei o fix
-// qualquer dúvida esclareço
+
 const data = require('./data');
 
 const { animals } = data;
@@ -49,10 +48,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-// seu código aqui
-/*
 function animalCount(species) {
-   let countReport = animals.reduce((accObject, current) => {
+  // seu código aqui
+  let countReport = animals.reduce((accObject, current) => {
+    // eslint-disable-next-line no-param-reassign
     accObject[current.name] = current.residents.length;
     return accObject;
   }, {});
@@ -60,7 +59,7 @@ function animalCount(species) {
     countReport = countReport[species];
   }
   return countReport;
-} */
+}
 
 function entryCalculator(entrants = {}) {
   return Object.entries(entrants).reduce(
@@ -129,7 +128,6 @@ function increasePrices(percentage) {
   return prices;
 }
 
-/* eslint no-param-reassign: "error" */
 function employeeCoverage(idOrName) {
   const arrayEmployee = [];
   const objEmployee = {};
@@ -148,9 +146,9 @@ function employeeCoverage(idOrName) {
   });
   return objEmployee;
 }
-// animalCount
 
 module.exports = {
+  animalCount,
   schedule,
   entryCalculator,
   animalMap,

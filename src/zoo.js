@@ -95,22 +95,22 @@ function animalCount(species) {
 
 // }
 
-// function oldestFromFirstSpecies(id) {
-//   const checkId = employees.find((employee) => employee.id === id);
-//   console.log(checkId);
-//   const checkAnimal = checkId.responsibleFor[0];
-//   const findAnimal = animals.find((animal) => animal.id === checkAnimal).residents;
-//   console.log(findAnimal);
-//   let age = 0;
-//   findAnimal.forEach((animal) => {
-//     if (animal.age > age) {
-//       age = animal.age;
-//       console.log(age);
-//     }
-//   });
-//   const result = findAnimal.find((maxAge) => maxAge.age === age);
-//   return Object.values(result);
-// }
+function oldestFromFirstSpecies(id) {
+  const checkId = employees.find((employee) => employee.id === id);
+  console.log(checkId);
+  const checkAnimal = checkId.responsibleFor[0];
+  const findAnimal = animals.find((animal) => animal.id === checkAnimal).residents;
+  console.log(findAnimal);
+  let age = 0;
+  findAnimal.forEach((animal) => {
+    if (animal.age > age) {
+      age = animal.age;
+      console.log(age);
+    }
+  });
+  const result = findAnimal.find((maxAge) => maxAge.age === age);
+  return Object.values(result);
+}
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }
@@ -126,11 +126,11 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-//   employeeCoverage,
-//   addEmployee,
-//  isManager,
-//  animalsOlderThan,
-//  oldestFromFirstSpecies,
+  //   employeeCoverage,
+  //   addEmployee,
+  //  isManager,
+  //  animalsOlderThan,
+  oldestFromFirstSpecies,
 //   increasePrices,
 //   createEmployee,
 };

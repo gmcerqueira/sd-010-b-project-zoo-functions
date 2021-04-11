@@ -88,9 +88,12 @@ function entryCalculator(entrants) {
   // seu código aqui
   if (!entrants || Object.keys(entrants).length === 0) return 0;
 
-  const priceAdult = prices.Adult;
+  const sum = (acc, currValue) => acc + currValue;
 
-  console.log(priceAdult);
+  const sumTotal = Object.keys(entrants).map((key) =>
+    entrants[key] * prices[key]).reduce(sum);
+
+  return sumTotal;
 }
 
 console.log(entryCalculator({ Adult: 1 }));

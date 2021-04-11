@@ -70,7 +70,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   if (species === undefined) {
-    return animals.map((animal) => `${animal.name}: ` + animal.residents.length);
+    return animals.map((animal) => `${animal.name}: ${animal.residents.length}`);
   }
   const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
   return animaisFiltrado[0].residents.length;
@@ -78,18 +78,18 @@ function animalCount(species) {
 // console.log(animalCount());
 
 function entryCalculator(entrants) {
-  let pessoas = [0, 0, 0,];
+  let pessoas = [0, 0, 0];
   if (entrants === undefined) {
     return 0;
   }
-  if (entrants.Adult !== undefined){
-    pessoas[0] = entrants.Adult ;
+  if (entrants.Adult !== undefined) {
+    pessoas[0] = entrants.Adult * 1;
   }
-  if (entrants.Child !== undefined){
-    pessoas[1] = entrants.Child
+  if (entrants.Child !== undefined) {
+    pessoas[1] = entrants.Child * 1;
   }
-  if(entrants.Senior !== undefined){
-    pessoas[2] = entrants.Senior
+  if (entrants.Senior !== undefined) {
+    pessoas[2] = entrants.Senior * 1;
   }
 
   return pessoas[0] * 49.99 + pessoas[1] * 20.99 + pessoas[2] * 24.99;

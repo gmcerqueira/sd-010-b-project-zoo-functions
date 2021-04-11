@@ -125,42 +125,62 @@ function entryCalculator(entrants) {
   });
   return total;
 }
-// 1° Sem parametros, retorna animais categorizados por lozalização.
-// function semParametro() {
+// animal Map ------------------------------------------------------------------------------------------------
+// 1° Mock que retorna a Localização
+function retrieveAvailableLocations() {
+  return ['NE', 'NW', 'SE', 'SW'];
+}
+// 2°função que verifica a localização, também serve para o retorn vazio.
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
 
-//   return data.animals.reduce((acc, state) => {
-//     if (!acc[state.location]) {
-//       acc[state.location] = [];
-//     }
-//     acc[state.location].push(state.name);
-//     return acc;
-//   }, {});
-// }
-// 2° Com a opção 'includes: true' especificada, retorna nomes de animais.
-// function includesParametro() {
+  locations.forEach((location) => {
+    const filteredAnimals = data.animals
+      .filter((animal) => animal.location === location)
+      .map((animal) => animal.name);
 
-//   return data.animals.reduce((acc, state) => {
-//     if (!acc[state.location]) {
-//       acc[state.location] = [];
-//     }
-//     return acc;
-//   })
-// }
-// console.log(includesParametro());
-// function animalMap(options) {
-//   // seu código aqui
+    animalsPerLocation[location] = filteredAnimals;
+  });
+  return animalsPerLocation;
+}
+// 3° função para localização & organizar em ordem alfabetica o nome de cada animal 3.1 - verifica o sexo depois de conter em suas mãos o filter de residents, e durante este processo será resolvido um parametro if, aonde verificará se contem sex.
+function retriveAnimalsPerLocationsWithNameSorted(locations, sorted, sex) {
+  const animalsPerLocation = {};
 
-//   if (!options) {
-//     return semParametro();
-//   }
-//   if (Object.values(options)[0] === true) {}
-//   // if(Object.values(options)[1] === true){
-//   //   return `o cara é sortudo sim`;
-//   // }
-//   // return final;
-// }
-// console.log(animalMap());
+  locations.forEach((location) => {
+    const filteredAnimals = data.animals
+      .filter((animal) => animal.location === location).map((animal) => {
+        const nameKey = animal.name;
+        const nameValue = animal.residents.filter((resident) => sex ? (resident.sex === sex) : (true))
+          .map((resident) => resident.name);
+        if (sorted) {
+          nameValue.sort();
+        }
+        return {[nameKey]: nameValue};
+      });
 
+    animalsPerLocation[location] = filteredAnimals;
+  });
+  return animalsPerLocation;
+}
+
+function animalMap(options) {
+  // MUITOS agradecimentos ao Gabriel Oliva, instrutor da trybe com toda certeza  sem ele, eu não iria conseguir terminar e ENTENDER oq foi feito da maneira que está atualmente o codigo.
+  const locations = retrieveAvailableLocations();
+  if (!options) {
+    return retrieveAnimalsPerLocation(locations);
+  }
+  const {
+    includeNames = false, sex, sorted = false
+  } = options;
+  if (includeNames) {
+    return retriveAnimalsPerLocationsWithNameSorted(locations, sorted, sex);
+  } else {
+    return retrieveAnimalsPerLocation(locations);
+  }
+}
+
+//End AnimalMap ---------------------------------------------------------------------------------------------------------
 // function schedule(dayName) {
 //   // seu código aqui
 //   const reduceDays = (acc, day, index, array) => {
@@ -188,7 +208,7 @@ module.exports = {
   entryCalculator,
   // schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

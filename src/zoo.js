@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
 
 // Requirement 1
 function animalsByIds(...ids) {
@@ -115,9 +116,20 @@ function animalCount(species) {
 // console.log(animalCount('lions'));
 // console.log(animalCount());
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+// Requirement 8
+function entryCalculator(entrants) {
+  // seu código aqui
+  if (!entrants || entrants === {}) return 0;
+  const totalValue = Object.keys(entrants).reduce((acc, curr) => (
+    acc + (entrants[curr] * prices[curr])
+    // access the object value by using obj[varWithPropertyName] sintax
+    // and multiplies entrants{} value by prices{} value
+  ), 0);
+  console.log(totalValue);
+  return totalValue;
+}
+// const people = { 'Adult': 1 };
+// entryCalculator(people);
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -140,7 +152,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

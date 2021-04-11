@@ -96,8 +96,7 @@ function schedule(dayName) {
   hourConsult.forEach((day) => {
     if (day === 'Monday') { dayConsult[day] = 'CLOSED'; }
     if (day !== 'Monday') {
-      dayConsult[day] = `Open from ${compare[day].open}am until
-    ${compare[day].closed - 12}pm`;
+      dayConsult[day] = `Open from ${compare[day].open}am until ${compare[day].close - 12}pm`;
     }
   });
   return dayConsult;

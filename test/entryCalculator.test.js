@@ -21,14 +21,14 @@ describe('Implemente a função entryCalculator', () => {
 
     entrants = { 'Senior': 1 };
     actual = zoo.entryCalculator(entrants);
-    // assert.strictEqual(actual, 24.99);
+    assert.strictEqual(actual, 24.99);
 
     entrants = { 'Child': 1 };
     actual = zoo.entryCalculator(entrants);
-    // assert.strictEqual(actual, 20.99);
+    assert.strictEqual(actual, 20.99);
 
     entrants = { 'Child': 1, 'Senior': 1 };
     actual = zoo.entryCalculator(entrants);
-    // assert.strictEqual(actual, 45.98);
+    assert.strictEqual(actual, 45.98);
   });
 });

@@ -125,7 +125,7 @@ function entryCalculator(entrants) {
     // access the object value by using obj[varWithPropertyName] sintax
     // and multiplies entrants{} value by prices{} value
   ), 0);
-  console.log(totalValue);
+  // console.log(totalValue);
   return totalValue;
 }
 // const people = { 'Adult': 1 };

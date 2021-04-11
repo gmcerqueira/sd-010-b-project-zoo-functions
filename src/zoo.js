@@ -144,19 +144,21 @@ function retrieveAnimalsPerLocation(locations) {
   return animalsPerLocation;
 }
 // 3° função para localização & organizar em ordem alfabetica o nome de cada animal 3.1 - verifica o sexo depois de conter em suas mãos o filter de residents, e durante este processo será resolvido um parametro if, aonde verificará se contem sex.
+// Tive que fazer diversas modificaçõis pois o esLint detesta minha forma de codar >:C.
 function retriveAnimalsPerLocationsWithNameSorted(locations, sorted, sex) {
   const animalsPerLocation = {};
-
   locations.forEach((location) => {
     const filteredAnimals = data.animals
       .filter((animal) => animal.location === location).map((animal) => {
         const nameKey = animal.name;
-        const nameValue = animal.residents.filter((resident) => sex ? (resident.sex === sex) : (true))
+        const nmValu = animal.residents.filter((resident) => (sex ? resident.sex === sex : true))
           .map((resident) => resident.name);
         if (sorted) {
-          nameValue.sort();
+          nmValu.sort();
         }
-        return {[nameKey]: nameValue};
+        return {
+          [nameKey]: nmValu,
+        };
       });
 
     animalsPerLocation[location] = filteredAnimals;
@@ -171,16 +173,15 @@ function animalMap(options) {
     return retrieveAnimalsPerLocation(locations);
   }
   const {
-    includeNames = false, sex, sorted = false
+    includeNames = false, sex, sorted = false,
   } = options;
   if (includeNames) {
     return retriveAnimalsPerLocationsWithNameSorted(locations, sorted, sex);
-  } else {
-    return retrieveAnimalsPerLocation(locations);
   }
+  return retrieveAnimalsPerLocation(locations);
 }
 
-//End AnimalMap ---------------------------------------------------------------------------------------------------------
+// End AnimalMap ---------------------------------------------------------------------------------------------------------
 // function schedule(dayName) {
 //   // seu código aqui
 //   const reduceDays = (acc, day, index, array) => {

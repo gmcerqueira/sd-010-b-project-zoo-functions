@@ -131,7 +131,7 @@ function employeeCoverage(idOrName) {
     people.forEach((element) => {
       animal = animalsByIds(...element.responsibleFor);
       peopleFullName = `${element.firstName} ${element.lastName}`;
-      const array = Object.values(animal).map((gatinho) => gatinho.name);
+      const array = Object.values(animal).map((objAnimal) => objAnimal.name);
       ob[peopleFullName] = array;
     });
     return ob;

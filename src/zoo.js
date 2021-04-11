@@ -125,11 +125,18 @@ function oldestFromFirstSpecies(id) {
   return Object.values(animalOrdest[0]);
 }
 
-console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+// console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
-/* function increasePrices(percentage) {
-  // seu código aqui
-} */
+// Consegui fazer o Arredondamento correto com a ajuda do repositorio da Alessandra Rezende
+function increasePrices(percentage) {
+  const listPersons = Object.keys(data.prices);
+  listPersons.forEach((valuePerson) => {
+    data.prices[valuePerson] += (data.prices[valuePerson] * percentage) / 100;
+    data.prices[valuePerson] = Math.round(data.prices[valuePerson] * 100) / 100;
+  });
+}
+
+// increasePrices(25);
 
 /* function employeeCoverage(idOrName) {
   // seu código aqui
@@ -147,6 +154,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

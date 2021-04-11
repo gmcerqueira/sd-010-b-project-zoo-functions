@@ -37,7 +37,7 @@ function employeeByName(employeeName) {
   const searchEmployee = employees.find((employee) =>
     (employee.firstName === employeeName)
     || (employee.lastName === employeeName));
-  // console.log(obj);
+  // console.log(searchEmployee);
 
   return searchEmployee || {};
 }
@@ -72,7 +72,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   // seu código aqui
   return employees.some((employee) => employee.managers
-    .some((manager) => manager === id));
+    .some((manager) => manager === id)); // I took this simplified syntax from @gmcerqueira's repository
 }
 
 // Requirement 6
@@ -96,9 +96,24 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 //     '210fcd23-aa7b-4975-91b7-0230ebb27b99',
 //   ]);
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+// Requirement 7
+function animalCount(species) {
+  // seu código aqui
+  const amount = {};
+  if (species) {
+    const obj = animals.find((specie) => specie.name === species);
+    amount[species] = obj.residents.length;
+  } else {
+    animals.forEach((ani) => {
+      amount[ani.name] = ani.residents.length;
+    });
+  }
+  // console.log(amount);
+
+  return species ? amount[species] : amount;
+}
+// console.log(animalCount('lions'));
+// console.log(animalCount());
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -127,7 +142,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

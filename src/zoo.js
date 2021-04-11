@@ -15,22 +15,20 @@ const { animals, employees } = data;
 
 // const [name, sex, age] = residents;
 
-// function animalsByIds(...ids) {
-//   if (!ids.length) {
-//     return [];
-//   }
-//   const identification = [];
-//   if (ids.length > 0) {
-//     ids.forEach((id) => {
-//       const search = (animals.find((animal) => animal.id === id));
-//       identification.push(search);
-//     });
-//     return identification;
-//   }
-// }
-// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
-// console.log(animalsByIds());
-// este exercício foi resolvido com a ajuda de colegas Diego, Carlos e Alan, além de plantões onde colegas tiraram as dúvidas.
+function animalsByIds(...ids) {
+  if (!ids.length) {
+    return [];
+  }
+  const identification = [];
+  if (ids.length > 0) {
+    ids.forEach((id) => {
+      const search = (animals.find((animal) => animal.id === id));
+      identification.push(search);
+    });
+    return identification;
+  }
+}
+// este exercício foi resolvido até aqui a partir dos plantões onde colegas tiraram dúvidas.
 
 // function animalsOlderThan(animal, age1) {
 //   const chosenName = data.animals.filter((name1) => name1.name === animal);
@@ -39,24 +37,22 @@ const { animals, employees } = data;
 // }
 // console.log(animalsOlderThan('otters', 2));
 
-// function employeeByName(employeeName) {
-//   if (employeeName.length === 0) {
-//     return employeeName;
-//   }
-//   const first = employees.filter((nameOf) => nameOf.firstName === employeeName);
-//   const first1 = first.firstName;
-//   if (employeeName === first1) {
-//     const result1 = employees.find((foundFirstName) => foundFirstName.firstName === first);
-//     return result1;
-//   }
-//   const last = employees.filter((lastNameFound) => lastNameFound.lastName === employeeName);
-//   const last1 = last.lastName;
-//   if (employeeName === last1) {
-//     const result2 = employees.find((lastNameOf) => lastNameOf.lastName === last1);
-//     return result2;
-//   }
-// }
-// console.log(employeeByName());
+function employeeByName(employeeName) {
+  if (!employeeName) {
+    return {};
+  }
+  const first = employees.filter((nameOf) => nameOf.firstName === employeeName);
+  const first1 = first.firstName;
+  if (employeeName === first1) {
+    return employees.find((foundFirstName) => foundFirstName.firstName === first1);
+  }
+  const last = employees.filter((lastNameFound) => lastNameFound.lastName === employeeName);
+  const last1 = last.lastName;
+  if (employeeName === last1) {
+    return employees.find((lastNameOf) => lastNameOf.lastName === last1);
+  }
+}
+console.log(employeeByName('Emery'));
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -124,12 +120,12 @@ function animalCount(species) {
 // }
 
 module.exports = {
-//   // entryCalculator,
+//   entryCalculator,
 //  schedule,
   animalCount,
-//   animalMap,
-//  animalsByIds,
-//   employeeByName,
+  // animalMap,
+  animalsByIds,
+  employeeByName,
 //   employeeCoverage,
 //   addEmployee,
 //  isManager,

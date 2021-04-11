@@ -28,14 +28,14 @@ function animalsByIds(...ids) {
     return identification;
   }
 }
-// este exercício foi resolvido até aqui a partir dos plantões onde colegas tiraram dúvidas.
+// este exercício foi resolvido com a ajuda de colegas Diegho, Carlos e Alan, além dos plantões onde colegas tiraram dúvidas.
 
-// function animalsOlderThan(animal, age1) {
-//   const chosenName = data.animals.filter((name1) => name1.name === animal);
-//   const ages = chosenName.every((chosen) => chosen.residents.age > age1);
-//   return ages;
-// }
-// console.log(animalsOlderThan('otters', 2));
+function animalsOlderThan(animal, age1) {
+  const chosenName = animals.find((name1) => name1.name === animal);
+  const ages = chosenName.residents.every((chosen) => chosen.age > age1);
+  return ages;
+}
+console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   if (!employeeName) {
@@ -52,7 +52,7 @@ function employeeByName(employeeName) {
     return employees.find((lastNameOf) => lastNameOf.lastName === last1);
   }
 }
-console.log(employeeByName('Emery'));
+// console.log(employeeByName('Emery'));
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -97,15 +97,12 @@ function animalCount(species) {
 
 function oldestFromFirstSpecies(id) {
   const checkId = employees.find((employee) => employee.id === id);
-  console.log(checkId);
   const checkAnimal = checkId.responsibleFor[0];
   const findAnimal = animals.find((animal) => animal.id === checkAnimal).residents;
-  console.log(findAnimal);
   let age = 0;
   findAnimal.forEach((animal) => {
     if (animal.age > age) {
       age = animal.age;
-      console.log(age);
     }
   });
   const result = findAnimal.find((maxAge) => maxAge.age === age);
@@ -129,7 +126,7 @@ module.exports = {
   //   employeeCoverage,
   //   addEmployee,
   //  isManager,
-  //  animalsOlderThan,
+  animalsOlderThan,
   oldestFromFirstSpecies,
 //   increasePrices,
 //   createEmployee,

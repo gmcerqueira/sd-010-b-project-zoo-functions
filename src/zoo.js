@@ -40,7 +40,7 @@ function employeeByName(employeeName) {
 function createEmployee(personalInfo, associatedWith) {
   const employ = {
     ...personalInfo,
-    ...associatedWith
+    ...associatedWith,
   };
   return employ;
 }

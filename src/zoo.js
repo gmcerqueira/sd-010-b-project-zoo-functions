@@ -91,10 +91,16 @@ function entryCalculator(entrants = 0) {
 //   // seu código aqui
 // }
 
+// Declarei 2 obj vazios para armazenar as saidas da função. 'hoursTable' é o resultado quando não é passado parametro, ele é formado por um map de 'arrKeys' que é uma lista das entradas de 'hours'.
+// Esse '.map' popula 'hoursTable' mas antes faz uma verificação se os horarios de abertura e fechamento são iguais, caso sejam o dia em questão recebe o valor 'CLOSED' em sua key no novo obj, caso contrario recebe uma string com os horarios vindos de 'hours';
+// Caso seja passado algum dia como parametro(dayName), o dia em questão, é lancçado como key do obj 'dayHours' e resgatado da lista feita no passo anterior, o valor referente a chave passada como parametro é atribuida em 'dayHours' retornando assim, um obj com apenas uma entrada, a do dia especifico;
 function schedule(dayName) {
-  // seu código aqui
-  const arrKeys = Object.keys(hours);
   const hoursTable = {};
+  const dayHours = {};
+  const arrKeys = Object.keys(hours);
+  const nameDay = dayName;
+  dayHours[dayName] = hoursTable[nameDay];
+
   arrKeys.map((day) => {
     if (hours[day].open === hours[day].close) {
       hoursTable[day] = 'CLOSED';
@@ -103,19 +109,19 @@ function schedule(dayName) {
     }
     return hoursTable;
   });
-  const dale = dayName;
-  const dayHours = {};
-  dayHours[dayName] = hoursTable[dale];
 
   if (!dayName) return hoursTable;
   return dayHours;
 }
-console.log(schedule('Wednesday'));
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
-
+function oldestFromFirstSpecies(id) {
+  // Tive auxilio do Lucas Ribeiro neste requisito;
+  const animalsByManagerId = employees.find((employee) => employee.id === id).responsibleFor[0];
+  const animalsInfo = animals.find((animal) => animal.id === animalsByManagerId).residents;
+  const oldestAnimal = Object.values(animalsInfo.sort((a, b) => b.age - a.age))[0];
+  return Object.values(oldestAnimal);
+}
+// console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }
@@ -135,7 +141,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

@@ -68,52 +68,73 @@ function entryCalculator(entrants = 0) {
   return array.reduce((acc, curr) => acc + curr, 0); // soma todos os valores retornando o total
 }
 //-------------------------------------------------------------------------------------------
-// const getAnimalsLocation = () => {
-//   const animais = {};
-//   animals.forEach(({ location }) => {
-//     animais[location] = [];
-//   });
-//   return animais;
-// };
+const getAnimalsLocation = () => {
+  const animais = {};
+  animals.forEach(({ location }) => { // adiciona localização como chave do objeto e o valor um array vazio
+    animais[location] = [];
+  });
+  return animais;
+};
 
-// const getAnimalsNames = () => {
-//   const object = getAnimalsLocation();
-//   animals.map((animal) => object[animal.location].push(animal.name));
-//   return object;
-// };
+const getAnimalsNames = () => {
+  const object = getAnimalsLocation(); // pego o objeto criado
+  animals.map((animal) => object[animal.location].push(animal.name)); // se animal tem a mesma localização da chave então
+  return object; // adiciona ele ao array
+};
 
-// const getAnimalsOptions = () => {
-//   const object = getAnimalsLocation();
-//   animals.forEach(({ name, location, residents }) => { // desestruturando meu parâtro de entrada
-//     // passo as chaves por parametro e pego com o spread o objeto que já foi adicionado (...object[location]) e adiciono um novo.(Murillo Wolf)
-//     object[location] = [...object[location], { [name]: residents.map((names) =>
-//       names.name) }];
-//   });
-//   return object;
-// };
+const getAnimalsOptions = () => {
+  const object = getAnimalsLocation();
+  animals.forEach(({ name, location, residents }) => { // desestruturando Objeto animals e pegando as chaves
+    // passo as chaves por parametro e pego com o spread o objeto que já foi adicionado (...object[location]) e adiciono um novo.(Feito no plantão com ajuda do Murillo Wolf)
+    object[location] = [...object[location], { [name]: residents.map((names) =>
+      names.name) }];
+  });
+  return object;
+};
 
-// const getAnimalsOptionsSorted = () => {
-//   const object = getAnimalsLocation();
-//   animals.forEach(({ name, location, residents }) => {
-//     object[location] = [...object[location], { [name]: residents.map((names) =>
-//       names.name).sort() }];
-//   });
-//   return object;
-// };
+const getAnimalsOptionsSorted = () => {
+  const object = getAnimalsLocation();
+  animals.forEach(({ name, location, residents }) => {
+    object[location] = [...object[location], { [name]: residents.map((names) =>
+      names.name).sort() }]; // O mesmo que a função anterior ordenando os nomes dos animais
+  });
+  return object;
+};
 
-// function animalMap(options) {
-//   // seu código aqui
-//   if (options === undefined) return getAnimalsNames();
-//   const { includeNames, sorted } = options;
-//   if (includeNames && sorted) {
-//     return getAnimalsOptionsSorted();
-//   }
-//   if (includeNames) {
-//     return getAnimalsOptions();
-//   }
-// }
-// const options = { includeNames: true };
-// console.log(animalMap());
+const getAnimalsBySex = (sex) => {
+  const object = getAnimalsLocation();
+  animals.forEach(({ residents, name, location }) => { // filtro os animais que tem o mesmo sexo do parametro
+    object[location] = [...object[location], { [name]: residents.filter((animalSex) =>
+      animalSex.sex === sex).map((animal) => animal.name) }]; // retorno apenas o nome com o map
+  });
+  return object;
+};
+
+const getAnimalsBySexSorted = (sex) => {
+  const object = getAnimalsLocation();
+  animals.forEach(({ residents, name, location }) => {
+    object[location] = [...object[location], { [name]: residents.filter((animalSex) =>
+      animalSex.sex === sex).map((animal) => animal.name).sort() }];
+  }); // O mesmo que a função anterior ordenando os nomes dos animais
+  return object;
+};
+
+const animalMapFunctions = ({ includeNames, sorted, sex }) => {
+  if (includeNames && sex && sorted) return getAnimalsBySexSorted(sex);
+  if (includeNames && sex) return getAnimalsBySex(sex);
+  if (includeNames && sorted) return getAnimalsOptionsSorted();
+  if (includeNames) return getAnimalsOptions();
+};
+
+function animalMap(options) {
+  if (options && options.includeNames) {
+    return animalMapFunctions(options);
+  }
+  return getAnimalsNames();
+}
+
+const options = { sorted: true };
+console.log(animalMap(options).NE[0]);
 // //------------------------------------------------------------------------------------------------------------
 function schedule(dayName) {
   // seu código aqui
@@ -176,7 +197,7 @@ module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

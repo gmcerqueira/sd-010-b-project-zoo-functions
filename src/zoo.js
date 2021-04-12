@@ -99,7 +99,6 @@ function schedule(dayName) {
   const dayHours = {};
   const arrKeys = Object.keys(hours);
   const nameDay = dayName;
-  dayHours[dayName] = hoursTable[nameDay];
 
   arrKeys.map((day) => {
     if (hours[day].open === hours[day].close) {
@@ -109,6 +108,7 @@ function schedule(dayName) {
     }
     return hoursTable;
   });
+  dayHours[dayName] = hoursTable[nameDay];
 
   if (!dayName) return hoursTable;
   return dayHours;
@@ -121,10 +121,10 @@ function oldestFromFirstSpecies(id) {
   const oldestAnimal = Object.values(animalsInfo.sort((a, b) => b.age - a.age))[0];
   return Object.values(oldestAnimal);
 }
-// console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+
+function increasePrices(percentage) {
+  // seu código aqui
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -142,6 +142,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

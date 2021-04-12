@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-semi */
 /*
 eslint no-unused-vars: [
   "error",
@@ -92,9 +93,17 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const employee = employees.find((person) => person.id === id);
+  const firstSpeciesById = employee.responsibleFor[0];
+  const animal = animals.find((species) => species.id === firstSpeciesById);
+  let oldestAnimal = { age: -1 };
+  animal.residents.forEach((resident) => {
+    if (resident.age > oldestAnimal.age) {
+      oldestAnimal = resident;
+    }
+  });
+};
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -115,7 +124,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  //   oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   //   increasePrices,
   createEmployee,
 };

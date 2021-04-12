@@ -82,7 +82,7 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   const idAnimal = employees.find((value) => id === value.id).responsibleFor[0];
-  const animal = animals.find((value) => value.id === idAnimal);
+  const animal = animalsByIds(idAnimal)[0];
   const animalMaisVelho = animal.residents.reduce((acc, cur) =>
     (acc.age > cur.age ? acc : cur));
   return Object.values(animalMaisVelho);
@@ -97,9 +97,8 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// console.log(increasePrices(50));
 // function employeeCoverage(idOrName) {
-//   // seu código aqui
+
 // }
 
 module.exports = {

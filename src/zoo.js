@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   // filter: passa a função em todos os elementos de animals até ela ser satisfeita;
@@ -49,7 +49,7 @@ function isManager(id) {
   return managers.some((manager) => manager === id);
 }
 
-function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // alterei os parametros da função para que recebessem [] caso o valor respectivo fosse 'undefined' (metodo destructuring default);
   // criei um novo employee a partir dos parametros da função e retornei o push do novo elemento no 'employees';
   const newEmployee = ({
@@ -63,7 +63,11 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
 }
 
 function animalCount(species) {
-  // seu código aqui
+  // Tive o auxilio da Alessandra Resende nesse requisito;
+  // criei o obj allAnimals para armazenar todos os animais e sua quantidade, pro caso de não receber um parametro;
+  // para popular allAnimals usei o forEach com um parametro composto das key necessarias de animals, através do destructuring;
+  // em seguida criei uma condicional para caso não receba parametros a function retorna allAnimals,
+  // e caso receba, ela executa um find em animals que busca o animal passado em species e retorna o tamanho de seu array 'residents';
   const allAnimals = {};
   animals.forEach(({ name, residents }) => {
     allAnimals[name] = residents.length;
@@ -72,14 +76,13 @@ function animalCount(species) {
   if (!species) return allAnimals;
   return animals.find((animal) => animal.name === species).residents.length;
 }
-console.log(animalCount('lions'));
 
+// tive auxilio da Alessandra Resende neste requisito;
+// default param em caso de parametro vazio = 0;
+// Object.entries transforma 'entrants' em um array de arrays. No reduce, o acc é padrão mas o curr é tratado para receber uma lista vindos de 'entrants';
+// logo, acc soma a si o resultado de: 'prices[tipo]'(que acessa data e traz o valor da entrada de cada tipo de visitante) X 'quantidade'(que é o parametro vindo de entrants e tratado no reduce)
+// passando tbm o value '0' para o inico do acc;
 function entryCalculator(entrants = 0) {
-  // tive auxilio da Alessandra Resende neste requisito;
-  // default param em caso de parametro vazio = 0;
-  // Object.entries transforma 'entrants' em um array de arrays. No reduce, o acc é padrão mas o curr é tratado para receber parametros variaveis vindos de 'entrants';
-  // logo, acc soma a si o resultado de: 'prices[tipo]'(que acessa data e traz o valor da entrada de cada tipo de visitante) X 'quantidade'(que é o parametro vindo de entrants e tratado no reduce)
-  // passando tbm o value '0' para o inico do acc;
   return Object.entries(entrants).reduce((acc, [tipo, quantidade]) =>
     acc + (prices[tipo]) * quantidade, 0);
 }
@@ -88,9 +91,26 @@ function entryCalculator(entrants = 0) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // seu código aqui
+  const arrKeys = Object.keys(hours);
+  const hoursTable = {};
+  arrKeys.map((day) => {
+    if (hours[day].open === hours[day].close) {
+      hoursTable[day] = 'CLOSED';
+    } else {
+      hoursTable[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    }
+    return hoursTable;
+  });
+  const dale = dayName;
+  const dayHours = {};
+  dayHours[dayName] = hoursTable[dale];
+
+  if (!dayName) return hoursTable;
+  return dayHours;
+}
+console.log(schedule('Wednesday'));
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -106,7 +126,7 @@ function entryCalculator(entrants = 0) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

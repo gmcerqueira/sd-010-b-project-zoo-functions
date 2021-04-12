@@ -196,7 +196,6 @@ function oldestFromFirstSpecies(id) {
   return Object.values(older[older.length - 1]);
 }
 
-
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }

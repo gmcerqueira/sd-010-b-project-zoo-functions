@@ -37,6 +37,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   return data.employees.some((el) => el.managers.includes(id));
 }
+
 // Tive ajuda do Diegho Moraes para interpretar as questões 2 e 5!
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -61,7 +62,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (entrants === undefined) return 0;
+  if (!entrants) return 0;
   const { prices } = data;
   let result = 0;
   Object.keys(entrants).forEach((el) => {
@@ -70,9 +71,41 @@ function entryCalculator(entrants) {
   return result;
 }
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+const animalsByRegion = () => {
+  const reducingRegion = data.animals.reduce((acc, curr) => {
+    const arrayOfNames = [];
+    data.animals.forEach((el) => {
+      if (el.location === curr.location) arrayOfNames.push(el.name);
+    });
+    acc[curr.location] = arrayOfNames;
+    return acc;
+  }, {});
+  return reducingRegion;
+};
+
+const residentsBySpcies = () => {
+  const getObj = { NE: [], NW: [], SE: [], SW: [] };
+  data.animals.forEach((resid) => {
+    getObj[resid.location].push({ [resid.name]: resid.residents.map((get) => get.name) });
+  });
+  return getObj;
+};
+// Ajuda da resolução do segundo requisito (animalMap) com o instrutor Luanderson!
+
+const sortedResidents = () => {
+  const getObj = { NE: [], NW: [], SE: [], SW: [] };
+  data.animals.forEach((resid) => {
+    getObj[resid.location].push({ [resid.name]: (resid.residents.map((get) => get.name)).sort() });
+  });
+  return getObj;
+};
+
+function animalMap(options) {
+  if (!options) return animalsByRegion();
+  const { includeNames, sorted } = options;
+  if (includeNames && !sorted) return residentsBySpcies();
+  if (sorted) return sortedResidents();
+}
 
 const scheduleAll = () => {
   const { hours } = data;
@@ -122,7 +155,7 @@ function increasePrices(percentage) {
 
 const mappingEmployees = () => {
   const result = {};
-  const map = data.employees.map((el) => {
+  data.employees.map((el) => {
     const getAnimalData = animalsByIds(...el.responsibleFor);
     const names = [];
     getAnimalData.filter((get, index) => {
@@ -132,7 +165,7 @@ const mappingEmployees = () => {
     result[`${el.firstName} ${el.lastName}`] = names;
     return result;
   });
-  return map.shift();
+  return result;
 };
 
 const filterFunction = (idOrName, result) => {
@@ -150,7 +183,7 @@ const filterFunction = (idOrName, result) => {
 };
 
 function employeeCoverage(idOrName) {
-  if (idOrName === undefined) return mappingEmployees();
+  if (!idOrName) return mappingEmployees();
   let result = {};
   result = filterFunction(idOrName, result);
   return result;
@@ -163,7 +196,7 @@ module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

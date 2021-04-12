@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const { animals } = require('./data');
 const { employees } = require('./data');
-const data = require('./data');
+// const data = require('./data');
 
 // Referência: https://app.betrybe.com/course/live-lectures/sd-cohort-10-b
 function animalsByIds(...ids) {

@@ -76,14 +76,41 @@ const entryCalculator = (entrants) => {
   return resultado;
 };
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
-
 // function animalMap(options) {
 //   // seu código aqui
 // }
+const convert = (hora) => {
+  if (hora <= 12) {
+    return hora;
+  }
+  return hora - 12;
+};
 
+const hora = data.hours;
+const schedule = (dayName) => {
+  const dias = Object.keys(hora);
+  const scheduleObject = {};
+  // console.log(dias);
+  dias.forEach((dia) => {
+    if (dia !== 'Monday') {
+      scheduleObject[dia] = `Open from ${hora[dia].open}am until ${convert(hora[dia].close)}pm`;
+    } else {
+      scheduleObject[dia] = 'CLOSED';
+    }
+  });
+
+  if (!dayName) {
+    return scheduleObject;
+  }
+  return { [dayName]: scheduleObject[dayName] };
+};
+
+// referencia : https://github.com/tryber/sd-010-b-project-zoo-functions/pull/16/files
+
+// return animals.reduce((accumulator, current) => {
+//   accumulator[current.name] = current.residents.length;
+//   return accumulator;
+// }, {});
 // function schedule(dayName) {
 //   // seu código aqui
 // }
@@ -102,7 +129,7 @@ const entryCalculator = (entrants) => {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

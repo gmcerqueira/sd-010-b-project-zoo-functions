@@ -56,9 +56,17 @@ function animalCount(species) {
   return (species === undefined) ? animais : retorno.residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // seu código aqui
+  let total = 0;
+  if ((entrants !== undefined) && (entrants !== {})) {
+    const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+    total += Adult * data.prices.Adult;
+    total += Child * data.prices.Child;
+    total += Senior * data.prices.Senior;
+  }
+  return total;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -81,7 +89,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

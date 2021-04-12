@@ -82,15 +82,13 @@ function entryCalculator(entrants) {
     return 0;
   }
   if (entrants.Adult !== undefined) {
-    resultado = entrants.Adult * 49.99;
-    
+    resultado += entrants.Adult * 49.99;
   }
   if (entrants.Child !== undefined) {
-    resultado = resultado + entrants.Child * 20.99;
-    
+    resultado += entrants.Child * 20.99;
   }
   if (entrants.Senior !== undefined) {
-    resultado = resultado +  entrants.Senior * 24.99;
+    resultado += entrants.Senior * 24.99;
   }
   return resultado;
 }

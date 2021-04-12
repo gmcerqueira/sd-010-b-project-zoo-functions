@@ -44,14 +44,16 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// Referência: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+// Referência: https://metring.com.br/string-contem-substring-javascript#:~:text=O%20m%C3%A9todo%20includes()%20%C3%A9,m%C3%A9todo%20retorna%20true%20ou%20false%20.
 function isManager(id) {
+  // return employees.some((employee) => (employee.managers.includes(id)));
   return employees.some((employee) => (employee.managers.includes(id)));
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+// Referência: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Default_parameters
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -89,7 +91,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

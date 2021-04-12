@@ -44,7 +44,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   // seu código aqui
   const empData = data.employees;
-  const getManager = empData.same((man) =>
+  const getManager = empData.some((man) =>
     man.mangers.find((manId) => manId === id));
   return getManager;
 }

@@ -146,16 +146,47 @@ const defaultMapping = () => {
   return locations.reduce((acc, location) => {
     const animalsByLocation = (animals.filter((animal) => animal.location === location))
       .map((animal) => animal.name);
-    acc[location] = animalsByLocation;
-    return acc;
+    return {
+      ...acc,
+      [location]: animalsByLocation,
+    };
   }, {});
+};
+
+const animalMapWithNames = () => {
+  const defaultEntries = Object.entries(defaultMapping());
+  const fullObject = defaultEntries.reduce((animalsByRegion, region) => {
+    const animalsObject = region[1].reduce((acc, animal) => {
+      const animalObject = animals.find((animalName) => animalName.name === animal);
+      const animalsNames = animalObject.residents.reduce((names, resident) => ([
+        ...names, resident.name,
+      ]), []);
+      return [
+        ...acc,
+        { [animal]: animalsNames },
+      ];
+    }, []);
+    return {
+      ...animalsByRegion,
+      [region[0]]: animalsObject,
+    };
+  }, {});
+  return fullObject;
 };
 
 function animalMap(options) {
   if (!options || !options.includeNames) {
     return defaultMapping();
   }
+  return animalMapWithNames();
 }
+
+// [
+//   [ 'NE', [ 'lions', 'giraffes' ] ],
+//   [ 'NW', [ 'tigers', 'bears', 'elephants' ] ],
+//   [ 'SE', [ 'penguins', 'otters' ] ],
+//   [ 'SW', [ 'frogs', 'snakes' ] ]
+// ]
 
 // const expected = {
 //   NE: [
@@ -182,9 +213,7 @@ function animalMap(options) {
 
 // console.log(a);
 
-// console.log(animalMap());
-// console.log(animalMap({ includeNames: false }));
-// console.log(animalMap({ includeNames: true }));
+console.log((animalMap({ includeNames: true })).NE);
 // console.log(animalMap({ includeNames: true, sorted: true }));
 // console.log(animalMap({ includeNames: true, sorted: false }));
 

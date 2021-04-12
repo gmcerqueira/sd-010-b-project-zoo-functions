@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   let newsIds = [];
@@ -52,12 +52,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 // Duvida 1: Nesse exemplo o metodo recebe um objeto?
-// Duvida 2: Porque usar os colchetes no parametro e não no objeto?
-// Duvida 3: Porque a funcão não funciona sem o numberAnimals atrás da "key"?
 function isManager(id) {
   return employees.some(({ managers }) => managers.includes(id));
 }
-
+// Duvida 2: Porque usar os colchetes no parametro e não no objeto?
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newPerson = {
     id,
@@ -68,7 +66,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   };
   employees.push(newPerson);
 }
-
+// Duvida 3: Porque a funcão não funciona sem o numberAnimals atrás da "key"?
 function animalCount(species) {
   const numberAnimals = {};
   if (species !== undefined) {
@@ -93,9 +91,22 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  const horario = Object.keys(hours);
+  const newObj = {};
+  horario.forEach((diaSemana) => {
+    if (diaSemana !== 'Monday') {
+      newObj[diaSemana] = `Open from ${hours[diaSemana].open}am `
+      + `until ${hours[diaSemana].close - 12}pm`;
+    } else {
+      newObj[diaSemana] = 'CLOSED';
+    }
+  });
+  if (!dayName) {
+    return newObj;
+  }
+  return { [dayName]: newObj[dayName] };
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -111,7 +122,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

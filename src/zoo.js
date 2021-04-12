@@ -103,7 +103,7 @@ function entryCalculator(...entrants) {
 // }
 // console.log(animalMap());
 
-function monday(day, dia, dayName) {
+function monday(day, dia) {
   const agenda = day;
   if (dia === 'Monday') {
     agenda[dia] = 'CLOSED';

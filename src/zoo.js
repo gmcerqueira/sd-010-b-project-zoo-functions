@@ -153,9 +153,24 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  const objeto = {};
+  const employeeName = employees.map(({ firstName, lastName }) => `${firstName} ${lastName}`); // Array de nome e sobrenome
+  const animalResponsable = employees.map(({ responsibleFor }) => responsibleFor).map((array) => // Array com ids (responsableFor), para cada(array) pego o (animalId) encontra a id em animals e retorna um novo array com os nomes
+    array.map((animalId) => animals.find(({ id }) => id === animalId)).map(({ name }) => name));
+  employeeName.forEach((employee, index) => {
+    objeto[employee] = animalResponsable[index]; // Adiciona as chaves nomes dos empregados e os valores corresponde ao
+  }); // index
+  if (idOrName) { // com parametro
+    const checkParameter = employeeName.some((element) => // algum elemento no array de nomes inclui o parametro recebido?
+      element.includes(idOrName)) ? employees.filter(({ firstName, lastName }) => // sim filtro os employee retornando nome e sobrenome
+        firstName === idOrName || lastName === idOrName).map((nome) =>
+        `${nome.firstName} ${nome.lastName}`) : employees.filter(({ id }) => // se não procuro pelo id e retorno nome e sobreone
+        id === idOrName).map((name) => `${name.firstName} ${name.lastName}`);
+    return { [checkParameter]: objeto[checkParameter] }; // objeto com a chave construida no checkParameter e valor pego no objeto que tem a mesma chave de checkParameter;
+  }
+  return objeto; // sem parametros retorna o objeto todo;
+}
 
 module.exports = {
   entryCalculator,
@@ -164,7 +179,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

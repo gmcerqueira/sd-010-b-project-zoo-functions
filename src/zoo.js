@@ -29,6 +29,7 @@ function animalsOlderThan(animal, age) {
   return selectedAnimal.residents.every((resident) => resident.age >= age);
 }
 
+// Referência: https://pt.stackoverflow.com/questions/173221/como-checar-se-uma-string-est%C3%A1-vazia-em-javascript/173226
 function employeeByName(employeeName) {
   console.log(employeeName);
   if (!employeeName) {

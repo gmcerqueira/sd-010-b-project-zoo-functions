@@ -83,12 +83,40 @@ function entryCalculator(entrants) {
 }
 
 // function animalMap(options) {
-//   // seu código aqui
-// }
+//   const locations = ['NE', 'NW', 'SE', 'SW']
+//   const allMap = {};
+//   if (typeof options === 'undefined') {
+//     animals.forEach(animal => allMap[animal.location] =
+//     animals.map(ani => {
+//       if (ani.location === animal.location) {
+//         return ani.name
+//       }
+//     }))
+//   }
+//   console.log(allMap)
 
-// function schedule(dayName) {
-//   // seu código aqui
 // }
+// animalMap()
+
+// Para resolver o requisito 9 eu tive que buscar orientação com o meu colega Matheus bodra, pois, tive difilculdade na implementação. link:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/81/commits/8418cfc7aa598d1575dcc4dee52a3a2f90e7ef56
+
+const { hours } = data;
+
+function schedule(dayName) {
+  const dayKeys = Object.keys(hours);
+  const horaCompleted = {};
+  dayKeys.forEach((day) => {
+    if (day !== 'Monday') {
+      horaCompleted[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    } else {
+      horaCompleted[day] = 'CLOSED';
+    }
+  });
+  if (typeof dayName === 'undefined') {
+    return horaCompleted;
+  }
+  return { [dayName]: horaCompleted[dayName] };
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -104,7 +132,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

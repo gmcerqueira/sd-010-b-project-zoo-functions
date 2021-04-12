@@ -51,31 +51,40 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  if (species) {
-    const count = data.animals.find((unidade) => unidade.nome === species);
-    return count.residents.length;
+  if (!species) {
+    const animalsBySpecies = {};
+
+    data.animals.forEach((animal) => {
+      animalsBySpecies[animal.name] = animal.residents.length;
+    });
+
+    return animalsBySpecies;
   }
-  const todos = data.animals.reduce((acc, curr) => {
-    acc[curr.name] = curr.residents.length;
-    return acc;
-  }, { });
-  return todos;
+
+  const specie = data.animals.find((it) => it.name === species);
+  const numberOfResidents = specie.residents.length;
+
+  return numberOfResidents;
 }
 
 function entryCalculator(entrants) {
-  if (!entrants) return 0;
-  const ent = Object.entries(entrants);
-  let entrant = 0;
-  ent.forEach((elEnt) => {
-    prices.forEach((elPrices) => {
-      entrant += elPrices[0] === elEnt[0] ? elPrices[1] * elEnt[1] : 0;
-    });
-  });
-  return entrant;
+//
 }
 
-function animalMap() {
-  // seu código aqui
+function animalMap(locations, options) {
+  const map = locations;
+
+  if (options.sorted && options.sorted === true) {
+    Object.keys(map).forEach((key) => {
+      map[key] = map[key].map((specie) => {
+        const entries = Object.entries(specie);
+        entries[0][1] = entries[0][1].sort();
+        return Object.fromEntries(entries);
+      });
+    });
+  }
+
+  return map;
 }
 
 function schedule(dayName) {

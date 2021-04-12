@@ -11,7 +11,10 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const {
+  animals,
+  employees,
+} = data;
 
 function animalsByIds(...ids) {
   return animals.filter((animal) => ids.some((id) => animal.id === id));
@@ -31,7 +34,10 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return { ...personalInfo, ...associatedWith };
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  };
 }
 
 function isManager(id) {
@@ -39,15 +45,29 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const personalInfo = { id, firstName, lastName };
-  const associatedWith = { managers, responsibleFor };
+  const personalInfo = {
+    id,
+    firstName,
+    lastName,
+  };
+  const associatedWith = {
+    managers,
+    responsibleFor,
+  };
   employees.push(createEmployee(personalInfo, associatedWith));
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-//   return species;
-// }
+function animalCount(species) {
+  if (!species) {
+    const totalAnimals = {};
+    animals.forEach((animal) => {
+      totalAnimals[animal.name] = animal.residents.length;
+    });
+    return totalAnimals;
+  }
+  const findAnimal = animals.find((specie) => specie.name === species);
+  return findAnimal.residents.length;
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -81,7 +101,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

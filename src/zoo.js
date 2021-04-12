@@ -77,9 +77,20 @@ function animalCount(species) {
   return animalPopulation.residents.length;
 }
 
-// function entryCalculator(entrants) {
+function entryCalculator(entrants) {
+  const { prices } = data;
+  let total = 0;
 
-// }
+  if (!entrants) return total;
+
+  const entrantsKeys = Object.keys(entrants);
+
+  entrantsKeys.forEach((key) => {
+    total += (prices[key] * entrants[key]);
+  });
+
+  return total;
+}
 
 // function animalMap(options) {
 
@@ -113,7 +124,7 @@ function oldestFromFirstSpecies(id) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

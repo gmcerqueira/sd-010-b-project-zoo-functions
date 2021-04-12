@@ -45,9 +45,7 @@ function employeeByName(employeeName) {
 
   const employeefound = employees.find(({ firstName, lastName }) =>
     firstName === employeeName || lastName === employeeName);
-  // const employeefound = employees.map(({ firstName, lastName }) => ({
-  //   firstName === employeeName || lastName === employeeName
-  // }))
+
   // console.log(employeefound);
 
   return employeefound;
@@ -115,24 +113,24 @@ entryCalculator();
 // const allAnimalsOn = () => animals.map(({name})=> name)
 // console.log(allAnimalsOn())
 
-function animalMap(options) {
-  // seu código aqui
-  // const result = {};
-  // if (options === undefined) {
-  //   const animalsMapped = animals.map(({ name, location, residents }) => {
-  //    return  location
-  //   })
-    
-  //    console.log(animalsMapped)
-  // }
-}
-animalMap()
-function schedule(dayName) {
-  // seu código aqui
-  // const days = hours;
-  // console.log(hours)
-}
-schedule();
+// function animalMap(options) {
+//   // seu código aqui
+//   // const result = {};
+//   // if (options === undefined) {
+//   //   const animalsMapped = animals.map(({ name, location, residents }) => {
+//   //    return  location
+//   //   })
+
+//   //    console.log(animalsMapped)
+//   // }
+// }
+// animalMap();
+// function schedule(dayName) {
+//   // seu código aqui
+//   // const days = hours;
+//   // console.log(hours)
+// }
+// schedule();
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -153,11 +151,9 @@ function increasePrices(percentage) {
     Senior: Math.ceil(Senior * (percentage + 100)) / 100,
     Child: Math.ceil(Child * (percentage + 100)) / 100,
   };
-  console.log(data.prices)
+  console.log(data.prices);
 }
 // increasePrices(30);
-
-
 
 function employeeCoverage(idOrName) {
   // seu código aquigo
@@ -174,7 +170,7 @@ function employeeCoverage(idOrName) {
       result[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(({ name }) => name);
     }
   });
-  // console.log(findEmployee);
+  console.log(findEmployee);
   // console.log(result)
 
   return result;
@@ -183,9 +179,9 @@ function employeeCoverage(idOrName) {
 
 module.exports = {
   entryCalculator,
-  schedule,
+  // schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

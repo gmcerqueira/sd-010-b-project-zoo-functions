@@ -61,8 +61,9 @@ const listIncludes = (animal, sex, sorted) =>
 
 const animalMap = (options) => {
   const { includeNames, sex, sorted } = options || {};
-  if (!options || !includeNames) return listModel((animal) => animal.map(({ name }) => name));
-  return listModel(listIncludes, sex, sorted);
+  return includeNames
+    ? listModel(listIncludes, sex, sorted)
+    : listModel((animal) => animal.map(({ name }) => name));
 };
 
 const schedule = (dayName) => {

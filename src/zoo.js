@@ -141,24 +141,25 @@ function entryCalculator(entrants) {
 // lint me destr
 function schedule(dayName) {
   const { hours } = data;
+  const dayList = Object.keys(hours);
+  // consultei o repositório do Barrisenn para entender que para povoar um é necessário usar o forEach
+  const timeTable = {};
   if (dayName === undefined) {
-    return {
-      Tuesday: 'Open from 8am until 6pm',
-      Wednesday: 'Open from 8am until 6pm',
-      Thursday: 'Open from 10am until 8pm',
-      Friday: 'Open from 10am until 8pm',
-      Saturday: 'Open from 8am until 10pm',
-      Sunday: 'Open from 8am until 8pm',
-      Monday: 'CLOSED',
-    };
+    dayList.forEach((day) => {
+      timeTable[day] = (day === 'Monday'
+        ? 'CLOSED' : `Open from ${hours[dayName].open}am until ${(hours[dayName].close) - 12}pm`);
+    });
+    return timeTable;
   }
   const msg = {
-    [dayName]: `Open from ${hours[dayName].open}am until ${(hours[dayName].close) - 12}pm` };
+    [dayName]: `Open from ${hours[dayName].open}am until ${(hours[dayName].close) - 12}pm`,
+  };
   const monday = {
     [dayName]: 'CLOSED',
   };
   return dayName === 'Monday' ? monday : msg;
 }
+
 function oldestFromFirstSpecies(id) {
   const { employees, animals } = data;
   // tenho o funcionário
@@ -178,20 +179,13 @@ function increasePrices(percentage) {
   const { prices } = data;
   const { Adult, Child, Senior } = prices;
   const increase = (percentage / 100);
-  prices.Adult = parseFloat(((Adult + (Adult * increase)) + (0.005)).toFixed(2));
-  prices.Child = parseFloat(((Child + (Child * increase)) + (0.005)).toFixed(2));
-  prices.Senior = parseFloat(((Senior + (Senior * increase)) + (0.005)).toFixed(2));
+  prices.Adult = Math.round((Adult * increase + Adult) * 100) / 100;
+  prices.Child = Math.round((Child * increase + Child) * 100) / 100;
+  prices.Senior = Math.round((Senior * increase + Senior) * 100) / 100;
 }
 
 // function employeeCoverage(idOrName) {
-//   const { employees } = data;
-//   const {animals} = data;
-//   if (idOrName === undefined) {
-//     const listOfAll = employees.reduce((employeesAcc, currEmployee) => {
-//       const nameOfemployee = `${currEmployee.firstName} ${currEmployee.lastName}`;
-//     }, {});
-//     return listOfAll;
-//   }
+//   const { employees, animals } = data;
 //   }
 
 module.exports = {

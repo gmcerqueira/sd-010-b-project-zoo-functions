@@ -3,7 +3,7 @@ const zoo = require('../src/zoo');
 
 describe('Implemente a função animalMap', () => {
   it('Sem parâmetros, retorna animais categorizados por localização', () => {
-    const expected = {
+    const expected ={ 
       NE: ['lions', 'giraffes'],
       NW: ['tigers', 'bears', 'elephants'],
       SE: ['penguins', 'otters'],

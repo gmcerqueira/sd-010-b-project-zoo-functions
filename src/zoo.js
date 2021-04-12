@@ -29,16 +29,17 @@ function animalsOlderThan(animal, age) {
     .residents.every((residente) => residente.age >= age); // o find vai encontrar em animals o primeiro objeto(bicho) que tiver o name igual ao que foi colocado no parâmetro. Descobrindo isso, logo depois acessa o residents deste objeto. Aí usa o every dentro do residents encontrado. O every retorna um booleano e dá true se TODOS atenderem alguma condição. Nesse caso, vai dar true se todo "residente"  tiver uma idade maior ou igual a idade colocada no parâmetro.
 }
 
-// function employeeByName(employeeName) {
-//   if (typeof employeeName === 'undefined') {
-//     return {};
-//   }
-//   employees.find((empregado) => {
-//     if (empregado.firstName === employeeName || empregado.lastName === employeeName) {
-//       return empregado;
-//     }
-//   });
-// }
+function employeeByName(employeeName) {
+  if (typeof employeeName === 'undefined') {
+    return {};
+  }
+  return employees.find((empregado) => {
+    if (empregado.firstName === employeeName || empregado.lastName === employeeName) {
+      return empregado;
+    }
+    return null; // usa esse return null pra não dar erro no lint. Eu entendi que, como eu comecei o IF, faltou usar o else e aí coloca o return null, de certa forma conclui o if/else. Usando o npx eslint --fix, automaticamente foi retirado o else e ficou só o return null.
+  });
+}
 
 // function createEmployee(personalInfo, associatedWith) {
 // seu código aqui
@@ -90,7 +91,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   addEmployee,
   isManager,

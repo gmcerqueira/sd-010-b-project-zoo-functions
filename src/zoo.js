@@ -131,11 +131,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return animalIds.map(id => animals.find(animal => animal.id === id).name);
 }
 
 
-const getAnimals = (animals, ids, key) => ids.map(id => animals.find(animal => animal[key] === id))
+function employeeCoverage(idOrName) {
+  const getAnimals = (animals, ids, key) => ids.map(id => animals.find(animal => animal[key] === id))
   .map(lista => lista.name);
 
 const getResponseAnimal = (animal, employees) => {

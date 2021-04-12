@@ -144,7 +144,14 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
+  const increasedPrices = {
+    Adult: parseFloat((prices.Adult + (prices.Adult * (percentage / 100)) + 0.001).toFixed(2)),
+    Senior: parseFloat((prices.Senior + (prices.Senior * (percentage / 100)) + 0.001).toFixed(2)),
+    Child: parseFloat((prices.Child  + (prices.Child * (percentage / 100)) + 0.001).toFixed(2)),
+  };
+
+  Object.assign(prices, increasedPrices);
 }
 
 function employeeCoverage(idOrName) {

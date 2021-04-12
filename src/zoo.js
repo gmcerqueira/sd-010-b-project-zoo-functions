@@ -30,8 +30,14 @@ function animalsByIds(...ids) {
   // Filtrar o obj 'animals' pelo 'id' recebido.
   // Verificar se o 'id' do parametro é igual ao 'id' do animal.
   // Utilizar 'some' em vez de 'find', pois some retorna bool e find retorna o objeto.
-  return animals.filter((animal) =>
-    ids.some((id) => animal.id === id));
+  // Refatorado para fazer o exercicio employeeCoverage.
+  return ids.reduce((acc, id) => {
+    acc.push(animals.find((animal) => animal.id === id));
+    return acc;
+  }, []);
+
+  /* return animals.filter((animal) =>
+    ids.some((id) => animal.id === id)); */
 }
 
 // Verifica se todos os animais com dado nome são mais velhos que a idade passada.
@@ -199,13 +205,32 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
-  return percentage;
+  const decimalPercentage = (percentage / 100);
+  Object.keys(prices).forEach((price) => {
+    prices[price] *= (1 + decimalPercentage);
+    // Adicionado 0.001 como 'erro' para arrumar o valor.
+    prices[price] = parseFloat((prices[price] + 0.001).toFixed(2));
+  });
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
-  return idOrName;
+  const employeesRespons = {};
+  employees.forEach(({ firstName, lastName, responsibleFor }) => {
+    const fullName = `${firstName} ${lastName}`;
+    employeesRespons[fullName] = animalsByIds(...responsibleFor).map((animal) => animal.name);
+  });
+
+  if (typeof idOrName === 'string') {
+    let singleEmployee = employees.find(({ firstName, lastName, id }) =>
+      firstName === idOrName || lastName === idOrName || id === idOrName);
+    const { firstName, lastName } = singleEmployee;
+    singleEmployee = Object.keys(employeesRespons).find((employee) =>
+      employee === `${firstName} ${lastName}`);
+
+    return { [singleEmployee]: employeesRespons[singleEmployee] };
+  }
+
+  return employeesRespons;
 }
 
 module.exports = {

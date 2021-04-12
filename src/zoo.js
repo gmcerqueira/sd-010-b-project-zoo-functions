@@ -119,7 +119,6 @@ function entryCalculator(entrants) {
 console.log(entryCalculator());
 // https://codeburst.io/javascript-arrays-finding-the-minimum-maximum-sum-average-values-f02f1b0ce332
 
-
 // function animalMap(options) {
 //   // seu código aqui
 // }
@@ -153,16 +152,16 @@ function increasePrices(percentage) {
 
 module.exports = {
   entryCalculator,
-//  schedule,
-  // animalCount,
+  //  schedule,
+  animalCount,
   // animalMap,
-  // animalsByIds,
-  // employeeByName,
+  animalsByIds,
+  employeeByName,
   //   employeeCoverage,
   // addEmployee,
-  // isManager,
-  // animalsOlderThan,
-  // oldestFromFirstSpecies,
-  // increasePrices,
-  // createEmployee,
+  isManager,
+  animalsOlderThan,
+  oldestFromFirstSpecies,
+  increasePrices,
+  createEmployee,
 };

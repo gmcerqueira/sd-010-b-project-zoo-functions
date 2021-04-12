@@ -67,24 +67,37 @@ function animalCount(species) {
   return numberOfResidents;
 }
 
-function entryCalculator() {
-//
+function entryCalculator(entrants = {}) {
+  const keyEntrants = Object.keys(entrants);
+  return keyEntrants.reduce((acc, cur) => (acc + (prices[cur] * entrants[cur])), 0);
 }
 
-function animalMap(locations, options) {
-  const map = locations;
+function getSpecieByName(specieName) {
+  return animals.find((specie) => specie.name === specieName);
+}
 
-  if (options.sorted && options.sorted === true) {
-    Object.keys(map).forEach((key) => {
-      map[key] = map[key].map((specie) => {
-        const entries = Object.entries(specie);
-        entries[0][1] = entries[0][1].sort();
-        return Object.fromEntries(entries);
-      });
-    });
+function getSpecieResidentsName(specieName, sorted, sex) {
+  let { residents } = getSpecieByName(specieName);
+  if (sex) residents = residents.filter((resident) => resident.sex === sex);
+  const names = residents.map((resident) => resident.name);
+  if (sorted) names.sort();
+  return { [specieName]: names };
+}
+
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex } = options;
+  const results = animals.reduce((acc, { name, location }) => {
+    if (!acc[location]) acc[location] = [];
+    acc[location].push(name);
+    return acc;
+  }, {});
+  if (includeNames) {
+    return Object.entries(results).reduce((acc, [key, animalNames]) => {
+      acc[key] = animalNames.map((animalName) => getSpecieResidentsName(animalName, sorted, sex));
+      return acc;
+    }, {});
   }
-
-  return map;
+  return results;
 }
 
 function schedule(dayName) {

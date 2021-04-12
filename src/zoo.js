@@ -190,10 +190,10 @@ function oldestFromFirstSpecies(id) {
   const employeeResp = employees.find((employee) => (employee.id === id)).responsibleFor[0];
   const older = animals
     .find((animal) => (animal.id === employeeResp)).residents
-    .sort((a, b) => a.age + b.age);
-  return Object.values(older[0]);
+    .sort((a, b) => a.age - b.age);
+  return Object.values(older[older.length - 1]);
 }
-
+console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }

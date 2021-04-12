@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   let newsIds = [];
@@ -51,6 +51,9 @@ function createEmployee(personalInfo, associatedWith) {
   return newEmploy;
 }
 
+// Duvida 1: Nesse exemplo o metodo recebe um objeto?
+// Duvida 2: Porque usar os colchetes no parametro e não no objeto?
+// Duvida 3: Porque a funcão não funciona sem o numberAnimals atrás da "key"?
 function isManager(id) {
   return employees.some(({ managers }) => managers.includes(id));
 }
@@ -78,9 +81,13 @@ function animalCount(species) {
   return numberAnimals;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (entrants === undefined) {
+    return 0;
+  }
+  const entrant = Object.keys(entrants);
+  return entrant.reduce((acc, curr) => acc + (entrants[curr] * prices[curr]), 0);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -103,7 +110,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

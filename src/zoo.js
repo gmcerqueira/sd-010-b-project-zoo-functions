@@ -27,14 +27,12 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if (employeeName !== undefined) {
-    return employees.find(
-      (employee) =>
-        employee.firstName === employeeName
-        || employee.lastName === employeeName,
-    );
-  }
-  return {};
+  if (!employeeName) return {};
+  return employees.find(
+    (employee) =>
+      employee.firstName === employeeName
+      || employee.lastName === employeeName,
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -64,9 +62,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (entrants === undefined) {
-    return 0;
-  }
+  if (!entrants) return 0;
   const keys = Object.keys(entrants);
   return keys.reduce((a, b) => a + entrants[b] * prices[b], 0);
 }
@@ -81,9 +77,7 @@ function schedule(dayName) {
   keys.forEach((k) => { obj[k] = `Open from ${hours[k].open}am until ${hours[k].close - 12}pm`; });
   obj.Monday = 'CLOSED';
 
-  if (dayName === undefined) {
-    return obj;
-  }
+  if (!dayName) return obj;
   return { [dayName]: obj[dayName] };
 }
 
@@ -101,9 +95,25 @@ function increasePrices(percentage) {
   pricesKeys.forEach((item) => { prices[item] *= (1 + percent); });
   pricesKeys.forEach((value) => { prices[value] = Math.round(prices[value] * 100) / 100; });
 }
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+
+function employeeCoverage(idOrName) {
+  const object = {};
+  employees.forEach((employee) => {
+    const FirstLastName = `${employee.firstName} ${employee.lastName}`;
+    const mappedName = employee.responsibleFor.map((value) => animalsByIds(value)[0].name);
+    object[FirstLastName] = mappedName;
+  });
+
+  if (!idOrName) return object;
+
+  const find = employees.find(({
+    id, firstName, lastName }) =>
+    idOrName === id
+    || idOrName === firstName
+    || idOrName === lastName);
+  const key = `${find.firstName} ${find.lastName}`;
+  return { [key]: object[key] };
+}
 
 module.exports = {
   entryCalculator,
@@ -112,7 +122,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

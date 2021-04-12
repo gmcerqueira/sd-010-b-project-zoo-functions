@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   if (ids.length === 0) {
@@ -70,11 +70,21 @@ function animalCount(species) {
   return animals.find((param) => param.name === species).residents.length;
 }
 
-/* function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants) {
+  if (!entrants || entrants === {}) {
+    return 0;
+  }
+  let priceSum = 0;
+  const paramKeys = Object.keys(entrants);
+  paramKeys.forEach((keys) => {
+    priceSum += prices[keys] * entrants[keys];
+  });
+  return priceSum;
 }
+// Utilizei o conceito de Object.keys para guardar as chaves do objeto de entrada em uma variável e o site é o seguinte:
+// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
 
-function animalMap(options) {
+/* function animalMap(options) {
   // seu código aqui
 }
 
@@ -95,8 +105,8 @@ function employeeCoverage(idOrName) {
 } */
 
 module.exports = {
-  /* entryCalculator,
-  schedule, */
+  entryCalculator,
+  // schedule,
   animalCount,
   // animalMap,
   animalsByIds,

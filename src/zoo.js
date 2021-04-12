@@ -75,12 +75,11 @@ function isManager(manager) {
 
 // colega Diegho me sugeriu utilizar a usar a função includes neste exerício.
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-// const new  = {['id':id, 'firstName':firstName, 'lastName':lastName, 'managers':managers, 'responsibleFor':responsibleFor ]};
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newArray = { id, firstName, lastName, managers, responsibleFor };
 
-// employees = [...employees, new];
-
-// }
+  return employees.push(newArray);
+}
 // https://stackoverflow.com/questions/7858385/how-to-add-values-to-an-array-of-objects-dynamically-in-javascript
 
 function animalCount(species) {
@@ -116,7 +115,7 @@ function entryCalculator(entrants) {
   const arrSum = (arr) => arr.reduce((a, b) => a + b, 0);
   return arrSum(total);
 }
-console.log(entryCalculator());
+// '!entrants' eu busquei ajuda no plantão das 13 no dia 12/04.
 // https://codeburst.io/javascript-arrays-finding-the-minimum-maximum-sum-average-values-f02f1b0ce332
 
 // function animalMap(options) {
@@ -151,17 +150,17 @@ function increasePrices(percentage) {
 // }
 
 module.exports = {
-  entryCalculator,
+  // entryCalculator,
   //  schedule,
-  animalCount,
+  // animalCount,
   // animalMap,
-  animalsByIds,
-  employeeByName,
+  // animalsByIds,
+  // employeeByName,
   //   employeeCoverage,
-  // addEmployee,
-  isManager,
-  animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
+  addEmployee,
+  // isManager,
+  // animalsOlderThan,
+  // oldestFromFirstSpecies,
+  // increasePrices,
+  // createEmployee,
 };

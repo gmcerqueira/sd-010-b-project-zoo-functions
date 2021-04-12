@@ -150,17 +150,17 @@ function increasePrices(percentage) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   //  schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
-  // animalsByIds,
-  // employeeByName,
+  animalsByIds,
+  employeeByName,
   //   employeeCoverage,
   addEmployee,
-  // isManager,
-  // animalsOlderThan,
-  // oldestFromFirstSpecies,
-  // increasePrices,
-  // createEmployee,
+  isManager,
+  animalsOlderThan,
+  oldestFromFirstSpecies,
+  increasePrices,
+  createEmployee,
 };

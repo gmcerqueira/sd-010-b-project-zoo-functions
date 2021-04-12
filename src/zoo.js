@@ -112,7 +112,9 @@ function monday(day, dia) {
 }
 
 function schedule(dayName) {
-  const { hours } = data;
+  const {
+    hours,
+  } = data;
   const dias = Object.keys(hours);
   const agenda = {};
   if (dayName === undefined) {
@@ -127,9 +129,26 @@ function schedule(dayName) {
   return agenda;
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const {
+    animals,
+    employees,
+  } = data;
+  const idAnimal = employees.find((employ) => employ.id === id).responsibleFor[0];
+  const listaAnimal = animals.find((animal) => animal.id === idAnimal).residents;
+  const maisVelha = listaAnimal.sort((a, b) => { // referencia tirada de https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+    if (a.age > b.age) {
+      return 1;
+    }
+    if (a.age < b.age) {
+      return -1;
+    }
+    return 0;
+  }).pop();
+  const animalMaisVelho = [maisVelha.name, maisVelha.sex, maisVelha.age];
+  return animalMaisVelho;
+}
+// console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -150,7 +169,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

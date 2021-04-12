@@ -120,20 +120,20 @@ function increasePrices(percentage) {
   return prices;
 }
 
-function employeeCoverage(id) {
-  const funcionarios = employees.reduce((acc, funcionario, index) => {
-    const name = `${funcionario.firstName} ${funcionario.lastName}`;
-    const lista = [];
-    const listResponsavel = funcionario.responsibleFor.map((item) => {
-      lista.push(item);
-      const listaConvertida = lista.filter((ids) => animals.find((animal) => animal.id === ids));
-    });
-    const resultado = ({ ...acc, [name]: lista });
-    return resultado;
-  }, {});
-  return funcionarios;
-}
-console.log(employeeCoverage());
+// function employeeCoverage(id) {
+//   const funcionarios = employees.reduce((acc, funcionario, index) => {
+//     const name = `${funcionario.firstName} ${funcionario.lastName}`;
+//     const lista = [];
+//     const listResponsavel = funcionario.responsibleFor.map((item) => {
+//       lista.push(item);
+//       const listaConvertida = lista.filter((ids) => animals.find((animal) => animal.id === ids));
+//     });
+//     const resultado = ({ ...acc, [name]: lista });
+//     return resultado;
+//   }, {});
+//   return funcionarios;
+// }
+// console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
@@ -142,7 +142,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

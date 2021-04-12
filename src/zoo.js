@@ -112,15 +112,16 @@ function schedule(dayName) {
   out[`${dayName}`] = buffer[dayName];
   return out;
 }
-// const out = {};
-// const info = Object.entries(data.hours);
-// console.log(info[0][1])
-console.log(schedule('Tuesday'));
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
-
+function oldestFromFirstSpecies(id) {
+  const employer = data.employees.find((e) => e.id === id);
+  const specie = data.animals.find((animal) => animal.id === employer.responsibleFor[0]);
+  const ages = specie.residents.map((each) => each.age);
+  const great = Math.max(...ages);
+  const animal = (specie.residents.find((a) => a.age === great));
+  return [animal.name, animal.sex, animal.age];
+}
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }
@@ -140,7 +141,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

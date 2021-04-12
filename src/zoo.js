@@ -67,7 +67,7 @@ function animalCount(species) {
   return numberOfResidents;
 }
 
-function entryCalculator(entrants) {
+function entryCalculator() {
 //
 }
 

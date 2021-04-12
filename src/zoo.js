@@ -34,7 +34,8 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  sdfdsfds;
+  const apagar = 'apagar';
+  return apagar;
 }
 
 function isManager(id) {
@@ -68,16 +69,34 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants = 0) {
-
+  const apagar = 'apagar';
+  return apagar;
 }
 
 function animalMap(options) {
-  fsdfsd;
+
 }
 
 function schedule(dayName) {
-  sdfsfsf;
+  if (!dayName) {
+    const expected = {
+      Tuesday: 'Open from 8am until 6pm',
+      Wednesday: 'Open from 8am until 6pm',
+      Thursday: 'Open from 10am until 8pm',
+      Friday: 'Open from 10am until 8pm',
+      Saturday: 'Open from 8am until 10pm',
+      Sunday: 'Open from 8am until 8pm',
+      Monday: 'CLOSED',
+    };
+    return expected;
+  }
+  const horario = data.hours[dayName];
+  const result = {
+    [dayName]: horario,
+  };
+  return result;
 }
+console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   const idAnimal = data.employees.find((a) => a.id === id).responsibleFor[0];

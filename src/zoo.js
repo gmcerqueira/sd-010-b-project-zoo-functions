@@ -45,9 +45,11 @@ function isManager(id) {
   return getManager;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const newEmployees = { id, firstName, lastName, managers, responsibleFor };
-  data.employees.push(newEmployees);
+function addEmployee(id = '', firstName = '', lastName = '', managers = [], responsibleFor = []) {
+  const personalInfo = { id, firstName, lastName };
+  const associatedWith = { managers, responsibleFor };
+  const employee = createEmployee(personalInfo, associatedWith);
+  employees.push(employee);
 }
 
 function animalCount(species) {
@@ -129,8 +131,27 @@ function increasePrices(p) {
   return prices;
 }
 
-function employeeCoverage() {
-// codigo
+function employeeById(id) {
+  return employees.find((employee) => employee.id === id);
+}
+
+function getEmployeeFullName({ firstName, lastName }) {
+  return `${firstName} ${lastName}`;
+}
+
+function employeeCoverage(idOrName) {
+  const result = employees.reduce((acc, employee) => {
+    acc[getEmployeeFullName(employee)] = employee.responsibleFor
+      .map((animalsId) => animalsByIds(animalsId)[0])
+      .map(({ name }) => name);
+    return acc;
+  }, {});
+  if (idOrName !== undefined) {
+    const employee = employeeById(idOrName) || employeeByName(idOrName);
+    const employeeFullName = getEmployeeFullName(employee);
+    if (employee) return { [employeeFullName]: result[employeeFullName] };
+  }
+  return result;
 }
 
 module.exports = {

@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const { animals } = require('./data');
 // const data = require('./data');
 
+// Referência: https://app.betrybe.com/course/live-lectures/sd-cohort-10-b
 function animalsByIds(...ids) {
   const selectedAnimalsById = [];
   ids.forEach((id) => {
@@ -21,9 +22,12 @@ function animalsByIds(...ids) {
   return selectedAnimalsById;
 }
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+// Referẽncia: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+// Referência: https://app.betrybe.com/course/live-lectures/sd-cohort-10-b
+function animalsOlderThan(animal, age) {
+  const selectedAnimal = animals.find((e) => e.name === animal);
+  return selectedAnimal.residents.every((resident) => resident.age >= age);
+}
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -79,7 +83,7 @@ module.exports = {
   // employeeCoverage,
   // addEmployee,
   // isManager,
-  // animalsOlderThan,
+  animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
   // createEmployee,

@@ -48,6 +48,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
+function animalCount(species) {
+  // seu código aqui
+  let countReport = animals.reduce((acc, current) => {
+    acc[current.name] = current.residents.length;
+    return acc;
+  }, {});
+  if (Object.keys(countReport).includes(species)) {
+    countReport = countReport[species];
+  }
+  return countReport;
+}
+
 function entryCalculator(entrants = {}) {
   return Object.entries(entrants).reduce(
     (priceAccumulator, currentGroup) => {
@@ -134,11 +146,10 @@ function employeeCoverage(idOrName) {
   return objEmployee;
 }
 
-// animalCount
-
 module.exports = {
-  schedule,
   entryCalculator,
+  schedule,
+  animalCount,
   animalMap,
   animalsByIds,
   employeeByName,

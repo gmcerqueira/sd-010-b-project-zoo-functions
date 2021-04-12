@@ -26,13 +26,12 @@ function animalsByIds(...ids) {
 
 const findByAnimalName = (animalName) => animals.find((animal) => animal.name === animalName);
 
-function animalsOlderThan(animal, age) {
+function animalsOlderThan(animal, age){
   return findByAnimalName(animal).residents.every((isOlder) => age < isOlder.age);
 }
 
-function findEmpName(empName) {
-  return employees.find((emp) => emp.firstName === empName || emp.lastName === empName);
-}
+const findEmpName = (empName) =>
+  employees.find((emp) => emp.firstName === empName || emp.lastName === empName);
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) {

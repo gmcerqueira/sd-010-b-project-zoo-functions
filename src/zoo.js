@@ -17,12 +17,8 @@ const data = require('./data');
 
 const [...animalsData] = data.animals;
 const [...employeesData] = data.employees;
-const {
-  ...prices
-} = data.prices;
-const {
-  ...hours
-} = data.hours;
+const { ...prices } = data.prices;
+const { ...hours } = data.hours;
 
 function animalsByIds(...ids) {
   if (ids === []) {
@@ -94,9 +90,7 @@ function entryCalculator(entrants) {
 // funções auxiliares para resolução do requisito 9 (animalMap)
 function getAnimalsLocation() {
   return animals.reduce((acc, curr) => {
-    const {
-      location,
-    } = curr;
+    const { location } = curr;
     return {
       ...acc,
       [location]: animals.filter((animal) => animal.location === location).map((el) => el.name),
@@ -106,16 +100,12 @@ function getAnimalsLocation() {
 
 function getAnimalsName() {
   return animals.reduce((acc, curr) => {
-    const {
-      location,
-    } = curr;
+    const { location } = curr;
     return {
       ...acc,
       [location]: animals.filter((animal) => animal.location === location).map((an) => {
         const obj = {};
-        const {
-          name,
-        } = an;
+        const { name } = an;
         obj[name] = an.residents.map((resident) => resident.name);
         return obj;
       }),
@@ -125,16 +115,12 @@ function getAnimalsName() {
 
 function getOrdenedNames() {
   return animals.reduce((acc, cur) => {
-    const {
-      location,
-    } = cur;
+    const { location } = cur;
     return {
       ...acc,
       [location]: animals.filter((el) => el.location === location).map((an) => {
         const obj = {};
-        const {
-          name,
-        } = an;
+        const { name } = an;
         obj[name] = (an.residents.map((resident) => resident.name)).sort();
         return obj;
       }),
@@ -151,9 +137,7 @@ function getAnimalsBySex(options) {
       ...acc,
       [location]: animals.filter((animal) => animal.location === location).map((an) => {
         const obj = {};
-        const {
-          name,
-        } = an;
+        const { name } = an;
         obj[name] = an.residents.filter((res) => res.sex === options.sex).map((el) => el.name);
         return obj;
       }),
@@ -170,9 +154,7 @@ function getAnimalsBySexOrdened(options) {
       ...acc,
       [location]: animals.filter((animal) => animal.location === location).map((a) => {
         const obj = {};
-        const {
-          name,
-        } = a;
+        const { name } = a;
         obj[name] = a.residents.filter((res) => res.sex === options.sex).map((e) => e.name).sort();
         return obj;
       }),
@@ -258,19 +240,37 @@ function increasePrices(percentage) {
 }
 // REFERÊNCIA utilizada no arredondamento: https://metring.com.br/arredondar-numero-em-javascript
 
+function animalsByEmployee() {
+  return employees.reduce((acc, curr) => {
+    const { firstName } = curr;
+    const { lastName } = curr;
+    const species = [];
+    curr.responsibleFor.forEach((id) => {
+      species.push(animals.find((el) => el.id === id).name);
+    });
+    acc[`${firstName} ${lastName}`] = species;
+    return acc;
+  }, {});
+}
+
+function employeesAnimals(idOrName) {
+  const fn = (el) => (el.id === idOrName || el.firstName === idOrName || el.lastName === idOrName);
+  const currEmployee = employeesData.find(fn);
+  const animalList = [];
+  return currEmployee.responsibleFor.reduce((acc, curr) => {
+    const { firstName } = currEmployee;
+    const { lastName } = currEmployee;
+    animalList.push(animals.find((el) => el.id === curr).name);
+    acc[`${firstName} ${lastName}`] = animalList;
+    return acc;
+  }, {});
+}
+
 function employeeCoverage(idOrName) {
   if (!idOrName) {
-    return employees.reduce((acc, curr) => {
-      const { firstName } = curr;
-      const { lastName } = curr;
-      const species = [];
-      curr.responsibleFor.forEach((id) => {
-        species.push(animals.find((el) => el.id === id).name);
-      });
-      acc[`${firstName} ${lastName}`] = species;
-      return acc;
-    }, {});
+    return animalsByEmployee();
   }
+  return employeesAnimals(idOrName);
 }
 
 module.exports = {

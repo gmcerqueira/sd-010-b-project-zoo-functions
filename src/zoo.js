@@ -94,12 +94,38 @@ function entryCalculator(...entrants) {
 }
 
 // function animalMap(options) {
-//   // seu código aqui
-// }
+//   const { animals } = data;
+//   if (options === undefined) {
+//     animals.forEach( (animal) => {
 
-// function schedule(dayName) {
-//   // seu código aqui
+//     });
+//   }
 // }
+// console.log(animalMap());
+
+function monday(day, dia, dayName) {
+  const agenda = day;
+  if (dia === 'Monday') {
+    agenda[dia] = 'CLOSED';
+  }
+  return agenda;
+}
+
+function schedule(dayName) {
+  const { hours } = data;
+  const dias = Object.keys(hours);
+  const agenda = {};
+  if (dayName === undefined) {
+    dias.forEach((dia) => {
+      agenda[dia] = `Open from ${hours[dia].open}am until ${(hours[dia].close - 12)}pm`;
+      monday(agenda, dia);
+    });
+  } else {
+    agenda[dayName] = `Open from ${hours[dayName].open}am until ${(hours[dayName].close - 12)}pm`;
+    monday(agenda, dayName);
+  }
+  return agenda;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -115,7 +141,7 @@ function entryCalculator(...entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

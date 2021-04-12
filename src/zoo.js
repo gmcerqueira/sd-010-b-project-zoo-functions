@@ -37,12 +37,11 @@ const animalCount = (species) => {
   });
   return species ? list[species] : list;
 };
-
-const entryCalculator = (entrants) => {
-  if (!entrants || entrants === {}) return 0;
+// Adult * a + Child * b + Senior * c;
+const entryCalculator = (entrants = {}) => {
   const { Adult, Child, Senior } = prices;
   const { Adult: a = 0, Child: b = 0, Senior: c = 0 } = entrants;
-  return Adult * a + Child * b + Senior * c;
+  return Adult * a + Child * b + Senior * c || 0;
 };
 
 const listModel = (callback, sex, sorted) => {

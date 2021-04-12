@@ -171,11 +171,11 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
   const findEmployee = employees.find((item) => item.id === id);
   const animal = animals.find((element) => element.id === findEmployee.responsibleFor[0]);
-  return Object.values(animal.residents.reduce((prev, at) => {
-    if (prev.age > at.age) {
+  return Object.values(animal.residents.reduce((prev, atual) => {
+    if (prev.age > atual.age) {
       return prev;
     }
-    return at;
+    return atual;
   }));
 }
 
@@ -288,6 +288,71 @@ const createObjectAnimals = (number) => {
   }, []);
 };
 
+const createObjectAnimalsSort = (number) => {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  return animals.reduce((arr, curr) => {
+    const array = arr;
+    if (curr.location === locations[number]) {
+      array.push(animals.reduce((obj) => {
+        const objeto = obj;
+        objeto[curr.name] = curr.residents.reduce((acc, item) => {
+          const arrayNames = acc;
+          arrayNames.push(item.name);
+          return arrayNames.sort();
+        }, []);
+        return objeto;
+      }, {}));
+    }
+    return array;
+  }, []);
+};
+
+const createArrayAnimals = (curr, sex) => curr.residents.reduce((acc, item) => {
+  const arrayNames = acc;
+  if (item.sex === sex) {
+    arrayNames.push(item.name);
+  }
+  return arrayNames;
+}, []);
+
+const getAnimalsSex = (sex, curr, array, locations, number) => {
+  if (curr.location === locations[number]) {
+    array.push(animals.reduce((obj) => {
+      const objeto = obj;
+      objeto[curr.name] = createArrayAnimals(curr, sex);
+      return objeto;
+    }, {}));
+  }
+};
+
+const getAnimalsSexSort = (sex, curr, array, locations, number) => {
+  if (curr.location === locations[number]) {
+    array.push(animals.reduce((obj) => {
+      const objeto = obj;
+      objeto[curr.name] = createArrayAnimals(curr, sex).sort();
+      return objeto;
+    }, {}));
+  }
+};
+
+const createObjectAnimalSex = (sex, number) => {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  return animals.reduce((arr, curr) => {
+    const array = arr;
+    getAnimalsSex(sex, curr, array, locations, number);
+    return array;
+  }, []);
+};
+
+const createObjectAnimalSexSort = (sex, number) => {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  return animals.reduce((arr, curr) => {
+    const array = arr;
+    getAnimalsSexSort(sex, curr, array, locations, number);
+    return array;
+  }, []);
+};
+
 const includeNames = () => {
   const NE = createObjectAnimals(0);
   const NW = createObjectAnimals(1);
@@ -296,10 +361,69 @@ const includeNames = () => {
   return { NE, NW, SE, SW };
 };
 
+const includeNamesSorted = () => {
+  const NE = createObjectAnimalsSort(0);
+  const NW = createObjectAnimalsSort(1);
+  const SE = createObjectAnimalsSort(2);
+  const SW = createObjectAnimalsSort(3);
+  return { NE, NW, SE, SW };
+};
+
+const sexAnimals = (sex) => {
+  const NE = createObjectAnimalSex(sex, 0);
+  const NW = createObjectAnimalSex(sex, 1);
+  const SE = createObjectAnimalSex(sex, 2);
+  const SW = createObjectAnimalSex(sex, 3);
+  return { NE, NW, SE, SW };
+};
+
+const sexAnimalsSorted = (sex) => {
+  const NE = createObjectAnimalSexSort(sex, 0);
+  const NW = createObjectAnimalSexSort(sex, 1);
+  const SE = createObjectAnimalSexSort(sex, 2);
+  const SW = createObjectAnimalSexSort(sex, 3);
+  return { NE, NW, SE, SW };
+};
+
+const filterUndefined = (item) => (item !== undefined ? item : false);
+
+const filterRegion = (item, regions, number) => {
+  if (item.location === regions[number]) {
+    return item.name;
+  }
+};
+
+const returnOnlyNames = (number) => {
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+  return animals.map((item) => filterRegion(item, regions, number)).filter(filterUndefined);
+};
+
+const onlyAnimalNames = () => {
+  const NE = returnOnlyNames(0);
+  const NW = returnOnlyNames(1);
+  const SE = returnOnlyNames(2);
+  const SW = returnOnlyNames(3);
+  return { NE, NW, SE, SW };
+};
+
+const sexIncludeUnd = (includeName) => {
+  if (!includeName) {
+    return onlyAnimalNames();
+  }
+};
+
+const nameIncluded = (options) => {
+  if (options.sex && options.sorted) return sexAnimalsSorted('female');
+  if (options.sex === 'female') return sexAnimals('female');
+  if (options.sorted) return includeNamesSorted();
+  return includeNames();
+};
+
 function animalMap(options) {
   // seu código aqui
   if (!options) return undefinedOptions();
-  if (options.includeNames) return includeNames();
+  if (!options.includeNames && options.sex === 'female') return sexIncludeUnd(options.includeNames);
+  if (options.includeNames) return nameIncluded(options);
 }
 
 module.exports = {

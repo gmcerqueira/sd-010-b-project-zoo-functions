@@ -86,7 +86,7 @@ function entryCalculator(entrants) {
 function increasePrices(percentage) {
   // seu código aqui
   return Object.entries(prices).forEach(([acc, curr]) => {
-    prices[acc] = Math.round( curr * (( percentage / 100 ) + 1) * 100) / 100;
+    prices[acc] = Math.round(curr * ((percentage / 100) + 1) * 100) / 100;
   });
 }
 

@@ -108,7 +108,7 @@ function schedule(dayName) {
     }
   });
   if (dayName === undefined) return buffer;
-  let out = { };
+  const out = { };
   out[`${dayName}`] = buffer[dayName];
   return out;
 }

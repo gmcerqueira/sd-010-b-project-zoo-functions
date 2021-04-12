@@ -14,11 +14,13 @@ const data = require('./data');
 const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
-  return animals.filter((animal) => {
-    return ids.find((id) => {
-      return animal.id === id
-    });
-  })
+  const filteredAnimals = animals.filter((animal) => {
+    const animalById = ids.find((id) => animal.id === id);
+
+    return animalById;
+  });
+
+  return filteredAnimals;
 }
 
 function animalsOlderThan(animal, age) {

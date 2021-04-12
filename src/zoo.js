@@ -90,8 +90,8 @@ function entryCalculator(entrants) {
   return totalPrice;
 }
 
-function animalMap(options) {
-}
+// function animalMap(options) {
+// }
 
 function schedule(dayName) {
   const time = {};
@@ -139,8 +139,8 @@ function increasePrices(percentage) {
   Object.assign(prices, increasedPrices);
 }
 
-function employeeCoverage(idOrName) {
-}
+// function employeeCoverage(idOrName) {
+// }
 
 // ESLint em todos os requisitos
 
@@ -148,10 +148,10 @@ module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

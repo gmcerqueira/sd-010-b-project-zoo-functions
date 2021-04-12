@@ -139,8 +139,26 @@ function increasePrices(percentage) {
   Object.assign(prices, increasedPrices);
 }
 
-// function employeeCoverage(idOrName) {
-// }
+function employeeCoverage(idOrName) {
+  const filteredEmployee = employees.filter((employee) => {
+    if (idOrName) {
+      return idOrName === employee.id || idOrName === employee.firstName
+      || idOrName === employee.lastName;
+    }
+    return {};
+  });
+  const reduceAnimalsByEmployee = filteredEmployee.reduce(
+    (accumulator, { firstName, lastName, responsibleFor }) => {
+      const fullName = `${firstName} ${lastName}`;
+      const responsibleAnimals = responsibleFor.map((animalid) => (
+        animals.find((animal) => animal.id === animalid).name
+      ));
+      accumulator[fullName] = responsibleAnimals;
+      return accumulator;
+    }, {},
+  );
+  return reduceAnimalsByEmployee;
+}
 
 // ESLint em todos os requisitos
 
@@ -151,7 +169,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

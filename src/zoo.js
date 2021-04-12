@@ -10,7 +10,8 @@ eslint no-unused-vars: [
 */
 
 const { animals } = require('./data');
-// const data = require('./data');
+const { employees } = require('./data');
+const data = require('./data');
 
 // Referência: https://app.betrybe.com/course/live-lectures/sd-cohort-10-b
 function animalsByIds(...ids) {
@@ -18,7 +19,6 @@ function animalsByIds(...ids) {
   ids.forEach((id) => {
     selectedAnimalsById.push(animals.find((animal) => animal.id === id));
   });
-
   return selectedAnimalsById;
 }
 
@@ -29,9 +29,13 @@ function animalsOlderThan(animal, age) {
   return selectedAnimal.residents.every((resident) => resident.age >= age);
 }
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+function employeeByName(employeeName) {
+  console.log(employeeName);
+  if (!employeeName) {
+    return {};
+  }
+  return employees.find((e) => ((e.firstName === employeeName) || (e.lastName === employeeName)));
+}
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -79,7 +83,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

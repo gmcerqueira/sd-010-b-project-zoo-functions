@@ -125,7 +125,7 @@ function entryCalculator(entrants) {
   });
   return total;
 }
-// animal Map ------------------------------------------------------------------------------------------------
+// animal Map ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // 1° Mock que retorna a Localização
 function retrieveAvailableLocations() {
   return ['NE', 'NW', 'SE', 'SW'];
@@ -145,7 +145,7 @@ function retrieveAnimalsPerLocation(locations) {
 }
 // 3° função para localização & organizar em ordem alfabetica o nome de cada animal 3.1 - verifica o sexo depois de conter em suas mãos o filter de residents, e durante este processo será resolvido um parametro if, aonde verificará se contem sex.
 // Tive que fazer diversas modificaçõis pois o esLint detesta minha forma de codar >:C.
-function retriveAnimalsPerLocationsWithNameSorted(locations, sorted, sex) {
+function retriveAnimalsPerLocationsWithNameSortedSex(locations, sorted, sex) {
   const animalsPerLocation = {};
   locations.forEach((location) => {
     const filteredAnimals = data.animals
@@ -176,23 +176,29 @@ function animalMap(options) {
     includeNames = false, sex, sorted = false,
   } = options;
   if (includeNames) {
-    return retriveAnimalsPerLocationsWithNameSorted(locations, sorted, sex);
+    return retriveAnimalsPerLocationsWithNameSortedSex(locations, sorted, sex);
   }
   return retrieveAnimalsPerLocation(locations);
 }
+// End AnimalMap ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+function schedule(dayName) {
+  const daysSchedules = {};
+  const weekDays = Object.keys(data.hours);
+  weekDays.forEach((day) => {
+    const { open, close } = data.hours[day];
+    daysSchedules[day] = `Open from ${open}am until ${close - 12}pm`;
+    if (daysSchedules[day] === daysSchedules.Monday) {
+      daysSchedules.Monday = 'CLOSED';
+    }
+  });
+  if (!dayName) {
+    return daysSchedules;
+  }
+  return {
+    [dayName]: daysSchedules[dayName],
+  };
+}
 
-// End AnimalMap ---------------------------------------------------------------------------------------------------------
-// function schedule(dayName) {
-//   // seu código aqui
-//   const reduceDays = (acc, day, index, array) => {
-//     return `${acc} seraq vai ? ${day}`
-//   }
-//   if(!dayName) {
-//     console.log('talvez de certo');
-//     return data.hours.reduce(reduceDays, 'Dia:');
-//   }
-// }
-// console.log(schedule());
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
@@ -207,7 +213,7 @@ function animalMap(options) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   animalMap,
   animalsByIds,

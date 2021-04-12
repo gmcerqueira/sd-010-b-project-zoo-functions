@@ -9,7 +9,6 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
 const data = require('./data');
 // 01
 function animalsByIds(...ids) {
@@ -87,7 +86,7 @@ function animalMap() {
 }
 console.log(animalMap);
 // 10
-function schedule(dayName, expected) {
+function schedule(dayName) {
   // seu código aqui
   let hourConsult = Object.keys(data.hours);
   if (dayName) { hourConsult = Object.keys(data.hours).filter((consult) => dayName === consult); }
@@ -129,7 +128,7 @@ function employeeCoverage(idOrName) {
   const species = consultEmployee.reduce((accumulator, { firstName, lastName, responsibleFor }) => {
     const name = `${firstName} ${lastName}`;
     accumulator[name] = responsibleFor.map((animal) =>
-      animals.find((responsible) => responsible.id === animal).name);
+      data.animals.find((responsible) => responsible.id === animal).name);
     return accumulator;
   }, {});
   return species;

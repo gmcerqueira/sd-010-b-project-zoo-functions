@@ -36,8 +36,7 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const newEmployee = { ...personalInfo, ...associatedWith };
-  return newEmployee;
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -74,7 +73,7 @@ function animalCount(species) {
 }
 
 const entryCalculator = (entrants) => {
-  if (entrants && entrants !== {}) {
+  if (entrants) {
     const { Adult = 0, Child = 0, Senior = 0 } = entrants;
     return ((Adult * 49.99) + (Child * 20.99) + (Senior * 24.99));
   }
@@ -101,8 +100,6 @@ function schedule(dayName) {
   return ({ [dayName]: cronograma[dayName] });
 }
 
-console.log(schedule('Monday'));
-
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const funcionario = employees.find((item) => item.id === id);
@@ -123,10 +120,20 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// function employeeCoverage(idOrName) {
-
-// }
-// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+function employeeCoverage(id) {
+  const funcionarios = employees.reduce((acc, funcionario, index) => {
+    const name = `${funcionario.firstName} ${funcionario.lastName}`;
+    const lista = [];
+    const listResponsavel = funcionario.responsibleFor.map((item) => {
+      lista.push(item);
+      const listaConvertida = lista.filter((ids) => animals.find((animal) => animal.id === ids));
+    });
+    const resultado = ({ ...acc, [name]: lista });
+    return resultado;
+  }, {});
+  return funcionarios;
+}
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
@@ -135,7 +142,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

@@ -186,6 +186,8 @@ function schedule(dayName) {
 }
 // console.log(schedule('Tuesday'));
 
+// Aqui eu encontro o responsavel pelo ID, depois os animais
+// com o sort eu faço uma lista ordenada por idade, e retorno o maior deles.
 function oldestFromFirstSpecies(id) {
   const employeeResp = employees.find((employee) => (employee.id === id)).responsibleFor[0];
   const older = animals
@@ -193,7 +195,8 @@ function oldestFromFirstSpecies(id) {
     .sort((a, b) => a.age - b.age);
   return Object.values(older[older.length - 1]);
 }
-console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+
+
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }

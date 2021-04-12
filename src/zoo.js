@@ -162,7 +162,6 @@ function employeeCoverage(idOrName) {
   }
   return objEmployeeCoverage;
 }
-console.log(employeeCoverage(''));
 
 module.exports = {
   entryCalculator,

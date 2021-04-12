@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { hours, employees } = require('./data');
+const { animals } = require('./data');
 const data = require('./data');
 // 01
 function animalsByIds(...ids) {
@@ -87,11 +87,11 @@ function animalMap() {
 }
 console.log(animalMap);
 // 10
-function schedule(dayName) {
+function schedule(dayName, expected) {
   // seu código aqui
-  let hourConsult = Object.keys(hours);
-  if (dayName) { hourConsult = Object.keys(hours).filter((consult) => dayName === consult); }
-  const compare = { ...hours };
+  let hourConsult = Object.keys(data.hours);
+  if (dayName) { hourConsult = Object.keys(data.hours).filter((consult) => dayName === consult); }
+  const compare = { ...data.hours };
   const dayConsult = {};
   hourConsult.forEach((day) => {
     if (day === 'Monday') { dayConsult[day] = 'CLOSED'; }
@@ -104,8 +104,8 @@ function schedule(dayName) {
 // 11
 function oldestFromFirstSpecies(expected) {
   // seu código aqui
-  const infoMooreOlds = employees.find(({ id }) => id === expected).responsibleFor[0];
-  const findAnimals = data.animals.find(({ id }) => id === infoMooreOlds).residents;
+  const infoMooreOlds = data.employees.find((id) => id.id === expected).responsibleFor[0];
+  const findAnimals = data.animals.find((id) => id.id === infoMooreOlds).residents;
   const { name, sex, age } = findAnimals.reduce((a, b) =>
     a.concat(b), []).sort((a, b) => b.age - a.age)[0];
   return [name, sex, age];
@@ -121,9 +121,19 @@ function increasePrices(percentage) {
   return data.prices;
 }
 // 13
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  // seu código aqui
+  const consultEmployee = data.employees.filter((employeeResponsible) =>
+    (idOrName ? idOrName === employeeResponsible.id || idOrName === employeeResponsible.firstName
+      || idOrName === employeeResponsible.lastName : true));
+  const species = consultEmployee.reduce((accumulator, { firstName, lastName, responsibleFor }) => {
+    const name = `${firstName} ${lastName}`;
+    accumulator[name] = responsibleFor.map((animal) =>
+      animals.find((responsible) => responsible.id === animal).name);
+    return accumulator;
+  }, {});
+  return species;
+}
 
 module.exports = {
   entryCalculator,
@@ -132,7 +142,7 @@ module.exports = {
   animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

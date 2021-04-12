@@ -142,6 +142,8 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
 }
 
+// ESLint em todos os requisitos
+
 module.exports = {
   entryCalculator,
   schedule,

@@ -254,7 +254,17 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  const percentagePercent = (1 + (percentage / 100));
+  const pricesIncreases = {};
+  const keys = Object.keys(data.prices);
+  keys.forEach((key) => {
+    const value = data.prices[key] * percentagePercent;
+    pricesIncreases[key] = (Math.round(value * 100) / 100);
+  });
+  return pricesIncreases;
 }
+
+/* console.log(increasePrices(50)); */
 
 function employeeCoverage(idOrName) {
   // seu código aqui

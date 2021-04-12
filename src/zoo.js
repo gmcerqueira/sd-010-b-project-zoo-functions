@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 
 // const [name, sex, age] = residents;
 
@@ -76,8 +76,12 @@ function isManager(manager) {
 // colega Diegho me sugeriu utilizar a usar a função includes neste exerício.
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
+// const new  = {['id':id, 'firstName':firstName, 'lastName':lastName, 'managers':managers, 'responsibleFor':responsibleFor ]};
+
+// employees = [...employees, new];
+
 // }
+// https://stackoverflow.com/questions/7858385/how-to-add-values-to-an-array-of-objects-dynamically-in-javascript
 
 function animalCount(species) {
   if (!species) {
@@ -92,9 +96,29 @@ function animalCount(species) {
 }
 // este exercício foi resolvido com a ajuda de colegas Diegho, Carlos e Alan.
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (!entrants) {
+    return 0;
+  }
+
+  const arrays = (Object.entries(entrants));
+  const total = [];
+  arrays.forEach((array) => {
+    if (array[0] === 'Adult') {
+      total.push(array[1] * prices.Adult);
+    } else if (array[0] === 'Senior') {
+      total.push(array[1] * prices.Senior);
+    } else if (array[0] === 'Child') {
+      total.push(array[1] * prices.Child);
+    }
+  });
+  console.log(total);
+  const arrSum = (arr) => arr.reduce((a, b) => a + b, 0);
+  return arrSum(total);
+}
+console.log(entryCalculator());
+// https://codeburst.io/javascript-arrays-finding-the-minimum-maximum-sum-average-values-f02f1b0ce332
+
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -117,26 +141,28 @@ function oldestFromFirstSpecies(id) {
   const result = findAnimal.find((maxAge) => maxAge.age === age);
   return Object.values(result);
 }
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  prices.Adult = (Math.round((prices.Adult * (percentage / 100) + prices.Adult) * 100) / 100);
+  prices.Senior = (Math.round((prices.Senior * (percentage / 100) + prices.Senior) * 100) / 100);
+  prices.Child = (Math.round((prices.Child * (percentage / 100) + prices.Child) * 100) / 100);
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }
 
 module.exports = {
-//   entryCalculator,
+  entryCalculator,
 //  schedule,
-  animalCount,
+  // animalCount,
   // animalMap,
-  animalsByIds,
-  employeeByName,
+  // animalsByIds,
+  // employeeByName,
   //   employeeCoverage,
-  //   addEmployee,
-  isManager,
-  animalsOlderThan,
-  oldestFromFirstSpecies,
-  //   increasePrices,
-  createEmployee,
+  // addEmployee,
+  // isManager,
+  // animalsOlderThan,
+  // oldestFromFirstSpecies,
+  // increasePrices,
+  // createEmployee,
 };

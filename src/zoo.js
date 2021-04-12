@@ -14,6 +14,7 @@ const data = require('./data');
 const zoo = data.animals;
 const funcionarios = data.employees;
 const precos = data.prices;
+const hrs = data.hours;
 
 function animalsByIds(...ids) {
   return zoo.filter((animal) => ids.some((animalId) => animal.id === animalId));
@@ -59,6 +60,7 @@ function animalCount(species) {
   }
   return zoo.find((animal) => animal.name === species).residents.length;
 }
+
 function entryCalculator(entrants) {
   if (entrants === undefined || entrants === {}) {
     return 0;
@@ -68,11 +70,25 @@ function entryCalculator(entrants) {
 
 /* function animalMap(options) {
   // seu código aqui
-}
-
-/* function schedule(dayName) {
-  // seu código aqui
 } */
+
+function schedule(dayName) {
+  const hrDias = {};
+  const keys = Object.keys(hrs);
+  keys.forEach((dia) => {
+    if (dia !== 'Monday') {
+      hrDias[dia] = `Open from ${hrs[dia].open}am until ${(hrs[dia].close) - 12}pm`;
+    } else {
+      hrDias[dia] = 'CLOSED';
+    }
+  });
+  if (dayName) {
+    return {
+      [dayName]: hrDias[dayName],
+    };
+  }
+  return hrDias;
+}
 
 /* function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -88,7 +104,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

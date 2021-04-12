@@ -29,11 +29,7 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   const { animals } = data;
   // uso do Find para encontrar a espécie
-  const { residents } = animals.find((especie) => {
-    if (animal === especie.name) {
-      return true;
-    }
-  });
+  const { residents } = animals.find((especie) => (animal === especie.name));
   // uso do Every para verificar a idade minima passada
   const result = residents.every((resident) => resident.age >= age);
 
@@ -46,55 +42,52 @@ function employeeByName(employeeName) {
     return {};
   }
   // uso do Find para encontrar o primeirou ou último nome recebido por parâmetro
-  const findEmployee = employees.find((employee) => {
-    if (employeeName === employee.firstName) {
-      return true;
-    } if (employeeName === employee.lastName) {
-      return true;
-    }
-  });
+  const findEmployee = employees.find((employee) =>
+    (employeeName === employee.firstName || employeeName === employee.lastName));
   return findEmployee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  // Recebi ajuda dos colegas Diegho Moraes (esqueci o nome do segundo)
   return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-
+  const { employees } = data;
+  //  Recebi ajuda do colega Lucas Martins
+  return employees.some((employee) => employee.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
-}
+// }
 
 function animalCount(species) {
   const { animals } = data;
   const especieAndPopulation = {};
 
   if (!species) {
-   animals.forEach(({name, residents}) => {
-     especieAndPopulation[name] = residents.length;
-   })
-   return especieAndPopulation;
+    animals.forEach(({ name, residents }) => {
+      especieAndPopulation[name] = residents.length;
+    });
+    return especieAndPopulation;
   }
-  const teste = animals.find(({ name }) => name === species);
+  const animalPopulation = animals.find(({ name }) => name === species);
 
-  return teste.residents.length;
+  return animalPopulation.residents.length;
 }
 
-function entryCalculator(entrants = {Adult, Child, Senior}) {
+// function entryCalculator(entrants) {
 
-}
+// }
 
-function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
 
-function schedule(dayName) {
+// }
 
-}
+// function schedule(dayName) {
+
+// }
 
 function oldestFromFirstSpecies(id) {
   const { employees } = data;
@@ -111,26 +104,26 @@ function oldestFromFirstSpecies(id) {
   return [name, sex, age];
 }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+// function increasePrices(percentage) {
+//   // seu código aqui
+// }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
 module.exports = {
-  entryCalculator,
-  schedule,
+  // entryCalculator,
+  // schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
-  addEmployee,
+  // employeeCoverage,
+  // addEmployee,
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  increasePrices,
+  // increasePrices,
   createEmployee,
 };

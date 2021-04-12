@@ -93,7 +93,7 @@ function increasePrices(percentage) {
   precos.forEach((value) => {
     const porcent = Math.ceil((percentage + 100) * value[1] * 0.01 * 100) / 100;
     prices[value[0]] = porcent;
-  })
+  });
   return prices;
 }
 

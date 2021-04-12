@@ -133,23 +133,54 @@ function entryCalculator(entrants) {
 // REQUISITO 09 - animalMap
 // ------------------------------------------------------------------
 
-// https://stackoverflow.com/questions/13973158/how-do-i-convert-a-javascript-object-array-to-a-string-array-of-the-object-attri
+// Função que retorna valores únicos de uma Array
+// Ref: https://appdividend.com/2019/04/11/how-to-get-distinct-values-from-array-in-javascript/
+const unique = (value, index, self) => self.indexOf(value) === index;
 
-// 1. cria objeto - locations: []
-// 2. filtra animais por location - cada filter no valor de cada chave location
-// 3.
+// Função que cria o objeto base de resultado
+const defaultMapping = () => {
+  // locations: mapeia locations de todos os animais e depois filtra os valores únicos.
+  const locations = (animals.map((animal) => animal.location)).filter(unique);
 
-// function animalMap(options) {
-//   if (!options || !options.includeNames) {
-//     return 'Default';
-//   }
-//   if (options.includeNames && options.sex && options.sorted) {
-//     return 'tudão';
-//   }
-//   if (options.includeNames && options.sex) {
+  // retorna um {} com as locations como keys e animais de cada location como value
+  return locations.reduce((acc, location) => {
+    const animalsByLocation = (animals.filter((animal) => animal.location === location))
+      .map((animal) => animal.name);
+    acc[location] = animalsByLocation;
+    return acc;
+  }, {});
+};
 
-//   }
-// }
+function animalMap(options) {
+  if (!options || !options.includeNames) {
+    return defaultMapping();
+  }
+}
+
+// const expected = {
+//   NE: [
+//     { lions: ['Dee', 'Faustino', 'Maxwell', 'Zena'] },
+//     { giraffes: ['Antone', 'Arron', 'Bernard', 'Clay', 'Gracia', 'Vicky'] },
+//   ],
+//   NW: [
+//     { tigers: ['Esther', 'Shu'] },
+//     { bears: ['Edwardo', 'Hiram', 'Milan'] },
+//     { elephants: ['Bea', 'Ilana', 'Jefferson', 'Orval'] },
+//   ],
+//   SE: [
+//     { penguins: ['Joe', 'Keri', 'Nicholas', 'Tad'] },
+//     { otters: ['Lloyd', 'Margherita', 'Mercedes', 'Neville'] },
+//   ],
+//   SW: [
+//     { frogs: ['Annice', 'Cathey'] }, { snakes: ['Bill', 'Paulette'] },
+//   ],
+// };
+
+// const a = Object.values(expected);
+
+// const b = Object.values(a[1][1]);
+
+// console.log(a);
 
 // console.log(animalMap());
 // console.log(animalMap({ includeNames: false }));
@@ -270,7 +301,7 @@ module.exports = {
   addEmployee,
   animalCount,
   entryCalculator,
-  // animalMap,
+  animalMap,
   schedule,
   oldestFromFirstSpecies,
   increasePrices,

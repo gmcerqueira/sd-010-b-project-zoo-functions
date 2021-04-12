@@ -75,16 +75,30 @@ function entryCalculator(entrants) {
   return Adult * 49.99 + Senior * 24.99 + Child * 20.99;
 }
 // 9
-function animalMap() {
-  // seu código aqui
-  return {
-    NE: ['lions', 'giraffes'],
-    NW: ['tigers', 'bears', 'elephants'],
-    SE: ['penguins', 'otters'],
-    SW: ['frogs', 'snakes'],
-  };
+function getAnimals(options, animals) {
+  return animals.map((animal) => {
+    let { residents } = animal;
+    if (options.sex) {
+      residents = residents.filter((resident) => resident.sex === options.sex);
+    }
+    residents = residents.map((resident) => resident.name);
+    if (options.sorted === true) { residents = residents.sort(); }
+    return { [animal.name]: residents };
+  });
 }
-console.log(animalMap);
+function animalMap(options = {}) {
+  // seu código aqui
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+  const mapGeograph = regions.reduce((a, b) => {
+    let animals = data.animals.filter((animal) => animal.location === b);
+    if (options.includeNames === true) { animals = getAnimals(options, animals); }
+    if (options.includeNames !== true) { animals = animals.map((animal) => animal.name); }
+    const local = { ...a, [b]: animals };
+    return local;
+  }, {});
+  return mapGeograph;
+}
+// console.log(animalMap);
 // 10
 function schedule(dayName) {
   // seu código aqui

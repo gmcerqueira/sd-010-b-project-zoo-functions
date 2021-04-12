@@ -9,6 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
+// const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
 // const data = require('./data');
@@ -38,13 +39,15 @@ function employeeByName(employeeName) {
   return employees.find((e) => ((e.firstName === employeeName) || (e.lastName === employeeName)));
 }
 
+// Referência: https://app.betrybe.com/course/fundamentals/higher-order-functions-do-javascript-es6/javascript-es6-spread-operator-parametro-rest-destructuring-e-mais/822dc255-28d1-4916-bd71-5b1aa70079da/conteudos/d8f96b7c-6a06-4cfe-b4ce-01d6c93adf5d/spread-operator/823d3881-206e-48c3-b8d9-c712346a69e8?use_case=side_bar
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+// Referência: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+function isManager(id) {
+  return employees.some((employee) => (employee.managers.includes(id)));
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -87,7 +90,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

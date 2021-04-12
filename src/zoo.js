@@ -46,9 +46,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees
-    .some((employee) => employee.managers
-      .find((manager) => id === manager));
+  const arrManagers = [];
+  employees.forEach((employee) => arrManagers
+    .push(...employee.managers));
+
+  return arrManagers.some((manager) => id === manager);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -71,7 +73,7 @@ function animalCount(species) {
   }
 
   const specie = animals
-    .find((specie1) => (specie1.name === species));
+    .find((animal) => animal.name === species);
 
   return specie.residents.length;
 }
@@ -141,10 +143,26 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  return idOrName;
+  const objEmployeeCoverage = {};
+  const arrEmployee = employees.map((employee) => `${employee.firstName} ${employee.lastName}`);
+  const arrAnimalsResponsible = employees
+    .map((employee) => employee.responsibleFor.map((animalId) => animals
+      .find((animal) => animal.id === animalId))
+      .map((animal) => animal.name));
+  arrEmployee.forEach((fullName, index) => {
+    objEmployeeCoverage[fullName] = arrAnimalsResponsible[index];
+  });
+  if (idOrName) {
+    const employeeInfo = employees.find((employee) =>
+      employee.id === idOrName || employee.firstName === idOrName
+      || employee.lastName === idOrName);
+    const responsibles = objEmployeeCoverage[`${employeeInfo.firstName} ${employeeInfo.lastName}`];
+    const fullName = `${employeeInfo.firstName} ${employeeInfo.lastName}`;
+    return { [fullName]: responsibles };
+  }
+  return objEmployeeCoverage;
 }
-
-console.log(employeeCoverage());
+console.log(employeeCoverage(''));
 
 module.exports = {
   entryCalculator,

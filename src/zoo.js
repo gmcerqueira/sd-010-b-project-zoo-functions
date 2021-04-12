@@ -9,9 +9,6 @@ eslint no-unused-vars: [
 ]
 */
 
-const {
-  employees,
-} = require('./data');
 const data = require('./data');
 
 function animalsByIds(...parametro) {
@@ -34,7 +31,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const apagar = 'apagar';
+  const apagar = personalInfo - associatedWith;
   return apagar;
 }
 
@@ -69,12 +66,13 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants = 0) {
-  const apagar = 'apagar';
+  const apagar = entrants;
   return apagar;
 }
 
 function animalMap(options) {
-
+  const apagar = options;
+  return apagar;
 }
 
 function schedule(dayName) {
@@ -108,8 +106,8 @@ function increasePrices(percentage) {
   const arrayPrices = Object.entries(data.prices);
 
   arrayPrices.forEach((element) => {
-    data.prices[element[0]] = Math.ceil(((element[1] * (percentage / 100)) +
-      element[1]) * 100) / 100;
+    data.prices[element[0]] = Math.ceil(((element[1] * (percentage / 100))
+      + element[1]) * 100) / 100;
   });
   return data.prices;
 }
@@ -122,7 +120,7 @@ function employeeCoverage(idOrName) {
   // const idAnimaisFuncionario = data.employees
   // .find((a) => a.id === idOrName || a.firstName === idOrName || a.lastName === idOrName).responsibleFor;
 
-  const todosOsAnimais = data.animals.name;
+  const todosOsAnimais = idOrName;
   return todosOsAnimais;
 }
 console.log(employeeCoverage());

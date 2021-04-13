@@ -119,11 +119,11 @@ const getAnimalsBySexSorted = (sex) => {
   return object;
 };
 
-const animalMapFunctions = ({ includeNames, sorted, sex }) => {
-  if (includeNames && sex && sorted) return getAnimalsBySexSorted(sex);
-  if (includeNames && sex) return getAnimalsBySex(sex);
-  if (includeNames && sorted) return getAnimalsOptionsSorted();
-  if (includeNames) return getAnimalsOptions();
+const animalMapFunctions = ({ sorted, sex }) => {
+  if (sex && sorted) return getAnimalsBySexSorted(sex);
+  if (sex) return getAnimalsBySex(sex);
+  if (sorted) return getAnimalsOptionsSorted();
+  return getAnimalsOptions();
 };
 
 function animalMap(options) {

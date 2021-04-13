@@ -66,9 +66,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // Adiciona um funcionário no fim do array employees
 // .push adiciona objeto
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  if (!species) {
+    const animalObject = {};
+    animals.forEach((animal) => { animalObject[animal.name] = animal.residents.length; });
+    return animalObject;
+  }
+  return animals.find((animal) => animal.name === species).residents.length;
+}
+// if ! para vrf o parametro specie, se invalido entre no if, caso contrario o find localiza o nome e a qtd.
+// Sem parâmetros, retorna um objeto de animais e qtds
+// Com o nome de uma espécie de animal, retorna um número - qtd
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -97,8 +105,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
 //   entryCalculator,
 //   schedule,
-//   animalCount,
-//   animalMap,
+  animalCount,
+  //   animalMap,
   animalsByIds,
   employeeByName,
   //   employeeCoverage,

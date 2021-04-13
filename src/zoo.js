@@ -8,14 +8,14 @@ eslint no-unused-vars: [
   }
 ]
 */
-// requisitos 1,2 ,3 e 5 eu fiz com a ajuda do meu colega Alexandre Damasceno que me ajudou muito.  Link do PR:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/66/commits
+// requisitos 1,2 ,3,5 e 7 eu fiz com a ajuda do meu colega Alexandre Damasceno que me ajudou muito.  Link do PR:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/66/commits
 
 // OBS: no requisito 1 eu mantive os mesmos nomes de variáveis que o Alexandre porque achei que ele escolheu nomes perfeitos e concisos. Qualquer mudança de nome que eu fizesse só iria atrapalhar.
 const data = require('./data');
 
 const { employees } = data;
 const { animals } = data;// é pra trazer as informações de animals que estão no data.js
-
+// const { prices } = data;
 function animalsByIds(...ids) { // esse ids será um conjunto de vários ID(ou pode não ser também).
   if (typeof (ids) === 'undefined') {
     return [];
@@ -41,9 +41,10 @@ function employeeByName(employeeName) {
   });
 }
 
-// function createEmployee(personalInfo, associatedWith) {
-// seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+// no teste desse requisito já foi dito que o personalInfo tem dentro dele um: ID, firstName e lastName  e que o associatedWith tem managers e responsibleFor.  Só preciso retornar um objeto que tenha todas essas 5 coisas.
+  return { ...personalInfo, ...associatedWith };
+}
 // o requisito 5 pede pra que coloque um id como parâmetro, e a função precisa buscar algum outro funcionário que tenha como chefe a pessoa que tenha o ID que foi colocado no parâmetro.
 // Como pede um valor booleano, é bom usar o some ou o every. Mas como basta que eu encontre APENAS UM funcionário que tenha como manager a pessoa com o id do parâmetro, então eu uso o SOME, e não o every.
 function isManager(id) {
@@ -57,13 +58,25 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 } // coloquei no parâmetro managers e responsibleFor = [] pra o caso de colocarem esses dois como algo sem valor, aí tem que fazer isso pra passar nos testes.
 // Dentro do push tem que colocar {}.Como employees é um array de objetos, então um novo elemento nesse array também é pra ser dentro de chaves.
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  const animais = {};
+  animals.forEach((bicho) => { animais[bicho.name] = bicho.residents.length; }); // ao rodar pelos "bicho", vai atualizar esse ANIMAIS. Aí fica: nome do animal : quantidade desse animal. É PRA FAZER ISSO COM TODOS esses bichos/animais.
+  if (typeof species === 'undefined') {
+    return animais; // aqui vai retornar o ANIMAIS como ficou no forEach aqui em cima.
+  }
+  return animais[species]; // aí aqui fica assim: Se o parâmetro for Urso, aí vai olhar o ANIMAIS( que tem todos animais e suas quantidades), aí vai pegar o Urso, e vai trazer SOMENTE a quantidade.
+}
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (typeof entrants === 'undefined') {
+    return 0;
+  } if (entrants === {}) {
+    return 0;
+  }
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants; // tive que igualar a 0 para que passasse nos testes. Isso serve pra que, caso a pessoa ignore algum desses 3, o javascript vai colocar como zero.
+  const calculo = (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
+  return calculo;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -86,9 +99,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,
@@ -98,5 +111,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

@@ -138,11 +138,11 @@ function entryCalculator(entrants) {
 const unique = (value, index, self) => self.indexOf(value) === index;
 
 // Função que cria o objeto base de resultado
+// locations: mapeia locations de todos os animais e depois filtra os valores únicos.
+// retorna um {} com as locations como keys e animais de cada location como value
 const defaultMapping = () => {
-  // locations: mapeia locations de todos os animais e depois filtra os valores únicos.
   const locations = (animals.map((animal) => animal.location)).filter(unique);
 
-  // retorna um {} com as locations como keys e animais de cada location como value
   return locations.reduce((acc, location) => {
     const animalsByLocation = (animals.filter((animal) => animal.location === location))
       .map((animal) => animal.name);
@@ -153,17 +153,47 @@ const defaultMapping = () => {
   }, {});
 };
 
-const animalMapWithNames = () => {
+// Função que filtra cada resident por sexo
+const checkSex = (options, residents) => {
+  if (options.sex === 'female') {
+    return residents.filter((resident) => resident.sex === 'female');
+  }
+  if (options.sex === 'male') {
+    return residents.filter((resident) => resident.sex === 'male');
+  }
+};
+
+// Função que checa o paramêtro e atualiza o objeto final
+// filteredResident é uma cópia de residents
+// caso haja filtro de sexo, transforma filteredResidents baseado na função checkOptions
+// caso haja filtro de ordenação, ordena filteredResidents
+// retorna a array filtrada
+const checkOptions = (options, { residents }) => {
+  let filteredResidents = [...residents];
+  if (options.sex) {
+    filteredResidents = checkSex(options, filteredResidents);
+  }
+  if (options.sorted) {
+    filteredResidents = filteredResidents.sort((a, b) => (a.name > b.name ? 1 : -1));
+  }
+  return filteredResidents.map((resident) => resident.name);
+};
+
+// Função que cria o objeto com os nomes dos animais, divididos por especie e região
+// defaultEntries: transforma o objeto base em array
+// fullObject: cria o objeto
+// animalsObject: pega o segundo elemento da Array (animais por região)
+// animalObject: acha o objeto baseado no animal
+// animalsNames: pega o nome de todos da especie de animalObject
+const animalMapWithNames = (options) => {
   const defaultEntries = Object.entries(defaultMapping());
   const fullObject = defaultEntries.reduce((animalsByRegion, region) => {
-    const animalsObject = region[1].reduce((acc, animal) => {
-      const animalObject = animals.find((animalName) => animalName.name === animal);
-      const animalsNames = animalObject.residents.reduce((names, resident) => ([
-        ...names, resident.name,
-      ]), []);
+    const animalsObject = region[1].reduce((acc, specie) => {
+      const animalObject = animals.find((animal) => animal.name === specie);
+      const animalsNames = checkOptions(options, animalObject);
       return [
         ...acc,
-        { [animal]: animalsNames },
+        { [specie]: animalsNames },
       ];
     }, []);
     return {
@@ -178,44 +208,8 @@ function animalMap(options) {
   if (!options || !options.includeNames) {
     return defaultMapping();
   }
-  return animalMapWithNames();
+  return animalMapWithNames(options);
 }
-
-// [
-//   [ 'NE', [ 'lions', 'giraffes' ] ],
-//   [ 'NW', [ 'tigers', 'bears', 'elephants' ] ],
-//   [ 'SE', [ 'penguins', 'otters' ] ],
-//   [ 'SW', [ 'frogs', 'snakes' ] ]
-// ]
-
-// const expected = {
-//   NE: [
-//     { lions: ['Dee', 'Faustino', 'Maxwell', 'Zena'] },
-//     { giraffes: ['Antone', 'Arron', 'Bernard', 'Clay', 'Gracia', 'Vicky'] },
-//   ],
-//   NW: [
-//     { tigers: ['Esther', 'Shu'] },
-//     { bears: ['Edwardo', 'Hiram', 'Milan'] },
-//     { elephants: ['Bea', 'Ilana', 'Jefferson', 'Orval'] },
-//   ],
-//   SE: [
-//     { penguins: ['Joe', 'Keri', 'Nicholas', 'Tad'] },
-//     { otters: ['Lloyd', 'Margherita', 'Mercedes', 'Neville'] },
-//   ],
-//   SW: [
-//     { frogs: ['Annice', 'Cathey'] }, { snakes: ['Bill', 'Paulette'] },
-//   ],
-// };
-
-// const a = Object.values(expected);
-
-// const b = Object.values(a[1][1]);
-
-// console.log(a);
-
-console.log((animalMap({ includeNames: true })).NE);
-// console.log(animalMap({ includeNames: true, sorted: true }));
-// console.log(animalMap({ includeNames: true, sorted: false }));
 
 // ------------------------------------------------------------------
 // REQUISITO 10 - schedule

@@ -100,15 +100,15 @@ function schedule(dayName) {
 
   const publicSchedule = {};
 
-  const scheduleKeys = Object.keys(hours);
+  const scheduleDays = Object.keys(hours);
 
-  scheduleKeys.forEach((key) => {
-    publicSchedule[key] = `Open from ${hours[key].open}am until ${hours[key].close - 12}pm`;
+  scheduleDays.forEach((day) => {
+    publicSchedule[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
   });
   publicSchedule.Monday = 'CLOSED';
 
   if (!dayName) return publicSchedule;
-
+  // Recebi ajuda do colega Lucas Martins para entender como acessar objeto de forma dinâmica.
   return { [dayName]: publicSchedule[dayName] };
 }
 

@@ -106,7 +106,6 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   const keys = Object.keys(prices);
   keys.forEach((newPrice) => {
-    // prices[newPrice] += ((prices[newPrice] * percentage) / 100);
     const result = ((prices[newPrice] * percentage) / 100);
     const fixed = (prices[newPrice] + result + 0.001).toFixed(2);
     prices[newPrice] = Number(fixed);
@@ -114,9 +113,22 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  const aplyReduce = (funcionary) => funcionary
+    .reduce((acc, { firstName, lastName, responsibleFor }) => {
+      const animalName = animalsByIds(...responsibleFor).map((animal) => animal.name);
+      acc[`${firstName} ${lastName}`] = animalName;
+      return acc;
+    }, {});
+  let funcionary = [];
+  if (!idOrName) {
+    funcionary = employees;
+  } else {
+    funcionary = employees.filter(({ firstName, lastName, id }) =>
+      lastName === idOrName || firstName === idOrName || id === idOrName);
+  }
+  return aplyReduce(funcionary);
+}
 
 module.exports = {
   entryCalculator,
@@ -125,7 +137,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  //   employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

@@ -89,7 +89,7 @@ function entryCalculator(entrants) {
   }
   let toPay = 0;
   Object.keys(entrants).forEach((element) => {
-    let ticket = entrants[element] * prices[element];
+    const ticket = entrants[element] * prices[element];
     toPay += ticket;
   });
   return toPay;

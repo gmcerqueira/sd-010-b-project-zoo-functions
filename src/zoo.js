@@ -48,7 +48,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // Recebi ajuda dos colegas Diegho Moraes (esqueci o nome do segundo)
+  // Recebi ajuda dos colegas Diegho Moraes e João Vitor Findaza
   return { ...personalInfo, ...associatedWith };
 }
 
@@ -95,10 +95,23 @@ function entryCalculator(entrants) {
 // function animalMap(options) {
 
 // }
+function schedule(dayName) {
+  const { hours } = data;
 
-// function schedule(dayName) {
+  const publicSchedule = {};
 
-// }
+  const scheduleKeys = Object.keys(hours);
+
+  scheduleKeys.forEach((key) => {
+    publicSchedule[key] = `Open from ${hours[key].open}am
+      until ${hours[key].close - 12}pm`;
+  });
+  publicSchedule.Monday = 'CLOSED';
+
+  if (!dayName) return publicSchedule;
+
+  return { [dayName]: publicSchedule[dayName] };
+}
 
 function oldestFromFirstSpecies(id) {
   const { employees } = data;
@@ -125,7 +138,7 @@ function oldestFromFirstSpecies(id) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

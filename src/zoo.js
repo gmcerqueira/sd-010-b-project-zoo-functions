@@ -94,10 +94,6 @@ function entryCalculator(entrants) {
 } // Agradecimento ao amigo Rafael Mathias pelo auxílio no entendimento da lógica.
 
 // function animalMap(options) {
-//   const { animals } = data;
-//   if (typeof options === 'undefined') {
-//     return animals.every(options) => 
-//   }
 // }
 
 // function schedule(dayName) {

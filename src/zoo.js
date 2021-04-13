@@ -24,7 +24,10 @@ const animalsByIds = (...ids) => {
   return animals.filter((animal) => isTheAnimal(animal, ...ids));
 };
 
-const animalsBySpecie = (specieName) => animals.find(specie => specie.name === specieName).residents;
+const animalsBySpecie = (specieName) => {
+  const selectedSpecie = animals.find((specie) => specie.name === specieName);
+  return selectedSpecie.residents;
+};
 
 const animalsOlderThan = (specieName, age) => {
   // seu código aqui

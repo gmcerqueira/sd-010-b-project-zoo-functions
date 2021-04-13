@@ -102,9 +102,21 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const animalFind = employees.find((employee) => employee.id === id);
+  const responsible = animalFind.responsibleFor[0];
+  const firstSpecie = animals.find((animal) => animal.id === responsible);
+  console.log(firstSpecie);
+  let maxAge = 0;
+  firstSpecie.residents.forEach((resident) => {
+    if (resident.age > maxAge) {
+      maxAge = resident.age;
+    }
+  });
+  const olderAnimal = firstSpecie.residents.find((resident) => resident.age === maxAge);
+  return [olderAnimal.name, olderAnimal.sex, olderAnimal.age];
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -125,7 +137,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

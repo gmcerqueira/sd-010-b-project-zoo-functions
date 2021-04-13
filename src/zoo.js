@@ -65,7 +65,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   if (species === undefined) {
-    /*o return a baixo deve retornar um objeto da seguinte forma:  
+    /* o return a baixo deve retornar um objeto da seguinte forma:  
     {"bears": 3,
     "elephants": 4,
     "frogs": 2,

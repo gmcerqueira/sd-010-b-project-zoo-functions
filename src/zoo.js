@@ -21,51 +21,51 @@ function animalsByIds(ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return 1;
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  return 1;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return 1;
 }
 
 function isManager(id) {
-  // seu código aqui
+  return 1;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  return 1;
 }
 
 function animalCount(species) {
-  // seu código aqui
+  return 1;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  return 1;
 }
 
 function animalMap(options) {
-  // seu código aqui
+  return 1;
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  return 1;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  return 1;
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return 1;
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  return 1;
 }
 
 module.exports = {

@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data; // Desconstrução dos objetos do data para facilitar a criação das funções nos requisitos.
+const { animals, employees, prices } = data; // Desconstrução dos objetos do data para facilitar a criação das funções nos requisitos.
 
 function animalsByIds(...ids) {
   return animals.filter((animal) =>
@@ -78,9 +78,15 @@ function animalCount(species) {
 // Sem parâmetros, retorna um objeto de animais e qtds
 // Com o nome de uma espécie de animal, retorna um número - qtd
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (!entrants) {
+    return 0;
+  }
+  return Object.keys(entrants).reduce((acc, type) => acc + entrants[type] * prices[type], 0);
+}
+// Retorna 0 se nenhum argumento for passado
+// Retorna 0 se um objeto vazio for passado
+// Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -103,8 +109,8 @@ function animalCount(species) {
 // }
 
 module.exports = {
-//   entryCalculator,
-//   schedule,
+  entryCalculator,
+  //   schedule,
   animalCount,
   //   animalMap,
   animalsByIds,

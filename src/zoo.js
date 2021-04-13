@@ -9,7 +9,8 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, prices } = require('./data');
+// Alterar a primeira constante para que seja armazenado o valor do price no ficheiro data.js:
+const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -80,7 +81,7 @@ function entryCalculator(entrants) {
   if (entrants) {
     const visitors = Object.keys(entrants);
     return visitors.reduce((acc, curr) =>
-      acc + (prices[curr] * entrants[curr]), 0);
+      acc + (data.prices[curr] * entrants[curr]), 0);
   }
   return 0;
 }
@@ -115,7 +116,13 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  return percentage;
+  const { prices } = data;
+  let { Adult, Child, Senior } = prices;
+  Adult = Math.ceil(prices.Adult * (100 + percentage)) / 100;
+  Child = Math.ceil(prices.Child * (100 + percentage)) / 100;
+  Senior = Math.ceil(prices.Senior * (100 + percentage)) / 100;
+
+  data.prices = { Adult, Senior, Child };
 }
 
 function employeeCoverage(idOrName) {

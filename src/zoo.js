@@ -44,12 +44,10 @@ function employeeByName(employeeName) {
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
 // }
-function isManager(...idManager) {
-  return employees.filter((manager) => idManager.some((verifyManager) =>
-    manager.managers === idManager));
+function isManager(idManager) {
+  return employees.some((employee) => employee.managers === idManager);
 }
-console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-// every para verificar em todos os elementos o id informado.
+// some para verificar se algum dos elementos do array é igual ao id informado.
 // Testa se o id passado é de um gerente e returna boleano
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {

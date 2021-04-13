@@ -33,7 +33,7 @@ function employeeByName(employeeName) {
   const searchFName = data.employees.find((curr) => curr.firstName === employeeName);
 
   if (searchFName) return searchFName;
-  
+
   const searchLName = data.employees.find((curr) => curr.lastName === employeeName);
   return searchLName;
 }

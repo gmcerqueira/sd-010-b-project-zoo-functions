@@ -189,7 +189,6 @@ function setDisplay(day) {
   const times = Object.values(hours[day]);
   return `Open from ${convertHour(times[0])} until ${convertHour(times[1])}`;
 }
-// setDisplay()
 
 function schedule(dayName) {
   // seu código aqui
@@ -208,9 +207,30 @@ function schedule(dayName) {
   return obj;
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+// Requirement 11
+const getEmployee = (id) => employees.find((worker) => worker.id === id);
+
+const getFirstAnimal = (firstAnimal) => animals.filter((animal) => (
+  (firstAnimal.includes(animal.id)) // Wolf helped me with this includes thing
+));
+
+const getOlder = (older, curr) => (older.age < curr.age ? curr : older);
+
+function oldestResident(residents) {
+  return residents.reduce(getOlder, residents[0]);
+}
+
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const employee = getEmployee(id);
+  const { responsibleFor } = employee;
+  const residents = getFirstAnimal(responsibleFor[0]);
+
+  return Object.values(oldestResident(residents[0].residents));
+}
+// const id1 = '9e7d4524-363c-416a-8759-8aa7e50c0992';
+// const id2 = '4b40a139-d4dc-4f09-822d-ec25e819a5ad';
+// console.log(oldestFromFirstSpecies(id1));
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -231,7 +251,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

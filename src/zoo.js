@@ -22,51 +22,57 @@ function animalsByIds(ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  console.log('teste');
+  return animal + age;
 }
 
 function employeeByName(employeeName) {
-  console.log('teste');
+  return employeeName;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  console.log('teste');
+  return personalInfo + associatedWith;
 }
 
 function isManager(id) {
-  console.log('teste');
+  return id;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  console.log('teste');
+  return id + firstName + lastName + managers + responsibleFor;
 }
 
 function animalCount(species) {
-  console.log('teste');
+  return species;
 }
 
 function entryCalculator(entrants) {
-  console.log('teste');
+  // seu código aqui
+  return entrants;
 }
 
 function animalMap(options) {
-  console.log('teste');
+  // seu código aqui
+  return options;
 }
 
 function schedule(dayName) {
-  console.log('teste');
+  // seu código aqui
+  return dayName;
 }
 
 function oldestFromFirstSpecies(id) {
-  console.log('teste');
+  // seu código aqui
+  return id;
 }
 
 function increasePrices(percentage) {
-  console.log('teste');
+  // seu código aqui
+  return percentage;
 }
 
 function employeeCoverage(idOrName) {
-  console.log('teste');
+  // seu código aqui
+  return idOrName;
 }
 
 module.exports = {

@@ -110,21 +110,18 @@ function schedule(dayName) { /* realizado com a colaboração de Arlen Freitas *
 }
 
 function oldestFromFirstSpecies(id) {
-  const employee = employees.find((person) => person.id === id);
-  console.log(employee);
-  const firstSpeciesId = employee.responsibleFor[0];
-  console.log(firstSpeciesId);
-  const animal = animals.find((species) => species.id === firstSpeciesId);
-  console.log(animal);
-  let olderAnimal = { age: -1 };
-  console.log(olderAnimal);
+  const employee = employees.find((person) => person.id === id);/* id do colaborador */
+  const firstSpeciesId = employee.responsibleFor[0];/* primeiro animal responsável */
+  const animal = animals.find((species) => species.id === firstSpeciesId);/* compara id da especie com o primeiro animal responsável */
+  let olderAnimal = { age: -1 };/* variável para ordenar por idade */
   animal.residents.forEach((resident) => {
     if (resident.age > olderAnimal.age) {
       olderAnimal = resident;
     }
-    console.log(olderAnimal);
   });
-};
+  olderAnimal = [olderAnimal.name, olderAnimal.sex, olderAnimal.age];/* formatação do array */
+  return olderAnimal;
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui

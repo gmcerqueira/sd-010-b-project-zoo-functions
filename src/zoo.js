@@ -15,7 +15,7 @@ const {
   animals,
   employees,
   // hours,
-  // prices
+  prices,
 } = data;
 
 const findAnimalById = (animalId) => animals.find((animal) => animal.id === animalId);
@@ -83,9 +83,17 @@ function animalCount(species) {
   return animals.find((animal) => animal.name === species).residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (entrants === undefined) {
+    return 0;
+  }
+  let toPay = 0;
+  Object.keys(entrants).forEach((element) => {
+    let ticket = entrants[element] * prices[element];
+    toPay += ticket;
+  });
+  return toPay;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -108,7 +116,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  //   entryCalculator,
+  entryCalculator,
   //   schedule,
   animalCount,
   //   animalMap,

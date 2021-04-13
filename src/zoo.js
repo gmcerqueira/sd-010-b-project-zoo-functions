@@ -41,9 +41,13 @@ function employeeByName(employeeName) {
 // o ponto de exclamação no if, valida se o parametro é válido ou não, se falso entra no if
 // neste requisito, recebi ajuda do colega Jonnes Bezerra na sala do plantão
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+  const employee = ({ ...personalInfo, ...associatedWith });
+  return employee;
+}
+// personalInfo recebe um objeto que contém o id, o firstName e o lastName
+// associatedWith recebe um objeto que contém dois array: managers e responsibleFor
+
 function isManager(idManager) {
   return employees.some((employee) => employee.managers === idManager);
 }

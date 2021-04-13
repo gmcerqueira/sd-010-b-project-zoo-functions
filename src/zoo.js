@@ -49,8 +49,9 @@ function createEmployee(personalInfo, associatedWith) {
 // associatedWith recebe um objeto que contém dois array: managers e responsibleFor
 
 function isManager(idManager) {
-  return employees.some((employee) => employee.managers === idManager);
+  return employees.some((employee) => employee.managers.includes(idManager));
 }
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 // some para verificar se algum dos elementos do array é igual ao id informado.
 // Testa se o id passado é de um gerente e returna boleano
 

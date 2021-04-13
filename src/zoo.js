@@ -265,10 +265,24 @@ function increasePrices(percentage) {
 }
 
 /* console.log(increasePrices(50)); */
-
+const getAnimal = (animalId) => {
+  const animalObj = data.animals.find((animal) => animal.id === animalId);
+  return animalObj.name;
+};
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const objEmployeesAndSpecies = {};
+
+  data.employees.forEach(({ firstName, lastName, responsibleFor }) => {
+    const animals = responsibleFor.map((animalId) => (
+      getAnimal(animalId)
+    ));
+    objEmployeesAndSpecies[`${firstName} ${lastName}`] = animals;
+  });
+  return objEmployeesAndSpecies;
 }
+
+/* console.log(employeeCoverage()); */
 
 module.exports = {
   entryCalculator,

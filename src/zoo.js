@@ -69,7 +69,13 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   if (species === undefined) {
-    return data.animals.map((animal) => `${animal.name}: ${animal.residents.length}`);
+    return animals.reduce((acumolador, cont) => {
+      const { name } = cont;
+      return {
+        ...acumolador,
+        [name]: cont.residents.length,
+      };
+    }, {});
   }
   const animaisFiltrado = data.animals.filter((animas) => animas.name === species);
   return animaisFiltrado[0].residents.length;
@@ -99,13 +105,30 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  return dayName;
+  const listaDias = {};
+  const listHours = Object.keys(data.hours);
+  listHours.forEach((dia) => {
+    if (dia !== 'Monday') {
+      listaDias[dia] = `Open from ${data.hours[dia].open}am until ${data.hours[dia].close - 12}pm`;
+    } else {
+      listaDias[dia] = 'CLOSED';
+    }
+  });
+  if (dayName) {
+    return {
+      [dayName]: listaDias[dayName],
+    };
+  }
+  return listaDias;
 }
+console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
-  return id;
+  const filtradoId = data.employees.filter((pessoa) => pessoa.id === id)
+  const primeiroAnimal = filtradoId.responsibleFor;
+  return primeiroAnimal;
 }
-
+//console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
   return percentage;
 }

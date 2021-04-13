@@ -136,17 +136,15 @@ function increasePrices(percentage) {
   });
 }
 
-const nameAnimal = data.employees.forEach((value) => value.responsibleFor.map((animalId) => data.animals
-  .find((animal) => animal.id === animalId))
-  .map((animalName) => animalName.name));
-
-// nameAnimal();
-
 function employeeCoverage(idOrName) {
   const objListEmployeeAnimals = {};
   data.employees.forEach((value) => {
-    const name = `${value.firstName} ${value.lastName}`;
-    objListEmployeeAnimals[name] = nameAnimal;
+    const nameResponsible = `${value.firstName} ${value.lastName}`;
+    objListEmployeeAnimals[nameResponsible] = value.responsibleFor.filter((idResponsible) => data.animals.map((valueIdAnimal) => {
+      if (idResponsible === valueIdAnimal.id) {
+        return valueIdAnimal.name;
+      }
+    }));
     // console.log(name);
   });
   console.log(objListEmployeeAnimals);

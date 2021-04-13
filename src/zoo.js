@@ -11,10 +11,10 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, hours } = data;
 
 function animalsByIds(...ids) {
-  // seu código aqui
+  // 01seu código aqui
   if (ids.length === undefined) return [];
   return animals.filter((animal) => ids.includes(animal.id));
 
@@ -36,19 +36,19 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
-  // spread para juntar os array
+  // 04spread para juntar os array
 }
 
 function isManager(id) {
   const existeId = data.employees.some((gerente) => gerente.managers.includes(id));
   return existeId;
-  // seu código aqui, Some verifica se existe alguem array true
+  // 05seu código aqui, Some verifica se existe alguem array true
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const addFuncionario = { id, firstName, lastName, managers, responsibleFor };
   data.employees.push(addFuncionario);
-  // seu código aqui
+  // 06seu código aqui
 }
 
 function animalCount(species) {
@@ -66,28 +66,46 @@ function entryCalculator(entrants) {
 }
 
 // function animalMap(options) {
-//   // seu código aqui
+//   // 09seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // 10seu código aqui
+  const objAgenda = {};
+  const keys = Object.keys(hours);
+  const values = Object.values(hours);
+  keys.forEach((element, index) => {
+    objAgenda[element] = `Open from ${values[index].open}am until ${values[index].close - 12}pm`;
+    if (element === 'Monday') {
+      objAgenda[element] = 'CLOSED';
+    }
+  });
+
+  if (dayName) {
+    const day = objAgenda[dayName];
+    return {
+      [dayName]: day,
+    };
+  }
+  return objAgenda;
+}
 
 // function oldestFromFirstSpecies(id) {
-//   // seu código aqui
+//   // 11seu código aqui
 // }
 
 // function increasePrices(percentage) {
-//   // seu código aqui
+//   // 12seu código aqui
+//   percentage > 20 ? date.prices * 120 +
 // }
 
 // function employeeCoverage(idOrName) {
-//   // seu código aqui
+//   // 13seu código aqui
 // }
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

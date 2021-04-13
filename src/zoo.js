@@ -8,7 +8,9 @@ eslint no-unused-vars: [
   }
 ]
 */
-
+const {
+  prices,
+} = require('./data');
 const {
   animals,
 } = require('./data');
@@ -69,9 +71,12 @@ function animalCount(species) {
   // seu código aqui
   if (species === undefined) {
     return animals.reduce((animalAcc, animalCurr) => {
-      const { name } = animalCurr;
+      const {
+        name,
+      } = animalCurr;
       return {
-        ...animalAcc, [name]: animalCurr.residents.length,
+        ...animalAcc,
+        [name]: animalCurr.residents.length,
       };
     }, {});
   }
@@ -79,9 +84,15 @@ function animalCount(species) {
   return findAnimal.residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // seu código aqui
+  if (!entrants) {
+    return 0;
+  } // stackoverflow.com/questions/2647867/how-can-i-determine-if-a-variable-is-undefined-or-null
+  const keysPrices = Object.keys(entrants);
+  const totalEntry = keysPrices.reduce((pAcc, pCurr) => pAcc + entrants[pCurr] * prices[pCurr], 0);
+  return totalEntry;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -104,7 +115,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

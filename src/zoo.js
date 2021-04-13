@@ -61,30 +61,46 @@ function employeeByName(employeeName) {
 
 // Requisito 4
 function createEmployee(personalInfo, associatedWith) {
-  let response = []; const obj = {};
-
-  Object.assign(obj, personalInfo);
-  Object.assign(obj, associatedWith);
-
-  response = obj;
-  console.log(response);
+  // Cria um objeto com as propriedades passadas por parâmetro
+  const response = {
+    ...personalInfo,
+    ...associatedWith,
+  };
 
   return response;
 }
 
+// Requisito 5
 function isManager(id) {
+  // Verifica se ao menos um funcionário possui o id informado na chave managers
   const response = data.employees.some((employee) => employee.managers.includes(id));
 
   return response;
 }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+// Requisito 6
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({
+    id, firstName, lastName, managers, responsibleFor,
+  });
+}
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  let response;
+
+  if (!species) {
+    const obj = data.animals.reduce((acc, cur) => {
+      const { name } = cur;
+      response = { ...acc, [name]: cur.residents.length };
+      return response;
+    }, {});
+
+    return obj;
+  }
+
+  const amount = data.animals.find((animal) => animal.name === species).residents.length;
+  return amount;
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -113,12 +129,12 @@ function isManager(id) {
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

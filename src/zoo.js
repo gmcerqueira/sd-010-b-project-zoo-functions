@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*
 eslint no-unused-vars: [
   "error",
@@ -11,27 +12,36 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const {
-  animals,
-  employees,
-  prices
-} = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
-  /*se a entrada for vazio, retornar array vazio;
+  /* se a entrada for vazio, retornar array vazio;
   recuperar o objeto id
   retornar um array com as especies do id
-  se receber mais de um id, retornar mais de uma especie*/
-  if (ids === []) return [];
+  se receber mais de um id, retornar mais de uma especie */
+  if (!ids) return [];
   return animals.filter((animal) => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  // a partir do nome de uma espécie, verifica idade mínima
+  // retornar booleano
+  // verificar se TODOS tem idade mínima
+  const animalKind = animals.filter((element) => element.name === animal);
+  let checkAge = '';
+  animalKind.forEach((element) => {
+    checkAge = element.residents.every((obj) => obj.age > age);
+  });
+  return checkAge;
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  // Sem parâmetros, retorna um objeto vazio
+  // primeiro nome do funcionário retorna o objeto do funcionário
+  // último nome do funcionário retorna o objeto do funcionário
+  if (!employeeName) return {};
+  return employees.find((name) =>
+    name.firstName === employeeName || name.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {

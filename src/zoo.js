@@ -108,7 +108,6 @@ function schedule(dayName) {
       daysOpen[element] = `Open from ${hours[element].open}am until ${hours[element].close - 12}pm`;
     }
   });
-
   if (dayName) {
     return {
       [dayName]: daysOpen[dayName],
@@ -121,9 +120,21 @@ function schedule(dayName) {
 //   // seu código aqui
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  prices.Adult += prices.Adult * (percentage / 100);
+  /*
+   * creditos a Alessandra Rezende - Turma 10 - Tribo B
+   * achei o arredondamento graças a uma thread no slack
+   * link com explicação:
+   * https://www.gilsonpaulo.com.br/artigos/arredondar-decimal-javascript
+   */
+  prices.Adult = Math.round(prices.Adult * 100) / 100;
+  prices.Child += prices.Child * (percentage / 100);
+  prices.Child = Math.round(prices.Child * 100) / 100;
+  prices.Senior += prices.Senior * (percentage / 100);
+  prices.Senior = Math.round(prices.Senior * 100) / 100;
+  return prices;
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -141,6 +152,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   //   oldestFromFirstSpecies,
-  //   increasePrices,
+  increasePrices,
   createEmployee,
 };

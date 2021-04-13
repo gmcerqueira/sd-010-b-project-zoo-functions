@@ -1,6 +1,6 @@
 const data = require('./data');
 
-const { animals, employees: e } = data;
+const { animals, employees: e, hours: hrs } = data;
 
 function animalsByIds(...ids) {
   return ids.map((id) => animals.find((animal) => animal.id === id));
@@ -67,9 +67,18 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  if (dayName === undefined) {
+    console.log(0);
+  } else if (dayName === 'Monday') {
+    console.log('CLOSED');
+  }
+  return Object.keys(hrs).forEach((keys) => {
+    if (keys === dayName) {
+      return (`Open from ${hrs[keys].open} until ${hrs[keys].close % 12}pm`);
+    }
+  });
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -85,7 +94,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

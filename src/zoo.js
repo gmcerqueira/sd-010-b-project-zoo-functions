@@ -15,6 +15,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
+const { hours } = data;
 
 function animalsByIds(...ids) {/* caso a função receba um parâmetro como spread, ele já retorna um array vazio Colaboração do Rernato G Souza*/
   return ids.map((id) => animals.find((animal) => animal.id === id));
@@ -89,21 +90,36 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
-
-function oldestFromFirstSpecies(id) {
-  const employee = employees.find((person) => person.id === id);
-  const firstSpeciesById = employee.responsibleFor[0];
-  const animal = animals.find((species) => species.id === firstSpeciesById);
-  let oldestAnimal = { age: -1 };
-  animal.residents.forEach((resident) => {
-    if (resident.age > oldestAnimal.age) {
-      oldestAnimal = resident;
+function schedule(dayName) {/* realizado com a colaboração de Arlen Freitas */
+  const objSchedule = {};
+  const keys = Object.keys(hours);
+  const values = Object.values(hours);
+  keys.forEach((key, index) => {
+    objSchedule[key] = `Open from ${values[index].open}am until ${values[index].close - 12}pm`;
+    if (key === 'Monday') {
+      objSchedule[key] = 'CLOSED';
     }
   });
+  if (dayName) {
+    const weekDay = objSchedule[dayName];
+    return {
+      [dayName]: weekDay,
+    };
+  }
+  return objSchedule;
 };
+
+// function oldestFromFirstSpecies(id) {
+//   const employee = employees.find((person) => person.id === id);
+//   const firstSpeciesId = employee.responsibleFor[0];
+//   const animal = animals.find((species) => species.id === firstSpeciesId);
+//   let olderAnimal = { age: -1 };
+//   animal.residents.forEach((resident) => {
+//     if (resident.age > olderAnimal.age) {
+//       olderAnimal = resident;
+//     }
+//   });
+// };
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -115,7 +131,7 @@ function oldestFromFirstSpecies(id) {
 
 module.exports = {
   entryCalculator,
-  //   schedule,
+  schedule,
   animalCount,
   //   animalMap,
   animalsByIds,
@@ -124,7 +140,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
+  // oldestFromFirstSpecies,
   //   increasePrices,
   createEmployee,
 };

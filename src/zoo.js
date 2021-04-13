@@ -79,9 +79,14 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const { name, sex, age } = animals
+  .find(animal => animal.id === employees.find(emp =>
+     emp.id === id).responsibleFor[0])
+  .residents.sort((acc, curr) => acc.age - curr.age)[0];
+  return [name, sex, age];
+}
 
 function increasePrices(percentage) {
   // seu código aqui
@@ -105,7 +110,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

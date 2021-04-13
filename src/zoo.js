@@ -105,7 +105,7 @@ function schedule(dayName) {
     if (element === 'Monday') {
       daysOpen[element] = 'CLOSED';
     } else {
-      daysOpen[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm`;
+      daysOpen[element] = `Open from ${hours[element].open}am until ${hours[element].close - 12}pm`;
     }
   });
 

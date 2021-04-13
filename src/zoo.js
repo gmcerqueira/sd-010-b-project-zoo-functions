@@ -97,7 +97,7 @@ module.exports = {
   //   addEmployee,
   isManager,
   animalsOlderThan,
-//   oldestFromFirstSpecies,
-//   increasePrices,
-//   createEmployee,
+  //   oldestFromFirstSpecies,
+  //   increasePrices,
+  createEmployee,
 };

@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   if (ids.length === 0) {
@@ -84,15 +84,34 @@ function entryCalculator(entrants) {
 // Utilizei o conceito de Object.keys para guardar as chaves do objeto de entrada em uma variável e o site é o seguinte:
 // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
 
-/* function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
+//   // seu código aqui
+// }
 
 function schedule(dayName) {
-  // seu código aqui
+  const theObject = {};
+  const allKeys = Object.keys(hours);
+  allKeys.forEach((aKey) => {
+    theObject[aKey] = `Open from ${hours[aKey].open}am until ${hours[aKey].close - 12}pm`;
+  });
+  // Abaixo o valor do horário de funcionamento de Segunda é sobrescrito para fechado;
+  theObject.Monday = 'CLOSED';
+  return (dayName) ? { [dayName]: theObject[dayName] } : theObject;
 }
+// const obj = {};
+// const hoursKeys = Object.keys(hours);
+// hoursKeys.forEach((key) => {
+//   const { open, close } = hours[key];
+//   if (key === 'Monday') {
+//     obj[key] = 'CLOSED';
+//   } else {
+//     obj[key] = `Open from ${open}am until ${close - 12}pm`;
+//   }
+// });
+// if (dayName) return { [dayName]: obj[dayName] };
+// return obj;
 
-function oldestFromFirstSpecies(id) {
+/* function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
@@ -106,7 +125,7 @@ function employeeCoverage(idOrName) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

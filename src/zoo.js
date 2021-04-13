@@ -39,9 +39,9 @@ function createEmployee(personalInfo, associatedWith) {
   };
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  return data.employees.some((employee) => employee.manegers.includes(id));
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -84,9 +84,9 @@ module.exports = {
   animalsOlderThan,
   employeeByName,
   createEmployee,
+  isManager,
 //   employeeCoverage,
 //   addEmployee,
-//   isManager,
 //   oldestFromFirstSpecies,
 //   increasePrices,
 };

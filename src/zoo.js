@@ -124,10 +124,15 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const { adult, child, senior } = data.prices;
-  prices.Adult = Math.ceil(adult * ((percentage) + 100)) / 100;/* Math.ceil retorna o menor número inteiro maior ou igual a "x". Font: <https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil> */
+  const { Adult, Child, Senior } = data.prices;
+  prices.Adult = Math.ceil(Adult * ((percentage) + 100)) / 100;/* Math.ceil retorna o menor número inteiro maior ou igual a "x". Font: <https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil> */
+  prices.Child = Math.ceil(Child * ((percentage) + 100)) / 100;
+  prices.Senior = Math.ceil(Senior * ((percentage) + 100)) / 100;
 }
 console.log(prices.Adult);
+console.log(prices.Child);
+console.log(prices.Senior);
+
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -145,6 +150,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  //   increasePrices,
+  increasePrices,
   createEmployee,
 };

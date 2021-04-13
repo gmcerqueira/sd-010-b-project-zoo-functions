@@ -123,9 +123,11 @@ function oldestFromFirstSpecies(id) {
   return olderAnimal;
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  const { adult, child, senior } = data.prices;
+  prices.Adult = Math.ceil(adult * ((percentage) + 100)) / 100;/* Math.ceil retorna o menor número inteiro maior ou igual a "x". Font: <https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil> */
+}
+console.log(prices.Adult);
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui

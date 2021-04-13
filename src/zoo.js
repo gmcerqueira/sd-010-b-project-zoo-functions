@@ -108,6 +108,9 @@ function animalCount(species = undefined) {
 // console.log(animalCount());
 
 function entryCalculator(entrants) {
+  if (!entrants) {
+    return 0;
+  }
   const pricesTotal = [];
   const customerTypes = Object.keys(entrants);
   const customerValue = Object.values(entrants);

@@ -1,3 +1,4 @@
+const { prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -248,16 +249,18 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   const percentagePercent = (1 + (percentage / 100));
-  const pricesIncreases = {};
+  console.log(percentagePercent);
   const keys = Object.keys(data.prices);
   keys.forEach((key) => {
     const value = data.prices[key] * percentagePercent;
-    pricesIncreases[key] = (Math.round(value * 100) / 100);
+    data.prices[key] = (Math.round(value * 100) / 100);
   });
-  return pricesIncreases;
+  return data.prices;
 }
 
-/* console.log(increasePrices(50)); */
+console.log(increasePrices(50));
+console.log(increasePrices(30));
+
 const getAnimal = (animalId) => {
   const animalObj = data.animals.find((animal) => animal.id === animalId);
   return animalObj.name;

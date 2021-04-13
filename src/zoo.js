@@ -87,12 +87,25 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  return options;
+  // const allLocations = ['NE', 'NW', 'SE', 'SW'];
+  // const animalsByInfo = animals.map((animal) => animal.residents);
+  // const animalsByRegion = animals.filter((animal) => animal.location === 'NE');
+  return console.log(options);
 }
 
 function schedule(dayName) {
   // seu código aqui
-  return dayName;
+  const days = data.hours;
+  const newObject = {};
+
+  Object.keys(days).forEach((day) => {
+    if (day === 'Monday') newObject[day] = 'CLOSED';
+    else newObject[day] = `Open from ${days[day].open}am until ${days[day].close - 12}pm`;
+  });
+
+  if (dayName) return { [dayName]: newObject[dayName] };
+
+  return newObject;
 }
 
 function oldestFromFirstSpecies(id) {

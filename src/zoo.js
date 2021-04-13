@@ -39,7 +39,8 @@ function employeeByName(employeeName) {
   // Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
   // Quando provido o último nome do funcionário, retorna o objeto do funcionário
   if (!employeeName) return {};
-  return employees.find((nam) => nam.firstName === employeeName || nam.lastName === employeeName);
+  return employees.find((name) =>
+    name.firstName === employeeName || name.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -137,14 +138,27 @@ function oldestFromFirstSpecies(id) {
   return Object.values(biggestAge);
 }
 
-console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
-
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+  // A função é responsável por aumentar o preço das visitas, com base no valor de aumento recebido no parâmetro, em porcentagem
+  // Se o parâmetro da função recebe o valor 20, o aumento é de 20%
+  // Altera o objeto `prices` do arquivo `data.js`
+  // Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
+  const keys = Object.keys(prices);
+  keys.forEach((key) => {
+    const raise = prices[key] * (percentage / 100);
+    const value = (prices[key] + raise + 0.001).toFixed(2);
+    prices[key] = Number(value);
+  });
+  return prices;
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
+//   const colab = getByIdOrName(idOrName);
+//   if (!idOrName) return getAllEmployess();
+//   const nameEmploye = `${colab.firstName} ${colab.lastName}`; // nome do colaborador
+//   return getAllEmployess(nameEmploye);
 // }
 
 module.exports = {
@@ -159,6 +173,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

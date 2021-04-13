@@ -67,7 +67,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const { animals } = data;
   const allAnimals = {};
-  animals.forEach((animal) => { allAnimals[animal.name] = animal.residents.length;});
+  animals.forEach((animal) => { allAnimals[animal.name] = animal.residents.length; });
   if (species === undefined) {
     return allAnimals;
   }
@@ -93,9 +93,12 @@ function entryCalculator(entrants) {
   return entryPrice;
 } // Agradecimento ao amigo Rafael Mathias pelo auxílio no entendimento da lógica.
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function animalMap(options) {
+  const { animals } = data;
+  if (typeof options === 'undefined') {
+    return animals.every(options) => 
+  }
+}
 
 // function schedule(dayName) {
 //   // seu código aqui
@@ -117,7 +120,7 @@ module.exports = {
   entryCalculator,
   // schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

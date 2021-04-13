@@ -68,16 +68,15 @@ function entryCalculator(entrants) {
 // }
 
 function schedule(dayName) {
-  if (dayName === undefined) {
-    console.log(0);
-  } else if (dayName === 'Monday') {
-    console.log('CLOSED');
-  }
-  return Object.keys(hrs).forEach((keys) => {
-    if (keys === dayName) {
-      return (`Open from ${hrs[keys].open} until ${hrs[keys].close % 12}pm`);
-    }
+  const obj = {};
+  Object.keys(hrs).forEach((key) => {
+    obj[key] = `Open from ${hrs[key].open}am until ${hrs[key].close % 12}pm`;
   });
+  obj.Monday = 'CLOSED';
+  if (dayName === undefined) {
+    return obj;
+  }
+  return ({ [dayName]: obj[dayName] });
 }
 
 // function oldestFromFirstSpecies(id) {

@@ -58,7 +58,7 @@ function animalCount(species) {
     obj[el.name] = el.residents.length;
     return obj;
   });
-  return species === undefined ? obj : numbers.residents.length;
+  return !species ? obj : numbers.residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -182,7 +182,7 @@ function schedule(dayName) {
     if (day === dayName) resultFilter[dayName] = result[dayName];
     return resultFilter;
   });
-  return dayName === undefined ? result : resultFilter;
+  return !dayName ? result : resultFilter;
 }
 
 function oldestFromFirstSpecies(id) {

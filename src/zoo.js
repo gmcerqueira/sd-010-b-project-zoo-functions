@@ -133,7 +133,6 @@ console.log(prices.Adult);
 console.log(prices.Child);
 console.log(prices.Senior);
 
-
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }

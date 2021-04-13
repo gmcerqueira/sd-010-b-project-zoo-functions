@@ -94,10 +94,23 @@ function schedule(dayName) {
   }
   return newObj;
 }
-console.table(schedule('Monday'));
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  const firstAnimal = data.employees.filter((employee) => employee.id === id);
+  const residents = data.animals.filter((animal) => firstAnimal[0]
+    .responsibleFor[0] === animal.id)[0]
+    .residents.sort((a, b) => a.age - b.age);
+  return residents.reduce((residentOld, animal, index) => {
+    if (residents.length - 1 === index) {
+      residentOld.push(animal.name);
+      residentOld.push(animal.sex);
+      residentOld.push(animal.age);
+    }
+    return residentOld;
+  }, []);
+}
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -118,7 +131,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

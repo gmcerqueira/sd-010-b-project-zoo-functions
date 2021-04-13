@@ -203,13 +203,13 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
+  // agradecimentos ao Renan Antunes por ter me auxiliado no eslint
   const searchCollaborators = data.employees.find((collab) => collab.id === id).responsibleFor[0];
   const searchAnimals = data.animals.find((animal) => animal.id === searchCollaborators).residents;
 
   const total = searchAnimals.reduce((oldAnimal, animal) => {
     if (oldAnimal.age < animal.age) {
-      oldAnimal = animal;
-      return Object.values(oldAnimal);
+      return Object.values(animal);
     }
     return oldAnimal;
   });

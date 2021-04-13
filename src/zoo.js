@@ -91,13 +91,13 @@ function animalCount(species) {
   let messege = null;
   if (species === undefined) {
     const animalsPopularity = {};
-    messege = data.animals.forEach(({ _id, name, popularity }) => {
-      animalsPopularity[name] = popularity;
+    messege = data.animals.forEach(({ _id, name, residents }) => {
+      animalsPopularity[name] = residents.length;
     });
     messege = animalsPopularity;
   } else {
     const itemAnimals = data.animals.find((animal) => animal.name === species);
-    messege = itemAnimals.popularity;
+    messege = itemAnimals.residents.length;
   }
   return messege;
 }

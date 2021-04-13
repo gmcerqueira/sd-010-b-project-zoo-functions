@@ -210,7 +210,7 @@ function increasePrices(percentage) {
 
 const mappingEmployees = () => {
   const result = {};
-  data.employees.map((el) => {
+  data.employees.forEach((el) => {
     const getAnimalData = animalsByIds(...el.responsibleFor);
     const names = [];
     getAnimalData.filter((get, index) => {
@@ -218,7 +218,6 @@ const mappingEmployees = () => {
       return names;
     });
     result[`${el.firstName} ${el.lastName}`] = names;
-    return result;
   });
   return result;
 };

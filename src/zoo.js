@@ -98,18 +98,8 @@ function schedule(dayName) {
   theObject.Monday = 'CLOSED';
   return (dayName) ? { [dayName]: theObject[dayName] } : theObject;
 }
-// const obj = {};
-// const hoursKeys = Object.keys(hours);
-// hoursKeys.forEach((key) => {
-//   const { open, close } = hours[key];
-//   if (key === 'Monday') {
-//     obj[key] = 'CLOSED';
-//   } else {
-//     obj[key] = `Open from ${open}am until ${close - 12}pm`;
-//   }
-// });
-// if (dayName) return { [dayName]: obj[dayName] };
-// return obj;
+// Consultei o repositório do Lucas Martins da Silva para resolver a parte inicial do raciocinío dessa função
+// Link do repositório: https://github.com/tryber/sd-010-b-project-zoo-functions/pull/88
 
 /* function oldestFromFirstSpecies(id) {
   // seu código aqui

@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
+const { hours } = data;
 
 // Requirement 1
 function animalsByIds(...ids) {
@@ -84,7 +85,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     firstName,
     lastName,
     managers,
-    responsibleFor });
+    responsibleFor,
+  });
 }
 
 // addEmployee('4141da1c-a6ed-4cf7-90c4-99c657ba4ef3', 'Jane', 'Doe',
@@ -131,13 +133,79 @@ function entryCalculator(entrants) {
 // const people = { 'Adult': 1 };
 // entryCalculator(people);
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+// Requirement 9
+// I took this ideia from https://stackoverflow.com/questions/33381583/how-to-add-many-values-to-one-key-in-javascript-object/33382321
+/* function getLocation() {
+  const locations = {};
+  animals.forEach((animal) => {
+    locations[animal.location] = [];
+  });
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+  return locations;
+}
+
+function getAnimalNames() {
+  const locations = getLocation();
+  animals.map((animal) => locations[animal.location].push(animal.name));
+
+  return locations;
+}
+
+const check = (animal) => (animal.location === 'NE');
+
+function nameTrue() {
+  const locations = getLocation();
+  console.log(locations);
+  const keys = Object.keys(locations);
+  console.log(keys);
+  animals.map((animal) => (
+    check(animal) ? locations.NE.push({ [animal.name]: [animal.residents.name] }) : false
+  )); // .push({ locations[animal.name] = [] }));
+  console.log(locations.NE[0]);
+  return locations;
+}
+nameTrue();
+// console.log(nameTrue());
+
+function animalMap(options) {
+  // seu código aqui
+  // return getAnimalNames();
+  // return nameTrue();
+}
+
+// console.log(animalMap()); */
+
+// Requirement 10
+// I took this convertion function from https://stackoverflow.com/questions/13898423/javascript-convert-24-hour-time-of-day-string-to-12-hour-time-with-am-pm-and-no
+const convertHour = (time24) => {
+  const period = +time24 < 12 ? 'am' : 'pm';
+  const hour = +time24 % 12 || 12;
+
+  return `${hour}${period}`;
+};
+// console.log(convertFrom24To12Format(18));
+
+function setDisplay(day, obj) {
+  const times = Object.values(hours[day]);
+  return `Open from ${convertHour(times[0])} until ${convertHour(times[1])}`;
+}
+// setDisplay()
+
+function schedule(dayName) {
+  // seu código aqui
+  const days = Object.keys(hours);
+  // console.log(days);
+  const obj = {};
+  days.forEach((day) => {
+    // setDisplay(day, obj);
+    obj[day] = (day !== 'Monday') ? setDisplay(day, obj) : 'CLOSED';
+    // obj[day] = setDisplay(day, obj);
+  });
+  console.log(obj);
+  return obj;
+}
+
+schedule();
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -153,7 +221,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

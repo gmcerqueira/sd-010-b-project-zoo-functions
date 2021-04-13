@@ -103,13 +103,18 @@ function schedule(dayName) {
 
 /* function oldestFromFirstSpecies(id) {
   // seu código aqui
-}
+} */
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const { Adult, Senior, Child } = prices;
+  prices.Adult = Number((Math.ceil(Adult * (100 + percentage)) / 100).toFixed(2));
+  prices.Senior = Number((Math.ceil(Senior * (100 + percentage)) / 100).toFixed(2));
+  prices.Child = Number((Math.ceil(Child * (100 + percentage)) / 100).toFixed(2));
 }
+// Utilizei a Number() Function para resolução do requisito acima
+// source: https://www.w3schools.com/jsref/jsref_number.asp
 
-function employeeCoverage(idOrName) {
+/* function employeeCoverage(idOrName) {
   // seu código aqui
 } */
 
@@ -124,7 +129,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  /* oldestFromFirstSpecies,
-  increasePrices, */
+  // oldestFromFirstSpecies,
+  increasePrices,
   createEmployee,
 };

@@ -51,13 +51,20 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(idManager) {
   return employees.some((employee) => employee.managers.includes(idManager));
 }
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
-// some para verificar se algum dos elementos do array é igual ao id informado.
-// Testa se o id passado é de um gerente e returna boleano
+// some para verificar se algum dos employee possui no managers o idManager.
+// includes testa se o id passado é de um gerente e returna boleano
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
+}
+// Adiciona um funcionário no fim do array employees
+// .push adiciona objeto
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -95,7 +102,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   //   employeeCoverage,
-  //   addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   //   oldestFromFirstSpecies,

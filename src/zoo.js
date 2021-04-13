@@ -67,16 +67,31 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const { animals } = data;
   const allAnimals = {};
-  animals.forEach((animal) => { allAnimals[animal.name] = animal.residents.length });
+  animals.forEach((animal) => { allAnimals[animal.name] = animal.residents.length;});
   if (species === undefined) {
-    return allAnimals;   
+    return allAnimals;
   }
   return allAnimals[species];
 }
-console.log(animalCount('lions'));
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+
+function entryCalculator(entrants) {
+  const { prices } = data;
+  if (typeof entrants === 'undefined') {
+    return 0;
+  }
+  const { Adult, Senior, Child } = entrants;
+  let entryPrice = 0;
+  if (typeof Adult === 'number') {
+    entryPrice += Adult * prices.Adult;
+  }
+  if (typeof Senior === 'number') {
+    entryPrice += Senior * prices.Senior;
+  }
+  if (typeof Child === 'number') {
+    entryPrice += Child * prices.Child;
+  }
+  return entryPrice;
+} // Agradecimento ao amigo Rafael Mathias pelo auxílio no entendimento da lógica.
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -99,7 +114,7 @@ console.log(animalCount('lions'));
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

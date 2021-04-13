@@ -121,6 +121,16 @@ function entryCalculator(entrants) {
 // function animalMap(options) {
 //   // seu código aqui
 // }
+function anotherScheduele(dayName) {
+  const timeRange = {};
+  if (dayName === 'Monday') {
+    timeRange[dayName] = 'CLOSED';
+    return timeRange;
+  }
+  const find = Object.entries(hours).find((isItworking) => isItworking[0] === dayName);
+  timeRange[find[0]] = `Open from ${find[1].open}am until ${find[1].close - 12}pm`;
+  return timeRange;
+}
 
 function schedule(dayName) {
   const timeRange = {};
@@ -134,16 +144,14 @@ function schedule(dayName) {
     });
     return timeRange;
   }
-  if (dayName === 'Monday') {
-    timeRange[dayName] = 'CLOSED';
-    return timeRange;
-  }
-  const find = Object.entries(hours).find((isItworking) => isItworking[0] === dayName);
-  timeRange[find[0]] = `Open from ${find[1].open}am until ${find[1].close - 12}pm`;
-  return timeRange;
+  return anotherScheduele(dayName);
+  // const find = Object.entries(hours).find((isItworking) => isItworking[0] === dayName);
+  // timeRange[find[0]] = `Open from ${find[1].open}am until ${find[1].close - 12}pm`;
+  // return timeRange;
 }
+
 // Nesta questão tive auxílio de colegas no Discord e a partir de dúvidas de colegas no plantão sobre esta mesma questão.
-console.log(schedule('Monday'));
+console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   const checkId = employees.find((employee) => employee.id === id);

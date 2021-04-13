@@ -142,12 +142,12 @@ const getAnimalsSeparetedByLocale = (location, animalsNameLocation) => {
   return animalArray;
 };
 
-const getResidentsAnimals = (animalArray) => {
+/* const getResidentsAnimals = (animalArray) => {
   animalArray.forEach((animalName) => {
     const getAnimalOfData = data.animals.find((animal) => animal.name === animalName);
     console.log(getAnimalOfData.residents);
   });
-};
+}; */
 /* const getNamesAnimals = (locations, animalsNameLocation) => {
   const arrayReturn = {};
   locations.forEach((location) => {

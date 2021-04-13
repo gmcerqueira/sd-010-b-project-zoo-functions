@@ -72,10 +72,29 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
-
+// https://stackoverflow.com/questions/43807515/eslint-doesnt-allow-for-in
+// Link usado para resolução do requesito schedule
+function schedule(dayName) {
+  // seu código aqui
+  const keys = Object.keys(data.hours);
+  const values = Object.values(data.hours);
+  const newObj = {};
+  const newobj2 = {};
+  keys.forEach((key, index) => {
+    const hours = (((values[index].close + 11) % 12) + 1);
+    if (key === 'Monday') {
+      newObj[key] = 'CLOSED';
+    } else {
+      newObj[key] = `Open from ${values[index].open}am until ${hours}pm`;
+    }
+  });
+  if (dayName !== undefined) {
+    newobj2[dayName] = newObj[dayName];
+    return newobj2;
+  }
+  return newObj;
+}
+console.table(schedule('Monday'));
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
@@ -90,7 +109,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

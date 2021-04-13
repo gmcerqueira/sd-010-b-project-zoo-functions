@@ -100,25 +100,21 @@ function entryCalculator(entrants) {
 // }
 
 function schedule(dayName) {
-  if (dayName === undefined) {
-    const daysOpen = {};
-    Object.keys(hours).forEach((element) => {
-      if (element === 'Monday') {
-        daysOpen[element] = 'CLOSED';
-      } else {
-        daysOpen[element] = `Open from ${hours[element].open}am until ${hours[element].close - 12}pm`;
-      }
-    });
-    return daysOpen;
-  }
-  if (dayName === 'Monday') {
+  const daysOpen = {};
+  Object.keys(hours).forEach((element) => {
+    if (element === 'Monday') {
+      daysOpen[element] = 'CLOSED';
+    } else {
+      daysOpen[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm`;
+    }
+  });
+
+  if (dayName) {
     return {
-      [dayName]: 'CLOSED',
+      [dayName]: daysOpen[dayName],
     };
   }
-  return {
-    [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`,
-  };
+  return daysOpen;
 }
 
 // function oldestFromFirstSpecies(id) {

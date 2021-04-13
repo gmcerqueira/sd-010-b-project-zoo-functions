@@ -85,9 +85,12 @@ function entryCalculator(entrants = {}) {
   return entrantsKey.reduce((acc, cur) => acc + prices[cur] * entrants[cur], 0);
 }
 
-// function animalMap(options) {
-// seu código aqui
-// }
+function animalMap(options) {
+  // seu código aqui
+  if (!options) return animals();
+  const { includeNames, sex, sorted } = options;
+  return animals(includeNames, sex, sorted);
+}
 
 // function schedule(dayName) {
 // seu código aqui
@@ -109,7 +112,7 @@ module.exports = {
   entryCalculator,
   // schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

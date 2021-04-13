@@ -22,8 +22,6 @@ function animalsByIds(...ids) {
   return animalsId;
 }
 
-console.log(animalsByIds());
-
 function animalsOlderThan(animal, age) {
   const setAnimal = data.animals.find((curr) => curr.name === animal);
   const minimalAge = setAnimal.residents.every((curr) => curr.age > age);
@@ -31,7 +29,13 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  return employeeName;
+  if (employeeName === undefined) return {};
+  const searchFName = data.employees.find((curr) => curr.firstName === employeeName);
+
+  if (searchFName) return searchFName;
+  
+  const searchLName = data.employees.find((curr) => curr.lastName === employeeName);
+  return searchLName;
 }
 
 function createEmployee(personalInfo, associatedWith) {

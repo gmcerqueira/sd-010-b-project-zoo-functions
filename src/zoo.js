@@ -106,8 +106,7 @@ function schedule(dayName) {
       if (element === 'Monday') {
         daysOpen[element] = 'CLOSED';
       } else {
-        daysOpen[element] =
-          `Open from ${hours[element].open}am until ${hours[element].close - 12}pm`;
+        daysOpen[element] = `Open from ${hours[element].open}am until ${hours[element].close - 12}pm`;
       }
     });
     return daysOpen;
@@ -115,13 +114,12 @@ function schedule(dayName) {
   if (dayName === 'Monday') {
     return {
       [dayName]: 'CLOSED',
-    }
+    };
   }
   return {
     [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`,
-  }
+  };
 }
-
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui

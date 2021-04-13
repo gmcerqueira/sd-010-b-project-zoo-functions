@@ -118,9 +118,16 @@ function schedule(dayName) {
   return { [dayName]: horaCompleted[dayName] };
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+// Aqui eu dividi todas as etapas, porque quando tentei fazer tudo interligado de uma só vez não retornava nenhum valor e isso se tornou um problema, mas ai usando console.log e o Run and Debug eu notei que fazer passo a passo separado eu conseguiria um resultado satisfatório. E, claro, percebi isso na tentativa e erro.
+
+function oldestFromFirstSpecies(id) {
+  const arrEmployee = [];
+  arrEmployee.push(employees.find((employee) => employee.id === id));
+  const idAnimal = arrEmployee.find((arr) => arr.responsibleFor).responsibleFor[0];
+  const animalResidents = animals.find((animal) => animal.id === idAnimal).residents;
+  const animalMaisVelho = animalResidents.reduce((acc, curr) => (acc.age > curr.age ? acc : curr));
+  return Object.values(animalMaisVelho);
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -141,7 +148,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

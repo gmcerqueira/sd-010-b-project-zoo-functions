@@ -20,10 +20,6 @@ function animalsByIds(ids) {
   return animalsId;
 }
 
-function animalsOlderThan(animal, age) {
-  return 1;
-}
-
 function employeeByName(employeeName) {
   return 1;
 }

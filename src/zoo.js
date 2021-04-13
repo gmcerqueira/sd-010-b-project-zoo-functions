@@ -16,9 +16,10 @@ function animalsByIds(...ids) {
   return data.animals.filter((animal) => ids.some((id) => animal.id === id));
 }
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
+function animalsOlderThan(animal, age) {
+  const getAnimal = data.animals.find((ani) => ani.name === animal);
+  return getAnimal.residents.every((resident) => resident.age >= age);
+}
 
 // function employeeByName(employeeName) {
 //   // seu código aqui
@@ -70,11 +71,11 @@ module.exports = {
 //   animalCount,
 //   animalMap,
   animalsByIds,
+  animalsOlderThan,
 //   employeeByName,
 //   employeeCoverage,
 //   addEmployee,
 //   isManager,
-//   animalsOlderThan,
 //   oldestFromFirstSpecies,
 //   increasePrices,
 //   createEmployee,

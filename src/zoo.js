@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter((getId) => ids.some((animalId) => (animalId === getId.id)));
@@ -37,11 +37,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const listManagers = [];
-  employees.forEach((managers) => listManagers.push(...managers.managers));
-  return listManagers.some((ids) => ids === id);
+  return employees.some((ids) => ids.managers.includes(id));
 }
-isManager();
+
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return employees.push({
     id,
@@ -67,9 +65,17 @@ function animalCount(species) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  const keys = Object.keys(hours);
+  // const values = Object.values(hours);
+  const myObj = {};
+  const addDay = (key) => {
+    myObj[key] = `Open from ${hours[key].open}am until ${hours[key].close - 12}pm`;
+  };
+  keys.forEach(addDay);
+  myObj.Monday = 'CLOSED';
+  return (dayName) ? { [dayName]: myObj[dayName] } : myObj;
+}
 
 function oldestFromFirstSpecies(id) {
   const animalId = employees.find((employeeId) => (employeeId.id === id)).responsibleFor[0];
@@ -102,7 +108,7 @@ function increasePrices(percentage) {
 
 module.exports = {
   // entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

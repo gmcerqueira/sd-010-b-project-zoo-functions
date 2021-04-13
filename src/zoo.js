@@ -1,6 +1,6 @@
 const data = require('./data');
 
-const { animals, employees: e, hours: hrs } = data;
+const { animals, employees: e, hours: hrs, prices: p } = data;
 
 function animalsByIds(...ids) {
   return ids.map((id) => animals.find((animal) => animal.id === id));
@@ -95,13 +95,12 @@ function oldestFromFirstSpecies(id) {
   return arr.splice(3, 6);
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
-
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+  Object.keys(p).forEach((value) => {
+    p[value] = parseFloat(((percentage / 100) * p[value] + p[value] + 0.001).toFixed(2));
+  });
+}
 
 module.exports = {
   entryCalculator,
@@ -115,6 +114,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

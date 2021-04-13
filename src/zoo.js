@@ -13,8 +13,6 @@ const data = require('./data');
 
 const { animals } = data;
 
-// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
-
 const isTheAnimal = (animal, ...ids) => {
   for (let i = 0; i < ids.length; i += 1) {
     if (animal.id === ids[i]) return animal;
@@ -26,14 +24,12 @@ const animalsByIds = (...ids) => {
   return animals.filter((animal) => isTheAnimal(animal, ...ids));
 };
 
-// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
-
-const animalsBySpecie = specieName => animals.find(specie => specie.name === specieName).residents;
+const animalsBySpecie = (specieName) => animals.find(specie => specie.name === specieName).residents;
 
 const animalsOlderThan = (specieName, age) => {
   // seu código aqui
   const animalsSpecie = animalsBySpecie(specieName);
-  return animalsSpecie.every(animal => animal.age >= age);
+  return animalsSpecie.every((animal) => animal.age >= age);
 };
 
 // function employeeByName(employeeName) {

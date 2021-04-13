@@ -1,15 +1,3 @@
-/*
-eslint no-unused-vars: [
-  "error",
-  {
-    "args": "none",
-    "vars": "local",
-    "varsIgnorePattern": "data"
-  }
-]
-*/
-
-const { hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -116,26 +104,31 @@ function animalCount(species) {
 
 /* console.log(animalCount('snakes')); */
 
-function entryCalculator(entrants = {}) {
+function entryCalculator(entrants) {
   // seu código aqui
   let messege = null;
-  if (Object.entries(entrants).length !== 0) {
-    const values = [];
-    prices = data.prices;
-    for (let keyEntrant in entrants) {
-      for (let keyPrice in prices) {
-        if (keyEntrant === keyPrice){
-          let multiplication = entrants[keyEntrant] * prices[keyPrice];
-          values.push(multiplication);
-        }
-      }
-    }
-    messege = values.reduce((a, b) => a + b);
-  } else {
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
     messege = 0;
+  } else {
+    const values = [];
+    const keysPrices = Object.keys(data.prices);
+    const keysEntrants = Object.keys(entrants);
+    keysEntrants.forEach((keyEntrant) => {
+      const findKeyPrice = keysPrices.find((keyPrice) => keyPrice === keyEntrant);
+      values.push(data.prices[findKeyPrice] * entrants[keyEntrant]);
+    });
+    messege = values.reduce((accumulator, currentValue) => accumulator + currentValue);
   }
   return messege;
 }
+
+/* console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 })); // 187.94
+console.log(entryCalculator({ 'Adult': 1 })); // 49.99
+console.log(entryCalculator({ 'Senior': 1 }));// 24.99
+console.log(entryCalculator({ 'Child': 1 }));// 20.99
+console.log(entryCalculator({ 'Child': 1, 'Senior': 1 }));// 45.98
+console.log(entryCalculator());// 0
+console.log(entryCalculator({}));// 0 */
 
 const getAnimalsEndLocation = () => (data.animals.map((animal) => (
   { name: animal.name, location: animal.location })));

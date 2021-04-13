@@ -70,11 +70,11 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species) {
     return data.animals.find((curr) => curr.name === species).residents.length;
-  };
+  }
   const animalV = {};
   data.animals.forEach(({ name, residents }) => {
     animalV[name] = residents.length;
-  })
+  });
   return animalV;
 }
 

@@ -100,9 +100,9 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-function schedule(dayName) {
-  // seu código aqui
-}
+// function schedule(dayName) {
+//   // seu código aqui
+// }
 
 // console.log(schedule());
 
@@ -130,9 +130,19 @@ function oldestFromFirstSpecies(id) {
   return result;
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+  const increase = Object.values(prices)
+    .map((item) => (item * percentage)
+      .toPrecision(4) / 100);
+
+  const { Adult, Senior, Child } = prices;
+  const [adultAdd, seniorAdd, childAdd] = increase;
+
+  prices.Adult = parseFloat((Adult + adultAdd).toPrecision(4));
+  prices.Senior = parseFloat((Senior + seniorAdd).toPrecision(4));
+  prices.Child = parseFloat((Child + childAdd).toPrecision(4));
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -140,7 +150,7 @@ function oldestFromFirstSpecies(id) {
 
 module.exports = {
   entryCalculator,
-  schedule,
+  // schedule,
   animalCount,
   //   animalMap,
   animalsByIds,
@@ -150,6 +160,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  //   increasePrices,
+  increasePrices,
   createEmployee,
 };

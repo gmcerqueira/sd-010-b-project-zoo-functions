@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 // const [name, sex, age] = residents;
 
@@ -122,9 +122,28 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-
-// }
+function schedule(dayName) {
+  const timeRange = {};
+  if (!dayName) {
+    Object.entries(hours).forEach((work) => {
+      if (work[1].open === 0) {
+        timeRange[work[0]] = 'CLOSED';
+      } else {
+        timeRange[work[0]] = `Open from ${work[1].open}am until ${work[1].close - 12}pm`;
+      }
+    });
+    return timeRange;
+  }
+  if (dayName === 'Monday') {
+    timeRange[dayName] = 'CLOSED';
+    return timeRange;
+  }
+  const find = Object.entries(hours).find((isItworking) => isItworking[0] === dayName);
+  timeRange[find[0]] = `Open from ${find[1].open}am until ${find[1].close - 12}pm`;
+  return timeRange;
+}
+// Nesta questão tive auxílio de colegas no Discord e a partir de dúvidas de colegas no plantão sobre esta mesma questão.
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   const checkId = employees.find((employee) => employee.id === id);
@@ -151,7 +170,7 @@ function increasePrices(percentage) {
 
 module.exports = {
   entryCalculator,
-  //  schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

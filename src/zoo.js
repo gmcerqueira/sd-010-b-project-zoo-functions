@@ -16,52 +16,56 @@ function animalsByIds(ids) {
   ids.forEach((idF) => {
     if (ids.length > 0) {
     animalsId.push(animals.find((curr) => curr.id === idF));
-    };
+    }});
   return animalsId;
 }
 
+function animalsOlderThan(animal, age) {
+  // seu código aqui
+}
+
 function employeeByName(employeeName) {
-  return 1;
+  // seu código aqui
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return 1;
+  // seu código aqui
 }
 
 function isManager(id) {
-  return 1;
+  // seu código aqui
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  return 1;
+  // seu código aqui
 }
 
 function animalCount(species) {
-  return 1;
+  // seu código aqui
 }
 
 function entryCalculator(entrants) {
-  return 1;
+  // seu código aqui
 }
 
 function animalMap(options) {
-  return 1;
+  // seu código aqui
 }
 
 function schedule(dayName) {
-  return 1;
+  // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
-  return 1;
+  // seu código aqui
 }
 
 function increasePrices(percentage) {
-  return 1;
+  // seu código aqui
 }
 
 function employeeCoverage(idOrName) {
-  return 1;
+  // seu código aqui
 }
 
 module.exports = {

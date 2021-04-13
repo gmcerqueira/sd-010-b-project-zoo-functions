@@ -103,8 +103,7 @@ function schedule(dayName) {
   const scheduleKeys = Object.keys(hours);
 
   scheduleKeys.forEach((key) => {
-    publicSchedule[key] = `Open from ${hours[key].open}am
-      until ${hours[key].close - 12}pm`;
+    publicSchedule[key] = `Open from ${hours[key].open}am until ${hours[key].close - 12}pm`;
   });
   publicSchedule.Monday = 'CLOSED';
 

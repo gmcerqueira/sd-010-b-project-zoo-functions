@@ -82,7 +82,7 @@ function entryCalculator(entrants) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const { name, sex, age } = animals
-    .find((animal) => animal.id === employees.find(emp =>
+    .find((animal) => animal.id === employees.find((emp) =>
       emp.id === id).responsibleFor[0])
     .residents.sort((acc, curr) => acc.age - curr.age)[0];
   return [name, sex, age];

@@ -17,7 +17,7 @@ const { employees } = data;
 const { prices } = data;
 const { hours } = data;
 
-function animalsByIds(...ids) {/* caso a função receba um parâmetro como spread, ele já retorna um array vazio Colaboração do Rernato G Souza*/
+function animalsByIds(...ids) { /* caso a função receba um parâmetro como spread, ele já retorna um array vazio Colaboração do Rernato G Souza */
   return ids.map((id) => animals.find((animal) => animal.id === id));
 }
 
@@ -28,7 +28,7 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) { /* !employeeName substitui === undefined */
-    return {};
+    return { };
   }
   return employees.find(
     (employee) =>
@@ -90,7 +90,7 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-function schedule(dayName) {/* realizado com a colaboração de Arlen Freitas */
+function schedule(dayName) { /* realizado com a colaboração de Arlen Freitas */
   const objSchedule = {};
   const keys = Object.keys(hours);
   const values = Object.values(hours);
@@ -107,7 +107,7 @@ function schedule(dayName) {/* realizado com a colaboração de Arlen Freitas */
     };
   }
   return objSchedule;
-};
+}
 
 // function oldestFromFirstSpecies(id) {
 //   const employee = employees.find((person) => person.id === id);

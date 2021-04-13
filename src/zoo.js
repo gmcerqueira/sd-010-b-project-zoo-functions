@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   // Caso receba nenhum parâmetro, necessário retornar um array vazio
@@ -98,10 +98,26 @@ function entryCalculator(entrants = 0) {
   return options;
 } */
 
-/* function schedule(dayName) {
-  // seu código aqui
-  return dayName;
-} */
+function schedule(dayName) {
+  // A função é responsável por disponibilizar as informações de horário para uma consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas o cronograma de um dia específico
+  // Sem parâmetros, retorna um cronograma legível para humanos
+  // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+  const horarioComp = {
+    Tuesday: `Open from ${hours.Tuesday.open}am until ${hours.Tuesday.close % 12}pm`,
+    Wednesday: `Open from ${hours.Wednesday.open}am until ${hours.Wednesday.close % 12}pm`,
+    Thursday: `Open from ${hours.Thursday.open}am until ${hours.Thursday.close % 12}pm`,
+    Friday: `Open from ${hours.Friday.open}am until ${hours.Friday.close % 12}pm`,
+    Saturday: `Open from ${hours.Saturday.open}am until ${hours.Saturday.close % 12}pm`,
+    Sunday: `Open from ${hours.Sunday.open}am until ${hours.Sunday.close % 12}pm`,
+    Monday: 'CLOSED',
+  };
+  if (!dayName) {
+    return horarioComp;
+  }
+  const obj = {};
+  obj[dayName] = horarioComp[dayName];
+  return obj;
+}
 
 const findAnimal = (idAnimal) => {
   const { residents } = animals.find((animal) => animal.id === idAnimal);
@@ -141,7 +157,7 @@ function increasePrices(percentage) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

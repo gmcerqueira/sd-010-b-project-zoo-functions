@@ -82,7 +82,7 @@ function entryCalculator(entrants) {
   if (!entrants || entrants === {}) return 0;
 
   let valueTotal = 0;
-  let entrantsKeys = Object.keys(entrants);
+  const entrantsKeys = Object.keys(entrants);
   entrantsKeys.forEach((key) => {
     valueTotal += entrants[key] * data.prices[key];
   });

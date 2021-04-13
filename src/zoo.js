@@ -21,6 +21,7 @@ const {
   animals,
   employees,
   prices,
+  hours,
 } = data;
 
 function animalsByIds(...ids) {
@@ -119,17 +120,34 @@ function entryCalculator(entrants) {
   return pricesTotal.reduce((acc, curr) => acc + curr, 0);
 }
 
-console.log(entryCalculator({
-  Adult: 2,
-  Senior: 2,
-}));
 // function animalMap(options) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+const scheduleArray = Object.entries(hours);
+
+const reduceToFullArray = (array) => array.reduce((acc, curr) => {
+  const scheduleObject = acc;
+  const dayOpen = Object.values(curr[1])[0];
+  const dayClose = Object.values(curr[1])[1] - 12;
+  if (dayOpen === 0) {
+    scheduleObject[curr[0]] = 'CLOSED';
+  } else {
+    scheduleObject[curr[0]] = `Open from ${dayOpen}am until ${dayClose}pm`;
+  }
+  return scheduleObject;
+}, {});
+
+function schedule(dayName) {
+  const fullZooSchedule = reduceToFullArray(scheduleArray);
+  if (!dayName) {
+    return fullZooSchedule;
+  }
+  const daySchedule = {
+    [dayName]: fullZooSchedule[dayName],
+  };
+  return daySchedule;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -145,7 +163,7 @@ console.log(entryCalculator({
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

@@ -269,10 +269,9 @@ const getAnimal = (animalId) => {
   const animalObj = data.animals.find((animal) => animal.id === animalId);
   return animalObj.name;
 };
-function employeeCoverage(idOrName) {
-  // seu código aqui
-  const objEmployeesAndSpecies = {};
 
+const getEmployeeResponsableForAnimals = () => {
+  const objEmployeesAndSpecies = {};
   data.employees.forEach(({ firstName, lastName, responsibleFor }) => {
     const animals = responsibleFor.map((animalId) => (
       getAnimal(animalId)
@@ -280,9 +279,35 @@ function employeeCoverage(idOrName) {
     objEmployeesAndSpecies[`${firstName} ${lastName}`] = animals;
   });
   return objEmployeesAndSpecies;
-}
+};
 
-/* console.log(employeeCoverage()); */
+const getAnimalsByIdOrFirstName = (idOrName) => {
+  const objEmployeesAndSpecies = {};
+  let employee = null;
+  if (data.employees.find(({ id }) => id === idOrName)) {
+    employee = data.employees.find(({ id }) => id === idOrName);
+  } else if (data.employees.find(({ firstName }) => firstName === idOrName)) {
+    employee = data.employees.find(({ firstName }) => firstName === idOrName);
+  } else if (data.employees.find(({ lastName }) => lastName === idOrName)) {
+    employee = data.employees.find(({ lastName }) => lastName === idOrName);
+  }
+  const animals = employee.responsibleFor.map((animalId) => (
+    getAnimal(animalId)
+  ));
+  const { firstName, lastName } = employee;
+  objEmployeesAndSpecies[`${firstName} ${lastName}`] = animals;
+
+  return objEmployeesAndSpecies;
+};
+
+function employeeCoverage(idOrName) {
+  let messege = null;
+  if (idOrName === undefined) {
+    messege = getEmployeeResponsableForAnimals();
+  } else {
+    messege = getAnimalsByIdOrFirstName(idOrName);
+  } return messege;
+}
 
 module.exports = {
   entryCalculator,

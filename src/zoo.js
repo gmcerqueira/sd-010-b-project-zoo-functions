@@ -100,11 +100,64 @@ const sortedResidents = () => {
   return getObj;
 };
 
+const residentsBySex = (sex) => {
+  const getObj = { NE: [], NW: [], SE: [], SW: [] };
+  data.animals.forEach((resid) => {
+    let female = [];
+    const arrayOfNames = [];
+    if (sex === 'female') {
+      female = resid.residents.filter((el) => el.sex === 'female');
+      female.forEach((e) => arrayOfNames.push(e.name));
+      getObj[resid.location].push({ [resid.name]: arrayOfNames });
+      return female;
+    }
+    if (sex === 'male') {
+      female = resid.residents.filter((el) => el.sex === 'male');
+      female.forEach((e) => arrayOfNames.push(e.name));
+      getObj[resid.location].push({ [resid.name]: arrayOfNames });
+      return female;
+    }
+  });
+  return getObj;
+};
+
+const residentsBySexSorted = (sex) => {
+  const getObj = { NE: [], NW: [], SE: [], SW: [] };
+  data.animals.forEach((resid) => {
+    let female = [];
+    const arrayOfNames = [];
+    if (sex === 'female') {
+      female = resid.residents.filter((el) => el.sex === 'female');
+      female.forEach((e) => arrayOfNames.push(e.name));
+      getObj[resid.location].push({ [resid.name]: arrayOfNames.sort() });
+      return female;
+    }
+    if (sex === 'male') {
+      female = resid.residents.filter((el) => el.sex === 'male');
+      female.forEach((e) => arrayOfNames.push(e.name));
+      getObj[resid.location].push({ [resid.name]: arrayOfNames.sort() });
+      return female;
+    }
+  });
+  return getObj;
+};
+
+function funcao(sorted, sex) {
+  if (!sorted) {
+    if (!sex) return residentsBySpcies();
+    return residentsBySex(sex);
+  }
+  if (!sex) return sortedResidents();
+  return residentsBySexSorted(sex);
+}
+
 function animalMap(options) {
   if (!options) return animalsByRegion();
-  const { includeNames, sorted } = options;
-  if (includeNames && !sorted) return residentsBySpcies();
-  if (sorted) return sortedResidents();
+  const { includeNames, sorted, sex } = options;
+  if (!includeNames) return animalsByRegion();
+  if (includeNames) {
+    return funcao(sorted, sex);
+  }
 }
 
 const scheduleAll = () => {

@@ -82,11 +82,11 @@ function entryCalculator(entrants) {
   if (!entrants || entrants === {}) return 0;
 
   let valueTotal = 0;
+  let entrantsKeys = Object.keys(entrants);
+  entrantsKeys.forEach((key) => {
+    valueTotal += entrants[key] * data.prices[key];
+  });
 
-  if (entrants.Adult) valueTotal += (entrants.Adult) * data.prices.Adult;
-  if (entrants.Child) valueTotal += (entrants.Child) * data.prices.Child;
-  if (entrants.Senior) valueTotal += (entrants.Senior) * data.prices.Senior;
-  
   return valueTotal;
 }
 

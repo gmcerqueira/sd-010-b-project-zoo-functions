@@ -160,6 +160,8 @@ function animalMap(options) {
   }
 }
 
+// Precisei da ajuda do Carlos Margato para refatorar a função principal (chamada das funções auxiliares)
+
 const scheduleAll = () => {
   const { hours } = data;
   const result = {};

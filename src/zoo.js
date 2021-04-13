@@ -185,7 +185,7 @@ const convertHour = (time24) => {
 };
 // console.log(convertFrom24To12Format(18));
 
-function setDisplay(day, obj) {
+function setDisplay(day) {
   const times = Object.values(hours[day]);
   return `Open from ${convertHour(times[0])} until ${convertHour(times[1])}`;
 }
@@ -193,19 +193,20 @@ function setDisplay(day, obj) {
 
 function schedule(dayName) {
   // seu código aqui
-  const days = Object.keys(hours);
-  // console.log(days);
   const obj = {};
-  days.forEach((day) => {
-    // setDisplay(day, obj);
-    obj[day] = (day !== 'Monday') ? setDisplay(day, obj) : 'CLOSED';
-    // obj[day] = setDisplay(day, obj);
-  });
-  console.log(obj);
+
+  if (!dayName) {
+    const days = Object.keys(hours);
+    days.forEach((day) => {
+      obj[day] = (day !== 'Monday') ? setDisplay(day) : 'CLOSED';
+    });
+    return obj;
+  }
+
+  obj[dayName] = (dayName !== 'Monday') ? setDisplay(dayName) : 'CLOSED';
+
   return obj;
 }
-
-schedule();
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui

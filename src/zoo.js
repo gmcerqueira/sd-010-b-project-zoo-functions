@@ -13,13 +13,14 @@ const data = require('./data');
 
 function animalsByIds(ids) {
   const animalsId = [];
-  ids.forEach((idF) => {
-    if (ids.length > 0) {
+
+  if (ids.length > 0) {
+    ids.forEach((idF) => {
       animalsId.push(data.animals.find((curr) => curr.id === idF));
-    }
-  });
+    });
+  }
   return animalsId;
-}
+};
 
 function animalsOlderThan(animal, age) {
   return animal + age;

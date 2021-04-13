@@ -258,8 +258,8 @@ function increasePrices(percentage) {
   return data.prices;
 }
 
-console.log(increasePrices(50));
-console.log(increasePrices(30));
+/* console.log(increasePrices(50));
+console.log(increasePrices(30)); */
 
 const getAnimal = (animalId) => {
   const animalObj = data.animals.find((animal) => animal.id === animalId);

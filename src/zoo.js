@@ -97,7 +97,7 @@ function schedule(dayName) {
   horario.forEach((diaSemana) => {
     if (diaSemana !== 'Monday') {
       newObj[diaSemana] = `Open from ${hours[diaSemana].open}am `
-      + `until ${hours[diaSemana].close - 12}pm`;
+        + `until ${hours[diaSemana].close - 12}pm`;
     } else {
       newObj[diaSemana] = 'CLOSED';
     }
@@ -108,9 +108,19 @@ function schedule(dayName) {
   return { [dayName]: newObj[dayName] };
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const employerFirst = employees.find((employ) => employ.id === id).responsibleFor[0];
+  const animalManager = animals.find((animal) => animal.id === employerFirst).residents;
+  const oldAge = animalManager.reduce((acc, curr) => {
+    if (curr.age > acc) {
+      return curr.age;
+    }
+    return acc;
+  }, 0);
+  const matchedAge = animalManager.find((resident) => resident.age === oldAge);
+  const arrayAnimal = Object.values(matchedAge);
+  return arrayAnimal;
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -131,7 +141,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

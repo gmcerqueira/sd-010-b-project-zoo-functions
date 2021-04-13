@@ -20,7 +20,7 @@ function animalsByIds(ids) {
     });
   }
   return animalsId;
-};
+}
 
 function animalsOlderThan(animal, age) {
   return animal + age;

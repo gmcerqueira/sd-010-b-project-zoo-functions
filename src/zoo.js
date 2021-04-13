@@ -9,18 +9,25 @@ eslint no-unused-vars: [
 ]
 */
 
+// const {
+//   animals,
+//   employees,
+//   prices,
+// } = require('./data');
+
+const data = require('./data');
+
 const {
   animals,
   employees,
-} = require('./data');
-const data = require('./data');
+  prices,
+} = data;
 
 function animalsByIds(...ids) {
   const animalsData = ids.map((id) => animals.find((animal) => (animal.id === id)));
+  console.log(animalsData);
   return animalsData;
 }
-
-// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
   const findAnimal = animals.find((element) => element.name === animal).residents;
@@ -29,7 +36,8 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  let employeeData = employees.find((employee) => employee.firstName === employeeName || employee.lastName === employeeName);
+  let employeeData = employees.find((employee) =>
+    employee.firstName === employeeName || employee.lastName === employeeName);
   if (employeeName === undefined) {
     employeeData = {};
   }
@@ -85,23 +93,33 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(newEmployeeData);
 }
 
-
-// function animalCount(species) {
-//   const object = {};
-//   const animalList = animals.reduce((acc, curr) => acc['nome'] = curr.name, {});
-//   if (species === undefined) {
-//     return animalList;
-//   } else {
-//     return animals.find((animal) => animal.name === species).residents.length;
-//   }
-// }
+function animalCount(species = undefined) {
+  const animalListCount = animals.reduce((acc, curr) => {
+    const animalObject = acc;
+    animalObject[curr.name] = curr.residents.length;
+    return animalObject;
+  }, {});
+  if (species === undefined) {
+    return animalListCount;
+  }
+  return animals.find((animal) => animal.name === species).residents.length;
+}
 
 // console.log(animalCount());
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  const pricesTotal = [];
+  const customerTypes = Object.keys(entrants);
+  const customerValue = Object.values(entrants);
+  const priceFinder = customerTypes.map((customer) => prices[customer]);
+  priceFinder.forEach((element, index) => pricesTotal.push(element * customerValue[index]));
+  return pricesTotal.reduce((acc, curr) => acc + curr, 0);
+}
 
+console.log(entryCalculator({
+  Adult: 2,
+  Senior: 2,
+}));
 // function animalMap(options) {
 //   // seu código aqui
 // }
@@ -123,9 +141,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

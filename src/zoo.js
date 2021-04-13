@@ -85,11 +85,13 @@ function entryCalculator(entrants) {
 // function schedule(dayName) {
 //   // seu código aqui
 // }
-
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
-
+// Para o final da resolução do requisito abaixo, eu tive a ajuda do meu colega Vinicius Bodra. Link do PR dele: https://github.com/tryber/sd-010-b-project-zoo-functions/pull/3/commits/f8593eb4caa650406e550b291fe5cc87fef2a6ad
+function oldestFromFirstSpecies(id) {
+  const trabalhador = employees.find((empregado) => empregado.id === id);
+  const encontraAnimal = animals.find((bicho) => bicho.id === trabalhador.responsibleFor[0]);
+  const idade = encontraAnimal.residents.sort((a, b) => b.age - a.age); // aqui eu uso a idade pra organizar os objetos (dentro de residents) em ordem decrescente ME BASEANDO NA IDADE. O objeto que tenha uma idade maior vai ficar em primeiro lugar na ordem.
+  return Object.values(idade[0]); // o idade[0] vai alcançar o objeto que contém o name, sex e age do animal mais velho. E usar o object.values me retorna um array, que é o que o requisito pede.
+}
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }
@@ -109,7 +111,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

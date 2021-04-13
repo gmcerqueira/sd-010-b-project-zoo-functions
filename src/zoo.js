@@ -121,14 +121,12 @@ function schedule(dayName) {
   }
   return listaDias;
 }
-console.log(schedule())
+// console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
-  const filtradoId = data.employees.filter((pessoa) => pessoa.id === id)
-  const primeiroAnimal = filtradoId.responsibleFor;
-  return primeiroAnimal;
+  return id;
 }
-//console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+// console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
   return percentage;
 }

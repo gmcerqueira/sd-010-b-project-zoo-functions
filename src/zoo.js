@@ -129,9 +129,19 @@ function oldestFromFirstSpecies(id) {
   return Object.values(animalMaisVelho);
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+// Tive um certa dificuldade nesse requisito por conta do arredondamento, então eu busquei orientação com o meu colega de turma, Matheus Bodra, que me explicou o caminho até a resposta satisfatória. link:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/81/commits/834a0e57ab14033429fa23c49686abc5dcc5c3cf
+
+function increasePrices(percentage) {
+  const { Adult, Senior, Child } = prices;
+  const porcentagem = percentage / 100;
+  prices.Adult += (Adult * porcentagem);
+  prices.Senior += (Senior * porcentagem);
+  prices.Child += (Child * porcentagem);
+  prices.Adult = Math.round(prices.Adult * 100) / 100;
+  prices.Senior = Math.round(prices.Senior * 100) / 100;
+  prices.Child = Math.round(prices.Child * 100) / 100;
+  return prices;
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -149,6 +159,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

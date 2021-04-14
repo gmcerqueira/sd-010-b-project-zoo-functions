@@ -105,7 +105,7 @@ const increase = (value, percentage) => Math.round(value * ((percentage / 100) +
 const increasePrices = (percentage) => {
   const pricesArr = Object.keys(prices);
   pricesArr.forEach((price) => {
-    prices[price] = increase(prices[price], percentage)
+    prices[price] = increase(prices[price], percentage);
     return prices[price];
   });
   return prices;

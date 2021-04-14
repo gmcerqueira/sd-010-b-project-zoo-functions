@@ -129,7 +129,7 @@ function oldestFromFirstSpecies(id) {
   return Object.values(animalMaisVelho);
 }
 
-// Tive um certa dificuldade nesse requisito por conta do arredondamento, então eu busquei orientação com o meu colega de turma, Matheus Bodra, que me explicou o caminho até a resposta satisfatória. link:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/81/commits/834a0e57ab14033429fa23c49686abc5dcc5c3cf
+// Tive um certa dificuldade nesse requisito por conta do arredondamento, então eu busquei orientação com o meu colega de turma, Matheus Bodra, que me explicou o caminho até a resposta satisfatória. link:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/81/commits/834a0e57ab14033429fa23c49686abc5dcc5c3cf. No final, basicamente multipiclamos por 100 para que o valor ande duas casas para a esquerda, depois arredondamos, ficando com um número inteiro de 4 dígitos(ex: 49,99 * 100 = 4999), depois dividimos por 100, vírgula duas casas para a direita(4999 / 100 = 49,99), pronto.
 
 function increasePrices(percentage) {
   const { Adult, Senior, Child } = prices;

@@ -10,9 +10,10 @@ eslint no-unused-vars: [
 ]
 */
 
+const { hours } = require('./data');
 const data = require('./data');
 
-const { animals, employees /* prices */ } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   /* se a entrada for vazio, retornar array vazio;
@@ -84,21 +85,49 @@ function animalCount(species) {
   return counter;
 }
 
-// function entryCalculator(entrants = 0) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants = 0) {
+  // Retorna 0 se nenhum argumento for passado
+  // Retorna 0 se um objeto vazio for passado
+  // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+  // Obs: o amigo Anderson Pedrosa me ajudou neste exercício
+  return Object.entries(entrants)
+    .reduce((acc, [person, amount]) => acc + (prices[person] * amount), 0);
+}
 
 // function animalMap(options) {
 //   if (!options) return
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // Analise o teste unitário para entender os retornos que são esperados para esta função
+  // Sem parâmetros, retorna um cronograma legível para humanos
+  // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+  const time = Object.keys(hours);
+  const initObj = {};
+  time.forEach((infoTime) => {
+    initObj[infoTime] = `Open from ${hours[infoTime].open}am until ${hours[infoTime].close - 12}pm`;
+  });
+  initObj.Monday = 'CLOSED';
+  if (!dayName) return initObj;
+  return { [dayName]: initObj[dayName] };
+}
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // A função busca por informações do animal mais velho da primeira espécie gerenciada pela pessoa colaboradora do parâmetro
+  // Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+  // obs: esse exercício eu consultei o repositório de uma outra pessoa estudante para fazê-lo
+  const zooKeeper = employees.filter((element) => element.id === id);
+  let zooAnimal = '';
+  zooKeeper.forEach((element) => {
+    zooAnimal = animalsByIds(element.responsibleFor[0]);
+  });
+  const array = Object.values(zooAnimal).map((element) => {
+    const arr = Object.values(element.residents);
+    return arr.reduce((acc, next) => ((acc.age > next.age) ? acc : next));
+  });
+  const saida = [array[0].name, array[0].sex, array[0].age];
+  return saida;
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -109,8 +138,8 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
-  // schedule,
+  entryCalculator,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,
@@ -119,7 +148,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

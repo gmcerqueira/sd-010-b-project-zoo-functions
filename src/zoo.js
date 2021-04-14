@@ -63,7 +63,7 @@ function entryCalculator(entrants) {
   if (entrants) {
     const visitor = Object.keys(entrants);
     return visitor.reduce((acumulator, currentValue) =>
-      acumulator + (data.prices[acumulator] * entrants[currentValue]), 0);
+      acumulator + (data.prices[currentValue] * entrants[currentValue]), 0);
   }
   return 0;
 }

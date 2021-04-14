@@ -99,10 +99,12 @@ const entryCalculator = (entrants) => {
 //   // seu código aqui
 // }
 
-//toFixed(2)
+const increase = (value, percentage) => Math.round(value * ((percentage/100) + 1) * 100) / 100;
+
+// toFixed(2)
 const increasePrices = (percentage) => {
   const pricesArr = Object.keys(prices);
-  return pricesArr.forEach((price) => prices[price] = Math.round(prices[price] * ((percentage/100) + 1) * 100) / 100);
+  return pricesArr.forEach((price) => prices[price] = increase(prices[price], percentage));
 };
 
 // function employeeCoverage(idOrName) {

@@ -52,13 +52,12 @@ const createEmployee = ({ id, firstName, lastName }, { managers, responsibleFor 
   return employee;
 };
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+// const employeeById = (id) => {
+//   const empl = employees.find((emp) => emp.id === id);
+//   return empl;
+// };
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+const isManager = (id) => employees.some((employee) => employee.managers.includes(id));
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -97,7 +96,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

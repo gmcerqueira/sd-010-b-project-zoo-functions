@@ -100,7 +100,7 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const employer = employees.find((employ) => employ.id === id).responsibleFor[0];
+  const employer = animals.employees.find((employ) => employ.id === id).responsibleFor[0];
   const animalManager = animals.find((animal) => animal.id === employer).residents;
   const oldAge = animalManager.reduce((acc, curr) => {
     if (curr.age > acc) {
@@ -112,7 +112,6 @@ function oldestFromFirstSpecies(id) {
   const arrayAnimal = Object.values(matchedAge);
   return arrayAnimal;
 }
-
 
 function increasePrices(percentage) {
   const { prices } = data;
@@ -140,6 +139,6 @@ module.exports = {
   addEmployee,
   entryCalculator,
   increasePrices,
+  oldestFromFirstSpecies,
 //   employeeCoverage,
-//   oldestFromFirstSpecies,
 };

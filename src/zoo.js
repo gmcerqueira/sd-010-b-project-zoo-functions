@@ -141,6 +141,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   //   oldestFromFirstSpecies,
-  //   increasePrices,
+  increasePrices,
   createEmployee,
 };

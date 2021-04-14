@@ -9,6 +9,9 @@ eslint no-unused-vars: [
 ]
 */
 
+const {
+  employees,
+} = require('./data');
 const data = require('./data');
 
 function animalsByIds(...parametro) {
@@ -31,8 +34,8 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const apagar = personalInfo - associatedWith;
-  return apagar;
+  const obj = { ...personalInfo, ...associatedWith };
+  return obj;
 }
 
 function isManager(id) {
@@ -66,8 +69,17 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants = 0) {
-  const apagar = entrants;
-  return apagar;
+  const parametro = Object.entries(entrants);
+  const precos = Object.entries(data.prices);
+  let contador = 0;
+  parametro.forEach((element) => {
+    precos.forEach((i) => {
+      if (element[0] === i[0]) {
+        contador += element[1] * i[1];
+      }
+    });
+  });
+  return contador;
 }
 
 function animalMap(options) {
@@ -76,25 +88,15 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  if (!dayName) {
-    const expected = {
-      Tuesday: 'Open from 8am until 6pm',
-      Wednesday: 'Open from 8am until 6pm',
-      Thursday: 'Open from 10am until 8pm',
-      Friday: 'Open from 10am until 8pm',
-      Saturday: 'Open from 8am until 10pm',
-      Sunday: 'Open from 8am until 8pm',
-      Monday: 'CLOSED',
-    };
-    return expected;
+  const obj = Object.entries(data.hours).reduce((acc, [current, { open, close }]) => {
+    acc[current] = (current === 'Monday') ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`;
+    return acc;
+  }, {});
+  if (dayName) {
+    return { [dayName]: obj[dayName] };
   }
-  const horario = data.hours[dayName];
-  const result = {
-    [dayName]: horario,
-  };
-  return result;
+  return obj;
 }
-console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   const idAnimal = data.employees.find((a) => a.id === id).responsibleFor[0];

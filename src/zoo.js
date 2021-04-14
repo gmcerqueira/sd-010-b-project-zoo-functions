@@ -15,7 +15,7 @@ const data = require('./data');
 
 const { employees } = data;
 const { animals } = data;// é pra trazer as informações de animals que estão no data.js
-// const { prices } = data;
+const { prices } = data;
 function animalsByIds(...ids) { // esse ids será um conjunto de vários ID(ou pode não ser também).
   if (typeof (ids) === 'undefined') {
     return [];
@@ -92,9 +92,13 @@ function oldestFromFirstSpecies(id) {
   const idade = encontraAnimal.residents.sort((a, b) => b.age - a.age); // aqui eu uso a idade pra organizar os objetos (dentro de residents) em ordem decrescente ME BASEANDO NA IDADE. O objeto que tenha uma idade maior vai ficar em primeiro lugar na ordem.
   return Object.values(idade[0]); // o idade[0] vai alcançar o objeto que contém o name, sex e age do animal mais velho. E usar o object.values me retorna um array, que é o que o requisito pede.
 }
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  prices.Adult = Math
+    .round((prices.Adult + (percentage / 100) * prices.Adult) * 100) / 100;
+  prices.Senior = Math.round((prices.Senior + (percentage / 100) * prices.Senior) * 100) / 100;
+  prices.Child = Math.round((prices.Child + (percentage / 100) * prices.Child) * 100) / 100;
+  return prices;
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -112,6 +116,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

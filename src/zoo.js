@@ -141,8 +141,15 @@ function oldestFromFirstSpecies(id) {
 }
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
-  return percentage;
+  const aumento = percentage / 100
+  data.prices = {
+    Adult: (49.99 * aumento) + 49.99,
+    Senior: (24.99 * aumento) + 24.99,
+    Child: (20.99 * aumento) + 20.99,
+  }
+  return data.prices;
 }
+console.log(increasePrices(30))
 
 function employeeCoverage(idOrName) {
   return idOrName;

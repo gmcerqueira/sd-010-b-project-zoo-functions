@@ -113,10 +113,20 @@ function schedule(dayName) {
 // Se monday, retorna fechado.
 // para concluir este requisito consultei o repositorio da colega Valeria Andreoni, pois naõ conseguia achar o erro na escrita da minha descontrução do objeto hours.
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
-// //
+function oldestFromFirstSpecies(idEmployee) {
+  const verifyEmployee = employees.find((employee) => employee.id === idEmployee).responsibleFor[0];
+  const verifyAnimal = animals.find((animal) => animal.id === verifyEmployee).residents;
+  const olderAnimal = verifyAnimal.sort((resident1, resident2) => resident2.age - resident1.age)[0];
+  return Object.values(olderAnimal);
+}
+// Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie.
+// verifica o id do funcionario e busca o primeiro animal sob sua responsabilidade.
+// verifica o animal encontrado na função anterior no objeto residentes.
+// encontra o animal mais velho da lista de residentes, comparando o segundo com o primeiro.
+// retorna o objeto de valores do animal mais velho.
+
+// A função busca por informações do animal mais velho da primeira espécie gerenciada pela pessoa colaboradora do parâmetro
+// Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 
 function increasePrices(percentage) {
   const { Adult, Child, Senior } = prices;
@@ -128,6 +138,12 @@ function increasePrices(percentage) {
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }
+// A função é responsável por consultar as espécies pela qual a pessoa colaborada, recebida no parâmetro através de seu id, firstName ou lastName, é responsável
+// Analise o teste unitário para entender os retornos que são esperados para esta função
+// Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
+// Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
 
 module.exports = {
   entryCalculator,
@@ -140,7 +156,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  //   oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

@@ -59,12 +59,19 @@ function isManager(id) {
   return employees.some((personId) => personId.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  // A função irá adicionar uma nova pessoa colaboradora ao array employees, presente no arquivo data.js.
+  // Adiciona um funcionário no fim da lista
+  const newEmployee = employees.push({ id, firstName, lastName, managers, responsibleFor });
+  return newEmployee;
 }
 
 function animalCount(species) {
-  // seu código aqui
+  // Sem parâmetros, retorna um objeto
+  // Com o nome de uma espécie de animal, retorna um número
+  // Sem parâmetros, retorna animais e suas quantidades
+  // Com o nome de uma espécie de animal, retorna somente a quantidade
+  
 }
 
 function entryCalculator(entrants) {

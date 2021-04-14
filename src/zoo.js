@@ -46,9 +46,9 @@ const employeeByName = (employeeName) => {
   return selectedEmployee(employeeName);
 };
 
-const createEmployee = ({id, firstName, lastName}, {managers, responsibleFor}) => {
+const createEmployee = ({ id, firstName, lastName }, { managers, responsibleFor }) => {
   // seu código aqui
-  const employee = {id, firstName, lastName, managers, responsibleFor};
+  const employee = { id, firstName, lastName, managers, responsibleFor };
   return employee;
 };
 

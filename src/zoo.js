@@ -113,10 +113,10 @@ function schedule(dayName) {
 // Se monday, retorna fechado.
 // para concluir este requisito consultei o repositorio da colega Valeria Andreoni, pois naõ conseguia achar o erro na escrita da minha descontrução do objeto hours.
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
-//
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
+// }
+// //
 
 function increasePrices(percentage) {
   const { Adult, Child, Senior } = prices;

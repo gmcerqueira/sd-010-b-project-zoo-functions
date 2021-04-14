@@ -99,9 +99,11 @@ const entryCalculator = (entrants) => {
 //   // seu código aqui
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+//toFixed(2)
+const increasePrices = (percentage) => {
+  const pricesArr = Object.keys(prices);
+  return pricesArr.forEach((price) => prices[price] = Math.round(prices[price] * ((percentage/100) + 1) * 100) / 100);
+};
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -119,6 +121,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

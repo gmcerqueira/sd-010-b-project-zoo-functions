@@ -84,42 +84,42 @@ function animalCount(species) {
   return counter;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+// function entryCalculator(entrants = 0) {
+//   // seu código aqui
+// }
 
-function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
+//   if (!options) return
+// }
 
-function schedule(dayName) {
-  // seu código aqui
-}
+// function schedule(dayName) {
+//   // seu código aqui
+// }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
+// }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+// function increasePrices(percentage) {
+//   // seu código aqui
+// }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
 module.exports = {
-  entryCalculator,
-  schedule,
+  // entryCalculator,
+  // schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
+  // oldestFromFirstSpecies,
+  // increasePrices,
   createEmployee,
 };

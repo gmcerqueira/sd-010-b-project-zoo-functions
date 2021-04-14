@@ -45,11 +45,18 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  // Cria um novo colaborador a partir de objetos contendo informações pessoais e gerentes e animais
+  const createInfo = { ...personalInfo, ...associatedWith };
+  return createInfo;
 }
 
 function isManager(id) {
-  // seu código aqui
+  // fonte para este exercicio: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+  // O método includes() determina se um array contém um determinado elemento, retornando true ou false apropriadamente.
+  // Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
+  // Deve retornar um valor booleano
+  // testa se o id é de um gerente
+  return employees.some((personId) => personId.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {

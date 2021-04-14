@@ -65,7 +65,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 const animalQuantity = () => {
   const quantity = { };
-  animals.forEach((animal) => { quantity[animal.name] = animal.residents.length });
+  animals.forEach((animal) => { quantity[animal.name] = animal.residents.length; });
   return quantity;
 };
 

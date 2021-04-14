@@ -140,11 +140,7 @@ function employeeCoverage(idOrName) {
   const objListEmployeeAnimals = {};
   data.employees.forEach((value) => {
     const nameResponsible = `${value.firstName} ${value.lastName}`;
-    objListEmployeeAnimals[nameResponsible] = value.responsibleFor.filter((idResponsible) => data.animals.map((valueIdAnimal) => {
-      if (idResponsible === valueIdAnimal.id) {
-        return valueIdAnimal.name;
-      }
-    }));
+    objListEmployeeAnimals[nameResponsible] = animal();
     // console.log(name);
   });
   console.log(objListEmployeeAnimals);

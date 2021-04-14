@@ -10,9 +10,8 @@ eslint no-unused-vars: [
 */
 
 // const data = require('./data');
-const { animals } = require('./data');
-const { employees } = require('./data');
-// const data = require('./data');
+// const { object } = require('prop-types');
+const { animals, employees, prices } = require('./data');
 
 // Referência: https://app.betrybe.com/course/live-lectures/sd-cohort-10-b
 function animalsByIds(...ids) {
@@ -63,9 +62,15 @@ function animalCount(species) {
   return animals.find((animal, index) => animals[index].name === species).residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+// Referência: https://flaviocopes.com/how-to-check-object-empty/
+// Referência: https://app.betrybe.com/course/fundamentals/higher-order-functions-do-javascript-es6/javascript-es6-higher-order-functions-map-e-filter/eb53fd32-be11-4a70-a925-c29e1d7f8925/conteudos/845d744b-bf9b-412f-932d-43714cfb225e/arraymap/007b4ce5-eaa6-4d46-ae85-282d13a36db0?use_case=side_bar
+// Referência: https://app.betrybe.com/course/fundamentals/higher-order-functions-do-javascript-es6/javascript-es6-higher-order-functions-reduce/11a217d9-4e2a-4102-8d89-7c4460daa739/conteudos/af820e2d-f7c9-46ce-9ab6-82da8ca49740/arrayreduce/1bb80dd7-df43-4607-98cf-53d94ed69c02?use_case=side_bar
+function entryCalculator(entrants) {
+  if (!entrants || Object.keys(entrants).length === 0) return 0;
+  const sumItemsArray = (sum, currentValue) => sum + currentValue;
+
+  return Object.keys(entrants).map((key) => prices[key] * entrants[key]).reduce(sumItemsArray);
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -88,7 +93,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

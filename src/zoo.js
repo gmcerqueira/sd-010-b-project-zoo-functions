@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const { animals, employees } = require('./data');
 const data = require('./data');
 
+// ______________________________________________________________________________________________
 // 1. IMPLEMENTE A FUNÇÃO animalsByIds
 // Caso receba nenhum parâmetro, necessário retornar um array vazio
 // Ao receber como parâmetro um único id, retorna um array com a espécie referente à esse id
@@ -24,6 +25,7 @@ function animalsByIds(...ids) {
 }
 // console.log (animalsByIds('89be95b3-47e4-4c5b-b687-1fabf2afa274' , 'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5'))
 
+// ______________________________________________________________________________________________
 // 2. IMPLEMENTE A FUNÇÃO animalsOlderThan
 // Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie possuem a idade mínima especificada
 function animalsOlderThan(animal, age) {
@@ -45,6 +47,7 @@ function animalsOlderThan(animal, age) {
 // }
 // animalsOlderThan('abelha', 10)
 
+// ______________________________________________________________________________________________
 // 3. IMPLEMENTE A FUNÇÃO employeeByName
 // Sem parâmetros, retorna um objeto vazio
 // Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
@@ -57,6 +60,7 @@ function employeeByName(employeeName) {
   return {};
 }
 
+// ______________________________________________________________________________________________
 // 4. IMPLEMENTE A FUNÇÃO createEmployee
 // Cria um novo colaborador a partir de objetos contendo informações pessoais e gerentes e animais gerenciados.
 function createEmployee(personalInfo, associatedWith) {
@@ -64,12 +68,14 @@ function createEmployee(personalInfo, associatedWith) {
 }
 // Como os parâmetros da função irão receber objetos com diferentes informações, o operador Spread "..." será utilizado para "espalhar" estes dados dentro do novo objeto retornado.
 
+// ______________________________________________________________________________________________
 // 5. IMPLEMENTE A FUNÇÃO isManager
 // Testa se o id passado é de um gerente
 function isManager(id) {
   return employees.some((managerCheck) => managerCheck.managers.includes(id));
 }
 
+// ______________________________________________________________________________________________
 // 6. IMPLEMENTE A FUNÇÃO addEmployee
 // Adiciona um funcionário no fim da lista
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -77,6 +83,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(newEmployee);
 }
 
+// ______________________________________________________________________________________________
 // 7. IMPLEMENTE A FUNÇÃO animalCount
 // Sem parâmetros, retorna animais e suas quantidades
 // Com o nome de uma espécie de animal, retorna somente a quantidade
@@ -98,6 +105,7 @@ function animalCount(species) {
 // objExample.age = '31';
 // console.log(objExample);
 
+// ______________________________________________________________________________________________
 // 8. IMPLEMENTE A FUNÇÃO entryCalculator
 // Retorna 0 se nenhum argumento for passado
 // Retorna 0 se um objeto vazio for passado
@@ -111,6 +119,7 @@ function entryCalculator(entrants) {
 // console.log(entryCalculator({'Senior':3, 'Adult': 15}));
 // 824.82
 
+// ______________________________________________________________________________________________
 // 9. IMPLEMENTE A FUNÇÃO animalMap
 // Sem parâmetros, retorna animais categorizados por localização
 // Com a opção includeNames: true especificada, retorna nomes de animais
@@ -122,17 +131,25 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
+// ______________________________________________________________________________________________
 // 10. IMPLEMENTE A FUNÇÃO schedule
 // Sem parâmetros, retorna um cronograma legível para humanos
 // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
-// function schedule(dayName) {
-// const dau
-//   if (dayName !== {}){
-// const calendar = {};
-//    data.hours.push(calendar);
-// }
-// }
+function schedule(dayName) {
+  const objectDay = {};
+  Object.keys(data.hours).forEach((day) => {
+    const initial = data.hours[day].open;
+    const final = data.hours[day].close;
+    objectDay[day] = `Open from ${initial}am until ${final - 12}pm`;
+  });
+  objectDay.Monday = 'CLOSED';
 
+  if (dayName) return ({ [dayName]: objectDay[dayName] });
+
+  return objectDay;
+}
+
+// ______________________________________________________________________________________________
 // 11. IMPLEMENTE A FUNÇÃO oldestFromFirstSpecies
 // Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 function oldestFromFirstSpecies(id) {
@@ -143,6 +160,7 @@ function oldestFromFirstSpecies(id) {
   return Object.values(animalsInOrder[0]);
 }
 
+// ______________________________________________________________________________________________
 // 12. IMPLEMENTE A FUNÇÃO increasePrices
 // Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
 function increasePrices(percentage) {
@@ -152,13 +170,20 @@ function increasePrices(percentage) {
   data.prices.Child = Math.ceil(Child * (percentage + 100)) / 100;
 }
 
+// ______________________________________________________________________________________________
+// 13. IMPLEMENTE A FUNÇÃO employeeCoverage
+// Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
+// Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }
 
+// ______________________________________________________________________________________________
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

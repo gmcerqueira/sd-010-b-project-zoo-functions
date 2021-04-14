@@ -140,7 +140,7 @@ function employeeCoverage(idOrName) {
   const objListEmployeeAnimals = {};
   data.employees.forEach((value) => {
     const nameResponsible = `${value.firstName} ${value.lastName}`;
-    objListEmployeeAnimals[nameResponsible] = animal();
+    objListEmployeeAnimals[nameResponsible] = data.employees;
     // console.log(name);
   });
   console.log(objListEmployeeAnimals);

@@ -150,10 +150,25 @@ function increasePrices(percentage) {
   // Feita com ajuda de um colega
 }
 
-/* function employeeCoverage(idOrName) {
-  // seu código aqui
-  return idOrName;
-} */
+function employeeCoverage(idOrName) {
+  // A função é responsável por consultar as espécies pela qual a pessoa colaborada, recebida no parâmetro através de seu id, firstName ou lastName, é responsável
+  // Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
+  // Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
+  // Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+  // Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+  const finalObj = {};
+  employees.forEach((person) => {
+    const personSelected = `${person.firstName} ${person.lastName}`;
+    const animalsRespons = person.responsibleFor.map((animal) =>
+      animals.find((animalId) => animalId.id === animal).name);
+    finalObj[personSelected] = animalsRespons;
+  });
+  if (!idOrName) return finalObj;
+  const { firstName, lastName } = employees.find((employee) =>
+    employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName);
+  const nameEmployee = `${firstName} ${lastName}`;
+  return { [nameEmployee]: finalObj[nameEmployee] };
+} // Questão feita com auxiolio de colegas da turma.
 
 module.exports = {
   entryCalculator,
@@ -162,7 +177,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

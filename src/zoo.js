@@ -28,6 +28,11 @@ function animalsByIds(...args) {
 }
 
 function animalsOlderThan(especie, idadeMinima) {
+  /**
+   * Função recebe especie e idadeMinima, o array de objetos animals é filtrado
+   * pela especie, retornando um array de tamanho 1, e esse estão a chave residents
+   * e passado um every para saber se todos os animais tem a idade mínima
+   */
   const { animals } = data;
   const resultado = animals
     .filter((animal) => animal.name === especie)[0]
@@ -38,6 +43,18 @@ function animalsOlderThan(especie, idadeMinima) {
 // function employeeByName(employeeName) {
 //   // seu código aqui
 // }
+
+function employeeByName(nomeFuncionario) {
+  const { employees } = data;
+  if (typeof nomeFuncionario !== 'undefined') {
+    const filtro = employees.filter(({ lastName, firstName }) => {
+      const resultado = lastName === nomeFuncionario || firstName === nomeFuncionario;
+      return resultado;
+    });
+    return filtro[0];
+  }
+  return {};
+}
 
 // function createEmployee(personalInfo, associatedWith) {
 //   // seu código aqui
@@ -85,7 +102,7 @@ module.exports = {
   // animalCount,
   // animalMap,
   animalsByIds,
-  // employeeByName,
+  employeeByName,
   // employeeCoverage,
   // addEmployee,
   // isManager,

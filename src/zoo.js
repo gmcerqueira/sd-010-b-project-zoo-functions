@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data; // Desconstrução dos objetos do data para facilitar a criação das funções nos requisitos.
+const { animals, employees, hours, prices } = data; // Desconstrução dos objetos do data para facilitar a criação das funções nos requisitos.
 
 function animalsByIds(...ids) {
   return animals.filter((animal) =>
@@ -84,17 +84,32 @@ function entryCalculator(entrants) {
   }
   return Object.keys(entrants).reduce((acc, type) => acc + entrants[type] * prices[type], 0);
 }
-// Retorna 0 se nenhum argumento for passado
-// Retorna 0 se um objeto vazio for passado
+// Retorna 0 se nenhum argumento for passado ou se for objeto vazio
 // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
 
 // function animalMap(options) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  const dayAndHours = Object.keys(hours);
+  const message = {};
+  dayAndHours.forEach((day) => {
+    if (day !== 'Monday') {
+      message[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    } else {
+      message[day] = 'CLOSED';
+    }
+  });
+  if (!dayName) {
+    return message;
+  }
+  return { [dayName]: message[dayName] };
+}
+// A função é responsável por disponibilizar as informações de horário para uma consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas o cronograma de um dia específico
+// Analise o teste unitário para entender os retornos que são esperados para esta função
+// Sem parâmetros, retorna um cronograma legível para humanos
+// Se um único dia for passado, retorna somente este dia em um formato legível para humanos
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -110,7 +125,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  //   schedule,
+  schedule,
   animalCount,
   //   animalMap,
   animalsByIds,

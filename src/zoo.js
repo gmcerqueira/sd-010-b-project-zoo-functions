@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
+  // tive ajuda de uma pessoa desenvolvedora
   if (ids.length === 0) return [];
   return data.animals.filter((animal) => ids.some((id) => animal.id === id));
 }
@@ -57,9 +58,15 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 //   // seu código aqui
 // }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // referencia https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+  if (entrants) {
+    const visitor = Object.keys(entrants);
+    return visitor.reduce((acumulator, currentValue) =>
+      acumulator + (data.prices[acumulator] * entrants[currentValue]), 0);
+  }
+  return 0;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -82,7 +89,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // }
 
 module.exports = {
-//   entryCalculator,
 //   schedule,
 //   animalCount,
 //   animalMap,
@@ -92,6 +98,7 @@ module.exports = {
   createEmployee,
   isManager,
   addEmployee,
+  entryCalculator,
 //   employeeCoverage,
 //   oldestFromFirstSpecies,
 //   increasePrices,

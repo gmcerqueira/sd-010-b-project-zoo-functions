@@ -101,9 +101,15 @@ function schedule(dayName) {
 // Consultei o repositório do Lucas Martins da Silva para resolver a parte inicial do raciocinío dessa função
 // Link do repositório: https://github.com/tryber/sd-010-b-project-zoo-functions/pull/88
 
-/* function oldestFromFirstSpecies(id) {
-  // seu código aqui
-} */
+function oldestFromFirstSpecies(id) {
+  const theAnimal = employees.filter((aEmployee) => (id === aEmployee.id))[0].responsibleFor[0];
+  const theAnimals = animals.find((eachAnimal) => (theAnimal === eachAnimal.id)).residents;
+  const theOldest = theAnimals.sort((residentA, residentB) => residentB.age - residentA.age)[0];
+
+  return [theOldest.name,
+    theOldest.sex,
+    theOldest.age];
+}
 
 function increasePrices(percentage) {
   const { Adult, Senior, Child } = prices;
@@ -129,7 +135,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

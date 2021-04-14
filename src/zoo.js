@@ -99,20 +99,28 @@ function schedule(dayName) {
   return { [dayName]: result[dayName] };
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const employer = employees.find((employ) => employ.id === id).responsibleFor[0];
+  const animalManager = animals.find((animal) => animal.id === employer).residents;
+  const oldAge = animalManager.reduce((acc, curr) => {
+    if (curr.age > acc) {
+      return curr.age;
+    }
+    return acc;
+  }, 0);
+  const matchedAge = animalManager.find((resident) => resident.age === oldAge);
+  const arrayAnimal = Object.values(matchedAge);
+  return arrayAnimal;
+}
+
 
 function increasePrices(percentage) {
   const { prices } = data;
-  const {
-    Adult,
-    Senior,
-    Child,
-  } = prices;
+  const { Adult, Child, Senior } = prices;
   prices.Adult = Math.round(((Adult) + (Adult * (percentage / 100))) * 100) / 100;
-  prices.Senior = Math.round(((Senior) + (Senior * (percentage / 100))) * 100) / 100;
   prices.Child = Math.round(((Child) + (Child * (percentage / 100))) * 100) / 100;
+  prices.Senior = Math.round(((Senior) + (Senior * (percentage / 100))) * 100) / 100;
+
   return prices;
 }
 

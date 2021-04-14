@@ -146,10 +146,10 @@ function increasePrices(percentage) {
     Adult: Math.round(data.prices.Adult * aumento * 100) / 100,
     Senior: Math.round(data.prices.Senior * aumento * 100) / 100,
     Child: Math.round(data.prices.Child * aumento * 100) / 100,
-  }
+  };
   return data.prices;
 }
-//console.log(increasePrices(30))
+//  console.log(increasePrices(30))
 
 function employeeCoverage(idOrName) {
   return idOrName;

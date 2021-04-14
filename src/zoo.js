@@ -9,6 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
+const { TestScheduler } = require('@jest/core');
 const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
@@ -95,10 +96,17 @@ function entryCalculator(entrants) {
 
   return sumTotal;
 }
-
-// function animalMap(options) {
-//   // seu código aqui
-// }
+// função aprendida no https://pt.stackoverflow.com/questions/367657/agrupar-registros-repetidos-em-um-array-no-javascript
+function animalMap(options) {
+  // seu código aqui
+  if (!options) {
+    return animals.reduce((acc, { name, location }) => {
+      if (!acc[location]) acc[location] = [];
+      acc[location].push(name);
+      return acc;
+    }, {});
+  }
+}
 
 function schedule(dayName) {
   // seu código aqui
@@ -117,8 +125,6 @@ function schedule(dayName) {
 
   return { [dayName]: fullSchedule[dayName] };
 }
-
-console.log(schedule('Sunday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -148,18 +154,34 @@ function increasePrices(percentage) {
   prices.Child = parseFloat((Child + childAdd).toPrecision(4));
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  // seu código aqui
+  const creatObj = (acc, { firstName, lastName, responsibleFor }) => {
+    acc[`${firstName} ${lastName}`] = responsibleFor
+      .map((item) => animals.find((animal) =>
+        animal.id === item).name);
+    return acc;
+  };
+  const seachEmployee = (employee) =>
+    employee.id === idOrName
+    || employee.firstName === idOrName
+    || employee.lastName === idOrName;
+
+  if (!idOrName) return employees.reduce(creatObj, {});
+
+  const resultSeachEmployee = employees.filter(seachEmployee);
+
+  return resultSeachEmployee.reduce(creatObj, {});
+}
 
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  //   animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

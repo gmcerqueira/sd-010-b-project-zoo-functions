@@ -36,7 +36,8 @@ const animalsOlderThan = (specieName, age) => {
 };
 
 const selectedEmployee = (employeeName) => {
-  const selected = employees.find((employee) => employee.firstName === employeeName || employee.lastName === employeeName);
+  const selected = employees.find((employee) => 
+    employee.firstName === employeeName || employee.lastName === employeeName);
   return selected;
 }
 

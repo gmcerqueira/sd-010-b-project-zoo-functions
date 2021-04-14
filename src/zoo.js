@@ -22,8 +22,7 @@ function animalsByIds(...ids) {
   }
   return [];
 }
-// let filterResult = animalsByIds('89be95b3-47e4-4c5b-b687-1fabf2afa274' , 'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5');
-// console.log(filterResult)
+// console.log (animalsByIds('89be95b3-47e4-4c5b-b687-1fabf2afa274' , 'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5'))
 
 // 2. IMPLEMENTE A FUNÇÃO animalsOlderThan
 // Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie possuem a idade mínima especificada
@@ -31,6 +30,20 @@ function animalsOlderThan(animal, age) {
   return animals.find((especieName) => especieName.name === animal)
     .residents.every((animalAge) => animalAge.age >= age);
 }
+
+// Other way to do:
+// function animalsOlderThan(animal, age) {
+//   return animals.find((older) => older.residents[0].age === animal)
+//     .residents.every((animalAge) => animalAge.age >= age);
+// }
+
+// Another way to do:
+// function animalsOlderThan(animal, age) {
+//   const especieName = (bicho) => bicho.name === animal;
+//   console.log (animals.find(especieName));
+//   return animals.find(especieName).residents.every((idadeAnimal) => idadeAnimal.age >= age);
+// }
+// animalsOlderThan('abelha', 10)
 
 // 3. IMPLEMENTE A FUNÇÃO employeeByName
 // Sem parâmetros, retorna um objeto vazio
@@ -64,9 +77,21 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(newEmployee);
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+// 7. IMPLEMENTE A FUNÇÃO animalCount
+// Sem parâmetros, retorna animais e suas quantidades
+// Com o nome de uma espécie de animal, retorna somente a quantidade
+function animalCount(species) {
+  // Sem parâmetros, retorna animais e suas quantidades
+  if (species === null || species === undefined) {
+    const animaisAndQuantities = {};
+    animals.forEach((bicho) => {
+      animaisAndQuantities[bicho.name] = bicho.residents.length;
+    });
+    return animaisAndQuantities;
+  }
+  // Com o nome de uma espécie de animal, retorna somente a quantidade.
+  return animals.find((bicho) => bicho.name === species).residents.length;
+}
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -95,7 +120,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

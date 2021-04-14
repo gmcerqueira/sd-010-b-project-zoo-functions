@@ -44,9 +44,13 @@ function employeeByName(employeeName) {
   return {};
 }
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+// 4. IMPLEMENTE A FUNÇÃO createEmployee
+// Cria um novo colaborador a partir de objetos contendo informações pessoais e gerentes e animais gerenciados.
+function createEmployee(personalInfo, associatedWith) {
+  return {...personalInfo, ...associatedWith};
+}
+// Como os parâmetros da função irão receber objetos com diferentes informações, o operador Spread "..." será utilizado para "espalhar" estes dados dentro do novo objeto retornado.
+
 
 // function isManager(id) {
 //   // seu código aqui
@@ -97,5 +101,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

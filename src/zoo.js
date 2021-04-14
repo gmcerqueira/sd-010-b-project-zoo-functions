@@ -90,17 +90,36 @@ function schedule(dayName) {
   return hrDias;
 }
 
-/* function oldestFromFirstSpecies(id) {
-  // seu código aqui
-} */
+function oldestFromFirstSpecies(id) {
+  const buscaId = funcionarios.find((funcionario) => funcionario.id === id).responsibleFor[0];
+  const buscAnimal = zoo.find((animal) => animal.id === buscaId).residents;
+  const maisVelho = buscAnimal.sort((residente1, residente2) => residente2.age - residente1.age)[0];
+  return Object.values(maisVelho);
+}
 
-/* function increasePrices(percentage) {
-  // seu código aqui
-} */
+function increasePrices(percentage) {
+  const keys = Object.keys(precos);
+  keys.forEach((entrada) => {
+    precos[entrada] = Math.round((precos[entrada] * (1 + (percentage / 100))) * 100) / 100;
+  });
+  return precos;
+}
 
-/* function employeeCoverage(idOrName) {
-  // seu código aqui
-} */
+function employeeCoverage(idOrName) {
+  const reduzir = (acc, { firstName, lastName, responsibleFor }) => {
+    const responsavel = `${firstName} ${lastName}`;
+    acc[responsavel] = responsibleFor.map((animalid) =>
+      zoo.find((animal) => animal.id === animalid).name);
+    return acc;
+  };
+  if (idOrName) {
+    const busca = (emp) =>
+      emp.firstName === idOrName || emp.lastName === idOrName || emp.id === idOrName;
+    const findfun = funcionarios.filter(busca);
+    return findfun.reduce(reduzir, {});
+  }
+  return funcionarios.reduce(reduzir, {});
+}
 
 module.exports = {
   entryCalculator,
@@ -109,11 +128,11 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
-  // increasePrices,
+  oldestFromFirstSpecies,
+  increasePrices,
   createEmployee,
 };

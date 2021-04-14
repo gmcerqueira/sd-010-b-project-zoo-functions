@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { prices } = require('./data');
+const { prices, animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -55,7 +55,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  const { animals } = data;
   const objReturn = {};
   if (!species) {
     animals.forEach(({ name, residents }) => {
@@ -82,9 +81,21 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+  // função que analisa a maior idade
+  const maxAge = (array) => Math.max(...array);
+  const { employees } = data;
+  // busca o a primeira responsabilidade fo empregado
+  const firstResp = employees.find((employee) => employee.id.includes(id)).responsibleFor[0];
+  // busca a especie de animal que foi achada anteriormente
+  const species = animals.find((animal) => animal.id.includes(firstResp)).residents;
+  //  cria um array com todas as idades dos animais da especie
+  const agesAnimals = species.reduce((acc, curr) => [...acc, curr.age], []);
+  // encontra o animal mais velho
+  const olderAnimal = species.filter((animal) => animal.age === maxAge(agesAnimals))[0];
+  return [olderAnimal.name, olderAnimal.sex, olderAnimal.age];
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui (random()*100/100)
@@ -105,7 +116,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

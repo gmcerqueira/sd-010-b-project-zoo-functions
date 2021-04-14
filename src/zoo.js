@@ -141,15 +141,15 @@ function oldestFromFirstSpecies(id) {
 }
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
-  const aumento = percentage / 100
+  const aumento = (1 + percentage / 100);
   data.prices = {
-    Adult: (49.99 * aumento) + 49.99,
-    Senior: (24.99 * aumento) + 24.99,
-    Child: (20.99 * aumento) + 20.99,
+    Adult: Math.round(data.prices.Adult * aumento * 100) / 100,
+    Senior: Math.round(data.prices.Senior * aumento * 100) / 100,
+    Child: Math.round(data.prices.Child * aumento * 100) / 100,
   }
   return data.prices;
 }
-console.log(increasePrices(30))
+//console.log(increasePrices(30))
 
 function employeeCoverage(idOrName) {
   return idOrName;

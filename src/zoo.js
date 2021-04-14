@@ -8,7 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-// requisitos 1,2 ,3,5 e 7 eu fiz com a ajuda do meu colega Alexandre Damasceno que me ajudou muito.  Link do PR:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/66/commits
+// requisitos 1,2 ,3,5,7 e 10 eu fiz com a ajuda do meu colega Alexandre Damasceno que me ajudou muito.  Link do PR:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/66/commits
 
 // OBS: no requisito 1 eu mantive os mesmos nomes de variáveis que o Alexandre porque achei que ele escolheu nomes perfeitos e concisos. Qualquer mudança de nome que eu fizesse só iria atrapalhar.
 const data = require('./data');
@@ -16,6 +16,7 @@ const data = require('./data');
 const { employees } = data;
 const { animals } = data;// é pra trazer as informações de animals que estão no data.js
 const { prices } = data;
+const { hours } = data;
 function animalsByIds(...ids) { // esse ids será um conjunto de vários ID(ou pode não ser também).
   if (typeof (ids) === 'undefined') {
     return [];
@@ -81,10 +82,25 @@ function entryCalculator(entrants) {
 // function animalMap(options) {
 //   // seu código aqui
 // }
-
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+// esse requisito abaixo será SUPER comentado
+function schedule(dayName) {
+  const dias = Object.keys(hours); // com o entries não dava certo.
+  const horario = {}; // é um objeto
+  dias.forEach((dia) => { // vou rodar pelos dias no hours(que tá na const dias). IMPORTANTE: Enquanto eu percorro pelo hours, eu vou ADICIONAR coisas no objeto horario.
+    if (dia === 'Monday') {
+      horario[dia] = 'CLOSED'; // Nesse caso eu estou dizendo que o objeto horário fica algo assim:  horario ={Monday : CLOSED}. Ou seja, o [dia] no objeto horario vai ser a parte de antes do : no objeto. E o CLOSED virou o valor desse Monday no objeto
+    } else {
+      horario[dia] = `Open from ${hours[dia].open}am until ${hours[dia].close - 12}pm`; // Se 'dia' for Tuesday: aí o objeto horario fica: horario ={Tuesday : open from... pm}. O colchete mostra o que vem antes dos dois pontos, e o que veio depois do = é o que será mostrado depois dos dois pontos.
+      // o hours tem a estrutura que tá lá no data.js. Só olhar e ver que o [dia] também serve pra dizer o dia que está antes dos dois pontos. Aí open e close é pra alcançar os valores desses dois.
+      // Esse -12 é baseado no expected que tá no teste.
+    }
+  });
+  if (typeof dayName === 'undefined') {
+    return horario; // aí nessa altura, o objeto horário já tem todos os valores que observei ali em cima depois da varrida feita pelo forEach. Vai ter os dias : algum texto escrito(se for MOnday, fica escrito somente CLOSED).
+  }
+  return { [dayName]: horario[dayName] }; // mesma ideia com horario[dayName]... o [dayName] vai ser o que está antes do dois pontos e aí retornar o valor depois dos dois pontos.
+  // Ex: Se dayName for Tuesday, fica assim: 'Tuesday': 'Open from 8am until 6pm'. Ou seja, encontra o Tuesday no objeto horario e retorna o valor que está depois dos dois pontos em tuesday.
+}
 // Para o final da resolução do requisito abaixo, eu tive a ajuda do meu colega Vinicius Bodra. Link do PR dele: https://github.com/tryber/sd-010-b-project-zoo-functions/pull/3/commits/f8593eb4caa650406e550b291fe5cc87fef2a6ad
 function oldestFromFirstSpecies(id) {
   const trabalhador = employees.find((empregado) => empregado.id === id);
@@ -106,7 +122,7 @@ function increasePrices(percentage) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

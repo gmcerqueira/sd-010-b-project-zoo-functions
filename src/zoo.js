@@ -127,17 +127,19 @@ function oldestFromFirstSpecies(id) {
   const filtrarId = data.employees.filter((pessoa) => pessoa.id === id);
   const primeiroAnimal = filtrarId[0].responsibleFor[0];
   const filtrarAnimal = data.animals.filter((animal) => animal.id === primeiroAnimal);
-  let idade = 0, nome = '', sexo = '';
-   for (let index = 0; index < filtrarAnimal[0].residents.length; index++) {
-     if (idade < filtrarAnimal[0].residents[index].age) {
-       nome = filtrarAnimal[0].residents[index].name;
-       sexo = filtrarAnimal[0].residents[index].sex;
-       idade = filtrarAnimal[0].residents[index].age;
-     }
-   }
+  let idade = 0;
+  let nome = '';
+  let sexo = '';
+  for (let index = 0; index < filtrarAnimal[0].residents.length; index += 1) {
+    if (idade < filtrarAnimal[0].residents[index].age) {
+      nome = filtrarAnimal[0].residents[index].name;
+      sexo = filtrarAnimal[0].residents[index].sex;
+      idade = filtrarAnimal[0].residents[index].age;
+    }
+  }
   return [nome, sexo, idade];
 }
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+// console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
   return percentage;
 }

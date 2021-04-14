@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...id) {
@@ -100,21 +100,25 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // seu código aqui
+  const arrHours = Object.entries(hours);
+  const fullSchedule = {};
 
-// console.log(schedule());
+  arrHours.forEach(([key, { open, close }]) => {
+    fullSchedule[key] = `Open from ${open}am until ${close - 12}pm`;
 
-// {
-//   'Tuesday': 'Open from 8am until 6pm',
-//   'Wednesday': 'Open from 8am until 6pm',
-//   'Thursday': 'Open from 10am until 8pm',
-//   'Friday': 'Open from 10am until 8pm',
-//   'Saturday': 'Open from 8am until 10pm',
-//   'Sunday': 'Open from 8am until 8pm',
-//   'Monday': 'CLOSED'
-// }
+    if (key === 'Monday') {
+      fullSchedule[key] = 'CLOSED';
+    }
+  });
+
+  if (!dayName) return fullSchedule;
+
+  return { [dayName]: fullSchedule[dayName] };
+}
+
+console.log(schedule('Sunday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -150,12 +154,12 @@ function increasePrices(percentage) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   //   animalMap,
   animalsByIds,
   employeeByName,
-  //   employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

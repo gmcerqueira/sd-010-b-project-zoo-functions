@@ -106,19 +106,25 @@ function schedule(dayName) {
   }
   return { [dayName]: message[dayName] };
 }
-// A função é responsável por disponibilizar as informações de horário para uma consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas o cronograma de um dia específico
-// Analise o teste unitário para entender os retornos que são esperados para esta função
-// Sem parâmetros, retorna um cronograma legível para humanos
-// Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+// dayAndHours salva as chaves do objeto hours
+// forEach verifica os elementos e retorna msg.
+// Sem parâmetros, retorna o cronograma completo - formato do arquivo test
+// Se um único dia for passado, retorna somente este dia - formato arquivo test
+// Se monday, retorna fechado.
+// para concluir este requisito consultei o repositorio da colega Valeria Andreoni, pois naõ conseguia achar o erro na escrita da minha descontrução do objeto hours.
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+}
+//
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
-
+function increasePrices(percentage) {
+  const { Adult, Child, Senior } = prices;
+  prices.Adult = Math.round(((Adult) + (Adult * (percentage / 100))) * 100) / 100;
+  prices.Child = Math.round(((Child) + (Child * (percentage / 100))) * 100) / 100;
+  prices.Senior = Math.round(((Senior) + (Senior * (percentage / 100))) * 100) / 100;
+  return prices;
+}
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }

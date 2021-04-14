@@ -40,11 +40,11 @@ function animalsOlderThan(especie, idadeMinima) {
   return resultado;
 }
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
-
 function employeeByName(nomeFuncionario) {
+  /**
+   * Função pode receber uma string ou não receber nada
+   * Filtro faz um object destructing pegando as chaves lastName e FirstName
+   */
   const { employees } = data;
   if (typeof nomeFuncionario !== 'undefined') {
     const filtro = employees.filter(({ lastName, firstName }) => {
@@ -56,9 +56,9 @@ function employeeByName(nomeFuncionario) {
   return {};
 }
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+  return { ...personalInfo, ...associatedWith };
+}
 
 // function isManager(id) {
 //   // seu código aqui
@@ -109,5 +109,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

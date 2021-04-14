@@ -40,12 +40,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const func = data.employees;
-  const buscar = func.some((employee) => {
-    const managers = employee.manegers.some((manager) => manager === id);
-    return managers;
-  });
-  return buscar;
+  return data.employees.some((employee) => employee.managers.includes(id));
 }
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {

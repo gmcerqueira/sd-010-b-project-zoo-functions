@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const { animals, employees } = require('./data');
-// const data = require('./data');
+const data = require('./data');
 
 // 1. IMPLEMENTE A FUNÇÃO animalsByIds
 // Caso receba nenhum parâmetro, necessário retornar um array vazio
@@ -82,20 +82,34 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // Com o nome de uma espécie de animal, retorna somente a quantidade
 function animalCount(species) {
   // Sem parâmetros, retorna animais e suas quantidades
+  const animaisAndQuantities = {};
   if (species === null || species === undefined) {
-    const animaisAndQuantities = {};
-    animals.forEach((bicho) => {
-      animaisAndQuantities[bicho.name] = bicho.residents.length;
+    animals.forEach((animal) => {
+      animaisAndQuantities[animal.name] = animal.residents.length;
     });
     return animaisAndQuantities;
   }
   // Com o nome de uma espécie de animal, retorna somente a quantidade.
-  return animals.find((bicho) => bicho.name === species).residents.length;
+  return animals.find((animal) => animal.name === species).residents.length;
 }
+// console.log(animalCount());
+// const objExample = {};
+// objExample.name = 'Nikolas';
+// objExample.age = '31';
+// console.log(objExample);
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+// 8. IMPLEMENTE A FUNÇÃO entryCalculator
+// Retorna 0 se nenhum argumento for passado
+// Retorna 0 se um objeto vazio for passado
+// Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+function entryCalculator(entrants) {
+  if (entrants === undefined) {
+    return 0;
+  }
+  return Object.keys(entrants).reduce((acc, cur) => acc + (data.prices[cur] * entrants[cur]), 0);
+}
+// console.log(entryCalculator({'Senior':3, 'Adult': 15}));
+// 824.82
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -118,7 +132,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

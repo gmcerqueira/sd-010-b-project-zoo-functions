@@ -9,7 +9,6 @@ eslint no-unused-vars: [
 ]
 */
 
-const { TestScheduler } = require('@jest/core');
 const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 

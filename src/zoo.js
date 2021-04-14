@@ -133,9 +133,15 @@ function entryCalculator(entrants) {
 // }
 // }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+// 11. IMPLEMENTE A FUNÇÃO oldestFromFirstSpecies
+// Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+function oldestFromFirstSpecies(id) {
+  const employeeName = employees.find((employ) => employ.id === id);
+  const fistAnimalCare = employeeName.responsibleFor[0];
+  const animalInfo = animals.filter((animal) => animal.id === fistAnimalCare)[0].residents;
+  const animalsInOrder = animalInfo.sort((a, b) => (a.age < b.age ? 1 : -1));
+  return Object.values(animalsInOrder[0]);
+}
 
 // 12. IMPLEMENTE A FUNÇÃO increasePrices
 // Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
@@ -161,7 +167,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

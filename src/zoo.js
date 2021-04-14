@@ -111,21 +111,40 @@ function entryCalculator(entrants) {
 // console.log(entryCalculator({'Senior':3, 'Adult': 15}));
 // 824.82
 
+// 9. IMPLEMENTE A FUNÇÃO animalMap
+// Sem parâmetros, retorna animais categorizados por localização
+// Com a opção includeNames: true especificada, retorna nomes de animais
+// Com a opção sorted: true especificada, retorna nomes de animais ordenados
+// Com a opção sex: 'female' ou sex: 'male' especificada, retorna somente nomes de animais macho/fêmea
+// Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada, retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
+// Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
 // function animalMap(options) {
 //   // seu código aqui
 // }
 
+// 10. IMPLEMENTE A FUNÇÃO schedule
+// Sem parâmetros, retorna um cronograma legível para humanos
+// Se um único dia for passado, retorna somente este dia em um formato legível para humanos
 // function schedule(dayName) {
-//   // seu código aqui
+// const dau
+//   if (dayName !== {}){
+// const calendar = {};
+//    data.hours.push(calendar);
+// }
 // }
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+// 12. IMPLEMENTE A FUNÇÃO increasePrices
+// Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
+function increasePrices(percentage) {
+  const { Adult, Senior, Child } = data.prices;
+  data.prices.Adult = Math.ceil(Adult * (percentage + 100)) / 100;
+  data.prices.Senior = Math.ceil(Senior * (percentage + 100)) / 100;
+  data.prices.Child = Math.ceil(Child * (percentage + 100)) / 100;
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -143,6 +162,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

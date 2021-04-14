@@ -109,7 +109,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  // na lógica desse código obtive a ajuda do Aladino Borges
   const arrHours = Object.entries(hours);
   const fullSchedule = {};
 
@@ -155,7 +155,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  // na lógica desse código obtive ajuda da Valeria Andreoni
   const creatObj = (acc, { firstName, lastName, responsibleFor }) => {
     acc[`${firstName} ${lastName}`] = responsibleFor
       .map((item) => animals.find((animal) =>

@@ -46,9 +46,11 @@ const employeeByName = (employeeName) => {
   return selectedEmployee(employeeName);
 };
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+const createEmployee = ({id, firstName, lastName}, {managers, responsibleFor}) => {
+  // seu código aqui
+  const employee = {id, firstName, lastName, managers, responsibleFor};
+  return employee;
+};
 
 // function isManager(id) {
 //   // seu código aqui
@@ -99,5 +101,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

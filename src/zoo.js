@@ -60,7 +60,7 @@ const createEmployee = ({ id, firstName, lastName }, { managers, responsibleFor 
 const isManager = (id) => employees.some((employee) => employee.managers.includes(id));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return employees.push({ id, firstName, lastName, managers, responsibleFor});
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 };
 
 // function animalCount(species) {

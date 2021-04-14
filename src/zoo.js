@@ -49,7 +49,8 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(Id) {
   const { employees } = data;
-  return employees.some((employee) => employee.managers.some((manager) => manager === Id));
+  return employees.some((employee) => employee.managers.includes(Id)); // agradecimento ao amigo Dangelo Miranda pela refatoração do código.
+  // return employees.some((employee) => employee.managers.some((manager) => manager === Id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -96,9 +97,21 @@ function entryCalculator(entrants) {
 // function animalMap(options) {
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  const { hours } = data;
+  const weekSchedule = {};
+  Object.keys(hours).forEach((day) => {
+    if (hours[day].open === hours[day].close) {
+      weekSchedule[day] = 'CLOSED';
+    } else {
+      weekSchedule[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    }
+  });
+  if (dayName === undefined) {
+    return weekSchedule;
+  }
+  return { [dayName]: weekSchedule[dayName] };
+} // agradecimento ao amigo Dangelo Miranda pela comreensão da lógica. Foram 2h!
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -114,7 +127,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

@@ -47,14 +47,15 @@ function employeeByName(employeeName) {
 // 4. IMPLEMENTE A FUNÇÃO createEmployee
 // Cria um novo colaborador a partir de objetos contendo informações pessoais e gerentes e animais gerenciados.
 function createEmployee(personalInfo, associatedWith) {
-  return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 // Como os parâmetros da função irão receber objetos com diferentes informações, o operador Spread "..." será utilizado para "espalhar" estes dados dentro do novo objeto retornado.
 
-
-// function isManager(id) {
-//   // seu código aqui
-// }
+// 5. IMPLEMENTE A FUNÇÃO isManager
+// Testa se o id passado é de um gerente
+function isManager(id) {
+  return employees.some((managerCheck) => managerCheck.managers.includes(id));
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -97,7 +98,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

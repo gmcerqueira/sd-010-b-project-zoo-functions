@@ -53,6 +53,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // fonte para este exercicio: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+  // tive também ajuda para realizar este exercício
   // O método includes() determina se um array contém um determinado elemento, retornando true ou false apropriadamente.
   // Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
   // Deve retornar um valor booleano
@@ -129,9 +130,13 @@ function oldestFromFirstSpecies(id) {
   return saida;
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // Se o parâmetro da função recebe o valor 20, o aumento é de 20%
+  const rate = percentage / 100;
+  const increase = Object.keys(prices);
+  increase.forEach((item) => { prices[item] *= (1 + rate); });
+  increase.forEach((value) => { prices[value] = Math.round(prices[value] * 100) / 100; });
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -149,6 +154,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

@@ -71,7 +71,17 @@ function animalCount(species) {
   // Com o nome de uma espécie de animal, retorna um número
   // Sem parâmetros, retorna animais e suas quantidades
   // Com o nome de uma espécie de animal, retorna somente a quantidade
-  
+  const emptyObject = {};
+  let counter = 0;
+  animals.forEach((animalZoo) => {
+    if (animalZoo.name === species) {
+      counter = animalZoo.residents.length;
+    } else if (species === undefined) {
+      emptyObject[animalZoo.name] = animalZoo.residents.length;
+    }
+  });
+  if (!species) return emptyObject;
+  return counter;
 }
 
 function entryCalculator(entrants) {

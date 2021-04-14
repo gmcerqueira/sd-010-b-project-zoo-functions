@@ -87,34 +87,32 @@ function entryCalculator(entrants = {}) {
 
 function animalMap(options) {
   // seu código aqui
-  if (!options) return animals();
-  const { includeNames, sex, sorted } = options;
-  return animals(includeNames, sex, sorted);
+  return options;
 }
 
 function schedule(dayName) {
   // seu código aqui
-  const itens = Object.entries(hours);
   const result = {};
-  itens.forEach((element) => {
-    if (element[0] === 'Monday') {
-      result[element[0]] = 'CLOSED';
+  const itens = Object.keys(hours);
+  itens.forEach((key) => {
+    const { open, close } = hours[key];
+    if (key === 'Monday') {
+      result[key] = 'CLOSED';
+    } else {
+      result[key] = `Open from ${open} am until ${close - 12}pm`;
     }
-    result[element[0]] = `Open from ${hours[element[0]].open} am until ${
-      hours[element[0]].close - 12
-    }pm`;
   });
-  if (dayName !== undefined) return { [dayName]: result[dayName] };
+  if (dayName) return { [dayName]: result[dayName] };
   return result;
 }
-
 function oldestFromFirstSpecies(idParams) {
-// seu código aqui
-  const firstIdAnimal = employees.find(({ id }) => id === idParams).responsibleFor[0];
+  // seu código aqui
+  const firstIdAnimal = employees.find(({ id }) => id === idParams)
+    .responsibleFor[0];
   const newFind = animals.find(({ id }) => id === firstIdAnimal).residents;
   const { name, sex, age } = newFind
-    .reduce((obj, item) => obj
-      .concat(item), []).sort((a, b) => b.age - a.age)[0];
+    .reduce((obj, item) => obj.concat(item), [])
+    .sort((a, b) => b.age - a.age)[0];
   return [name, sex, age];
 }
 

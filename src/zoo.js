@@ -35,7 +35,10 @@ const animalsOlderThan = (specieName, age) => {
   return animalsSpecie.every((animal) => animal.age >= age);
 };
 
-const selectedEmployee = (employeeName) => employees.find((employee) => employee.firstName === employeeName || employee.lastName === employeeName);
+const selectedEmployee = (employeeName) => {
+  const selected = employees.find((employee) => employee.firstName === employeeName || employee.lastName === employeeName);
+  return selected;
+}
 
 const employeeByName = (employeeName) => {
   // seu código aqui

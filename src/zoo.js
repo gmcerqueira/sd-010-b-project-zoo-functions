@@ -63,9 +63,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+const animalQuantity = () => {
+  const quantity = {};
+  animals.forEach((animal) => { quantity[animal.name] = animal.residents.length });
+  return quantity;
+};
+
+const animalCount = (species) => {
+  // seu código aqui
+  if (species === undefined) return animalQuantity();
+  return animals.find((animal) => animal.name === species).residents.length;
+};
 
 // function entryCalculator(entrants) {
 //   // seu código aqui
@@ -94,7 +102,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

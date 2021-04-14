@@ -243,9 +243,23 @@ function increasePrices(percentage) {
 // increasePrices(50);
 // console.log(prices);
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+// Requirement 13
+function employeeCoverage(idOrName) {
+  // seu código aqui
+  const exp = {};
+  employees.forEach((employee) => {
+    const fullName = `${employee.firstName} ${employee.lastName}`;
+    const animalNames = [];
+    employee.responsibleFor.forEach((id) => {
+      animalNames.push(animals.find((animal) => (animal.id === id)).name);
+    });
+    exp[fullName] = animalNames;
+  });
+  // console.log(exp);
+  return exp;
+}
+// employeeCoverage();
+// fazer
 
 module.exports = {
   entryCalculator,
@@ -254,7 +268,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

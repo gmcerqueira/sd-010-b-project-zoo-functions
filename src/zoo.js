@@ -87,23 +87,31 @@ function entryCalculator(entrants = {}) {
 
 function animalMap(options) {
   // seu código aqui
-  return options;
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) {
+    return locations;
+  }
+  const { includeNames, sex, sorted } = options;
+  if (!includeNames) {
+    return locations;
+  }
+  return (locations, sorted, sex);
 }
 
 function schedule(dayName) {
   // seu código aqui
-  const result = {};
-  const itens = Object.keys(hours);
-  itens.forEach((key) => {
+  const obj = {};
+  const hoursKeys = Object.keys(hours);
+  hoursKeys.forEach((key) => {
     const { open, close } = hours[key];
     if (key === 'Monday') {
-      result[key] = 'CLOSED';
+      obj[key] = 'CLOSED';
     } else {
-      result[key] = `Open from ${open} am until ${close - 12}pm`;
+      obj[key] = `Open from ${open}am until ${close - 12}pm`;
     }
   });
-  if (dayName) return { [dayName]: result[dayName] };
-  return result;
+  if (dayName) return { [dayName]: obj[dayName] };
+  return obj;
 }
 function oldestFromFirstSpecies(idParams) {
   // seu código aqui
@@ -116,13 +124,40 @@ function oldestFromFirstSpecies(idParams) {
   return [name, sex, age];
 }
 
-// function increasePrices(percentage) {
-// seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+  const { Adult, Senior, Child } = prices;
+  prices.Adult = Number(
+    (Adult + Adult * (percentage / 100) + 0.005).toFixed(2),
+  );
+  prices.Senior = Number(
+    (Senior + Senior * (percentage / 100) + 0.005).toFixed(2),
+  );
+  prices.Child = Number(
+    (Child + Child * (percentage / 100) + 0.005).toFixed(2),
+  );
+}
 
-// function employeeCoverage(idOrName) {
-// seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  // seu código aqui
+  const filtEmployee = employees.filter((employee) =>
+    (idOrName
+      ? idOrName === employee.id
+        || idOrName === employee.firstName
+        || idOrName === employee.lastName
+      : true));
+  const namesAndAnimals = filtEmployee.reduce(
+    (acc, { firstName, lastName, responsibleFor }) => {
+      const name = `${firstName} ${lastName}`;
+      acc[name] = responsibleFor.map(
+        (animalid) => animals.find((animal) => animal.id === animalid).name,
+      );
+      return acc;
+    },
+    {},
+  );
+  return namesAndAnimals;
+}
 
 module.exports = {
   entryCalculator,
@@ -131,11 +166,11 @@ module.exports = {
   animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

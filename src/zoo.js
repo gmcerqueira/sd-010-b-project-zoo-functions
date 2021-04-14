@@ -67,7 +67,6 @@ function animalCount(species) {
 
 function schedule(dayName) {
   const keys = Object.keys(hours);
-  // const values = Object.values(hours);
   const myObj = {};
   const addDay = (key) => {
     myObj[key] = `Open from ${hours[key].open}am until ${hours[key].close - 12}pm`;
@@ -93,19 +92,27 @@ function increasePrices(percentage) {
   values.forEach(increase);
 }
 
-// function employeeCoverage(idOrName) {
-//   let result;
-//   const fname = (employee) => employee.firstName === idOrName;
-//   const lname = (employee) => employee.lastName === idOrName;
-//   const id = (employee) => employee.id === idOrName;
-//   if (idOrName) {
-//     result = employees.find((employee) => (fname(employee) || lname(employee) || id(employee)));
-//   } else {
-//     result = {};
-//   }
-//   return result;
-// }
+function nameAnimalsByIds(...ids) {
+  const listAnimals = ids.map((getId) => animals.find((animalId) => (animalId.id === getId)));
+  return listAnimals.map((animal) => animal.name);
+}
 
+function employeeCoverage(idOrName) {
+  let myObj = {};
+  employees.forEach(({ firstName, lastName, responsibleFor }) => {
+    const keyName = `${firstName} ${lastName}`;
+    const valueAnimal = nameAnimalsByIds(...responsibleFor);
+    myObj[keyName] = valueAnimal;
+  });
+  const fname = (employee) => employee.firstName === idOrName;
+  const lname = (employee) => employee.lastName === idOrName;
+  const id = (employee) => employee.id === idOrName;
+  if (!idOrName) return myObj;
+  const name = employees.find((employee) => (fname(employee) || lname(employee) || id(employee)));
+  const fullName = `${name.firstName} ${name.lastName}`;
+  myObj = { [fullName]: myObj[fullName] };
+  return myObj;
+}
 module.exports = {
   // entryCalculator,
   schedule,
@@ -113,7 +120,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

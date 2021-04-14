@@ -244,22 +244,43 @@ function increasePrices(percentage) {
 // console.log(prices);
 
 // Requirement 13
-function employeeCoverage(idOrName) {
-  // seu código aqui
-  const exp = {};
+function findAnimals(employee) {
+  const animalNames = [];
+  employee.responsibleFor.forEach((id) => {
+    animalNames.push(animals.find((animal) => (animal.id === id)).name);
+  });
+
+  return animalNames;
+}
+
+function allCoverage() {
+  const coverTable = {};
   employees.forEach((employee) => {
     const fullName = `${employee.firstName} ${employee.lastName}`;
-    const animalNames = [];
-    employee.responsibleFor.forEach((id) => {
-      animalNames.push(animals.find((animal) => (animal.id === id)).name);
-    });
-    exp[fullName] = animalNames;
+    coverTable[fullName] = findAnimals(employee);
   });
-  // console.log(exp);
-  return exp;
+
+  return coverTable;
 }
+
+function exactlyCoverage(idNameLast) {
+  const employeeFound = employees.find((employee) => (employee.id === idNameLast)
+    || (employee.firstName === idNameLast) || (employee.lastName === idNameLast));
+  const fullName = `${employeeFound.firstName} ${employeeFound.lastName}`;
+
+  return { [fullName]: findAnimals(employeeFound) };
+}
+
+function employeeCoverage(idOrName) {
+  // seu código aqui
+  if (!idOrName) return allCoverage();
+
+  return exactlyCoverage(idOrName);
+}
+// const id1 = '4b40a139-d4dc-4f09-822d-ec25e819a5ad';
+// const v = employeeCoverage();
+// console.log(v);
 // employeeCoverage();
-// fazer
 
 module.exports = {
   entryCalculator,

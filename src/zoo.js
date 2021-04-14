@@ -77,9 +77,23 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+// Consultei o repositório do Thiago Marchini para resolver essa parte, Pois estava com dificuldades de usar o forEach neste caso
+// https://github.com/tryber/sd-010-b-project-zoo-functions/blob/487bfb2d0dc0effbb7ea6ddec52c091b4518e0bf/src/zoo.js
+function schedule(dayName) {
+  // const { hours } = data;
+  const resultObject = {};
+  const hours = Object.entries(data.hours);
+  hours.forEach(([day, { open, close }]) => {
+    resultObject[day] = `Open from ${open}am until ${close - 12}pm`;
+    resultObject.Monday = 'CLOSED';
+  });
+  if (!dayName) { return resultObject; }
+  if (dayName) {
+    const object = {};
+    object[dayName] = resultObject[dayName];
+    return object;
+  }
+}
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -95,6 +109,7 @@ function oldestFromFirstSpecies(id) {
   // encontra o animal mais velho
   const olderAnimal = species.filter((animal) => animal.age === maxAge(agesAnimals))[0];
   return [olderAnimal.name, olderAnimal.sex, olderAnimal.age];
+  // Codigo necessita de refatoração
 }
 
 // function increasePrices(percentage) {
@@ -107,7 +122,7 @@ function oldestFromFirstSpecies(id) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

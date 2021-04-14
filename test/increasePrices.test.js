@@ -13,7 +13,6 @@ describe('Implemente a função increasePrices', () => {
     };
     assert.deepStrictEqual(data.prices, expected);
 
-    zoo.increasePrices(30);
     expected = {
       'Adult': 97.49,
       'Senior': 48.74,

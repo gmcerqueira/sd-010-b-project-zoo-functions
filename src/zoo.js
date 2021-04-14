@@ -103,9 +103,18 @@ function schedule(dayName) {
 //   // seu código aqui
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  const { prices } = data;
+  const {
+    Adult,
+    Senior,
+    Child,
+  } = prices;
+  prices.Adult = Math.round(((Adult) + (Adult * (percentage / 100))) * 100) / 100;
+  prices.Senior = Math.round(((Senior) + (Senior * (percentage / 100))) * 100) / 100;
+  prices.Child = Math.round(((Child) + (Child * (percentage / 100))) * 100) / 100;
+  return prices;
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -122,7 +131,7 @@ module.exports = {
   isManager,
   addEmployee,
   entryCalculator,
+  increasePrices,
 //   employeeCoverage,
 //   oldestFromFirstSpecies,
-//   increasePrices,
 };

@@ -54,7 +54,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // }
 
 function entryCalculator(ent) {
-  if (entrants === undefined) {
+  if (ent === undefined) {
     return 0;
   }
   return Object.keys(ent).reduce((acum, c, i) => acum + (prices[c] * Object.values(ent)[i]), 0)

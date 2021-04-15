@@ -28,7 +28,6 @@ function employeeByName(employeeName) {
   const n = employees.filter((e) => e.firstName === employeeName || e.lastName === employeeName);
   return n;
 }
-console.log(employeeByName())
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
@@ -46,6 +45,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
+  
   return entrants;
 }
 

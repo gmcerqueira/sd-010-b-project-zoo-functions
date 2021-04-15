@@ -80,11 +80,13 @@ function isManager(id) {
 
 // Requisito 6
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  // Utiliza os parâmetros passados para criar um funcionário
   data.employees.push({
     id, firstName, lastName, managers, responsibleFor,
   });
 }
 
+// Requisito 7
 function animalCount(species) {
   let response;
 
@@ -102,9 +104,15 @@ function animalCount(species) {
   return amount;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+// Requisito 8
+function entryCalculator(entrants) {
+  if (entrants) {
+    const peoples = Object.keys(entrants);
+
+    return peoples.reduce((acc, cur) => acc + (data.prices[cur] * entrants[cur]), 0);
+  }
+  return 0;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -127,7 +135,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,

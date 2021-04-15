@@ -13,7 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
-const { prices } = data;
+// const { prices } = data;
 const { hours } = data;
 
 function animalsByIds(...ids) {
@@ -57,14 +57,14 @@ function animalCount(species) {
   const specie = animals.find((animal) => animal.name === species);
   return specie.residents.length;
 }
-
-function entryCalculator(entrants = []) {
-  const entrantsKey = Object.keys(entrants);
-  return entrantsKey.reduce(
-    (accumulator, currentValue) =>
-      accumulator + prices[currentValue] * entrants[currentValue], 0
-  );
-}
+// /*
+// function entryCalculator(entrants = []) {
+//   const entrantsKey = Object.keys(entrants);
+//   return entrantsKey.reduce(
+//     (accumulator, currentValue) =>
+//       accumulator + prices[currentValue] * entrants[currentValue]
+//   );
+// }*/
 /*
 function animalMap(options) {
   // seu código aqui
@@ -101,17 +101,17 @@ function employeeCoverage(idOrName) {
 }
 */
 module.exports = {
-  entryCalculator,
+  // entryCalculator,
   schedule,
   animalCount,
-  //animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  //employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  //oldestFromFirstSpecies,
+  // oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

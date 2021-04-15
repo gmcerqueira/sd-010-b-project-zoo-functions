@@ -82,7 +82,7 @@ function employeeCoverage(idOrName) {
       ac[fName] = responsibleFor.map((anId) => animals.find((animal) => animal.id === anId).name);
       return ac;
     });
-     return employeeResponsible;
+    return employeeResponsible;
   });
 }
 module.exports = {

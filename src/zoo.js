@@ -143,9 +143,33 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+// O código abaixo faz parte do último requisito, incluindo a função findIdAnimal().
+
+const findIdAnimal = () => {
+  const responsibleArr = {};
+  employees.forEach((employee) => {
+    responsibleArr[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
+      .map((id) => animals.find((ani) => ani.id === id).name);
+  });
+  return responsibleArr;
+};
+
+function employeeCoverage(idOrName) {
+  if (typeof idOrName === 'undefined') {
+    return findIdAnimal();
+  }
+  const newObj = {};
+  employees.forEach((employee) => {
+    if (employee.id === idOrName || employee.firstName === idOrName
+      || employee.lastName === idOrName) {
+      newObj[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
+        .map((id) => animals.find((ani) => ani.id === id).name);
+    }
+  });
+  return newObj;
+}
+
+console.log(employeeCoverage('Ardith'));
 
 module.exports = {
   entryCalculator,
@@ -154,7 +178,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

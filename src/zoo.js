@@ -77,12 +77,11 @@ function employeeCoverage(idOrName) {
     if (idOrName === em.firstName || idOrName === em.lastName || idOrName === em.id) {
       return true;
     }
-    const employeeResponsible = employee.reduce((ac, {firstName, lastName, responsibleFor}) => {
+    const employeeResponsible = employee.reduce((ac, { firstName, lastName, responsibleFor }) => {
       const fName = ` ${firstName} ${lastName} `;
       ac[fName] = responsibleFor.map((anId) => animals.find((animal) => animal.id === anId).name);
       return ac;
     });
-    {}
     return employeeResponsible;
   });
 }

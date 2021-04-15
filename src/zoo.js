@@ -118,6 +118,7 @@ function increasePrices(percentage) {
   // seu código aqui
   const { prices } = data;
   let { Adult, Child, Senior } = prices;
+
   Adult = Math.ceil(prices.Adult * (100 + percentage)) / 100;
   Child = Math.ceil(prices.Child * (100 + percentage)) / 100;
   Senior = Math.ceil(prices.Senior * (100 + percentage)) / 100;
@@ -125,10 +126,47 @@ function increasePrices(percentage) {
   data.prices = { Adult, Senior, Child };
 }
 
+/* FUNÇÕES E VARIÁVEIS DE APOIO: employeeCoverage
+Requisito 13 resolvido com apoio do algoritmo criado
+pelo colega João Vanelli - link:
+"https://github.com/tryber/sd-010-b-project-zoo-functions/blob/joao-vanelli-zoo-functions/src/zoo.js"
+*/
+// declaração de variáveis:
+const allEmployees = data.employees;
+
+// funções de apoio:
+function checkEmployee(info) {
+  const employee = allEmployees.find((person) =>
+    person.id === info || person.firstName === info || person.lastName === info);
+  const coverage = employee.responsibleFor.reduce((area, animalId) => {
+    area.push((animals.find((animal) => animal.id === animalId)).name);
+    return area;
+  }, []);
+
+  return { [`${employee.firstName} ${employee.lastName}`]: coverage };
+}
+
 function employeeCoverage(idOrName) {
   // seu código aqui
-  return idOrName;
+  if (!idOrName) {
+    return allEmployees.reduce((acc, employee) => {
+      const employeeCovers = employee.responsibleFor.reduce((animal, ids) => {
+        animal.push((animals.find((current) => current.id === ids)).name);
+        return animal;
+      }, []);
+      acc[`${employee.firstName} ${employee.lastName}`] = employeeCovers;
+      return acc;
+    }, {});
+  }
+
+  return checkEmployee(idOrName);
 }
+
+// function calls:
+
+// console.log(employeeObject);
+// console.log(animalIds);
+// console.log(finalObject);
 
 module.exports = {
   entryCalculator,

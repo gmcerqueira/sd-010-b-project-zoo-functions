@@ -57,7 +57,7 @@ function entryCalculator(ent) {
   if (ent === undefined) {
     return 0;
   }
-  return Object.keys(ent).reduce((acum, c, i) => acum + (prices[c] * Object.values(ent)[i]), 0)
+  return Object.keys(ent).reduce((acum, c, i) => acum + (prices[c] * Object.values(ent)[i]), 0);
 }
 
 // function animalMap(options) {

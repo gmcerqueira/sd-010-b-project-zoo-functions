@@ -25,7 +25,7 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   if (employeeByName === undefined) return {};
-  return employees.find((employee) => 
+  return employees.find((employee) =>
     (employee.firstName === employeeName || employee.lastName === employeeName));
 }
 
@@ -52,7 +52,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   // seu código aqui
 //}
 
-//function animalMap(options) {
+/*function animalMap(options) {
   // seu código aqui
 //}
 
@@ -70,10 +70,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 //function employeeCoverage(idOrName) {
   // seu código aqui
-//}
+}*/
 
 module.exports = {
-  entryCalculator,
+  //entryCalculator,
   schedule,
   animalCount,
   animalMap,

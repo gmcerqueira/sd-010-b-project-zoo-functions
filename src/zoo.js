@@ -93,7 +93,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  //employeeCoverage,
+  // employeeCoverage,
   // addEmployee,
   isManager,
   animalsOlderThan,

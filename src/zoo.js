@@ -83,22 +83,13 @@ function entryCalculator(entrants) {
 }
 
 // function animalMap(options) {
-//   const locations = ['NE', 'NW', 'SE', 'SW']
-//   const allMap = {};
-//   if (typeof options === 'undefined') {
-//     animals.forEach(animal => allMap[animal.location] =
-//     animals.map(ani => {
-//       if (ani.location === animal.location) {
-//         return ani.name
-//       }
-//     }))
-//   }
-//   console.log(allMap)
-
+//   const myObj = {};
+//   animals.forEach(animal => myObj[animal.location] = animals.find((ani) => ani.location === animal.location).name)
+//   return myObj
 // }
-// animalMap()
+// console.log(animalMap())
 
-// Para resolver o requisito 9 eu tive que buscar orientação com o meu colega Matheus bodra, pois, tive difilculdade na implementação. link:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/81/commits/8418cfc7aa598d1575dcc4dee52a3a2f90e7ef56
+// Para resolver o requisito 10(schedule) eu tive que buscar orientação com o meu colega Matheus bodra, pois, tive difilculdade na implementação. link:https://github.com/tryber/sd-010-b-project-zoo-functions/pull/81/commits/8418cfc7aa598d1575dcc4dee52a3a2f90e7ef56
 
 const { hours } = data;
 
@@ -168,8 +159,6 @@ function employeeCoverage(idOrName) {
   });
   return newObj;
 }
-
-console.log(employeeCoverage('Ardith'));
 
 module.exports = {
   entryCalculator,

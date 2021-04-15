@@ -51,9 +51,15 @@ function entryCalculator(entrants) {
   return Object.keys(entrants).reduce((acc, aux) => acc + entrants[aux] * prices[aux], 0);
 }
 
-function animalMap(options) {
-  return options;
-}
+// function animalMap(options) {
+//   const mapAnimals = animals.map((animal) => {
+//     if (options === undefined) {
+//       animal.location
+      
+//     }
+//   })
+//   return options;
+// }
 
 function schedule(dayName) {
   return dayName;
@@ -68,14 +74,24 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  return idOrName;
+  const employee = employees.filter((em) => {
+    if (idOrName === em.firstName || idOrName === em.lastName || idOrName === em.id) {
+      return true;
+    }
+    const employeeResponsible = employee.reduce((ac, {firstName, lastName, responsibleFor}) => {
+      const fullName = `${firstName} ${lastName}`;
+      ac[fullName] = responsibleFor.map((anId) => animals.find((animal) => animal.id === anId).name,);
+      return ac;
+    })
+    {}
+    return employeeResponsible;
+  })  
 }
-
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,

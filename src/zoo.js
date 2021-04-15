@@ -118,9 +118,24 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+// Requisito 10
+function schedule(dayName) {
+  const days = data.hours; const response = {};
+
+  Object.keys(days).forEach((day) => {
+    if (day === 'Monday') {
+      response[day] = 'CLOSED';
+    } else {
+      response[day] = `Open from ${days[day].open}am until ${(days[day].close - 12)}pm`;
+    }
+  });
+  console.log(response);
+
+  if (dayName) {
+    return { [dayName]: response[dayName] };
+  }
+  return response;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -134,9 +149,11 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
+schedule();
+
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

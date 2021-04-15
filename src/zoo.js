@@ -33,9 +33,10 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// function isManager(id) {
-//  return
-// }
+function isManager(id) {
+  const includeManager = employees.some((mngr) => mngr.managers.includes(id))
+ return includeManager
+}
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const addEmployeer = {
@@ -85,7 +86,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

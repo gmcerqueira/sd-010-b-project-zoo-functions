@@ -19,6 +19,7 @@ describe('Implemente a função increasePrices', () => {
       'Senior': 48.74,
       'Child': 40.94
     };
+    //{ Adult: 64.99, Senior: 32.49, Child: 27.29 }
     assert.deepStrictEqual(data.prices, expected);
   });
 });

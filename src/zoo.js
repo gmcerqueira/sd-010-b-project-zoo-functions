@@ -118,7 +118,6 @@ function fechamentosFn(valoresObj) {
   });
   return aux;
 }
-
 function opt1() {
   const { hours } = data;
   const chaves = Object.keys(hours);
@@ -136,7 +135,6 @@ function opt1() {
   chaves.forEach((element, index) => construcaoSaida(element, index));
   return resultado;
 }
-
 function schedule(dayName = 0) {
   if (dayName === 0) {
     return opt1();
@@ -146,8 +144,8 @@ function schedule(dayName = 0) {
   aux[dayName] = escolherDia[dayName];
   return aux;
 }
-// >---> ITEM 11
 
+// >---> ITEM 11
 function oldestFromFirstSpecies(id) {
   const { employees, animals } = data;
   // buscar funcionario pelo id -> retorna a id da primeira especie
@@ -168,9 +166,16 @@ function oldestFromFirstSpecies(id) {
 }
 
 // >---> ITEM 12
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function roundToTwo(num) {
+  return Math.round((num + Number.EPSILON) * 100) / 100;
+}
+function increasePrices(percentage) {
+  // capiturar os preços
+  const { Adult, Senior, Child } = data.prices;
+  data.prices.Adult = roundToTwo(Adult * (percentage / 100 + 1));
+  data.prices.Senior = roundToTwo(Senior * (percentage / 100 + 1));
+  data.prices.Child = roundToTwo(Child * (percentage / 100 + 1));
+}
 // >---> ITEM 13
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -188,6 +193,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

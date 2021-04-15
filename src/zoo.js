@@ -59,7 +59,8 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (!entrants) return 0;
-  return Object.keys(entrants).reduce((acc, curr) =>
+  const entrant = Object.keys(entrants);
+  return entrant.reduce((acc, curr) =>
     acc + (entrants[curr] * prices[curr]), 0);
 }
 

@@ -113,9 +113,14 @@ function schedule(dayName) {
   return { [dayName]: weekSchedule[dayName] };
 } // agradecimento ao amigo Dangelo Miranda pela comreensão da lógica. Foram 2h!
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const { employees, animals } = data;
+  const selectedEmployee = employees.find((employee) => employee.id === id);
+  const managedAnimals = animals.find((animal) => animal.id === selectedEmployee.responsibleFor[0]);
+  const sortedAnimals = managedAnimals.residents.sort((animal1, animal2) => animal2.age - animal1.age);
+  const elderAnimal = sortedAnimals[0];
+  return Object.values(elderAnimal);
+}
 
 function increasePrices(percentage) {
   const { prices } = data;
@@ -140,7 +145,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

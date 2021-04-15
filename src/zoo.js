@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { employees, animals } = data;
+const { employees, animals, prices } = data;
 
 function animalsByIds(...ids) {
   return animals.filter((animal) => ids.includes(animal.id));
@@ -53,9 +53,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 //   // seu código aqui
 // }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  if (entrants === undefined) {
+    return 0;
+  }
+  return Object.keys(entrants).reduce((acumulator, current, currentIndx) => acumulator + (prices[current] * Object.values(entrants)[currentIndx]), 0)
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -78,7 +81,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   // animalCount,
   // animalMap,

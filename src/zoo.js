@@ -41,8 +41,8 @@ function animalsOlderThan(animal, age) {
     lastName,
     managers,
     responsibleFor
-  }
-  return data.employees.push(addEmployeer)
+  };
+  return data.employees.push(addEmployeer);
 }
 
 // function animalCount(species) {

@@ -22,7 +22,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName = {}) {
-  return employees.find((item) => item.firstName === employeeName || item.lastName === employeeName);
+  return employees.find(item => item.firstName === employeeName || item.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -30,7 +30,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 // function isManager(id) {
-//  return 
+//  return
 // }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -41,7 +41,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     managers,
     responsibleFor,
   };
-  return data.employees.push(addEmployeer);
+  return employees.push(addEmployeer);
 }
 
 // function animalCount(species) {

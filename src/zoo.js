@@ -9,14 +9,16 @@ eslint no-unused-vars: [
 ]
 */
 
+const { animals } = require('./data');
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui commit
+function animalsByIds(...ids) {
+  return ids.map((id) => animals.find((animal) => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const animalSpecies = animal.find((specie) => specie.name === animal);
+  return animalSpecies.residents.every((resident) => resident.age >= age);
 }
 
 function employeeByName(employeeName) {

@@ -34,8 +34,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const includeManager = employees.some((mngr) => mngr.managers.includes(id))
- return includeManager
+  const includeManager = employees.some((mngr) => mngr.managers.includes(id));
+  return includeManager;
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {

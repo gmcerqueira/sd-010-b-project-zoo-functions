@@ -53,8 +53,8 @@ function animalCount(species) {
   const countAnim = {};
   if (!species) {
     animals.forEach(({ name, residents }) => {
-      countAnim[name] = residents.length; 
-    })
+    countAnim[name] = residents.length; 
+    });
     return countAnim;
   }
   return animals.find((animal) => animal.name === species).residents.length;

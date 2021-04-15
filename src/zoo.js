@@ -96,7 +96,6 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
   // função que analisa a maior idade
   const maxAge = (array) => Math.max(...array);
   const { employees } = data;
@@ -112,9 +111,17 @@ function oldestFromFirstSpecies(id) {
   // Codigo necessita de refatoração
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui (random()*100/100)
-// }
+function increasePrices(percentage) {
+  // seu código aqui (random()*100/100)
+  const { Adult } = prices;
+  const { Senior } = prices;
+  const { Child } = prices;
+
+  prices.Adult = +(parseFloat((Adult + (percentage / 100) * Adult + 0.0001).toPrecision(4)));
+  prices.Senior = +(parseFloat((Senior + (percentage / 100) * Senior + 0.0001).toPrecision(4)));
+  prices.Child = +(parseFloat((Child + (percentage / 100) * Child + 0.0001)).toPrecision(4));
+  return prices[percentage];
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -132,6 +139,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

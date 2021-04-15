@@ -144,11 +144,47 @@ function entryCalculator(entrants) {
 
 /* function animalMap(options) {
   // seu código aqui
+} */
+
+/*
+   Essa função recebe um horário no formato 24h e retorna uma string com este horário no formato AM/PM.
+  */
+function formatterHourAmPm(hour) {
+  if (hour < 12) { // se horario menor que 12
+    return `${hour}am`; // formata como am
+  }
+  if (hour > 12) { // se horario maior que 12
+    return `${hour - 12}pm`; // subtrai 12 horas e formata como pm
+  }
+  return '12pm'; // retorna 12pm caso contrario
 }
 
+/*
+   Essa função disponibiliza as informações de horário para uma consulta na forma de um cronograma legível para humanos. Sem parâmetros, retorna todo o cronograma da semana. Se um único dia for passado, retorna apenas o cronograma deste dia específico.
+
+   Créditos openHour e reuso de código
+   @Alan Tanaka - Turma 10 B
+  */
 function schedule(dayName) {
-  // seu código aqui
-} */
+  const scheduleObj = Object.keys(data.hours) // obtem uma lista de dias da semana
+    .reduce( // e constroi um objeto schedule usando reduce onde
+      (acc, day) => {
+        if (data.hours[day].open === data.hours[day].close) { // se o horario de abertura é igual ao de fechamento
+          acc[day] = 'CLOSED'; // acrescenta a chave do dia com valor 'CLOSED'
+        } else { // caso contrario
+          const openHour = formatterHourAmPm(data.hours[day].open); // formata o horario de abertura para am/pm
+          const closeHour = formatterHourAmPm(data.hours[day].close); // formata o horario de fechamento para am/pm
+          acc[day] = `Open from ${openHour} until ${closeHour}`; // acrescenta a chave do dia com valor `Open from ${openHour} until ${closeHour}`
+        }
+        return acc; // retorna o objeto construído para o acumulador
+      }, {}, // valor inicial é um objeto vazio
+    );
+
+  if (dayName) { // se um dia foi passado por parâmetro
+    return { [dayName]: scheduleObj[dayName] }; // retorna um objeto contendo o dia como chave e o seu valor a partir do objeto scheduleObj
+  }
+  return scheduleObj; // retorna scheduleObj caso não receba um parâmetro
+}
 
 /*
    Essa função recebe o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
@@ -214,7 +250,7 @@ function increasePrices(percentage) {
  */
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

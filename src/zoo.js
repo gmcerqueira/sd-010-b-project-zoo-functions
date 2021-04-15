@@ -117,10 +117,14 @@ function schedule(dayName) {
 //   // seu código aqui
 // }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
-
+function increasePrices(percentage) {
+  const { prices } = data;
+  const { Adult, Senior, Child } = prices;
+  prices.Adult = Math.ceil(((Adult) + (Adult * (percentage / 100))) * 100) / 100;
+  prices.Senior = Math.ceil(((Senior) + (Senior * (percentage / 100))) * 100) / 100;
+  prices.Child = Math.ceil(((Child) + (Child * (percentage / 100))) * 100) / 100;
+  return prices;
+}
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }
@@ -137,6 +141,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

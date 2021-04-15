@@ -50,15 +50,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  let countobj = {}
+  const countobj = {};
   if (species === undefined) {
     return countobj;
-  } else {
-    animals.forEach(({ name , residents}) => {
-    countobj[name] = residents.length;
+  } 
+  animals.forEach(({ name, residents}) => {
+      countobj[name] = residents.length;
     });
-    return countobj;
-  }
+  return countobj;
 }
 
 function entryCalculator(ent) {
@@ -91,7 +90,7 @@ function entryCalculator(ent) {
 module.exports = {
   entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

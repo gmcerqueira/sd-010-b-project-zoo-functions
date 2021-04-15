@@ -13,6 +13,7 @@ const { animals } = require('./data');
 const data = require('./data');
 
 const { employees } = data;
+const { prices } = data;
 
 function animalsByIds(...ids) {
   return ids.map((id) => animals.find((animal) => animal.id === id));
@@ -60,27 +61,27 @@ function entryCalculator(entrants = []) {
   const entrantsKey = Object.keys(entrants);
   return entrantsKey.reduce((accumulator, currentValue) => accumulator + prices[currentValue] * entrants[currentValue], 0);
 }
-
-//function animalMap(options) {
+/*
+function animalMap(options) {
   // seu código aqui
-//}
+}
 
-//function schedule(dayName) {
+function schedule(dayName) {
   // seu código aqui
-//}
+}
 
-//function oldestFromFirstSpecies(id) {
+function oldestFromFirstSpecies(id) {
   // seu código aqui
-//}
+}
 
-//function increasePrices(percentage) {
+function increasePrices(percentage) {
   // seu código aqui
-//}
+}
 
-//function employeeCoverage(idOrName) {
+function employeeCoverage(idOrName) {
   // seu código aqui
-//}
-
+}
+*/
 module.exports = {
   entryCalculator,
   schedule,

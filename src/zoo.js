@@ -34,9 +34,16 @@ function animalsOlderThan(animal, age) {
 //   // seu código aqui
 // }
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  const addEmployeer = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  }
+  return data.employees.push(addEmployeer)
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -74,7 +81,7 @@ module.exports = {
   animalsByIds,
   // employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   // isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

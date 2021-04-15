@@ -60,13 +60,21 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  const { employees } = data;
+  let resultado = false;
+  employees.forEach(({ managers }) => managers.forEach((element) => {
+    if (element === id) {
+      resultado = true;
+    }
+  }));
+  return resultado;
+}
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const obj = { id, firstName, lastName, managers, responsibleFor };
+  return data.employees.push(obj);
+}
 
 // function animalCount(species) {
 //   // seu código aqui
@@ -104,8 +112,8 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
-  // isManager,
+  addEmployee,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

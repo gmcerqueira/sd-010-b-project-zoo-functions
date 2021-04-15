@@ -60,8 +60,7 @@ function animalCount(species) {
 function entryCalculator(entrants = []) {
   const entrantsKey = Object.keys(entrants);
   return entrantsKey.reduce(
-    (accumulator, currentValue) => 
-      accumulator + prices[currentValue] * entrants[currentValue], 0);
+    (accumulator, currentValue) => accumulator + prices[currentValue] * entrants[currentValue], 0);
 }
 /*
 function animalMap(options) {
@@ -75,27 +74,32 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
-
+*/
 function increasePrices(percentage) {
-  // seu código aqui
+  const { Adult, Senior, Child } = data.prices;
+  data.prices = {
+    Adult: Math.ceil(Adult * (percentage + 100)) / 100,
+    Senior: Math.ceil(Senior * (percentage + 100)) / 100,
+    Child: Math.ceil(Child * (percentage + 100)) / 100,
+  };
 }
-
+/*
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
 */
 module.exports = {
   entryCalculator,
-  schedule,
+  //schedule,
   animalCount,
-  animalMap,
+  //animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
+  //oldestFromFirstSpecies,
   increasePrices,
-  createEmployee,
+  //createEmployee,
 };

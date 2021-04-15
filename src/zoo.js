@@ -52,11 +52,6 @@ const createEmployee = ({ id, firstName, lastName }, { managers, responsibleFor 
   return employee;
 };
 
-// const employeeById = (id) => {
-//   const empl = employees.find((emp) => emp.id === id);
-//   return empl;
-// };
-
 const isManager = (id) => employees.some((employee) => employee.managers.includes(id));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -111,9 +106,42 @@ const increasePrices = (percentage) => {
   return prices;
 };
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+const search = (emp, ID) => (emp.id === ID || emp.firstName === ID || emp.lastName === ID);
+
+const employeeByIdOrName = (idOrName) => {
+  const selected = employees.find((emp) => search(emp, idOrName));
+  return selected;
+};
+
+const employeeAnimals = (idOrName) => {
+  const emp = employeeByIdOrName(idOrName);
+  const resp = `${emp.firstName} ${emp.lastName}`;
+  const obj = {};
+  const respon = emp.responsibleFor;
+  obj[resp] = respon.map((item) => {
+    const anim = animals.find((animal) => animal.id === item);
+    return anim.name;
+  });
+  return obj;
+};
+
+const allEmployeesAnimals = () => {
+  const obj = {};
+  employees.forEach((emp) => {
+    const respon = emp.responsibleFor;
+    obj[`${emp.firstName} ${emp.lastName}`] = respon.map((item) => {
+      const anim = animals.find((animal) => animal.id === item);
+      return anim.name;
+    });
+  });
+  return obj;
+};
+
+const employeeCoverage = (idOrName) => {
+  // seu código aqui
+  if (idOrName === undefined) return allEmployeesAnimals();
+  return employeeAnimals(idOrName);
+};
 
 module.exports = {
   entryCalculator,
@@ -122,7 +150,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

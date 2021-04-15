@@ -11,10 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals } = data;
-const { employees } = data;
-// const { prices } = data;
-const { hours } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   return ids.map((id) => animals.find((animal) => animal.id === id));
@@ -57,19 +54,19 @@ function animalCount(species) {
   const specie = animals.find((animal) => animal.name === species);
   return specie.residents.length;
 }
-// /*
-// function entryCalculator(entrants = []) {
-//   const entrantsKey = Object.keys(entrants);
-//   return entrantsKey.reduce(
-//     (accumulator, currentValue) =>
-//       accumulator + prices[currentValue] * entrants[currentValue]
-//   );
-// }*/
-/*
-function animalMap(options) {
-  // seu código aqui
+
+function entryCalculator(entrants = {}) {
+  const entrantsKey = Object.keys(entrants);
+  return entrantsKey.reduce(
+    (accumulator, currentValue) =>
+      accumulator + prices[currentValue] * entrants[currentValue], 0,
+  );
 }
-*/
+
+// function animalMap(options) {
+//   // seu código aqui
+// }
+
 function schedule(dayName) {
   const obj = {};
   Object.keys(hours).forEach((day) => {
@@ -101,7 +98,7 @@ function employeeCoverage(idOrName) {
 }
 */
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   schedule,
   animalCount,
   // animalMap,

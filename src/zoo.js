@@ -53,11 +53,11 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 //   // seu código aqui
 // }
 
-function entryCalculator(entrants) {
+function entryCalculator(ent) {
   if (entrants === undefined) {
     return 0;
   }
-  return Object.keys(entrants).reduce((acumulator, current, currentIndx) => acumulator + (prices[current] * Object.values(entrants)[currentIndx]), 0)
+  return Object.keys(ent).reduce((acum, c, i) => acum + (prices[c] * Object.values(ent)[i]), 0)
 }
 
 // function animalMap(options) {

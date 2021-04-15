@@ -33,7 +33,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return id;
+  const manager = employees.some((employee) => employee.managers.includes(id));
+  return manager;
 }
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -72,19 +73,19 @@ function increasePrices(percentage) {
   return percentage;
 }
 
-function employeeCoverage(idOrName) {
-  const employee = employees.filter((em) => {
-    if (idOrName === em.firstName || idOrName === em.lastName || idOrName === em.id) {
-      return true;
-    }
-    const employeeResponsible = employee.reduce((ac, { firstName, lastName, responsibleFor }) => {
-      const fName = ` ${firstName} ${lastName} `;
-      ac[fName] = responsibleFor.map((anId) => animals.find((animal) => animal.id === anId).name);
-      return ac;
-    });
-    return employeeResponsible;
-  });
-}
+// function employeeCoverage(idOrName) {
+//   const employee = employees.filter((em) => {
+//     if (idOrName === em.firstName || idOrName === em.lastName || idOrName === em.id) {
+//       return true;
+//     }
+//     const employeeResponsible = employee.reduce((ac, { firstName, lastName, responsibleFor }) => {
+//       const fName = ` ${firstName} ${lastName} `;
+//       ac[fName] = responsibleFor.map((anId) => animals.find((animal) => animal.id === anId).name);
+//       return ac;
+//     });
+//     return employeeResponsible;
+//   });
+// }
 module.exports = {
   entryCalculator,
   schedule,
@@ -92,7 +93,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  //employeeCoverage,
   // addEmployee,
   isManager,
   animalsOlderThan,

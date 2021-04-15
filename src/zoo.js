@@ -117,10 +117,12 @@ function oldestFromFirstSpecies(id) {
   return arrayAnimal;
 }
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-//   return percentage;
-// }
+function increasePrices(percentage) {
+  // Peguei a dica de como fazer este cálculo com o Emerson
+  prices.Adult = Math.ceil(prices.Adult * (percentage + 100)) / 100;
+  prices.Child = Math.ceil(prices.Child * (percentage + 100)) / 100;
+  prices.Senior = Math.ceil(prices.Senior * (percentage + 100)) / 100;
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -139,6 +141,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

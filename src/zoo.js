@@ -13,7 +13,6 @@ const { employees, animals } = require('./data');
 const data = require('./data');
 
 
-
 function animalsByIds(...ids) {
   return animals.filter((animal) => ids.includes(animal.id));
 }
@@ -24,15 +23,16 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName = {}) {
-  return employees.find((employee) => employee.firstName === employeeName || employee.lastName === employeeName);
+  return employees.find((employee) => {
+    employee.firstName === employeeName || employee.lastName === employeeName});
 }
 
 function createEmployee(personalInfo, associatedWith) {
-    return { ...personalInfo, ...associatedWith};
+  return  { ...personalInfo, ...associatedWith};
 }
 
 // function isManager(id) {
-//   return 
+//  return 
 // }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {

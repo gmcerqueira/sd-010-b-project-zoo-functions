@@ -117,7 +117,8 @@ function oldestFromFirstSpecies(id) {
   const { employees, animals } = data;
   const selectedEmployee = employees.find((employee) => employee.id === id);
   const managedAnimals = animals.find((animal) => animal.id === selectedEmployee.responsibleFor[0]);
-  const sortedAnimals = managedAnimals.residents.sort((animal1, animal2) => animal2.age - animal1.age);
+  const sortedAnimals = managedAnimals.residents.sort((animal1, animal2) =>
+    animal2.age - animal1.age);
   const elderAnimal = sortedAnimals[0];
   return Object.values(elderAnimal);
 }

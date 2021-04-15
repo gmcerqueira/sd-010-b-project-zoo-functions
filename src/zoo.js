@@ -98,14 +98,55 @@ function entryCalculator(entrants = 0) {
   return valorFinal;
 }
 
+// NÃO RESOLVIDO
 // function animalMap(options) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+// >---> ITEM 10
+function aberturasFn(valoresObj) {
+  const aux = [];
+  valoresObj.forEach((element) => {
+    aux.push(element.open);
+  });
+  return aux;
+}
+function fechamentosFn(valoresObj) {
+  const aux = [];
+  valoresObj.forEach((element) => {
+    aux.push(element.close % 12);
+  });
+  return aux;
+}
 
+function opt1() {
+  const { hours } = data;
+  const chaves = Object.keys(hours);
+  const valoresObj = Object.values(hours);
+  const aberturas = aberturasFn(valoresObj);
+  const fechamentos = fechamentosFn(valoresObj);
+  const resultado = {};
+  const construcaoSaida = (element, index) => {
+    if (aberturas[index] === 0 && fechamentos[index] === 0) {
+      resultado[element] = 'CLOSED';
+    } else {
+      resultado[element] = `Open from ${aberturas[index]}am until ${fechamentos[index]}pm`;
+    }
+  };
+  chaves.forEach((element, index) => construcaoSaida(element, index));
+  return resultado;
+}
+
+function schedule(dayName = 0) {
+  if (dayName === 0) {
+    return opt1();
+  }
+  const escolherDia = opt1();
+  const aux = {};
+  aux[dayName] = escolherDia[dayName];
+  return aux;
+}
+// >---> ITEM 11
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
 // }
@@ -120,7 +161,7 @@ function entryCalculator(entrants = 0) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

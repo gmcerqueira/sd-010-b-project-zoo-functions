@@ -34,7 +34,7 @@ function animalsOlderThan(animal, age) {
 //   // seu código aqui
 // }
 
- function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const addEmployeer = {
     id,
     firstName,

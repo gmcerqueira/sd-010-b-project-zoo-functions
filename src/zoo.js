@@ -53,10 +53,10 @@ function animalCount(species) {
   const countobj = {};
   if (species === undefined) {
     return countobj;
-  } animals.forEach(({ name, residents }) => {
+  } 
+  return animals.forEach(({ name, residents }) => {
     countobj[name] = residents.length;
   });
-  return countobj;
 }
 
 function entryCalculator(ent) {

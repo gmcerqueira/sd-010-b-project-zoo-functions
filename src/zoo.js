@@ -96,7 +96,7 @@ function entryCalculator(entrants) {
 /* function AMON() {
   const states = {};
   data.animals.forEach((animal) => states[animal.location] = []);
-  
+
   Object.keys(states).forEach((state) => {
     data.animals.filter((animal) => {
       animal.location === state ? states[state].push(animal.name) : 0;
@@ -175,7 +175,7 @@ function schedule(dayName) {
     };
     return agenda;
   }
-  if (dayName === 'Monday') return { 'Monday': 'CLOSED' };
+  if (dayName === 'Monday') return { Monday: 'CLOSED' };
   const agenda = {
     Tuesday: 'Open from 8am until 6pm',
     Wednesday: 'Open from 8am until 6pm',
@@ -184,11 +184,11 @@ function schedule(dayName) {
     Saturday: 'Open from 8am until 10pm',
     Sunday: 'Open from 8am until 8pm',
     Monday: 'CLOSED',
-  }
+  };
   return agenda;
-};
+}
 
-console.log(schedule('Monday'))
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui

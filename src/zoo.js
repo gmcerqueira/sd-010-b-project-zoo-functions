@@ -78,12 +78,13 @@ function schedule(dayName) {
     if (day === 'segunda-feira') {
       obj[day] = 'FECHADO';
     } else {
-      obj[day] = `Aberto a partir das ${hours[day].open} de manhã até ${hours[day].close - 12} pm`;
+      obj[day] = `Aberto de ${hours[day].open} da manhã até ${hours[day].close - 12} pm`;
     }
   });
   if (dayName) return { [dayName]: obj[dayName] };
   return obj;
 }
+console.log(schedule())
 function oldestFromFirstSpecies(id) {
   const checkId = employees.find((employee) => employee.id === id);
   const checkAnimal = checkId.responsibleFor[0];

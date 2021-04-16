@@ -75,7 +75,7 @@ function entryCalculator(entrants) {
 function schedule(dayName) {
   const obj = {};
   Object.keys(hours).forEach((day) => {
-    if (day === 'segunda-feira') {
+    if (day === 'Monday') {
       obj[day] = 'FECHADO';
     } else {
       obj[day] = `Aberto de ${hours[day].open} da manhã até ${hours[day].close - 12} pm`;

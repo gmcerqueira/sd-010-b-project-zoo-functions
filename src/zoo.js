@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, hours } = require('./data');
 
 function animalsByIds(...animalId) {
   return animalId.map((objectMap) => animals.find((objectFind) => objectMap === objectFind.id));
@@ -68,21 +68,26 @@ function entryCalculator(entrants) {
 // function animalMap(options) {
 // }
 
-// function schedule(dayName) {
-//   const result = {};
-//   if (dayName === undefined) {
-//     Object.keys(hours).forEach((day) => {
-//       result[day] = `Open from ${hours[day].open}am until ${hours[day].close}pm`;
-//     });
-//     result['Monday'] = 'CLOSED';
-//   }
-//   return result;
-// }
-// console.log(schedule());
+function schedule(dayName) {
+  const result = {};
+  if (dayName === undefined) {
+    Object.keys(hours).forEach((day) => {
+      result[day] = `Open from ${hours[day].open}am until ${hours[day].close}pm`;
+    });
+    result['Monday'] = 'CLOSED';
+  };
+  if (dayName !== 'Monday') {
+    result[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close}pm`;
+  } else {
+    result[dayName] = `CLOSED`;
+  };
+  return result;
+}
+console.log(schedule('Tuesday'));
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -94,7 +99,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

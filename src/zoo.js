@@ -46,7 +46,7 @@ function animalCount(species) {
     animals.forEach((val) => result[val.name] = val.residents.length);
     return result;
   }
- return animals.find((object) => object.name === species).residents.length;
+  return animals.find((object) => object.name === species).residents.length;
 }
 
 function calculator(param1) {
@@ -61,14 +61,14 @@ function calculator(param1) {
 
 function entryCalculator(entrants) {
   if (entrants === undefined) return 0;
-  let result = calculator(entrants);
+  const result = calculator(entrants);
   return result;
 }
 
-function animalMap(options) {
+// function animalMap(options) {
 
   
-}
+// }
 
 
 function schedule(dayName) {

@@ -202,7 +202,7 @@ function increasePrices(percentage) {
       ((data.prices[typePrice] * ((percentage / 100) + 1)).toPrecision(4)), 10,
     ) + 0.01).toFixed(2));
   });
-  return(data.prices);
+  return (data.prices);
 }
 
 function employeeCoverage(idOrName) {

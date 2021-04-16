@@ -72,8 +72,8 @@ function animalMap(options) {
 
 
 function schedule(dayName) {
-  return Object.entries(hours)
-  dayName.filter(())
+  Object.entries(hours)
+  hours.filter()
 
 }
 console.log(schedule());

@@ -84,19 +84,19 @@ function schedule(dayName) {
   if (dayName) return { [dayName]: obj[dayName] };
   return obj;
 }
-// function oldestFromFirstSpecies(id) {
-//   const checkId = employees.find((employee) => employee.id === id);
-//   const checkAnimal = checkId.responsibleFor[0];
-//   const findAnimal = animals.find((animal) => animal.id === checkAnimal).residents;
-//   let age = 0;
-//   findAnimal.forEach((animal) => {
-//     if (animal.age > age) {
-//       age = animal.age;
-//     }
-//   });
-//   const result = findAnimal.find((maxAge) => maxAge.age === age);
-//   return Object.values(result);
-// }
+function oldestFromFirstSpecies(id) {
+  const checkId = employees.find((employee) => employee.id === id);
+  const checkAnimal = checkId.responsibleFor[0];
+  const findAnimal = animals.find((animal) => animal.id === checkAnimal).residents;
+  let age = 0;
+  findAnimal.forEach((animal) => {
+    if (animal.age > age) {
+      age = animal.age;
+    }
+  });
+  const result = findAnimal.find((maxAge) => maxAge.age === age);
+  return Object.values(result);
+}
 // function increasePrices(percentage) {
 //   prices.Adult = (Math.round((prices.Adult * (percentage / 100) + prices.Adult) * 100) / 100);
 //   prices.Senior = (Math.round((prices.Senior * (percentage / 100) + prices.Senior) * 100) / 100);

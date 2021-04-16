@@ -12,7 +12,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   if (ids === 'undefined') {
@@ -68,9 +68,24 @@ function entryCalculator(entrants) {
   // seu código aqui
 } */
 
-/* function schedule(dayName) {
-  // seu código aqui
-} */
+function schedule(dayName) {
+  const cronograma = {};
+  const keys = Object.keys(hours);
+  keys.forEach((dia) => {
+    console.log(dia);
+    if (dia !== 'Monday') {
+      cronograma[dia] = `Open from ${hours[dia].open}am until ${(hours[dia].close) - 12}pm`;
+    } else {
+      cronograma[dia] = 'CLOSED';
+    }
+  });
+  if (dayName) {
+    return {
+      [dayName]: cronograma[dayName],
+    };
+  }
+  return cronograma;
+}
 
 function oldestFromFirstSpecies(id) {
   const employerId = employees.find((callback) => callback.id === id).responsibleFor[0];
@@ -95,7 +110,7 @@ function increasePrices(percentage) {
 
 module.exports = {
   entryCalculator,
-  /* schedule, */
+  schedule,
   animalCount,
   /* animalMap, */
   animalsByIds,

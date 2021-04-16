@@ -198,10 +198,12 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   Object.keys(data.prices).forEach((typePrice) => {
-    data.prices[typePrice] = (data.prices[typePrice] * ((percentage / 100) + 1)).toPrecision(4);
+    data.prices[typePrice] = parseFloat(((data.prices[typePrice] * ((percentage / 100) + 1)).toPrecision(4)), 10);
   });
   console.log(data.prices);
 }
+
+increasePrices(30);
 
 function employeeCoverage(idOrName) {
   // seu código aqui

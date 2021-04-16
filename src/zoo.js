@@ -10,8 +10,7 @@ eslint no-unused-vars: [
 */
 
 // const data = require('./data');
-// const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 // Referência: https://app.betrybe.com/course/live-lectures/sd-cohort-10-b
 function animalsByIds(...ids) {
@@ -74,12 +73,37 @@ function entryCalculator(entrants) {
 }
 
 // function animalMap(options) {
-//   // seu código aqui
+//   if (!options) {
+//     return animals.reduce((acc, { name, location }) => {
+//       if (!acc[location]) acc[location] = [];
+//       acc[location].push(name);
+//       return acc;
+//     }, {});
+//   }
+//   if (options !== { includeNames: true }) {
+//     return animals.reduce((acc, { name, location, residents }) => {
+//       if (!acc[location]) acc[location] = [];
+//       const animalNames = animals.filter((animal) => animal.location === location);
+//       // console.log(animalNames);
+//       acc[location].push({ [name]: residents.forEach((resident) => animalNames) });
+//       console.log(acc);
+//       return acc;
+//     }, {});
+//   }
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  const weeklySchedule = {};
+  Object.keys(hours).forEach((day) => {
+    if (day === 'Monday') {
+      weeklySchedule[day] = 'CLOSED';
+    } else {
+      const { open, close } = hours[day];
+      weeklySchedule[day] = `Open from ${open}am until ${close - 12}pm`;
+    }
+  });
+  return (!dayName) ? weeklySchedule : { [dayName] : weeklySchedule[dayName] };
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -92,14 +116,13 @@ function increasePrices(percent) {
     prices[key] = Math.round(((prices[key] * ((percent / 100) + 1))) * 100) / 100;
   });
 }
-
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,

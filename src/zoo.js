@@ -78,7 +78,7 @@ function schedule(dayName) {
     if (day === 'Monday') {
       obj[day] = 'CLOSED';
     } else {
-      obj[day] = `Aberto de ${hours[day].open} da manhã até ${hours[day].close - 12} pm`;
+      obj[day] = `Open from ${hours[day].open} until ${hours[day].close - 12} pm`;
     }
   });
   if (dayName) return { [dayName]: obj[dayName] };

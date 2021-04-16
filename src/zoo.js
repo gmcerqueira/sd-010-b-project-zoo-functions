@@ -103,7 +103,7 @@ function oldestFromFirstSpecies(id) {
     }
     return actual;
   }));
-}  
+}
 // function increasePrices(percentage) {
 //   // seu código aqui
 // }

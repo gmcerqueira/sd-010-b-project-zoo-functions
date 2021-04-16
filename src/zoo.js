@@ -117,13 +117,19 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   const { prices } = data;
-  let { Adult, Child, Senior } = prices;
+  let saveA;
+  let saveS;
+  let saveC;
 
-  Adult = Math.ceil(prices.Adult * (100 + percentage)) / 100;
-  Child = Math.ceil(prices.Child * (100 + percentage)) / 100;
-  Senior = Math.ceil(prices.Senior * (100 + percentage)) / 100;
+  Object.values(prices).forEach((price, index) => {
+    const calculator = Math.ceil(price * (100 + percentage)) / 100;
 
-  data.prices = { Adult, Senior, Child };
+    if (index === 0) saveA = calculator;
+    if (index === 1) saveS = calculator;
+    if (index === 2) saveC = calculator;
+  });
+
+  data.prices = { Adult: saveA, Senior: saveS, Child: saveC };
 }
 
 /* FUNÇÕES E VARIÁVEIS DE APOIO: employeeCoverage

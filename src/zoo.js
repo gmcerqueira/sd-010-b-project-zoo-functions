@@ -199,7 +199,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   Object.keys(data.prices).forEach((typePrice) => {
     data.prices[typePrice] = parseFloat(
-      ((data.prices[typePrice] * ((percentage / 100) + 1)).toPrecision(4)), 10
+      ((data.prices[typePrice] * ((percentage / 100) + 1)).toPrecision(4)), 10,
     );
   });
   console.log(data.prices);

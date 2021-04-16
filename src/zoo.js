@@ -13,13 +13,13 @@ const { animals, employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  return data.animals.filter(animais => ids.includes(animais.id));
+  return data.animals.filter((animais) => ids.includes(animais.id));
 }
 
 function animalsOlderThan(animal, age) {
   return animals
-  .find(animais => animais.name === animal)
-  .residents.every(animais => animais.age >= age);
+  .find((animais) => animais.name === animal)
+  .residents.every((animais) => animais.age >= age);
 }
 
 function employeeByName(employeeName) {

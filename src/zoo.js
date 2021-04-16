@@ -191,8 +191,8 @@ function oldestFromFirstSpecies(id) {
   const animal = data.animals.find((animalF) => animalF.id === colab.responsibleFor[0]);
   let oldest = animal.residents[0];
   animal.residents.forEach((resident) => {
-    resident.age > oldest.age ? oldest = resident : 0;
-  })
+    if (resident.age > oldest.age) oldest = resident;
+  });
   return oldest;
 }
 

@@ -83,7 +83,7 @@ function schedule(dayName) {
   });
   if (dayName) return { [dayName]: obj[dayName] };
   return obj;
-}
+};
 console.log(schedule())
 function oldestFromFirstSpecies(id) {
   const checkId = employees.find((employee) => employee.id === id);

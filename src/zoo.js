@@ -193,7 +193,7 @@ function oldestFromFirstSpecies(id) {
   animal.residents.forEach((resident) => {
     if (resident.age > oldest.age) oldest = resident;
   });
-  return oldest;
+  return Object.values(oldest);
 }
 
 function increasePrices(percentage) {

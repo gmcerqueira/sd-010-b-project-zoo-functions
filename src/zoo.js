@@ -13,6 +13,9 @@ eslint no-unused-vars: [
 const { animals } = require('./data');
 const data = require('./data');
 
+/* VARIÁVEIS DE APOIO GERAIS */
+const allEmployees = data.employees;
+
 function animalsByIds(...ids) {
   // seu código aqui
   return animals.filter((animal) => ids.includes(animal.id));
@@ -111,8 +114,18 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const getEmployee
-  return id;
+  const animalFinded = [];
+  const getEmployee = allEmployees.find((person) => person.id === id).responsibleFor[0];
+  const getAnimal = animals.find((animal) => animal.id === getEmployee)
+    .residents.sort((a, b) => b.age - a.age)[0];
+  animalFinded.push(getAnimal.name, getAnimal.sex, getAnimal.age);
+
+  /* TO PROTOTYPE */
+  // console.log(getEmployee);
+  // console.log(getAnimal);
+  // console.log(animalFinded);
+  // ['Vicky', 'female', 12]
+  return animalFinded;
 }
 
 function increasePrices(percentage) {
@@ -139,7 +152,7 @@ pelo colega João Vanelli - link:
 "https://github.com/tryber/sd-010-b-project-zoo-functions/blob/joao-vanelli-zoo-functions/src/zoo.js"
 */
 // declaração de variáveis:
-const allEmployees = data.employees;
+// const allEmployees = data.employees;
 
 // funções de apoio:
 function checkEmployee(info) {

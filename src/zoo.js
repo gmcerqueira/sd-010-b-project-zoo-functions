@@ -213,9 +213,61 @@ function increasePrices(percentage) {
   return data.prices;
 }
 
+function employeeListResponsibleFor() {
+  const coverageList = {};
+  data.employees.forEach((emplo) => {
+    coverageList[`${emplo.firstName} ${emplo.lastName}`] = [];
+    emplo.responsibleFor.forEach((aniId) => {
+      data.animals.forEach((animal) => {
+      if (animal.id === aniId)
+      coverageList[`${emplo.firstName} ${emplo.lastName}`].push(animal.name);
+      });
+    });
+  });
+  return coverageList;
+}
+
+function employeeById(id) {
+  return data.employees.find((emplo) => emplo.id === id);
+}
+
+function employeeByFirstName(firstName) {
+  return data.employees.find((emplo) => emplo.firstName === firstName);
+}
+
+function employeeByLastName(lastName) {
+  return data.employees.find((emplo) => emplo.lastName === lastName);
+}
+
+function employeeResponsibleBy(employeeArr) {
+  const employee = employeeArr.find((emplo) => emplo);
+  const employeeName = `${employee.firstName} ${employee.lastName}`;
+  const emploObj = {};
+  emploObj[employeeName] = [];
+
+  employee.responsibleFor.forEach((animalId) => {
+      data.animals.forEach((animal) => {
+        if (animal.id === animalId) {
+          emploObj[employeeName].push(animal.name);
+        }
+      });
+  });
+
+  return emploObj;
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
-  return idOrName;
+  if (!idOrName) {
+    return employeeListResponsibleFor();
+  }
+  const findEmployee = [];
+  
+  findEmployee.push(employeeById(idOrName));
+  findEmployee.push(employeeByFirstName(idOrName));
+  findEmployee.push(employeeByLastName(idOrName));
+
+  return employeeResponsibleBy(findEmployee);
+
 }
 
 module.exports = {

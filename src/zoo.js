@@ -26,7 +26,6 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   return { ...personalInfo, ...associatedWith };
 }
 
@@ -70,8 +69,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
-  console.log(percentage);
+  Object.entries(prices).forEach(([a, b]) => {
+    const updateValue = b * (1 + (percentage / 100));
+    prices[a] = Math.round(updateValue * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {

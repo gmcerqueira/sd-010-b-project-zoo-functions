@@ -170,7 +170,7 @@ function schedule(dayName) {
   if (dayName && dayName !== 'Monday') {
     const day = dH[`${dayName}`];
     const agenda = {
-      [dayName]: `Open from ${day.open}am until ${(day.close)-12}pm`,
+      [dayName]: `Open from ${day.open}am until ${(day.close) - 12}pm`,
     };
     return agenda;
   }

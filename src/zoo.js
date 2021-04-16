@@ -262,7 +262,7 @@ function employeeCoverage(idOrName) {
     return employeeListResponsibleFor();
   }
   const findEmployee = [];
-  
+
   findEmployee.push(employeeById(idOrName));
   findEmployee.push(employeeByFirstName(idOrName));
   findEmployee.push(employeeByLastName(idOrName));

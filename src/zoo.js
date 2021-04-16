@@ -65,44 +65,44 @@ function entryCalculator(entrants) {
   return result;
 }
 
-// function animalMap(options) {
+// // function animalMap(options) {
 
   
+// // }
+
+// git
+// function schedule(dayName) {
+//   Object.entries(hours)
+//   hours.filter()
+
+// }
+// console.log(schedule());
+
+
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
 // }
 
+// function increasePrices(percentage) {
+//   // seu código aqui
+// }
 
-function schedule(dayName) {
-  Object.entries(hours)
-  hours.filter()
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
-}
-console.log(schedule());
-
-
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
-
-function increasePrices(percentage) {
-  // seu código aqui
-}
-
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
-
-module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
-  animalsByIds,
-  employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
-  animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
-};
+// module.exports = {
+//   entryCalculator,
+//   schedule,
+//   animalCount,
+//   animalMap,
+//   animalsByIds,
+//   employeeByName,
+//   employeeCoverage,
+//   addEmployee,
+//   isManager,
+//   animalsOlderThan,
+//   oldestFromFirstSpecies,
+//   increasePrices,
+//   createEmployee,
+// };

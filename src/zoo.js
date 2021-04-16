@@ -219,8 +219,9 @@ function employeeListResponsibleFor() {
     coverageList[`${emplo.firstName} ${emplo.lastName}`] = [];
     emplo.responsibleFor.forEach((aniId) => {
       data.animals.forEach((animal) => {
-      if (animal.id === aniId)
-      coverageList[`${emplo.firstName} ${emplo.lastName}`].push(animal.name);
+        if (animal.id === aniId) {
+          coverageList[`${emplo.firstName} ${emplo.lastName}`].push(animal.name);
+        }
       });
     });
   });
@@ -246,11 +247,11 @@ function employeeResponsibleBy(employeeArr) {
   emploObj[employeeName] = [];
 
   employee.responsibleFor.forEach((animalId) => {
-      data.animals.forEach((animal) => {
-        if (animal.id === animalId) {
-          emploObj[employeeName].push(animal.name);
-        }
-      });
+    data.animals.forEach((animal) => {
+      if (animal.id === animalId) {
+        emploObj[employeeName].push(animal.name);
+      }
+    });
   });
 
   return emploObj;
@@ -267,7 +268,6 @@ function employeeCoverage(idOrName) {
   findEmployee.push(employeeByLastName(idOrName));
 
   return employeeResponsibleBy(findEmployee);
-
 }
 
 module.exports = {

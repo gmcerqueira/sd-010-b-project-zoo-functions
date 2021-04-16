@@ -197,13 +197,27 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  Object.keys(data.prices).forEach((typePrice) => {
-    data.prices[typePrice] = parseFloat((parseFloat(
-      ((data.prices[typePrice] * ((percentage / 100) + 1)).toPrecision(4)), 10,
-    ) + 0.01).toFixed(2));
+  const { prices } = data;
+  let adultValue, seniorValue, childValue;
+
+  Object.values(prices).forEach((price, index) => {
+    const calculator = Math.ceil(price * (100 + percentage)) / 100;
+    switch (index) {
+      case 0:
+        adultValue = calculator;
+        break;
+      case 1:
+        seniorValue = calculator;
+        break;
+      case 2:
+        childValue = calculator;
+        break;
+    }
   });
-  return (data.prices);
+  return data.prices = { Adult: adultValue, Senior: seniorValue, Child: childValue };
 }
+
+console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
   // seu código aqui

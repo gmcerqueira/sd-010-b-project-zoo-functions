@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 // const { stat } = require('node:fs');
 // const { assert } = require('node:console');
-const assert = require('assert');
+// const assert = require('assert');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -153,7 +153,7 @@ function AMINTON(list) {
 }
 */
 function animalMap(options) {
-  if (options.includeNames === true) {
+  /* if (options.includeNames === true) {
     if (options.sorted === true) {
 
       return AMINTON;
@@ -162,9 +162,9 @@ function animalMap(options) {
   }
 
 
-  return AMON();
+  return AMON(); */
+  return options;
 }
-
 
 function schedule(dayName) {
   const dH = data.hours;
@@ -172,21 +172,21 @@ function schedule(dayName) {
     const day = dH[`${dayName}`];
     const agenda = {
       [dayName]: `Open from ${day.open}am until ${day.close}pm`,
-    }
+    };
     return agenda;
   }
   if (dayName === 'Monday') return { 'Monday': 'CLOSED' };
   const agenda = {
-    'Tuesday': 'Open from 8am until 6pm',
-    'Wednesday': 'Open from 8am until 6pm',
-    'Thursday': 'Open from 10am until 8pm',
-    'Friday': 'Open from 10am until 8pm',
-    'Saturday': 'Open from 8am until 10pm',
-    'Sunday': 'Open from 8am until 8pm',
-    'Monday': 'CLOSED'
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
   }
   return agenda;
-}
+};
 
 console.log(schedule('Monday'))
 

@@ -90,9 +90,38 @@ const entryCalculator = (entrants) => {
 //   // seu código aqui
 // }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+const search = (emp, ID) => (emp.id === ID || emp.firstName === ID || emp.lastName === ID);
+
+const employeeByIdOrName = (idOrName) => {
+  const selected = employees.find((emp) => search(emp, idOrName));
+  return selected;
+};
+
+const findAnimal = (animalId) => {
+  const spc = animals.find((animal) => animal.id === animalId);
+  return spc;
+};
+
+const oldest = (animalId) => {
+  const animalSpecieResidents = findAnimal(animalId).residents;
+  let age = 0;
+  let oldestAnimal;
+  animalSpecieResidents.forEach((animal) => {
+    if (age < animal.age) {
+      age = animal.age;
+      oldestAnimal = Object.values(animal);
+    }
+  });
+  return oldestAnimal;
+};
+
+const oldestFromFirstSpecies = (id) => {
+  // seu código aqui
+  const emp = employeeByIdOrName(id);
+  const specie = emp.responsibleFor[0];
+  const oldestAnimal = oldest(specie);
+  return oldestAnimal;
+};
 
 const increase = (value, percentage) => Math.round(value * ((percentage / 100) + 1) * 100) / 100;
 
@@ -106,15 +135,8 @@ const increasePrices = (percentage) => {
   return prices;
 };
 
-const search = (emp, ID) => (emp.id === ID || emp.firstName === ID || emp.lastName === ID);
-
-const employeeByIdOrName = (idOrName) => {
-  const selected = employees.find((emp) => search(emp, idOrName));
-  return selected;
-};
-
 const employeeAnimals = (idOrName) => {
-  const emp = employeeByIdOrName(idOrName);
+  const emp = employeeByIdOrName(idOrName); // linha 95
   const resp = `${emp.firstName} ${emp.lastName}`;
   const obj = {};
   const respon = emp.responsibleFor;
@@ -154,7 +176,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

@@ -105,9 +105,15 @@ function schedule(dayName) {
   return (!dayName) ? weeklySchedule : { [dayName]: weeklySchedule[dayName] };
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const firstSpecieID = employees.find((employee) => employee.id === id).responsibleFor[0];
+  const animalsForSpecie = animals.find((animal) => animal.id === firstSpecieID);
+  // Referência: https://github.com/tryber/sd-010-b-project-zoo-functions/blob/henrique-zozimo-zoo-functions-project/src/zoo.js
+  const oldestAnimal = animalsForSpecie.residents.reduce((oldest, curr) => (
+    oldest.age > curr.age ? oldest : curr
+  ));
+  return Object.values(oldestAnimal);
+}
 
 // Referência: https://dicasdejavascript.com.br/javascript-como-alterar-os-dados-dos-atributos-de-um-objeto-json/#:~:text=Assim%20como%20para%20ler%20os,o%20novo%20valor%20do%20atributo.
 // Referência: https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
@@ -131,7 +137,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };

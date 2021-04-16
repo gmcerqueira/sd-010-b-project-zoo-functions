@@ -14,7 +14,6 @@ const { animals, employees, hours } = require('./data');
 function animalsByIds(...animalId) {
   return animalId.map((objectMap) => animals.find((objectFind) => objectMap === objectFind.id));
 }
-console.log(animalsByIds());
 
 function animalsOlderThan(animal, age) {
   let find = animals.find((object) => object.name === animal);
@@ -66,13 +65,18 @@ function entryCalculator(entrants) {
   return result;
 }
 
-function animalMap(options) {
-}
+// function animalMap(options) {
+// }
 
 function schedule(dayName) {
-  console.log(Object.entries(hours));
-  console.log(hours);
-
+  let result = {};
+  if (dayName === undefined) {
+    Object.keys(hours).forEach((day) => {
+      result[day] = `Open from ${hours[day].open}am until ${hours[day].close}pm`;
+    })
+    result['Monday'] = 'CLOSED';
+  }
+  return result;
 }
 console.log(schedule());
 

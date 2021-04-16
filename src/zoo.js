@@ -102,7 +102,7 @@ function schedule(dayName) {
       weeklySchedule[day] = `Open from ${open}am until ${close - 12}pm`;
     }
   });
-  return (!dayName) ? weeklySchedule : { [dayName] : weeklySchedule[dayName] };
+  return (!dayName) ? weeklySchedule : { [dayName]: weeklySchedule[dayName] };
 }
 
 // function oldestFromFirstSpecies(id) {

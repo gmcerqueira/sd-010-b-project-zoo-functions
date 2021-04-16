@@ -73,25 +73,35 @@ function entryCalculator(entrants) {
 // }
 
 function schedule(dayName) {
-  const objTimes = {};
-  Object.keys(data.hours).forEach((day) => {
+  const obj = {};
+  Object.keys(hours).forEach((day) => {
     if (day === 'segunda-feira') {
-      objTimes[day] = 'FECHADO';
+      obj[day] = 'FECHADO';
     } else {
-      objTimes[day] = `Aberto a partir das ${data.hours[day].open} de manhã até ${data.hours[day].close - 12} pm`;
+      obj[day] = `Aberto a partir das ${hours[day].open} de manhã até ${hours[day].close - 12} pm`;
     }
   });
-    if (dayName) return { [dayName]: objTimes[dayName] };
-    return objTimes;
+  if (dayName) return { [dayName]: obj[dayName] };
+  return obj;
 }
-function oldestFromFirstSpecies(id) {
-  return id;
-}
-
-function increasePrices(percentage) {
-  return percentage;
-}
-
+// function oldestFromFirstSpecies(id) {
+//   const checkId = employees.find((employee) => employee.id === id);
+//   const checkAnimal = checkId.responsibleFor[0];
+//   const findAnimal = animals.find((animal) => animal.id === checkAnimal).residents;
+//   let age = 0;
+//   findAnimal.forEach((animal) => {
+//     if (animal.age > age) {
+//       age = animal.age;
+//     }
+//   });
+//   const result = findAnimal.find((maxAge) => maxAge.age === age);
+//   return Object.values(result);
+// }
+// function increasePrices(percentage) {
+//   prices.Adult = (Math.round((prices.Adult * (percentage / 100) + prices.Adult) * 100) / 100);
+//   prices.Senior = (Math.round((prices.Senior * (percentage / 100) + prices.Senior) * 100) / 100);
+//   prices.Child = (Math.round((prices.Child * (percentage / 100) + prices.Child) * 100) / 100);
+// }
 // function employeeCoverage(idOrName) {
 //   const employee = employees.filter((em) => {
 //     if (idOrName === em.firstName || idOrName === em.lastName || idOrName === em.id) {
@@ -116,7 +126,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
+  // oldestFromFirstSpecies,
+  // increasePrices,
   createEmployee,
 };

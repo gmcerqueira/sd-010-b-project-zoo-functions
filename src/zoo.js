@@ -93,7 +93,7 @@ function entryCalculator(entrants) {
   return valueTotal;
 }
 
-/* function AMON() {
+function AMON() {
   const states = {};
   data.animals.forEach((animal) => states[animal.location] = []);
 
@@ -102,7 +102,6 @@ function entryCalculator(entrants) {
       animal.location === state ? states[state].push(animal.name) : 0;
     });
   });
-
   return states;
 }
 
@@ -129,17 +128,15 @@ function AMINTS(sex) {
     animals.forEach((aS, index) => {
       states[state].push({});
       states[state][index][aS.name] = [];
-      if (!sex) {
-        states[state][index][aS.name].push(aS.residents.map((animal2) => animal2.name));
-      } else {
-        states[state][index][aS.name].push(aS.residents.map((animal2) => animal2.sex === sex ? animal2.name : 0));
-      }
-    })
-    console.log(states.SE.penguins);
+      aS.residents.forEach((resident) => {
+        if(resident.sex === sex) {
+          states[state][index][aS.name].push(resident.name);
+        };
+      });
+    });
   });
+  return states;
 }
-
-console.log(AMINTS());
 
 function AMINTON(list) {
   const disorder = list;
@@ -151,18 +148,17 @@ function AMINTON(list) {
   })
   return disorder;
 }
-*/
+
 function animalMap(options) {
-  /* if (options.includeNames === true) {
-    if (options.sorted === true) {
-
-      return AMINTON;
+  if (options) {
+    if (options.includeNames === true) {
+      if(options.sorted === true && options.sex) return AMINTON(AMINTS(options.sex));
+      if (options.sorted === true) return AMINTON(AMINT());
+      if (options.sex) return AMINTS(options.sex);
+      return AMINT();
     }
-    return AMINT();
   }
-
-  return AMON(); */
-  return options;
+  return AMON();
 }
 
 function schedule(dayName) {

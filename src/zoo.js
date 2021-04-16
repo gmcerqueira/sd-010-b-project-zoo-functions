@@ -201,7 +201,7 @@ function increasePrices(percentage) {
   let adultValue;
   let seniorValue;
   let childValue;
-  
+
   Object.values(prices).forEach((price, index) => {
     const calculator = Math.ceil(price * (100 + percentage)) / 100;
     if (index === 0) adultValue = calculator;

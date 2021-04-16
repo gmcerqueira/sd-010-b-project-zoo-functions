@@ -76,17 +76,17 @@ function schedule(dayName) {
 }
 console.log(schedule());
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
+// }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+// function increasePrices(percentage) {
+//   // seu código aqui
+// }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
 module.exports = {
   entryCalculator,

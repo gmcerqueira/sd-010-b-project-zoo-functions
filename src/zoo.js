@@ -104,9 +104,14 @@ function oldestFromFirstSpecies(id) {
     return actual;
   }));
 }
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+
+function increasePrices(percentage) {
+  // seu código aqui
+  Object.keys(prices).forEach((key) => {
+    prices[key] = parseFloat(Math.round((prices[key]
+      * (1 + percentage / 100)) * 100) / 100);
+  });
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -124,6 +129,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  //   increasePrices,
+  increasePrices,
   createEmployee,
 };

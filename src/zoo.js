@@ -203,18 +203,20 @@ function increasePrices(percentage) {
   Object.values(prices).forEach((price, index) => {
     const calculator = Math.ceil(price * (100 + percentage)) / 100;
     switch (index) {
-      case 0:
-        adultValue = calculator;
-        break;
-      case 1:
-        seniorValue = calculator;
-        break;
-      case 2:
-        childValue = calculator;
-        break;
+    case 0:
+      adultValue = calculator;
+      break;
+    case 1:
+      seniorValue = calculator;
+      break;
+    case 2:
+      childValue = calculator;
+      break;
+    default:
+      break;
     }
   });
-  return data.prices = { Adult: adultValue, Senior: seniorValue, Child: childValue };
+  data.prices = { Adult: adultValue, Senior: seniorValue, Child: childValue };
 }
 
 console.log(increasePrices(50));

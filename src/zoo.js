@@ -161,7 +161,6 @@ function animalMap(options) {
     return AMINT();
   }
 
-
   return AMON(); */
   return options;
 }
@@ -176,8 +175,7 @@ function schedule(dayName) {
     return agenda;
   }
   if (dayName === 'Monday') return { Monday: 'CLOSED' };
-  const agenda = {
-    Tuesday: 'Open from 8am until 6pm',
+  const agenda = { Tuesday: 'Open from 8am until 6pm',
     Wednesday: 'Open from 8am until 6pm',
     Thursday: 'Open from 10am until 8pm',
     Friday: 'Open from 10am until 8pm',

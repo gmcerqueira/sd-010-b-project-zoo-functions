@@ -111,6 +111,7 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const getEmployee
   return id;
 }
 
@@ -144,12 +145,12 @@ const allEmployees = data.employees;
 function checkEmployee(info) {
   const employee = allEmployees.find((person) =>
     person.id === info || person.firstName === info || person.lastName === info);
-  const coverage = employee.responsibleFor.reduce((area, animalId) => {
-    area.push((animals.find((animal) => animal.id === animalId)).name);
+  const coverage = employee.responsibleFor.reduce((area, animalId) => { //* substituir o 'area' por algo mais concreto
+    area.push((animals.find((animal) => animal.id === animalId)).name); //* dividir as duas HOFs (.push e .find) em duas constantes
     return area;
   }, []);
 
-  return { [`${employee.firstName} ${employee.lastName}`]: coverage };
+  return { [`${employee.firstName} ${employee.lastName}`]: coverage }; //* usar o string literal numa variável declarada
 }
 
 function employeeCoverage(idOrName) {
@@ -157,10 +158,10 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
     return allEmployees.reduce((acc, employee) => {
       const employeeCovers = employee.responsibleFor.reduce((animal, ids) => {
-        animal.push((animals.find((current) => current.id === ids)).name);
+        animal.push((animals.find((current) => current.id === ids)).name); //* dividir as duas HOFs (.push e .find) em duas constantes
         return animal;
       }, []);
-      acc[`${employee.firstName} ${employee.lastName}`] = employeeCovers;
+      acc[`${employee.firstName} ${employee.lastName}`] = employeeCovers; //* usar o string literal numa variável declarada
       return acc;
     }, {});
   }

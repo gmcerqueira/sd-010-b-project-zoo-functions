@@ -16,7 +16,7 @@ function animalsByIds(...animalId) {
 }
 
 function animalsOlderThan(animal, age) {
-  let find = animals.find((object) => object.name === animal);
+  const find = animals.find((object) => object.name === animal);
   return find.residents.every((object) => object.age >= age);
 }
 
@@ -28,7 +28,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return Object.assign( {}, personalInfo, associatedWith);
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -43,7 +43,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const result = {};
   if (species === undefined) {
-    animals.forEach((val) => result[val.name] = val.residents.length);
+    animals.forEach((val) => { result[val.name] = val.residents.length });
     return result;
   }
   return animals.find((object) => object.name === species).residents.length;
@@ -54,7 +54,7 @@ function calculator(param1) {
   Object.entries(param1).forEach((obj) => {
     if (obj[0] === 'Adult') soma += (obj[1] * 49.99);
     if (obj[0] === 'Senior') soma += (obj[1] * 24.99);
-    if (obj[0] === 'Child') soma +=  (obj[1] * 20.99);
+    if (obj[0] === 'Child') soma += (obj[1] * 20.99);
   });
   return soma;
 }
@@ -68,17 +68,17 @@ function entryCalculator(entrants) {
 // function animalMap(options) {
 // }
 
-function schedule(dayName) {
-  let result = {};
-  if (dayName === undefined) {
-    Object.keys(hours).forEach((day) => {
-      result[day] = `Open from ${hours[day].open}am until ${hours[day].close}pm`;
-    })
-    result['Monday'] = 'CLOSED';
-  }
-  return result;
-}
-console.log(schedule());
+// function schedule(dayName) {
+//   const result = {};
+//   if (dayName === undefined) {
+//     Object.keys(hours).forEach((day) => {
+//       result[day] = `Open from ${hours[day].open}am until ${hours[day].close}pm`;
+//     });
+//     result['Monday'] = 'CLOSED';
+//   }
+//   return result;
+// }
+// console.log(schedule());
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -94,16 +94,16 @@ console.log(schedule());
 
 module.exports = {
   entryCalculator,
-  schedule,
+  // schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
+  // oldestFromFirstSpecies,
+  // increasePrices,
   createEmployee,
 };

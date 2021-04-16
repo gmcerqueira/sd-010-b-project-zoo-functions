@@ -97,11 +97,11 @@ function oldestFromFirstSpecies(id) {
   const result = findAnimal.find((maxAge) => maxAge.age === age);
   return Object.values(result);
 }
-// function increasePrices(percentage) {
-//   prices.Adult = (Math.round((prices.Adult * (percentage / 100) + prices.Adult) * 100) / 100);
-//   prices.Senior = (Math.round((prices.Senior * (percentage / 100) + prices.Senior) * 100) / 100);
-//   prices.Child = (Math.round((prices.Child * (percentage / 100) + prices.Child) * 100) / 100);
-// }
+function increasePrices(percentage) {
+  prices.Adult = (Math.round((prices.Adult * (percentage / 100) + prices.Adult) * 100) / 100);
+  prices.Senior = (Math.round((prices.Senior * (percentage / 100) + prices.Senior) * 100) / 100);
+  prices.Child = (Math.round((prices.Child * (percentage / 100) + prices.Child) * 100) / 100);
+}
 // function employeeCoverage(idOrName) {
 //   const employee = employees.filter((em) => {
 //     if (idOrName === em.firstName || idOrName === em.lastName || idOrName === em.id) {
@@ -126,7 +126,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
-  // increasePrices,
+  oldestFromFirstSpecies,
+  increasePrices,
   createEmployee,
 };

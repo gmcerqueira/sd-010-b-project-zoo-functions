@@ -11,8 +11,10 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+const { employees } = data;
+const { animals } = data;
+
 function animalsByIds(...ids) {
-  const { animals } = data;
   if (ids.length === 0) {
     return ids;
   }
@@ -27,7 +29,6 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const { animals } = data;
   // uso do Find para encontrar a espécie
   const { residents } = animals.find((especie) => (animal === especie.name));
   // uso do Every para verificar a idade minima passada
@@ -37,7 +38,6 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  const { employees } = data;
   if (employeeName === undefined) {
     return {};
   }
@@ -53,17 +53,21 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const { employees } = data;
   //  Recebi ajuda do colega Lucas Martins
   return employees.some((employee) => employee.managers.includes(id));
 }
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+//   const { employees } = data;
+//   const keys = Object.keys(employees[0])
+//   const lastEmployee = {}
 
+//   console.log(employees)
 // }
 
+// addEmployee();
+
 function animalCount(species) {
-  const { animals } = data;
   const especieAndPopulation = {};
 
   if (!species) {
@@ -95,6 +99,7 @@ function entryCalculator(entrants) {
 // function animalMap(options) {
 
 // }
+
 function schedule(dayName) {
   const { hours } = data;
 
@@ -113,10 +118,7 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const { employees } = data;
   const findEmployee = employees.find((employee) => employee.id === id).responsibleFor[0];
-
-  const { animals } = data;
   const findAnimal = animals.find((animal) => animal.id === findEmployee).residents;
 
   // https://www.javascripttutorial.net/array/javascript-sort-an-array-of-objects/ -> sort()
@@ -138,9 +140,32 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function specieName(param) {
+  const reduceAnimals = param.reduce((acc, initialValue) => {
+    const animalNames = animals.find((animal) => animal.id === initialValue).name;
+    acc.push(animalNames);
+    return acc;
+  }, []);
+  return reduceAnimals;
+}
+
+// Recebi ajuda dos colegas Lucas Martins e João Vanelli
+function employeeCoverage(idOrName) {
+  if (!idOrName) {
+    return employees.reduce((acc, employee) => {
+      const employeeNames = specieName(employee.responsibleFor);
+      acc[`${employee.firstName} ${employee.lastName}`] = employeeNames;
+      return acc;
+    }, {});
+  }
+  const searchEmployee = employees.find(({ firstName, lastName, id }) =>
+    id === idOrName || lastName === idOrName || firstName === idOrName);
+
+  const idAnimals = searchEmployee.responsibleFor;
+
+  const specieOfAnimals = specieName(idAnimals);
+  return { [`${searchEmployee.firstName} ${searchEmployee.lastName}`]: specieOfAnimals };
+}
 
 module.exports = {
   entryCalculator,
@@ -149,7 +174,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   // addEmployee,
   isManager,
   animalsOlderThan,

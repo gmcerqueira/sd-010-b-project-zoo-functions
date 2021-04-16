@@ -9,49 +9,75 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
-const data = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...animalId) {
-  // seu código aqui
   return animalId.map((objectMap) => animals.find((objectFind) => objectMap === objectFind.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  let find = animals.find((object) => object.name === animal);
+  return find.residents.every((object) => object.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  }
+  return employees.find((object) => object.firstName === employeeName || object.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+ return Object.assign({}, personalInfo, associatedWith);
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some((object) => id === object.managers.find((objFind) => id === objFind));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const add = { id, firstName, lastName, managers, responsibleFor };
+  return employees.push(add);
 }
 
 function animalCount(species) {
-  // seu código aqui
+  let result = {};
+  if (species === undefined) {
+    animals.forEach((val) => result[val.name] = val.residents.length);
+    return result;
+  }
+ return animals.find((object) => object.name === species).residents.length;
+}
+
+function calculator(param1) {
+  let soma = 0;
+  Object.entries(param1).forEach((obj) => {
+    if (obj[0] === 'Adult') soma += (obj[1] * 49.99);
+    if (obj[0] === 'Senior') soma += (obj[1] * 24.99);
+    if (obj[0] === 'Child') soma +=  (obj[1] * 20.99);
+  });
+  return soma;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined) return 0;
+  let result = calculator(entrants);
+  return result;
 }
 
 function animalMap(options) {
-  // seu código aqui
+
+  
 }
 
+
 function schedule(dayName) {
-  // seu código aqui
+  return Object.entries(hours)
+  dayName.filter(())
+
 }
+console.log(schedule());
+
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui

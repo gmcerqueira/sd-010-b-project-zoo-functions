@@ -70,12 +70,11 @@ function entryCalculator(entrants) {
 
 function schedule(dayName) {
   const result = {};
-  const c = 'Monday'
   if (dayName === undefined) {
     Object.keys(hours).forEach((day) => {
       result[day] = `Open from ${hours[day].open}am until ${hours[day].close}pm`;
     });
-    result[c] = 'CLOSED';
+    result.Monday = 'CLOSED';
   } else if (dayName !== 'Monday') {
     result[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close}pm`;
   } else {

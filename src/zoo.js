@@ -16,7 +16,6 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // eslint-disable-next-line no-undef
   return animals
     .find((animais) => animais.name === animal)
     .residents.every((animais) => animais.age >= age);
@@ -38,7 +37,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {

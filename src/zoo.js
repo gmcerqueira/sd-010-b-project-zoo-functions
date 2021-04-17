@@ -75,19 +75,28 @@ function schedule(dayName) {
       result[day] = `Open from ${hours[day].open}am until ${hours[day].close}pm`;
     });
     result['Monday'] = 'CLOSED';
-  };
-  if (dayName !== 'Monday') {
+  } else if (dayName !== 'Monday') {
     result[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close}pm`;
   } else {
     result[dayName] = `CLOSED`;
   };
   return result;
 }
-console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  let armazem;
+  let result = employees.find((object) => object.id === id).responsibleFor[0];
+  let b = animals.find((obj) => obj.id === result).residents;
+  armazem = b[0].age
+  b.forEach((obj) => {
+    if (obj.age >= armazem) {
+      armazem = obj.age
+    }
+  });
+  let c = b.find((obj) => obj.age === armazem);
+  return Object.values(c);
 }
+// pontos são usados para objetos {}
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -108,7 +117,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

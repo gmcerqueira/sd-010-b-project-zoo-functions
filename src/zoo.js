@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, hours } = require('./data');
+const { animals, employees, hours, prices } = require('./data');
 
 function animalsByIds(...animalId) {
   return animalId.map((objectMap) => animals.find((objectFind) => objectMap === objectFind.id));
@@ -97,9 +97,12 @@ function oldestFromFirstSpecies(id) {
 }
 // pontos são usados para objetos {}
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+  Object.keys(prices).forEach((propriedade) => {
+    prices[propriedade] = (Math.round(((prices[propriedade] * ((percentage / 100) + 1)).toFixed(3)) * 100) / 100);
+  })
+}
 
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
@@ -117,6 +120,6 @@ module.exports = {
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
-  // increasePrices,
+  increasePrices,
   createEmployee,
 };

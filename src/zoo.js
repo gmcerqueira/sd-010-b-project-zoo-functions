@@ -101,7 +101,7 @@ function AMON() {
 
   Object.keys(states).forEach((state) => {
     data.animals.forEach((animal) => {
-      if(animal.location === state) states[state].push(animal.name);
+      if (animal.location === state) states[state].push(animal.name);
     });
   });
   return states;
@@ -110,7 +110,7 @@ function AMON() {
 function AMINT() {
   const states = {};
   data.animals.forEach((animal) => {
-    states[animal.location] = []
+    states[animal.location] = [];
   });
 
   Object.keys(states).forEach((state) => {
@@ -126,7 +126,10 @@ function AMINT() {
 
 function AMINTS(sex) {
   const states = {};
-  data.animals.forEach((animal) => states[animal.location] = []);
+  data.animals.forEach((animal) => {
+    states[animal.location] = [];
+  });
+  
   Object.keys(states).forEach((state) => {
     states[state] = [];
     const animals = data.animals.filter((animal) => animal.location === state);
@@ -134,7 +137,7 @@ function AMINTS(sex) {
       states[state].push({});
       states[state][index][aS.name] = [];
       aS.residents.forEach((resident) => {
-        if(resident.sex === sex) {
+        if (resident.sex === sex) {
           states[state][index][aS.name].push(resident.name);
         }
       });
@@ -156,7 +159,7 @@ function AMINTON(list) {
 
 function animalMap(options) {
   if (options.includeNames === true) {
-    if(options.sorted === true && options.sex) return AMINTON(AMINTS(options.sex));
+    if (options.sorted === true && options.sex) return AMINTON(AMINTS(options.sex));
     if (options.sorted === true) return AMINTON(AMINT());
     if (options.sex) return AMINTS(options.sex);
     return AMINT();

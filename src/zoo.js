@@ -137,9 +137,27 @@ function schedule(dayName) {
   return response;
 }
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+// Requisito 11
+function oldestFromFirstSpecies(id) {
+  const { employees } = data; const { animals } = data; const zero = 0; const response = [];
+  let idfirst; let residents; let acc = 0; let position = 0;
+
+  employees.find((employee) => {
+    if (employee.id === id) { idfirst = employee.responsibleFor[zero]; } return idfirst;
+  });
+
+  animals.find((animal) => {
+    if (animal.id === idfirst) { residents = animal.residents; } return residents;
+  });
+
+  residents.forEach((animal, index) => {
+    if (animal.age > acc) { acc = animal.age; position = index; } return acc;
+  });
+
+  const old = residents[position];
+  response.push(old.name); response.push(old.sex); response.push(old.age);
+  return response;
+}
 
 // function increasePrices(percentage) {
 //   // seu código aqui
@@ -149,7 +167,7 @@ function schedule(dayName) {
 //   // seu código aqui
 // }
 
-schedule();
+oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1');
 
 module.exports = {
   entryCalculator,
@@ -162,7 +180,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
+  oldestFromFirstSpecies,
   // increasePrices,
   createEmployee,
 };

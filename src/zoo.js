@@ -12,16 +12,14 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  if (ids === undefined) return [];
-  if (ids.length === 1) return data.animals.filter((animal) => animal.id === ids[0]);
-  return ids.map((id) => data.animals.find((animal) => animal.id === id));
+  return data.animals.filter((animais) => ids.includes(animais.id));
 }
 
 function animalsOlderThan(animal, age) {
-  const selected = data.animals.find(
-    (specie) => specie.name === animal,
-  );
-  return selected.residents.every((animalInfo) => animalInfo.age > age);
+  // eslint-disable-next-line no-undef
+  return animals
+    .find((animais) => animais.name === animal)
+    .residents.every((animais) => animais.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -36,7 +34,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-
+  return data.employees.some((manager) => manager.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {

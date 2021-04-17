@@ -160,7 +160,8 @@ function animalMap(options) {
   if (options.includeNames === true) {
     if (options.sorted === true && options.sex) return AMINTON(AMINTS(options.sex));
     if (options.sorted === true) return AMINTON(AMINT());
-    options.sex ? AMINTS(options.sex) : AMINT();
+    if (options.sex) return AMINTS(options.sex);
+    return AMINT();
   }
   return AMON();
 }

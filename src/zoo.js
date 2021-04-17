@@ -129,7 +129,6 @@ function AMINTS(sex) {
   data.animals.forEach((animal) => {
     states[animal.location] = [];
   });
-  
   Object.keys(states).forEach((state) => {
     states[state] = [];
     const animals = data.animals.filter((animal) => animal.location === state);
@@ -160,8 +159,8 @@ function AMINTON(list) {
 function animalMap(options) {
   if (options.includeNames === true) {
     if (options.sorted === true && options.sex) return AMINTON(AMINTS(options.sex));
-    if (options.sorted === true) return AMINTON(AMINT());
-    if (options.sex) return AMINTS(options.sex);
+    else if (options.sorted === true) return AMINTON(AMINT());
+    else if (options.sex) return AMINTS(options.sex);
     return AMINT();
   }
   return AMON();

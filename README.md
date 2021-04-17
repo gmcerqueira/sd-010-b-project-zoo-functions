@@ -131,7 +131,7 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 📌 **OS NOMES DOS ARQUIVOS NÃO DEVEM SER ALTERADOS!** Você pode adicionar outros arquivos, se julgar necessário. Qualquer dúvida, procure a Pessoa Instrutora que te acompanha.
 
 * Faça `commits` das alterações que você fizer no código regularmente
-
+.
 * Lembre-se de sempre, após um (ou alguns) `commits`, atualizar o repositório remoto
 
 * Os comandos que você utilizará com mais frequência são:

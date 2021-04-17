@@ -95,11 +95,13 @@ function entryCalculator(entrants) {
 
 function AMON() {
   const states = {};
-  data.animals.forEach((animal) => states[animal.location] = []);
+  data.animals.forEach((animal) => {
+    states[animal.location] = [];
+  });
 
   Object.keys(states).forEach((state) => {
-    data.animals.filter((animal) => {
-      animal.location === state ? states[state].push(animal.name) : 0;
+    data.animals.forEach((animal) => {
+      if(animal.location === state) states[state].push(animal.name);
     });
   });
   return states;
@@ -107,14 +109,17 @@ function AMON() {
 
 function AMINT() {
   const states = {};
-  data.animals.forEach((animal) => states[animal.location] = []);
+  data.animals.forEach((animal) => {
+    states[animal.location] = []
+  });
+
   Object.keys(states).forEach((state) => {
     states[state] = [];
     const animals = data.animals.filter((animal) => animal.location === state);
     animals.forEach((aS, index) => {
       states[state].push({});
       states[state][index][aS.name] = aS.residents.map((animal2) => animal2.name);
-    })
+    });
   });
   return states;
 }
@@ -131,7 +136,7 @@ function AMINTS(sex) {
       aS.residents.forEach((resident) => {
         if(resident.sex === sex) {
           states[state][index][aS.name].push(resident.name);
-        };
+        }
       });
     });
   });
@@ -144,19 +149,17 @@ function AMINTON(list) {
     disorder[state].forEach((animal, index) => {
       const aniN = Object.keys(animal)[0];
       disorder[state][index][aniN].sort();
-    })
-  })
+    });
+  });
   return disorder;
 }
 
 function animalMap(options) {
-  if (options) {
-    if (options.includeNames === true) {
-      if(options.sorted === true && options.sex) return AMINTON(AMINTS(options.sex));
-      if (options.sorted === true) return AMINTON(AMINT());
-      if (options.sex) return AMINTS(options.sex);
-      return AMINT();
-    }
+  if (options.includeNames === true) {
+    if(options.sorted === true && options.sex) return AMINTON(AMINTS(options.sex));
+    if (options.sorted === true) return AMINTON(AMINT());
+    if (options.sex) return AMINTS(options.sex);
+    return AMINT();
   }
   return AMON();
 }

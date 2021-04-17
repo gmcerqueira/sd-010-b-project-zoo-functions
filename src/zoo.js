@@ -70,31 +70,31 @@ function entryCalculator(entrants) {
 
 function schedule(dayName) {
   const result = {};
+  const c = 'Monday'
   if (dayName === undefined) {
     Object.keys(hours).forEach((day) => {
       result[day] = `Open from ${hours[day].open}am until ${hours[day].close}pm`;
     });
-    result['Monday'] = 'CLOSED';
+    result[c] = 'CLOSED';
   } else if (dayName !== 'Monday') {
     result[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close}pm`;
   } else {
-    result[dayName] = `CLOSED`;
-  };
+    result[dayName] = 'CLOSED';
+  }
   return result;
 }
 
 function oldestFromFirstSpecies(id) {
   let armazem;
-  let result = employees.find((object) => object.id === id).responsibleFor[0];
-  let b = animals.find((obj) => obj.id === result).residents;
-  armazem = b[0].age
+  const result = employees.find((object) => object.id === id).responsibleFor[0];
+  const b = animals.find((obj) => obj.id === result).residents;
+  armazem = b[0].age;
   b.forEach((obj) => {
     if (obj.age >= armazem) {
-      armazem = obj.age
+      armazem = obj.age;
     }
   });
-  let c = b.find((obj) => obj.age === armazem);
-  return Object.values(c);
+  return Object.values(b.find((obj) => obj.age === armazem));
 }
 // pontos são usados para objetos {}
 

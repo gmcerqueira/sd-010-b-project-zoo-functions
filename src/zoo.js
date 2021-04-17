@@ -9,17 +9,19 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  return data.animals.filter((animais) => ids.includes(animais.id));
+  if (ids === undefined) return [];
+  if (ids.length === 1) return data.animals.filter((animal) => animal.id === ids[0]);
+  return ids.map((id) => data.animals.find((animal) => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
+  // eslint-disable-next-line no-undef
   return animals
-  .find((animais) => animais.name === animal)
-  .residents.every((animais) => animais.age >= age);
+    .find((animais) => animais.name === animal)
+    .residents.every((animais) => animais.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -34,7 +36,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  
+
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {

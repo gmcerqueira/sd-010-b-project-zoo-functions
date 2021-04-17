@@ -156,12 +156,16 @@ function AMINTON(list) {
   return disorder;
 }
 
+function AMOptions(options) {
+  if (options.sorted === true && options.sex) return AMINTON(AMINTS(options.sex));
+  if (options.sorted === true) return AMINTON(AMINT());
+  if (options.sex) return AMINTS(options.sex);
+  return AMINT();
+}
+
 function animalMap(options) {
   if (options.includeNames === true) {
-    if (options.sorted === true && options.sex) return AMINTON(AMINTS(options.sex));
-    if (options.sorted === true) return AMINTON(AMINT());
-    if (options.sex) return AMINTS(options.sex);
-    return AMINT();
+    return AMOptions(options);
   }
   return AMON();
 }

@@ -164,8 +164,8 @@ function AMOptions(options) {
 }
 
 function animalMap(options) {
-  if (options.includeNames === true) {
-    return AMOptions(options);
+  if (options) {
+    return (options.includeNames === true ? AMOptions(options) : AMON());
   }
   return AMON();
 }

@@ -18,10 +18,10 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // eslint-disable-next-line no-undef
-  return animals
-    .find((animais) => animais.name === animal)
-    .residents.every((animais) => animais.age >= age);
+  const selected = data.animals.find(
+    (specie) => specie.name === animal,
+  );
+  return selected.residents.every((animalInfo) => animalInfo.age > age);
 }
 
 function employeeByName(employeeName) {

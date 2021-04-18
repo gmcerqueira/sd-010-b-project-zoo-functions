@@ -111,9 +111,8 @@ function employeeCoverage(idOrName) {
     });
   } else {
     const getEmployee = data.employees.find(
-      (employee) => employee.id === idOrName
-        || employee.firstName === idOrName
-        || employee.lastName === idOrName,
+      (employee) => employee.id === idOrName || employee.firstName === idOrName
+      || employee.lastName === idOrName,
     );
     const getAnimal = getEmployee.responsibleFor.map(
       (animalId) => animalsByIds(animalId)[0].name,

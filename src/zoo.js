@@ -52,7 +52,12 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
+  return Object.keys(entrants).reduce(
+    (previousValue, currentValue) =>
+      previousValue + (data.prices[currentValue] * entrants[currentValue]),
+    0,
+  );
 }
 
 function animalMap(options) {
@@ -60,11 +65,32 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const week = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
+  if (dayName !== undefined) {
+    return { [dayName]: week[dayName] };
+  }
+  return week;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const idFirsSpecies = data.employees.find((employee) => employee.id === id)
+    .responsibleFor[0];
+  const animalsById = data.animals.find((animal) => animal.id === idFirsSpecies)
+    .residents;
+  return Object.values(
+    animalsById.reduce((acc, currentValue) => {
+      if (currentValue.age > acc.age) return currentValue;
+      return acc;
+    }),
+  );
 }
 
 function increasePrices(percentage) {

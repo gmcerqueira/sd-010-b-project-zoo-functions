@@ -36,7 +36,7 @@ function animalsByIds(...ids) { // vamos colocar o rest como foi mencionado no t
 // resolvido este quesito agora precisamos de uma forma para comparar o id recebido pelo array nos parametros, com o id que está la em data,
 // e se os 2 ids bater, nos retorna um array de objeto, entao basicamente vamos transformar um array em array de objetos, e a melhor função
 // que chegamos a conclusao na aula para este tipo de problema é o MAP.
-
+/*
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
@@ -84,19 +84,19 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
-
+*/
 module.exports = {
-  entryCalculator,
+  /* entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  animalMap, */
   animalsByIds,
-  employeeByName,
+  /* employeeByName,
   employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
   increasePrices,
-  createEmployee,
+  createEmployee, */
 };

@@ -104,20 +104,26 @@ function increasePrices(percentage) {
   });
 }
 
-function employeeCoverage(idOrName) {
+function employeeFind(id) {
   let c;
+  const result = {};
+  employees.forEach((obj) => { 
+    if (obj.id === id || obj.firstName === id || obj.lastName === id) {
+      c = obj;
+    }
+  });
+  result[`${c.firstName} ${c.lastName}`] = animalsByIds(...c.responsibleFor).map((obj) => obj.name);
+  return result;
+}
+
+function employeeCoverage(idOrName) {
   const result = {};
   if (idOrName === undefined) {
     employees.forEach((obj) => {
       result[`${obj.firstName} ${obj.lastName}`] = animalsByIds(...obj.responsibleFor).map((obj) => obj.name);
     }); 
   } else {
-      employees.forEach((obj) => { 
-        if (obj.id === idOrName || obj.firstName === idOrName || obj.lastName === idOrName) {
-          c = obj;
-        }
-      });
-      result[`${c.firstName} ${c.lastName}`] = animalsByIds(...c.responsibleFor).map((obj) => obj.name);
+      return employeeFind(idOrName);
     }
   return result;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 /*
 eslint no-unused-vars: [
@@ -9,7 +10,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals, prices, employees } = require('./data');
+const { animals, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -101,16 +102,23 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const result = employees.reduce((acc, employee) => {
-    const { firstName, lastName, responsibleFor } = employee;
-    acc[`${firstName} ${lastName}`] = responsibleFor.map((id) => animalsByIds(id)[0].name);
-    return acc;
-  }, {});
-  if (typeof idOrName === 'string' && idOrName.length !== 0) {
-    const employee = employeeByName(idOrName);
-    const { firstName, lastName } = employee;
-    const name = `${firstName} ${lastName}`;
-    return { [name]: result[name] };
+  const result = {};
+  if (!idOrName) {
+    data.employees.forEach((e) => {
+      result[`${e.firstName} ${e.lastName}`] = e.responsibleFor.map(
+        (animalId) => animalsByIds(animalId)[0].name,
+      );
+    });
+  } else {
+    const getEmployee = data.employees.find(
+      (employee) => employee.id === idOrName
+        || employee.firstName === idOrName
+        || employee.lastName === idOrName,
+    );
+    const getAnimal = getEmployee.responsibleFor.map(
+      (animalId) => animalsByIds(animalId)[0].name,
+    );
+    result[`${getEmployee.firstName} ${getEmployee.lastName}`] = getAnimal;
   }
   return result;
 }

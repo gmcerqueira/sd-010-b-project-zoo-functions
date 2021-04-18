@@ -98,16 +98,29 @@ function oldestFromFirstSpecies(id) {
 // pontos são usados para objetos {}
 
 function increasePrices(percentage) {
-  // seu código aqui
   Object.keys(prices).forEach((propriedade) => {
     prices[propriedade] = (Math.round(((prices[propriedade] * ((percentage / 100) + 1))
       .toFixed(3)) * 100) / 100);
   });
 }
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  let c;
+  const result = {};
+  if (idOrName === undefined) {
+    employees.forEach((obj) => {
+      result[`${obj.firstName} ${obj.lastName}`] = animalsByIds(...obj.responsibleFor).map((obj) => obj.name);
+    }); 
+  } else {
+      employees.forEach((obj) => { 
+        if (obj.id === idOrName || obj.firstName === idOrName || obj.lastName === idOrName) {
+          c = obj;
+        }
+      });
+      result[`${c.firstName} ${c.lastName}`] = animalsByIds(...c.responsibleFor).map((obj) => obj.name);
+    }
+  return result;
+}
 
 module.exports = {
   entryCalculator,
@@ -116,7 +129,7 @@ module.exports = {
   // animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,

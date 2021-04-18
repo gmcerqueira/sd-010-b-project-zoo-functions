@@ -9,7 +9,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals, prices } = require('./data');
+const { animals, prices, employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -107,7 +107,7 @@ function employeeCoverage(idOrName) {
     return acc;
   }, {});
   if (typeof idOrName === 'string' && idOrName.length !== 0) {
-    const employee = employeeByName(idOrName) || employeeById(idOrName);
+    const employee = employeeByName(idOrName);
     const { firstName, lastName } = employee;
     const name = `${firstName} ${lastName}`;
     return { [name]: result[name] };

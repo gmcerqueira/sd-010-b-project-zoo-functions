@@ -107,7 +107,7 @@ function increasePrices(percentage) {
 function employeeFind(id) {
   let c;
   const result = {};
-  employees.forEach((obj) => { 
+  employees.forEach((obj) => {
     if (obj.id === id || obj.firstName === id || obj.lastName === id) {
       c = obj;
     }
@@ -120,11 +120,12 @@ function employeeCoverage(idOrName) {
   const result = {};
   if (idOrName === undefined) {
     employees.forEach((obj) => {
-      result[`${obj.firstName} ${obj.lastName}`] = animalsByIds(...obj.responsibleFor).map((obj) => obj.name);
-    }); 
+      result[`${obj.firstName} ${obj.lastName}`] = animalsByIds(...obj.responsibleFor)
+      .map((objMap) => objMap.name);
+    });
   } else {
-      return employeeFind(idOrName);
-    }
+    return employeeFind(idOrName);
+  }
   return result;
 }
 

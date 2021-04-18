@@ -121,7 +121,7 @@ function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
     employees.forEach((obj) => {
       result[`${obj.firstName} ${obj.lastName}`] = animalsByIds(...obj.responsibleFor)
-      .map((objMap) => objMap.name);
+        .map((objMap) => objMap.name);
     });
   } else {
     return employeeFind(idOrName);

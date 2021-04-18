@@ -19,7 +19,7 @@ function animalsByIds(...ids) { // vamos colocar o rest como foi mencionado no t
   const foundAnimals = ids.map((actualId) => {
     const findAnimal = data.animals.find((animal) =>
       actualId === animal.id);// retorno implícito. se o id atual do parametro for igual ao id de data.animals.id, entao o find vai retornar o
-      // objeto inteiro que ele achou para dentro do array 'foundAnimal do nosso primeiro map ali em cima'
+      // objeto inteiro que ele achou para dentro do array 'findAnimal do nosso primeiro map ali em cima'
     return findAnimal;
   });
   // transformar string em objetos.
@@ -27,6 +27,7 @@ function animalsByIds(...ids) { // vamos colocar o rest como foi mencionado no t
   // que nada mais é o array vazio caso nao tenha nenhum parametro "pois o rest sempre retorna um array", ou um array de objetos com os animais
   // que conseguimos filtrar com nossa função Map + find;
 }
+
 // /\/\/\/\/\
 // após assistir a aula do isaac chegamos a conclusão de que ao analisar os outros 2 quesitos do problema, teremos que lidar com ele de
 // forma unificada, pois nao sabemos quantos prametros esperar, pode ser 1, 2 ou 1000, portanto existe um operador que usamos que converte
@@ -36,11 +37,15 @@ function animalsByIds(...ids) { // vamos colocar o rest como foi mencionado no t
 // resolvido este quesito agora precisamos de uma forma para comparar o id recebido pelo array nos parametros, com o id que está la em data,
 // e se os 2 ids bater, nos retorna um array de objeto, entao basicamente vamos transformar um array em array de objetos, e a melhor função
 // que chegamos a conclusao na aula para este tipo de problema é o MAP.
-/*
+
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  const pesquisaAnimal = data.animals.find((animale) => animale.name === animal);
+  const { residents } = pesquisaAnimal;
+  return residents.every((animale) => animale.age > age);
 }
 
+/*
 function employeeByName(employeeName) {
   // seu código aqui
 }
@@ -86,17 +91,17 @@ function employeeCoverage(idOrName) {
 }
 */
 module.exports = {
-  /* entryCalculator,
-  schedule,
-  animalCount,
-  animalMap, */
+  // entryCalculator,
+  // schedule,
+  // animalCount,
+  // animalMap,
   animalsByIds,
-  /* employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
+  // employeeByName,
+  // employeeCoverage,
+  // addEmployee,
+  // isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee, */
+  // oldestFromFirstSpecies,
+  // increasePrices,
+  // createEmployee,
 };

@@ -17,7 +17,7 @@ function animalsByIds(firstId, secondId) {
 
   ids.forEach((item) => {
     if (typeof item !== 'undefined') {
-      otherArray.push(data.animals.find((teste) => teste.id === item));
+      otherArray.push(data.animals.find((animal) => animal.id === item));
     }
   });
   return otherArray;

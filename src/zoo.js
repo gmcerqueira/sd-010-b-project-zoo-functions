@@ -13,23 +13,19 @@ const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...id) {
-  if ([id].includes(undefined)) return [];
+  if (!id) return [];
 
   return animals.filter((animal) => id.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
   const species = data.animals.find((name) => name.name === animal);
 
   return species.residents.every((item) => item.age > age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
-  // aprendi esse 'if'no video
-  // https://www.youtube.com/watch?v=VYk0TXoXWbo
-  if ([employeeName].includes(undefined)) { return {}; }
+  if (!employeeName) return {};
 
   const filterName = data.employees;
 
@@ -39,7 +35,6 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   const newEmployee = { ...personalInfo, ...associatedWith };
 
   employees.unshift(newEmployee);
@@ -48,12 +43,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
   return employees.some((employee) => employee.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // seu código aqui
   return employees.push(
     {
       id,
@@ -66,7 +59,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
   const objName = {};
   let count = 0;
   animals.forEach((animal) => { objName[animal.name] = animal.residents.length; });
@@ -85,7 +77,6 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
   if (!entrants || Object.keys(entrants).length === 0) return 0;
 
   const sum = (acc, currValue) => acc + currValue;
@@ -95,20 +86,108 @@ function entryCalculator(entrants) {
 
   return sumTotal;
 }
-// função aprendida no https://pt.stackoverflow.com/questions/367657/agrupar-registros-repetidos-em-um-array-no-javascript
+// ---Funções a seguir são Complementares da Função animalMap---
+function objAnimal() {
+  const categorizedByLocation = {};
+
+  animals.forEach(({ location }) => {
+    categorizedByLocation[location] = [];
+    const animalFilter = animals.filter((animal) => animal.location === location);
+    animalFilter.forEach(({ name }) => {
+      categorizedByLocation[location].push(name);
+    });
+  });
+
+  return categorizedByLocation;
+}
+
+function includes(obj) {
+  const objIncludes = {};
+
+  Object.keys(obj).forEach((location) => {
+    objIncludes[location] = [];
+    const filterByLocation = animals.filter((animal) => animal.location === location);
+
+    filterByLocation.forEach(({ name, residents }, index) => {
+      objIncludes[location].push({});
+      objIncludes[location][index][name] = residents.map((resident) => resident.name);
+    });
+  });
+
+  return objIncludes;
+}
+
+function filterBySex(optionSex) {
+  const getObj = objAnimal();
+  const categorizedBySex = {};
+
+  Object.keys(getObj).forEach((location) => {
+    categorizedBySex[location] = [];
+
+    const filterByLocation = animals.filter((animal) => animal.location === location);
+
+    filterByLocation.forEach(({ name, residents }, index) => {
+      const animalBySex = residents.filter((resident) => resident.sex === optionSex);
+
+      categorizedBySex[location].push({});
+      categorizedBySex[location][index][name] = animalBySex.map((sex) => sex.name);
+    });
+  });
+
+  return categorizedBySex;
+}
+
+function sort(obj) {
+  const getObj = includes(obj);
+
+  Object.keys(getObj).forEach((location) => {
+    getObj[location].forEach((animal, index) => {
+      const animalName = Object.keys(animal);
+      getObj[location][index][animalName].sort();
+    });
+  });
+
+  return getObj;
+}
+
+function sortSex(obj) {
+  const getObj = obj;
+
+  Object.keys(getObj).forEach((key) => {
+    getObj[key].forEach((animal, index) => {
+      const animalName = Object.keys(animal);
+      getObj[key][index][animalName].sort();
+    });
+  });
+
+  return getObj;
+}
+
+function checkOptions(options) {
+  if (options.sorted === true && options.sex) {
+    return sortSex(filterBySex(options.sex));
+  }
+  if (options.sorted === true) {
+    return sort(objAnimal());
+  }
+  if (options.sex) {
+    return filterBySex(options.sex);
+  }
+
+  return includes(objAnimal());
+}
+
 function animalMap(options) {
   // seu código aqui
-  if (!options) {
-    return animals.reduce((acc, { name, location }) => {
-      if (!acc[location]) acc[location] = [];
-      acc[location].push(name);
-      return acc;
-    }, {});
+  if (options && options.includeNames) {
+    return checkOptions(options);
   }
+
+  return objAnimal();
 }
 
 function schedule(dayName) {
-  // na lógica desse código obtive a ajuda do Aladino Borges
+  // obtive a ajuda do Aladino Borges para fazer o return desse código
   const arrHours = Object.entries(hours);
   const fullSchedule = {};
 
@@ -126,7 +205,6 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
   const getResponsible = employees.find((idEmployee) => idEmployee.id === id).responsibleFor[0];
 
   const getAnimal = animals.find((animal) =>
@@ -140,7 +218,6 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
   const increase = Object.values(prices)
     .map((item) => (item * percentage)
       .toPrecision(4) / 100);

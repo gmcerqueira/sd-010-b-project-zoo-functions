@@ -11,10 +11,20 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(id1, id2) {
+  const newArray = [];
+  const ids = [id1, id2];
+
+  ids.forEach((item) => {
+    if (typeof item !== 'undefined') {
+      newArray.push(data.animals.find((teste) => teste.id === item));
+    }
+  });
+
+  return newArray;
 }
 
+/*
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
@@ -62,13 +72,13 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
-
+*/
 module.exports = {
+  /*
   entryCalculator,
   schedule,
   animalCount,
   animalMap,
-  animalsByIds,
   employeeByName,
   employeeCoverage,
   addEmployee,
@@ -77,4 +87,6 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
+  */
+  animalsByIds,
 };

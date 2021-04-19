@@ -8,6 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
+const data = require('./data');
 
 function animalsByIds(firstId, secondId) {
   // seu código aqui
@@ -15,8 +16,8 @@ function animalsByIds(firstId, secondId) {
   const ids = [firstId, secondId];
 
   ids.forEach((item) => {
-    if (typeof item !== "undefined") {
-      newArray.push(data.animals.find((teste) => teste.id === item));
+    if (typeof item !== 'undefined') {
+      otherArray.push(data.animals.find((teste) => teste.id === item));
     }
   });
   return otherArray;

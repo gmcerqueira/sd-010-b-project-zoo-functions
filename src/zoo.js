@@ -54,11 +54,13 @@ function employeeByName(employeeName) {
   || (person.lastName === employeeName));
   return searchEmployee;
 }
-/*
+
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const spreadToEmployeeInfo = { ...personalInfo, ...associatedWith };
+  return spreadToEmployeeInfo;
 }
 
+/*
 function isManager(id) {
   // seu código aqui
 }
@@ -108,5 +110,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

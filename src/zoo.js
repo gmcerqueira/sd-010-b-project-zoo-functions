@@ -11,6 +11,8 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+const employee = data.employees;
+
 function animalsByIds(...ids) { // vamos colocar o rest como foi mencionado no texto abaixo.
   // seu código aqui
   // nenhum parametro? retornar um array vazio!
@@ -49,7 +51,6 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  const employee = data.employees;
   const searchEmployee = employee.find((person) => (person.firstName === employeeName)
   || (person.lastName === employeeName));
   return searchEmployee;
@@ -60,11 +61,13 @@ function createEmployee(personalInfo, associatedWith) {
   return spreadToEmployeeInfo;
 }
 
-/*
 function isManager(id) {
-  // seu código aqui
+  // recuperar o objeto do funcionario pelo id
+  // comparar se no managers for <= 1 então a pessoa é gerente
+  const searchPerson = employee.find((person) => person.id === id);
+  return searchPerson.managers.length <= 1;
 }
-
+/*
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
@@ -106,7 +109,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

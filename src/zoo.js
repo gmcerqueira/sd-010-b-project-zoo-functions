@@ -64,8 +64,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   // recuperar o objeto do funcionario pelo id
   // comparar se no managers for <= 1 então a pessoa é gerente
-  const searchPerson = employee.find((person) => person.id === id);
-  return searchPerson.managers.length <= 1;
+  return employee.some((person) => person.managers.includes(id));
 }
 /*
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {

@@ -13,6 +13,7 @@ const data = require('./data');
 
 const employee = data.employees;
 const animale = data.animals;
+const openSource = data.hours;
 
 function animalsByIds(...ids) { // vamos colocar o rest como foi mencionado no texto abaixo.
   // seu código aqui
@@ -138,11 +139,19 @@ function animalMap(options = {}) {
   }
   return output;
 }
-/*
-function schedule(dayName) {
-  // seu código aqui
-}
 
+function schedule(dayName) {
+  const alert = {};
+  const day = Object.keys(openSource);
+  day.forEach((days) => {
+    const { open, close } = openSource[days];
+    (alert[days] = `Open from ${open}am until ${close - 12}pm`);
+  });
+  alert.Monday = 'CLOSED';
+  if (dayName === undefined) { return alert; }
+  return { [dayName]: alert[dayName] };
+}
+/*
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
@@ -157,7 +166,7 @@ function employeeCoverage(idOrName) {
 */
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   animalMap,
   animalsByIds,

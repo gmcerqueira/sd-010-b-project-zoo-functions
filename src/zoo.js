@@ -105,11 +105,40 @@ function entryCalculator(entrants) {
   }
   return totalPrice;
 }
-/*
-function animalMap(options) {
-  // seu código aqui
-}
 
+const findAnimalNames = (AnimalName, sorted, sex) => {
+  let output = animale.find((animal) => animal.name === AnimalName);
+  output = output.residents;
+
+  if (typeof sex === 'string') {
+    output = output.filter((animal) => animal.sex === sex);
+  }
+  output = output.map((resident) => resident.name);
+  if (sorted) output.sort();
+  return { [AnimalName]: output };
+};
+
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex } = options;
+
+  let output = animale.reduce((acc, animal) => {
+    const { name, location } = animal;
+    if (!acc[location]) {
+      acc[location] = [];
+    }
+    acc[location].push(name);
+    return acc;
+  }, {});
+
+  if (includeNames) {
+    output = Object.entries(output).reduce((acc, [chave, AnimalName]) => {
+      acc[chave] = AnimalName.map((name) => findAnimalNames(name, sorted, sex));
+      return acc;
+    }, {});
+  }
+  return output;
+}
+/*
 function schedule(dayName) {
   // seu código aqui
 }
@@ -130,7 +159,7 @@ module.exports = {
   entryCalculator,
   // schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   // employeeCoverage,

@@ -47,9 +47,12 @@ const createEmployee = (personalInfo, associatedWith) => {
   return newPeople;
 };
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+const isManager = (id) => {
+  const colaborador = employees.some(({
+    managers,
+  }) => managers.includes(id));
+  return colaborador;
+};
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -92,7 +95,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,

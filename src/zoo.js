@@ -43,9 +43,9 @@ function animalsByIds(...ids) { // vamos colocar o rest como foi mencionado no t
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const pesquisaAnimal = data.animals.find((animale) => animale.name === animal);
+  const pesquisaAnimal = data.animals.find((animalets) => animalets.name === animal);
   const { residents } = pesquisaAnimal;
-  return residents.every((animale) => animale.age > age);
+  return residents.every((animalets) => animale.age > age);
 }
 
 function employeeByName(employeeName) {

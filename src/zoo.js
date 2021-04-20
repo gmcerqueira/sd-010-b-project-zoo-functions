@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 const employee = data.employees;
+const animale = data.animals;
 
 function animalsByIds(...ids) { // vamos colocar o rest como foi mencionado no texto abaixo.
   // seu código aqui
@@ -76,11 +77,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     responsibleFor,
   });
 }
-/*
-function animalCount(species) {
-  // seu código aqui
-}
 
+function animalCount(species) {
+  const countEachAnimals = {};
+  animale.forEach(({ name, residents }) => {
+    countEachAnimals[name] = residents.length;
+  });
+  if (species === undefined) {
+    return countEachAnimals;
+  }
+  return countEachAnimals[species];
+}
+/*
 function entryCalculator(entrants) {
   // seu código aqui
 }
@@ -108,7 +116,7 @@ function employeeCoverage(idOrName) {
 module.exports = {
   // entryCalculator,
   // schedule,
-  // animalCount,
+  animalCount,
   // animalMap,
   animalsByIds,
   employeeByName,

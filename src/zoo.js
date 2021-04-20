@@ -13,6 +13,7 @@ const data = require('./data');
 
 const {
   animals,
+  employees,
 } = data;
 
 const animalsByIds = (...ids) => {
@@ -30,10 +31,6 @@ const animalsOlderThan = (animal, age) => {
   return residents.every((animais) => animais.age > age);
 };
 
-const {
-  employees,
-} = data;
-
 const employeeByName = (employeeName) => {
   if (employeeName === undefined) return {};
   return employees.find(({
@@ -42,9 +39,13 @@ const employeeByName = (employeeName) => {
   }) => (firstName === employeeName || lastName === employeeName));
 };
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+const createEmployee = (personalInfo, associatedWith) => {
+  const newPeople = ({
+    ...personalInfo,
+    ...associatedWith,
+  });
+  return newPeople;
+};
 
 // function isManager(id) {
 //   // seu código aqui
@@ -95,5 +96,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };

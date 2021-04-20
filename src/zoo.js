@@ -66,11 +66,17 @@ function isManager(id) {
   // comparar se no managers for <= 1 então a pessoa é gerente
   return employee.some((person) => person.managers.includes(id));
 }
-/*
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
 
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  employee.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
+}
+/*
 function animalCount(species) {
   // seu código aqui
 }
@@ -107,7 +113,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   // employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,

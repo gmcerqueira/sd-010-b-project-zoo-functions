@@ -88,11 +88,24 @@ function animalCount(species) {
   }
   return countEachAnimals[species];
 }
-/*
-function entryCalculator(entrants) {
-  // seu código aqui
-}
 
+function entryCalculator(entrants) {
+  if (entrants === undefined) {
+    return 0;
+  }
+  let totalPrice = 0;
+  if (entrants.Adult) {
+    totalPrice += data.prices.Adult * entrants.Adult;
+  }
+  if (entrants.Child) {
+    totalPrice += data.prices.Child * entrants.Child;
+  }
+  if (entrants.Senior) {
+    totalPrice += data.prices.Senior * entrants.Senior;
+  }
+  return totalPrice;
+}
+/*
 function animalMap(options) {
   // seu código aqui
 }
@@ -114,7 +127,7 @@ function employeeCoverage(idOrName) {
 }
 */
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,
